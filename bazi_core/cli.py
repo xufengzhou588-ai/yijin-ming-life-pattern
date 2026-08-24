@@ -24,6 +24,7 @@ def main() -> None:
     generate.add_argument("--longitude", type=float)
     generate.add_argument("--latitude", type=float)
     generate.add_argument("--true-solar-time", action="store_true")
+    generate.add_argument("--birth-time-accuracy", choices=["exact", "approximate", "unknown"], default="exact")
     generate.add_argument("--annual-years", type=int, default=12)
     generate.add_argument("--annual-start-year", type=int)
     generate.add_argument("--luck-cycles", type=int, default=8)
@@ -45,6 +46,7 @@ def main() -> None:
             longitude=args.longitude,
             latitude=args.latitude,
             use_true_solar_time=args.true_solar_time,
+            birth_time_accuracy=args.birth_time_accuracy,
             annual_years=args.annual_years,
             annual_start_year=args.annual_start_year,
             luck_cycles=args.luck_cycles,

@@ -1,10 +1,17 @@
 {
   "schema_version": "1.0.0",
+  "model_versions": {
+    "calculation_model": "bazi-calculation-rules-v1",
+    "interpretation_model": "bazi-structural-interpretation-v1"
+  },
+  "confidence": 0.9,
+  "uncertainty_reasons": [],
   "input": {
     "calendar": "gregorian",
     "birth_datetime": "1990-05-17T08:30:00+08:00",
     "timezone": "Asia/Shanghai",
     "gender": "male",
+    "birth_time_accuracy": "exact",
     "location": {
       "country": "CN",
       "region": "Shanghai",
@@ -1158,6 +1165,19 @@
     }
   ],
   "evidence": [
+    {
+      "id": "input.time_basis",
+      "type": "calculation",
+      "target": "chart",
+      "description": "civil clock time used for pillar calculation: 1990-05-17T08:30:00+08:00",
+      "weight": 0.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "civil_clock_time_v1",
+        "position": "hour"
+      }
+    },
     {
       "id": "year.pillar",
       "type": "calculation",

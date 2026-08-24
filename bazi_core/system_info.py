@@ -4,6 +4,9 @@ from datetime import date
 from importlib.metadata import PackageNotFoundError, version
 from typing import Any
 
+from .generator import CALCULATION_MODEL_VERSION, INTERPRETATION_MODEL_VERSION
+from .trait_engine import TRAIT_INTERPRETATION_MODEL_VERSION, TRAIT_MODEL_VERSION, TRAIT_WEIGHT_VERSION
+
 
 def _package_version(package: str, fallback: str) -> str:
     try:
@@ -15,11 +18,11 @@ def _package_version(package: str, fallback: str) -> str:
 SYSTEM_VERSION = "2026.08.21"
 CALCULATION_DATA_VERSION = "2026.08"
 LOCATION_DATA_VERSION = "world-locations-v1"
-RULE_MODEL_VERSION = "bazi-core-v1"
-TRAIT_MODEL_VERSION = "trait-v1"
+RULE_MODEL_VERSION = CALCULATION_MODEL_VERSION
 ANNUAL_MODEL_VERSION = "annual-trait-rules-v1"
 MONTHLY_MODEL_VERSION = "monthly-compass-v1"
 ORACLE_MODEL_VERSION = "three-coin-change-rules-v1"
+INTERPRETATION_VERSION = INTERPRETATION_MODEL_VERSION
 CONTENT_COPY_VERSION = "en-US-zh-CN-2026.08"
 LAST_METHODOLOGY_REVIEW = "2026-08-21"
 
@@ -34,6 +37,9 @@ def build_system_status() -> dict[str, Any]:
             "location_data": LOCATION_DATA_VERSION,
             "rule_model": RULE_MODEL_VERSION,
             "trait_model": TRAIT_MODEL_VERSION,
+            "trait_weight_model": TRAIT_WEIGHT_VERSION,
+            "interpretation_model": INTERPRETATION_VERSION,
+            "trait_interpretation_model": TRAIT_INTERPRETATION_MODEL_VERSION,
             "annual_model": ANNUAL_MODEL_VERSION,
             "monthly_model": MONTHLY_MODEL_VERSION,
             "oracle_model": ORACLE_MODEL_VERSION,

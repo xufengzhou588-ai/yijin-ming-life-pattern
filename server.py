@@ -641,7 +641,13 @@ class BaziHandler(BaseHTTPRequestHandler):
         if path in ("/legal/methodology", "/methodology", "/data-sources", "/legal/data-sources"):
             self._send_file(WEB_ROOT / "legal" / "methodology.html")
             return
-        if path.startswith("/assets/") or path.startswith("/legal/"):
+        if (
+            path.startswith("/assets/")
+            or path.startswith("/legal/")
+            or path.startswith("/styles/")
+            or path.startswith("/js/")
+            or path.startswith("/locales/")
+        ):
             self._send_web_file(path)
             return
         self._send_json({"error": "not_found"}, status=404)
@@ -717,10 +723,16 @@ class BaziHandler(BaseHTTPRequestHandler):
         if content_type.startswith("text/"):
             content_type = f"{content_type}; charset=utf-8"
         data = file_path.read_bytes()
+        cache_control = (
+            "public, max-age=31536000, immutable"
+            if re.search(r"-v\d{8}\.", file_path.name)
+            else "no-store, no-cache, must-revalidate, max-age=0"
+        )
         self.send_response(200)
         self.send_header("Content-Type", content_type)
-        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
-        self.send_header("Pragma", "no-cache")
+        self.send_header("Cache-Control", cache_control)
+        if cache_control.startswith("no-store"):
+            self.send_header("Pragma", "no-cache")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         if self.command != "HEAD":
@@ -979,6 +991,8 @@ def _validate_chart_payload(payload: dict[str, Any]) -> None:
         raise ClientInputError("invalid_request", "gender is invalid.")
     if payload.get("calendar", "gregorian") not in {"gregorian", "lunar"}:
         raise ClientInputError("invalid_request", "calendar is invalid.")
+    if payload.get("birth_time_accuracy", "exact") not in {"exact", "approximate", "unknown"}:
+        raise ClientInputError("invalid_request", "birth_time_accuracy is invalid.")
     country = _optional_text(payload.get("country"), "country", 3)
     if country and not re.fullmatch(r"[A-Za-z]{2,3}", country):
         raise ClientInputError("invalid_request", "country is invalid.")
@@ -1181,6 +1195,7 @@ def _build_and_validate(payload: dict) -> tuple[dict, dict]:
         longitude=_optional_float(payload.get("longitude")),
         latitude=_optional_float(payload.get("latitude")),
         use_true_solar_time=bool(payload.get("use_true_solar_time", False)),
+        birth_time_accuracy=payload.get("birth_time_accuracy", "exact"),
         annual_years=_int_range(payload.get("annual_years", 12), "annual_years", 1, 20),
         annual_start_year=_int_range(payload.get("annual_start_year", datetime.now().year), "annual_start_year", 1900, 2100),
         luck_cycles=_int_range(payload.get("luck_cycles", 8), "luck_cycles", 1, 12),

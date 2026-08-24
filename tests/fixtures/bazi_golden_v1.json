@@ -1,0 +1,4253 @@
+{
+  "fixture_set_version": "bazi-golden-v1",
+  "case_count": 104,
+  "source_policy": "docs/calculation-policy-v1.md",
+  "source_type": "pinned_sxtwl_zoneinfo_snapshot_pending_professional_blind_review",
+  "generated_by": "tools/generate_bazi_golden_fixtures.py",
+  "generated_at": "2026-08-24T15:09:36Z",
+  "cases": [
+    {
+      "id": "solar-term-2024-03-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-02-04T16:25:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立春-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-04T16:25:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "乙丑",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "solar-term-2024-03-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-02-04T16:27:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立春-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-04T16:27:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-05-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-03-05T10:21:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "惊蛰-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-05T10:21:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "戊辰",
+          "hour": "丁巳"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-05-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-03-05T10:23:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "惊蛰-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-05T10:23:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "戊辰",
+          "hour": "丁巳"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-07-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-04-04T15:01:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "清明-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-04-04T15:01:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-07-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-04-04T15:03:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "清明-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-04-04T15:03:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "戊辰",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-09-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-05-05T08:08:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立夏-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-05-05T08:08:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "戊辰",
+          "day": "己巳",
+          "hour": "戊辰"
+        },
+        "day_master": "己",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-09-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-05-05T08:10:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立夏-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-05-05T08:10:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "己巳",
+          "day": "己巳",
+          "hour": "戊辰"
+        },
+        "day_master": "己",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-11-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-06-05T12:08:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "芒种-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-06-05T12:08:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "己巳",
+          "day": "庚子",
+          "hour": "壬午"
+        },
+        "day_master": "庚",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-11-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-06-05T12:10:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "芒种-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-06-05T12:10:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "庚午",
+          "day": "庚子",
+          "hour": "壬午"
+        },
+        "day_master": "庚",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-13-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-07-06T22:18:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "小暑-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-07-06T22:18:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "庚午",
+          "day": "辛未",
+          "hour": "己亥"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-13-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-07-06T22:20:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "小暑-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-07-06T22:20:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "辛未",
+          "day": "辛未",
+          "hour": "己亥"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-15-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-08-07T08:08:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立秋-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-08-07T08:08:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "辛未",
+          "day": "癸卯",
+          "hour": "丙辰"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "solar-term-2024-15-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-08-07T08:10:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立秋-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-08-07T08:10:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "壬申",
+          "day": "癸卯",
+          "hour": "丙辰"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "solar-term-2024-17-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-09-07T11:10:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "白露-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-09-07T11:10:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "壬申",
+          "day": "甲戌",
+          "hour": "庚午"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-17-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-09-07T11:12:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "白露-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-09-07T11:12:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "癸酉",
+          "day": "甲戌",
+          "hour": "庚午"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-19-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-10-08T02:58:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "寒露-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-10-08T02:58:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "癸酉",
+          "day": "乙巳",
+          "hour": "丁丑"
+        },
+        "day_master": "乙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-19-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-10-08T03:00:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "寒露-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-10-08T03:00:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "甲戌",
+          "day": "乙巳",
+          "hour": "戊寅"
+        },
+        "day_master": "乙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-21-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-11-07T06:18:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立冬-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-11-07T06:18:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "甲戌",
+          "day": "乙亥",
+          "hour": "己卯"
+        },
+        "day_master": "乙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-21-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-11-07T06:20:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立冬-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-11-07T06:20:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "乙亥",
+          "day": "乙亥",
+          "hour": "己卯"
+        },
+        "day_master": "乙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-23-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-12-06T23:15:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "大雪-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-12-06T23:15:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "乙亥",
+          "day": "甲辰",
+          "hour": "丙子"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-23-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2024-12-06T23:17:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "大雪-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-12-06T23:17:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙子",
+          "day": "甲辰",
+          "hour": "丙子"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-01-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2025-01-05T10:31:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "小寒-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-01-05T10:31:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙子",
+          "day": "甲戌",
+          "hour": "己巳"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-01-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2025-01-05T10:33:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "小寒-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-01-05T10:33:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁丑",
+          "day": "甲戌",
+          "hour": "己巳"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "solar-term-2024-03-before",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2025-02-03T22:09:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立春-before",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-02-03T22:09:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁丑",
+          "day": "癸卯",
+          "hour": "癸亥"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "solar-term-2024-03-after",
+      "category": "solar_term_boundary",
+      "input": {
+        "birth_datetime": "2025-02-03T22:11:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "立春-after",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-02-03T22:11:00+08:00",
+        "pillars": {
+          "year": "乙巳",
+          "month": "戊寅",
+          "day": "癸卯",
+          "hour": "癸亥"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "zi-hour-00-2330",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2024-02-10T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-10T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "甲辰",
+          "hour": "丙子"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "zi-hour-00-0030",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2024-02-11T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-11T00:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "乙巳",
+          "hour": "丙子"
+        },
+        "day_master": "乙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-01-2330",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2024-06-05T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-06-05T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "庚午",
+          "day": "庚子",
+          "hour": "戊子"
+        },
+        "day_master": "庚",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-01-0030",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2024-06-06T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-06-06T00:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "庚午",
+          "day": "辛丑",
+          "hour": "戊子"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-02-2330",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2024-12-31T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-12-31T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙子",
+          "day": "己巳",
+          "hour": "丙子"
+        },
+        "day_master": "己",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-02-0030",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2025-01-01T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-01-01T00:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙子",
+          "day": "庚午",
+          "hour": "丙子"
+        },
+        "day_master": "庚",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "zi-hour-03-2330",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2025-01-01T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-01-01T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙子",
+          "day": "庚午",
+          "hour": "戊子"
+        },
+        "day_master": "庚",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-03-0030",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "2025-01-02T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-01-02T00:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙子",
+          "day": "辛未",
+          "hour": "戊子"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "zi-hour-04-2330",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "1990-05-17T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T23:30:00+08:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "壬子"
+        },
+        "day_master": "壬",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-04-0030",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "1990-05-18T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-18T00:30:00+08:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "癸未",
+          "hour": "壬子"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "zi-hour-05-2330",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "1988-08-08T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1988-08-08T23:30:00+08:00",
+        "pillars": {
+          "year": "戊辰",
+          "month": "庚申",
+          "day": "乙未",
+          "hour": "戊子"
+        },
+        "day_master": "乙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "zi-hour-05-0030",
+      "category": "zi_hour_day_boundary",
+      "input": {
+        "birth_datetime": "1988-08-09T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1988-08-09T00:30:00+08:00",
+        "pillars": {
+          "year": "戊辰",
+          "month": "庚申",
+          "day": "丙申",
+          "hour": "戊子"
+        },
+        "day_master": "丙",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-new-york-city-before-spring-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-03-10T01:30:00",
+        "timezone": "America/New_York",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-10T01:30:00-05:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "癸酉",
+          "hour": "癸丑"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-new-york-city-after-spring-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-03-10T03:30:00",
+        "timezone": "America/New_York",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-10T03:30:00-04:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "癸酉",
+          "hour": "甲寅"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-new-york-city-before-fall-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-11-03T00:30:00",
+        "timezone": "America/New_York",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-11-03T00:30:00-04:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "甲戌",
+          "day": "辛未",
+          "hour": "戊子"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "us-dst-new-york-city-after-fall-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-11-03T02:30:00",
+        "timezone": "America/New_York",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-11-03T02:30:00-05:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "甲戌",
+          "day": "辛未",
+          "hour": "己丑"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "us-dst-new-york-city-before-spring-2025",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2025-03-09T01:30:00",
+        "timezone": "America/New_York",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-03-09T01:30:00-05:00",
+        "pillars": {
+          "year": "乙巳",
+          "month": "己卯",
+          "day": "丁丑",
+          "hour": "辛丑"
+        },
+        "day_master": "丁",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-new-york-city-after-spring-2025",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2025-03-09T03:30:00",
+        "timezone": "America/New_York",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-03-09T03:30:00-04:00",
+        "pillars": {
+          "year": "乙巳",
+          "month": "己卯",
+          "day": "丁丑",
+          "hour": "壬寅"
+        },
+        "day_master": "丁",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-los-angeles-before-spring-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-03-10T01:30:00",
+        "timezone": "America/Los_Angeles",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "California",
+        "city": "Los Angeles",
+        "longitude": -118.2437,
+        "latitude": 34.0522,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-10T01:30:00-08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "癸酉",
+          "hour": "癸丑"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-los-angeles-after-spring-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-03-10T03:30:00",
+        "timezone": "America/Los_Angeles",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "California",
+        "city": "Los Angeles",
+        "longitude": -118.2437,
+        "latitude": 34.0522,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-10T03:30:00-07:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "癸酉",
+          "hour": "甲寅"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-los-angeles-before-fall-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-11-03T00:30:00",
+        "timezone": "America/Los_Angeles",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "California",
+        "city": "Los Angeles",
+        "longitude": -118.2437,
+        "latitude": 34.0522,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-11-03T00:30:00-07:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "甲戌",
+          "day": "辛未",
+          "hour": "戊子"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "us-dst-los-angeles-after-fall-2024",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2024-11-03T02:30:00",
+        "timezone": "America/Los_Angeles",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "California",
+        "city": "Los Angeles",
+        "longitude": -118.2437,
+        "latitude": 34.0522,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-11-03T02:30:00-08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "甲戌",
+          "day": "辛未",
+          "hour": "己丑"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "us-dst-los-angeles-before-spring-2025",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2025-03-09T01:30:00",
+        "timezone": "America/Los_Angeles",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "California",
+        "city": "Los Angeles",
+        "longitude": -118.2437,
+        "latitude": 34.0522,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-03-09T01:30:00-08:00",
+        "pillars": {
+          "year": "乙巳",
+          "month": "己卯",
+          "day": "丁丑",
+          "hour": "辛丑"
+        },
+        "day_master": "丁",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "us-dst-los-angeles-after-spring-2025",
+      "category": "us_dst",
+      "input": {
+        "birth_datetime": "2025-03-09T03:30:00",
+        "timezone": "America/Los_Angeles",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "California",
+        "city": "Los Angeles",
+        "longitude": -118.2437,
+        "latitude": 34.0522,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2025-03-09T03:30:00-07:00",
+        "pillars": {
+          "year": "乙巳",
+          "month": "己卯",
+          "day": "丁丑",
+          "hour": "壬寅"
+        },
+        "day_master": "丁",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "china-history-00",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1900-01-01T08:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1900-01-01T08:30:00+08:05:43",
+        "pillars": {
+          "year": "己亥",
+          "month": "丙子",
+          "day": "甲戌",
+          "hour": "戊辰"
+        },
+        "day_master": "甲",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted",
+          "historical_timezone_offset_has_subminute_component"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "china-history-01",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1912-02-12T23:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1912-02-12T23:30:00+08:00",
+        "pillars": {
+          "year": "壬子",
+          "month": "壬寅",
+          "day": "戊午",
+          "hour": "甲子"
+        },
+        "day_master": "戊",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "china-history-02",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1927-12-31T23:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1927-12-31T23:30:00+08:00",
+        "pillars": {
+          "year": "丁卯",
+          "month": "壬子",
+          "day": "己亥",
+          "hour": "丙子"
+        },
+        "day_master": "己",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "china-history-03",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1949-05-01T00:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1949-05-01T00:30:00+08:00",
+        "pillars": {
+          "year": "己丑",
+          "month": "戊辰",
+          "day": "辛卯",
+          "hour": "戊子"
+        },
+        "day_master": "辛",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "china-history-04",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1966-08-08T08:08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1966-08-08T08:08:00+08:00",
+        "pillars": {
+          "year": "丙午",
+          "month": "丙申",
+          "day": "己亥",
+          "hour": "戊辰"
+        },
+        "day_master": "己",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "china-history-05",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1986-05-04T01:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1986-05-04T01:30:00+08:00",
+        "pillars": {
+          "year": "丙寅",
+          "month": "壬辰",
+          "day": "戊申",
+          "hour": "癸丑"
+        },
+        "day_master": "戊",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "china-history-06",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "1991-09-15T01:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1991-09-15T01:30:00+09:00",
+        "pillars": {
+          "year": "辛未",
+          "month": "丁酉",
+          "day": "戊子",
+          "hour": "癸丑"
+        },
+        "day_master": "戊",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "china-history-07",
+      "category": "china_historical_timezone",
+      "input": {
+        "birth_datetime": "2024-02-04T16:27:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-04T16:27:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.82,
+        "uncertainty_reasons": [
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "true-solar-kashgar-0020",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T00:20:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "喀什市",
+        "longitude": 75.9898,
+        "latitude": 39.4704,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T00:20:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "戊戌"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-kashgar-0110",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T01:10:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "喀什市",
+        "longitude": 75.9898,
+        "latitude": 39.4704,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T01:10:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "己亥"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-kashgar-0830",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T08:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "喀什市",
+        "longitude": 75.9898,
+        "latitude": 39.4704,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T08:30:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "壬寅"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-kashgar-2240",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T22:40:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "喀什市",
+        "longitude": 75.9898,
+        "latitude": 39.4704,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T22:40:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "己酉"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-kashgar-2320",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T23:20:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "喀什市",
+        "longitude": 75.9898,
+        "latitude": 39.4704,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T23:20:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "庚戌"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-urumqi-0020",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T00:20:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "乌鲁木齐市",
+        "longitude": 87.6168,
+        "latitude": 43.8256,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T00:20:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "己亥"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-urumqi-0110",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T01:10:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "乌鲁木齐市",
+        "longitude": 87.6168,
+        "latitude": 43.8256,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T01:10:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "己亥"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-urumqi-0830",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T08:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "乌鲁木齐市",
+        "longitude": 87.6168,
+        "latitude": 43.8256,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T08:30:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "癸卯"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-urumqi-2240",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T22:40:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "乌鲁木齐市",
+        "longitude": 87.6168,
+        "latitude": 43.8256,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T22:40:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "庚戌"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-urumqi-2320",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T23:20:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "新疆维吾尔自治区",
+        "city": "乌鲁木齐市",
+        "longitude": 87.6168,
+        "latitude": 43.8256,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T23:20:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "庚戌"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-guangzhou-0020",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T00:20:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Guangdong",
+        "city": "Guangzhou",
+        "longitude": 113.2644,
+        "latitude": 23.1291,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T00:20:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "己亥"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-guangzhou-0110",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T01:10:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Guangdong",
+        "city": "Guangzhou",
+        "longitude": 113.2644,
+        "latitude": 23.1291,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T01:10:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "庚子"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "true-solar-guangzhou-0830",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T08:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Guangdong",
+        "city": "Guangzhou",
+        "longitude": 113.2644,
+        "latitude": 23.1291,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T08:30:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "甲辰"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-guangzhou-2240",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T22:40:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Guangdong",
+        "city": "Guangzhou",
+        "longitude": 113.2644,
+        "latitude": 23.1291,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T22:40:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "辛亥"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-guangzhou-2320",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T23:20:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Guangdong",
+        "city": "Guangzhou",
+        "longitude": 113.2644,
+        "latitude": 23.1291,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T23:20:00+09:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "辛亥"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-new-york-0020",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T00:20:00",
+        "timezone": "America/New_York",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T00:20:00-04:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "辛巳",
+          "hour": "庚子"
+        },
+        "day_master": "辛",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "true-solar-new-york-0110",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T01:10:00",
+        "timezone": "America/New_York",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T01:10:00-04:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "庚子"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-new-york-0830",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T08:30:00",
+        "timezone": "America/New_York",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T08:30:00-04:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "甲辰"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-new-york-2240",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T22:40:00",
+        "timezone": "America/New_York",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T22:40:00-04:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "辛亥"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "true-solar-new-york-2320",
+      "category": "true_solar_cross_branch",
+      "input": {
+        "birth_datetime": "1990-05-17T23:20:00",
+        "timezone": "America/New_York",
+        "gender": "male",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": true,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T23:20:00-04:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "辛亥"
+        },
+        "day_master": "壬",
+        "confidence": 0.84,
+        "uncertainty_reasons": [
+          "true_solar_time_uses_approximate_equation_of_time"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-00-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "1990-05-17T08:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T08:30:00+08:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "甲辰"
+        },
+        "day_master": "壬",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-00-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "1990-05-17T08:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1990-05-17T08:30:00+08:00",
+        "pillars": {
+          "year": "庚午",
+          "month": "辛巳",
+          "day": "壬午",
+          "hour": "甲辰"
+        },
+        "day_master": "壬",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-01-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "1988-08-08T14:20:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1988-08-08T14:20:00+08:00",
+        "pillars": {
+          "year": "戊辰",
+          "month": "庚申",
+          "day": "乙未",
+          "hour": "癸未"
+        },
+        "day_master": "乙",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "unknown-time-01-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "1988-08-08T14:20:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1988-08-08T14:20:00+08:00",
+        "pillars": {
+          "year": "戊辰",
+          "month": "庚申",
+          "day": "乙未",
+          "hour": "癸未"
+        },
+        "day_master": "乙",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "unknown-time-02-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2001-09-09T11:05:00-04:00",
+        "timezone": "America/New_York",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2001-09-09T11:05:00-04:00",
+        "pillars": {
+          "year": "辛巳",
+          "month": "丁酉",
+          "day": "乙亥",
+          "hour": "壬午"
+        },
+        "day_master": "乙",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-02-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2001-09-09T11:05:00-04:00",
+        "timezone": "America/New_York",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2001-09-09T11:05:00-04:00",
+        "pillars": {
+          "year": "辛巳",
+          "month": "丁酉",
+          "day": "乙亥",
+          "hour": "壬午"
+        },
+        "day_master": "乙",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-03-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2024-02-04T16:25:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-04T16:25:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "乙丑",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "unknown-time-03-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2024-02-04T16:25:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-04T16:25:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "乙丑",
+          "day": "戊戌",
+          "hour": "庚申"
+        },
+        "day_master": "戊",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "unknown-time-04-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2024-03-10T03:30:00",
+        "timezone": "America/New_York",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-10T03:30:00-04:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "癸酉",
+          "hour": "甲寅"
+        },
+        "day_master": "癸",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "unknown-time-04-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2024-03-10T03:30:00",
+        "timezone": "America/New_York",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "US",
+        "region": "New York",
+        "city": "New York City",
+        "longitude": -74.006,
+        "latitude": 40.7128,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-03-10T03:30:00-04:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丁卯",
+          "day": "癸酉",
+          "hour": "甲寅"
+        },
+        "day_master": "癸",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "unknown-time-05-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2024-02-29T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-29T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "癸亥",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-05-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2024-02-29T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-29T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "癸亥",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-06-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2023-12-31T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2023-12-31T23:30:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "甲子",
+          "day": "癸亥",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-06-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "2023-12-31T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2023-12-31T23:30:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "甲子",
+          "day": "癸亥",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted"
+        ],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "unknown-time-07-approximate",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "1900-01-01T08:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "approximate",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1900-01-01T08:30:00+08:05:43",
+        "pillars": {
+          "year": "己亥",
+          "month": "丙子",
+          "day": "甲戌",
+          "hour": "戊辰"
+        },
+        "day_master": "甲",
+        "confidence": 0.74,
+        "uncertainty_reasons": [
+          "birth_time_approximate_hour_boundary_possible",
+          "gender_unknown_luck_direction_defaulted",
+          "historical_timezone_offset_has_subminute_component"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "unknown-time-07-unknown",
+      "category": "unknown_birth_time",
+      "input": {
+        "birth_datetime": "1900-01-01T08:30:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "unknown",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "unknown",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1900-01-01T08:30:00+08:05:43",
+        "pillars": {
+          "year": "己亥",
+          "month": "丙子",
+          "day": "甲戌",
+          "hour": "戊辰"
+        },
+        "day_master": "甲",
+        "confidence": 0.42,
+        "uncertainty_reasons": [
+          "birth_time_unknown_hour_pillar_placeholder",
+          "gender_unknown_luck_direction_defaulted",
+          "historical_timezone_offset_has_subminute_component"
+        ],
+        "main_reminder": "wealth_retention"
+      }
+    },
+    {
+      "id": "leap-cross-year-00",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "1904-02-29T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1904-02-29T00:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "癸巳",
+          "hour": "壬子"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "leap-cross-year-01",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2000-02-29T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2000-02-29T23:30:00+08:00",
+        "pillars": {
+          "year": "庚辰",
+          "month": "戊寅",
+          "day": "丁巳",
+          "hour": "壬子"
+        },
+        "day_master": "丁",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "leap-cross-year-02",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2024-02-29T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-29T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "癸亥",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "leap-cross-year-03",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2096-02-29T12:00:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2096-02-29T12:00:00+08:00",
+        "pillars": {
+          "year": "丙辰",
+          "month": "庚寅",
+          "day": "辛巳",
+          "hour": "甲午"
+        },
+        "day_master": "辛",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "leap-cross-year-04",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "1999-12-31T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "1999-12-31T23:30:00+08:00",
+        "pillars": {
+          "year": "己卯",
+          "month": "丙子",
+          "day": "丁巳",
+          "hour": "壬子"
+        },
+        "day_master": "丁",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "relationship_pressure"
+      }
+    },
+    {
+      "id": "leap-cross-year-05",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2000-01-01T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2000-01-01T00:30:00+08:00",
+        "pillars": {
+          "year": "己卯",
+          "month": "丙子",
+          "day": "戊午",
+          "hour": "壬子"
+        },
+        "day_master": "戊",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "leap-cross-year-06",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2023-12-31T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2023-12-31T23:30:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "甲子",
+          "day": "癸亥",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "leap-cross-year-07",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2024-01-01T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-01-01T00:30:00+08:00",
+        "pillars": {
+          "year": "癸卯",
+          "month": "甲子",
+          "day": "甲子",
+          "hour": "甲子"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "leap-cross-year-08",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2024-02-09T23:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-09T23:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "癸卯",
+          "hour": "甲子"
+        },
+        "day_master": "癸",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "execution_stability"
+      }
+    },
+    {
+      "id": "leap-cross-year-09",
+      "category": "leap_and_cross_year",
+      "input": {
+        "birth_datetime": "2024-02-10T00:30:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "gender": "female",
+        "calendar": "gregorian",
+        "country": "CN",
+        "region": "Shanghai",
+        "city": "Shanghai",
+        "longitude": 121.4737,
+        "latitude": 31.2304,
+        "use_true_solar_time": false,
+        "birth_time_accuracy": "exact",
+        "annual_years": 3,
+        "annual_start_year": 2026,
+        "luck_cycles": 3
+      },
+      "expected": {
+        "schema_version": "1.0.0",
+        "model_versions": {
+          "calculation_model": "bazi-calculation-rules-v1",
+          "interpretation_model": "bazi-structural-interpretation-v1"
+        },
+        "trait_model_version": "trait-rules-v1",
+        "trait_weight_version": "trait-weights-v1",
+        "birth_datetime": "2024-02-10T00:30:00+08:00",
+        "pillars": {
+          "year": "甲辰",
+          "month": "丙寅",
+          "day": "甲辰",
+          "hour": "甲子"
+        },
+        "day_master": "甲",
+        "confidence": 0.9,
+        "uncertainty_reasons": [],
+        "main_reminder": "wealth_retention"
+      }
+    }
+  ]
+}

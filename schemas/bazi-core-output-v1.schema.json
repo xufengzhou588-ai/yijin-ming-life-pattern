@@ -3,11 +3,26 @@
   "$id": "https://example.com/schemas/bazi-core-output-v1.schema.json",
   "title": "BaziCoreOutput v1",
   "type": "object",
-  "required": ["schema_version", "input", "chart", "elements", "ten_gods", "luck_cycles", "annual_flows", "evidence"],
+  "required": ["schema_version", "model_versions", "confidence", "uncertainty_reasons", "input", "chart", "elements", "ten_gods", "luck_cycles", "annual_flows", "evidence"],
   "additionalProperties": false,
   "properties": {
     "schema_version": {
       "const": "1.0.0"
+    },
+    "model_versions": {
+      "$ref": "#/$defs/modelVersions"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "uncertainty_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     },
     "input": {
       "$ref": "#/$defs/input"
@@ -47,9 +62,22 @@
     }
   },
   "$defs": {
+    "modelVersions": {
+      "type": "object",
+      "required": ["calculation_model", "interpretation_model"],
+      "additionalProperties": false,
+      "properties": {
+        "calculation_model": {
+          "type": "string"
+        },
+        "interpretation_model": {
+          "type": "string"
+        }
+      }
+    },
     "input": {
       "type": "object",
-      "required": ["calendar", "birth_datetime", "timezone", "gender", "location", "use_true_solar_time"],
+      "required": ["calendar", "birth_datetime", "timezone", "gender", "birth_time_accuracy", "location", "use_true_solar_time"],
       "additionalProperties": false,
       "properties": {
         "calendar": {
@@ -64,6 +92,9 @@
         },
         "gender": {
           "enum": ["male", "female", "unknown"]
+        },
+        "birth_time_accuracy": {
+          "enum": ["exact", "approximate", "unknown"]
         },
         "location": {
           "type": "object",

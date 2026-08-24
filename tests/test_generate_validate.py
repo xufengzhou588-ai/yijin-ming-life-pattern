@@ -37,11 +37,16 @@ class BaziCoreOutputTests(unittest.TestCase):
         )
         self.validator.validate(payload)
         self.assertEqual(payload["schema_version"], "1.0.0")
+        self.assertEqual(payload["model_versions"]["calculation_model"], "bazi-calculation-rules-v1")
+        self.assertEqual(payload["model_versions"]["interpretation_model"], "bazi-structural-interpretation-v1")
+        self.assertGreaterEqual(payload["confidence"], 0)
+        self.assertLessEqual(payload["confidence"], 1)
+        self.assertIn("uncertainty_reasons", payload)
         self.assertEqual(payload["chart"]["day_master"], payload["chart"]["day"]["stem"])
         self.assertGreater(len(payload["evidence"]), 0)
 
     def test_sample_files_validate(self):
-        for sample in Path("samples").glob("*.json"):
+        for sample in (path for path in Path("samples").glob("*.json") if not path.name.startswith("._")):
             with self.subTest(sample=sample):
                 payload = json.loads(sample.read_text(encoding="utf-8"))
                 self.validator.validate(payload)
@@ -57,6 +62,9 @@ class BaziCoreOutputTests(unittest.TestCase):
         )
         traits = build_trait_output(core)
         self.trait_validator.validate(traits)
+        self.assertEqual(traits["weight_version"], "trait-weights-v1")
+        self.assertEqual(traits["interpretation_model_version"], "trait-structural-interpretation-v1")
+        self.assertIn("trait_scores_are_uncalibrated_structural_indicators", traits["uncertainty_reasons"])
 
         self.assertEqual(len(traits["traits"]), 10)
         core_evidence_ids = {item["id"] for item in core["evidence"]}
@@ -131,6 +139,94 @@ class BaziCoreOutputTests(unittest.TestCase):
         )
         self.assertTrue(summer["input"]["birth_datetime"].endswith("-04:00"))
         self.assertTrue(winter["input"]["birth_datetime"].endswith("-05:00"))
+
+    def test_solar_term_exact_minute_boundary_changes_year_and_month(self):
+        before = build_core_output(
+            birth_datetime="2024-02-04T16:25:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="male",
+            country="CN",
+            region="Shanghai",
+            city="Shanghai",
+        )
+        after = build_core_output(
+            birth_datetime="2024-02-04T16:27:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="male",
+            country="CN",
+            region="Shanghai",
+            city="Shanghai",
+        )
+        self.validator.validate(before)
+        self.validator.validate(after)
+        self.assertEqual(before["chart"]["year"]["stem"]["char"] + before["chart"]["year"]["branch"]["char"], "癸卯")
+        self.assertEqual(before["chart"]["month"]["stem"]["char"] + before["chart"]["month"]["branch"]["char"], "乙丑")
+        self.assertEqual(after["chart"]["year"]["stem"]["char"] + after["chart"]["year"]["branch"]["char"], "甲辰")
+        self.assertEqual(after["chart"]["month"]["stem"]["char"] + after["chart"]["month"]["branch"]["char"], "丙寅")
+        self.assertTrue(any(item["id"] == "solar_term.minute_boundary" for item in before["evidence"]))
+
+    def test_zi_hour_policy_uses_midnight_day_boundary(self):
+        late_zi = build_core_output(
+            birth_datetime="2024-02-10T23:30:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="male",
+        )
+        early_zi = build_core_output(
+            birth_datetime="2024-02-11T00:30:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="male",
+        )
+        self.assertEqual(late_zi["chart"]["hour"]["branch"]["char"], "子")
+        self.assertEqual(early_zi["chart"]["hour"]["branch"]["char"], "子")
+        self.assertNotEqual(late_zi["chart"]["day"], early_zi["chart"]["day"])
+
+    def test_china_historical_timezone_offset_is_preserved_and_flagged(self):
+        payload = build_core_output(
+            birth_datetime="1900-01-01T08:30:00",
+            timezone="Asia/Shanghai",
+            gender="unknown",
+            country="CN",
+            region="Shanghai",
+            city="Shanghai",
+        )
+        self.validator.validate(payload)
+        self.assertTrue(payload["input"]["birth_datetime"].endswith("+08:05:43"))
+        self.assertIn("historical_timezone_offset_has_subminute_component", payload["uncertainty_reasons"])
+
+    def test_unknown_birth_time_lowers_confidence_and_marks_hour_placeholder(self):
+        exact = build_core_output(
+            birth_datetime="1990-05-17T08:30:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="male",
+            birth_time_accuracy="exact",
+        )
+        unknown = build_core_output(
+            birth_datetime="1990-05-17T08:30:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="male",
+            birth_time_accuracy="unknown",
+        )
+        self.validator.validate(unknown)
+        self.assertLess(unknown["confidence"], exact["confidence"])
+        self.assertIn("birth_time_unknown_hour_pillar_placeholder", unknown["uncertainty_reasons"])
+        time_evidence = next(item for item in unknown["evidence"] if item["id"] == "input.time_basis")
+        self.assertLess(time_evidence["confidence"], 0.5)
+
+    def test_leap_day_and_cross_year_are_reproducible(self):
+        leap = build_core_output(
+            birth_datetime="2024-02-29T23:30:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="female",
+        )
+        cross_year = build_core_output(
+            birth_datetime="2023-12-31T23:30:00+08:00",
+            timezone="Asia/Shanghai",
+            gender="female",
+        )
+        self.validator.validate(leap)
+        self.validator.validate(cross_year)
+        self.assertEqual(leap["chart"]["day"]["stem"]["char"] + leap["chart"]["day"]["branch"]["char"], "癸亥")
+        self.assertEqual(cross_year["chart"]["year"]["stem"]["char"] + cross_year["chart"]["year"]["branch"]["char"], "癸卯")
 
     def test_trait_conflicts_are_separate_dimensions(self):
         core = build_core_output(

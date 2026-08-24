@@ -27,7 +27,14 @@ from .tables import (
 )
 
 SCHEMA_VERSION = "1.0.0"
+CALCULATION_MODEL_VERSION = "bazi-calculation-rules-v1"
+INTERPRETATION_MODEL_VERSION = "bazi-structural-interpretation-v1"
 POSITION_NAMES = ["year", "month", "day", "hour"]
+TIME_ACCURACY_CONFIDENCE = {
+    "exact": 1.0,
+    "approximate": 0.74,
+    "unknown": 0.42,
+}
 
 
 @dataclass(frozen=True)
@@ -42,6 +49,7 @@ class BirthInput:
     longitude: float | None = None
     latitude: float | None = None
     use_true_solar_time: bool = False
+    birth_time_accuracy: str = "exact"
 
 
 def build_core_output(
@@ -56,6 +64,7 @@ def build_core_output(
     longitude: float | None = None,
     latitude: float | None = None,
     use_true_solar_time: bool = False,
+    birth_time_accuracy: str = "exact",
     annual_years: int = 12,
     annual_start_year: int | None = None,
     luck_cycles: int = 8,
@@ -71,12 +80,16 @@ def build_core_output(
         longitude=longitude,
         latitude=latitude,
         use_true_solar_time=use_true_solar_time,
+        birth_time_accuracy=birth_time_accuracy,
     )
     warnings: list[str] = []
     if birth.calendar != "gregorian":
         raise ValueError("BaziCoreOutput v1 generator currently supports gregorian input only.")
     if birth.gender == "unknown":
         warnings.append("gender unknown; luck cycle direction defaults to forward")
+    uncertainty_reasons = _uncertainty_reasons(birth)
+    if birth.birth_time_accuracy == "unknown":
+        warnings.append("birth time unknown; selected clock time is treated as an hour-pillar placeholder")
 
     calculation_datetime, solar_correction_minutes = _calculation_datetime(birth)
     day = sxtwl.fromSolar(
@@ -84,14 +97,15 @@ def build_core_output(
         calculation_datetime.month,
         calculation_datetime.day,
     )
+    evidence: list[dict[str, Any]] = []
+    year_gz, month_gz = _year_month_gz_for_exact_jie_boundary(calculation_datetime, day, evidence)
     pillar_gz = {
-        "year": day.getYearGZ(),
-        "month": day.getMonthGZ(),
+        "year": year_gz,
+        "month": month_gz,
         "day": day.getDayGZ(),
         "hour": day.getHourGZ(calculation_datetime.hour),
     }
 
-    evidence: list[dict[str, Any]] = []
     evidence.append(
         _time_basis_evidence(
             birth,
@@ -110,6 +124,12 @@ def build_core_output(
 
     result: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
+        "model_versions": {
+            "calculation_model": CALCULATION_MODEL_VERSION,
+            "interpretation_model": INTERPRETATION_MODEL_VERSION,
+        },
+        "confidence": _overall_confidence(birth, evidence),
+        "uncertainty_reasons": uncertainty_reasons,
         "input": _input_payload(birth),
         "chart": chart,
         "elements": elements,
@@ -133,6 +153,9 @@ def _normalize_input(**kwargs: Any) -> BirthInput:
         dt = datetime.fromisoformat(raw_dt.replace("Z", "+00:00"))
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=tz)
+    birth_time_accuracy = kwargs.get("birth_time_accuracy") or "exact"
+    if birth_time_accuracy not in TIME_ACCURACY_CONFIDENCE:
+        raise ValueError("birth_time_accuracy must be exact, approximate, or unknown")
     return BirthInput(
         birth_datetime=dt,
         timezone=timezone,
@@ -144,6 +167,7 @@ def _normalize_input(**kwargs: Any) -> BirthInput:
         longitude=kwargs["longitude"],
         latitude=kwargs["latitude"],
         use_true_solar_time=kwargs["use_true_solar_time"],
+        birth_time_accuracy=birth_time_accuracy,
     )
 
 
@@ -162,9 +186,35 @@ def _input_payload(birth: BirthInput) -> dict[str, Any]:
         "birth_datetime": birth.birth_datetime.isoformat(),
         "timezone": birth.timezone,
         "gender": birth.gender,
+        "birth_time_accuracy": birth.birth_time_accuracy,
         "location": location,
         "use_true_solar_time": birth.use_true_solar_time,
     }
+
+
+def _uncertainty_reasons(birth: BirthInput) -> list[str]:
+    reasons: list[str] = []
+    if birth.birth_time_accuracy == "approximate":
+        reasons.append("birth_time_approximate_hour_boundary_possible")
+    elif birth.birth_time_accuracy == "unknown":
+        reasons.append("birth_time_unknown_hour_pillar_placeholder")
+    if birth.gender == "unknown":
+        reasons.append("gender_unknown_luck_direction_defaulted")
+    if birth.use_true_solar_time:
+        reasons.append("true_solar_time_uses_approximate_equation_of_time")
+    offset = birth.birth_datetime.utcoffset()
+    if offset is not None and offset.total_seconds() % 60 != 0:
+        reasons.append("historical_timezone_offset_has_subminute_component")
+    return reasons
+
+
+def _overall_confidence(birth: BirthInput, evidence: list[dict[str, Any]]) -> float:
+    evidence_confidence = sum(item["confidence"] for item in evidence) / len(evidence) if evidence else 0.72
+    time_confidence = TIME_ACCURACY_CONFIDENCE[birth.birth_time_accuracy]
+    method_cap = 0.9 if not birth.use_true_solar_time else 0.84
+    if birth.gender == "unknown":
+        method_cap = min(method_cap, 0.82)
+    return round(min(evidence_confidence, time_confidence, method_cap), 2)
 
 
 def _calculation_datetime(birth: BirthInput) -> tuple[datetime, float]:
@@ -204,6 +254,43 @@ def _is_leap_year(year: int) -> bool:
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
 
+def _year_month_gz_for_exact_jie_boundary(
+    calculation_datetime: datetime,
+    day: Any,
+    evidence: list[dict[str, Any]],
+) -> tuple[Any, Any]:
+    birth_jd = _to_jd(calculation_datetime)
+    for year in range(calculation_datetime.year - 1, calculation_datetime.year + 2):
+        for info in sxtwl.getJieQiByYear(year):
+            if info.jqIndex not in JIE_INDICES:
+                continue
+            boundary = sxtwl.JD2DD(info.jd)
+            if (
+                int(boundary.Y) == calculation_datetime.year
+                and int(boundary.M) == calculation_datetime.month
+                and int(boundary.D) == calculation_datetime.day
+                and birth_jd < info.jd
+            ):
+                previous = calculation_datetime - timedelta(days=1)
+                previous_day = sxtwl.fromSolar(previous.year, previous.month, previous.day)
+                boundary_name = JIE_QI_NAMES.get(info.jqIndex, f"jie_qi_{info.jqIndex}")
+                evidence.append(
+                    _evidence(
+                        "solar_term.minute_boundary",
+                        "calculation",
+                        "chart.year_month",
+                        f"year and month pillars use the previous jie period before {boundary_name} at exact minute boundary",
+                        1.0,
+                        0.92,
+                        "deterministic_core",
+                        "sxtwl_jie_qi_minute_boundary_v1",
+                        "month",
+                    )
+                )
+                return previous_day.getYearGZ(), previous_day.getMonthGZ()
+    return day.getYearGZ(), day.getMonthGZ()
+
+
 def _time_basis_evidence(
     birth: BirthInput,
     calculation_datetime: datetime,
@@ -216,14 +303,14 @@ def _time_basis_evidence(
             f"{calculation_datetime.isoformat()}"
         )
         rule_id = "noaa_equation_of_time_longitude_v1"
-        confidence = 0.88
+        confidence = min(0.88, TIME_ACCURACY_CONFIDENCE[birth.birth_time_accuracy])
     else:
         description = (
             f"civil clock time used for pillar calculation: "
             f"{birth.birth_datetime.isoformat()}"
         )
         rule_id = "civil_clock_time_v1"
-        confidence = 1.0
+        confidence = TIME_ACCURACY_CONFIDENCE[birth.birth_time_accuracy]
     return _evidence(
         "input.time_basis",
         "calculation",

@@ -6,6 +6,8 @@ from typing import Any, Literal
 
 TRAIT_SCHEMA_VERSION = "1.0.0"
 TRAIT_MODEL_VERSION = "trait-rules-v1"
+TRAIT_WEIGHT_VERSION = "trait-weights-v1"
+TRAIT_INTERPRETATION_MODEL_VERSION = "trait-structural-interpretation-v1"
 
 Direction = Literal["positive", "negative"]
 
@@ -120,7 +122,11 @@ def build_trait_output(core: dict[str, Any]) -> dict[str, Any]:
     return {
         "schema_version": TRAIT_SCHEMA_VERSION,
         "model_version": TRAIT_MODEL_VERSION,
+        "weight_version": TRAIT_WEIGHT_VERSION,
+        "interpretation_model_version": TRAIT_INTERPRETATION_MODEL_VERSION,
         "core_schema_version": core["schema_version"],
+        "confidence": _aggregate_confidence(traits),
+        "uncertainty_reasons": _trait_uncertainty_reasons(core),
         "context": {
             "strongest_element": element_entries[0][0],
             "strongest_ten_god": ten_god_entries[0][0],
@@ -129,6 +135,18 @@ def build_trait_output(core: dict[str, Any]) -> dict[str, Any]:
         "traits": traits,
         "evidence_ids": all_evidence_ids,
     }
+
+
+def _aggregate_confidence(traits: dict[str, dict[str, Any]]) -> float:
+    if not traits:
+        return 0.0
+    return round(sum(trait["confidence"] for trait in traits.values()) / len(traits), 2)
+
+
+def _trait_uncertainty_reasons(core: dict[str, Any]) -> list[str]:
+    reasons = set(core.get("uncertainty_reasons", []))
+    reasons.add("trait_scores_are_uncalibrated_structural_indicators")
+    return sorted(reasons)
 
 
 def _evaluate_trait(

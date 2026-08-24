@@ -1,0 +1,408 @@
+@media (prefers-reduced-motion: reduce) {
+        .daily-seal-scene.is-motion::before,
+        .seal-fx,
+        .daily-checkin-option .seal-aura,
+        .daily-checkin-option .seal-figure,
+        .daily-checkin-option .seal-flame,
+        .daily-checkin-option .seal-earth,
+        .daily-checkin-option .seal-knot,
+        .daily-checkin-option .seal-ripple,
+        .daily-checkin-option .seal-sprout,
+        .daily-checkin-option .seal-brush,
+        .daily-checkin-option .seal-hand,
+        .daily-checkin-option .seal-arm,
+        .daily-checkin-option .seal-cord,
+        .daily-checkin-option .seal-water,
+        .daily-checkin-option .seal-mini-cloud,
+        .daily-checkin-option .seal-mark,
+        .daily-checkin-option .seal-glyph,
+        .daily-checkin-option .seal-rays,
+        .daily-checkin-option .seal-waves,
+        .daily-checkin-option .seal-leaf,
+        .daily-checkin-option .seal-ribbon {
+          animation: none !important;
+        }
+      }
+
+@media (prefers-reduced-motion: reduce) {
+        .ritual-ring,
+        .ritual-ring::before,
+        .ritual-orbit {
+          animation: none;
+        }
+
+        .calculation-ritual,
+        .ritual-core strong {
+          transition: none;
+        }
+      }
+
+@media (max-width: 980px) {
+        main,
+        .charts,
+        .insight-grid,
+        .classic-grid,
+        .timing-grid,
+        .radar-panel,
+        .premium-grid,
+        .pro-summary-grid,
+        .pro-method-panel,
+        .pattern-choice-row,
+        .decision-check-list,
+        .report-grid,
+        .evidence-summary,
+        .roots-grid,
+        .quality-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .brief-view {
+          grid-template-columns: 1fr;
+        }
+
+        .input-panel {
+          position: static;
+        }
+
+        .annual-score-grid,
+        .annual-guidance,
+        .monthly-copy-grid,
+        .pro-plan-grid,
+        .pro-includes-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .monthly-selector {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .monthly-compass-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .oracle-shell {
+          grid-template-columns: 1fr;
+        }
+      }
+
+@media (max-width: 640px) {
+        body {
+          padding-bottom: 96px;
+        }
+
+        body:not([data-active-mobile-pane="input"]) .hero {
+          display: none;
+        }
+
+        [data-mobile-pane] {
+          display: none;
+        }
+
+        [data-mobile-pane].mobile-pane-active {
+          display: block;
+        }
+
+        details[data-mobile-pane].mobile-pane-active {
+          display: block;
+        }
+
+        .mobile-section-nav {
+          position: fixed;
+          z-index: 900;
+          left: 8px;
+          right: 8px;
+          bottom: max(8px, env(safe-area-inset-bottom));
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 4px;
+          border: 1px solid rgba(97, 232, 255, 0.24);
+          border-radius: 12px;
+          background:
+            radial-gradient(circle at 13% 0%, rgba(53, 200, 255, 0.16), transparent 38%),
+            radial-gradient(circle at 88% 100%, rgba(213, 178, 92, 0.14), transparent 36%),
+            rgba(8, 12, 13, 0.96);
+          padding: 6px;
+          box-shadow:
+            0 18px 44px rgba(0, 0, 0, 0.66),
+            0 0 0 1px rgba(255, 255, 255, 0.025),
+            inset 0 0 28px rgba(53, 200, 255, 0.05);
+          backdrop-filter: blur(18px);
+        }
+
+        .mobile-section-button {
+          --nav-rgb: 97, 232, 255;
+          position: relative;
+          display: grid;
+          min-width: 0;
+          min-height: 62px;
+          place-items: center;
+          align-content: center;
+          gap: 4px;
+          border: 0;
+          border-radius: 10px;
+          background:
+            linear-gradient(145deg, rgba(var(--nav-rgb), 0.055), rgba(255, 255, 255, 0.018));
+          padding: 5px 1px 4px;
+          color: #8d9a9d;
+          isolation: isolate;
+          transition: color 160ms ease, transform 160ms ease, background 160ms ease;
+        }
+
+        .mobile-section-button[data-mobile-target="today"] { --nav-rgb: 255, 197, 83; }
+        .mobile-section-button[data-mobile-target="blueprint"] { --nav-rgb: 40, 245, 190; }
+        .mobile-section-button[data-mobile-target="oracle"] { --nav-rgb: 178, 107, 255; }
+        .mobile-section-button[data-mobile-target="me"] { --nav-rgb: 64, 216, 255; }
+
+        .mobile-section-button::after {
+          content: "";
+          position: absolute;
+          inset: 7px 8px auto;
+          height: 28px;
+          border-radius: 9px;
+          background: radial-gradient(circle, rgba(var(--nav-rgb), 0.22), transparent 70%);
+          opacity: 0;
+          filter: blur(7px);
+          z-index: -1;
+        }
+
+        .mobile-section-button::before {
+          content: attr(data-mobile-icon);
+          display: grid;
+          width: 31px;
+          height: 30px;
+          place-items: center;
+          border: 1px solid rgba(var(--nav-rgb), 0.28);
+          border-radius: 9px;
+          color: rgba(230, 242, 239, 0.82);
+          background:
+            linear-gradient(145deg, rgba(var(--nav-rgb), 0.16), rgba(4, 8, 10, 0.24)),
+            radial-gradient(circle at 35% 18%, rgba(255, 255, 255, 0.2), transparent 42%);
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+            inset 0 -8px 14px rgba(0, 0, 0, 0.28);
+          font-family: "SimSun", "STSong", serif;
+          font-size: 18px;
+          font-weight: 800;
+          line-height: 1;
+          text-shadow: 0 0 10px rgba(var(--nav-rgb), 0.38);
+        }
+
+        .mobile-section-button span {
+          overflow: hidden;
+          max-width: 100%;
+          font-size: 10.5px;
+          font-weight: 700;
+          line-height: 1.2;
+          letter-spacing: 0;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .mobile-section-button.active {
+          background:
+            linear-gradient(145deg, rgba(var(--nav-rgb), 0.24), rgba(255, 255, 255, 0.035));
+          color: #eafcff;
+          transform: translateY(-1px);
+          box-shadow:
+            inset 0 0 0 1px rgba(var(--nav-rgb), 0.42),
+            0 0 18px rgba(var(--nav-rgb), 0.24);
+        }
+
+        .mobile-section-button.active::after {
+          opacity: 1;
+        }
+
+        .mobile-section-button.active::before {
+          border-color: rgba(var(--nav-rgb), 0.72);
+          color: #ffffff;
+          background:
+            linear-gradient(145deg, rgba(var(--nav-rgb), 0.34), rgba(4, 8, 10, 0.12)),
+            radial-gradient(circle at 32% 20%, rgba(255, 255, 255, 0.34), transparent 40%);
+          text-shadow:
+            0 0 9px rgba(var(--nav-rgb), 0.8),
+            0 1px 0 rgba(0, 0, 0, 0.45);
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.055),
+            0 0 16px rgba(var(--nav-rgb), 0.38);
+        }
+
+        .pillars,
+        .grid-2,
+        .time-grid,
+        .location-grid,
+        .year-card {
+          grid-template-columns: 1fr;
+        }
+
+        .insight-icon {
+          width: 34px;
+          height: 34px;
+          border-radius: 11px;
+        }
+
+        .highlight-card {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          padding: 18px;
+        }
+
+        .highlight-card h3 {
+          font-size: 24px;
+        }
+
+        .highlight-symbol {
+          display: none;
+        }
+
+        .daily-card-header {
+          display: block;
+        }
+
+        .daily-card-date {
+          display: inline-flex;
+          margin-top: 6px;
+          white-space: normal;
+        }
+
+        .daily-card-spirit {
+          top: 106px;
+          right: -18px;
+          width: 170px;
+          opacity: 0.10;
+        }
+
+        .daily-ritual-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .daily-seal {
+          justify-self: start;
+        }
+
+        .daily-boost {
+          grid-template-columns: 1fr;
+        }
+
+        .daily-checkin-header,
+        .daily-checkin-action {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .daily-checkin-options {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .daily-card-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .radar-chart {
+          max-width: 320px;
+        }
+
+        .annual-report-card {
+          grid-template-columns: 1fr;
+        }
+
+        .annual-score-grid,
+        .annual-guidance,
+        .monthly-copy-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .oracle-stage {
+          min-height: 480px;
+          background-position: center top;
+        }
+
+        .oracle-stage-inner {
+          grid-template-columns: 1fr;
+          align-content: center;
+          padding: 18px;
+        }
+
+        .coin-field {
+          min-height: 250px;
+          gap: 10px;
+        }
+
+        .oracle-coin {
+          width: 68px;
+        }
+
+        .oracle-coin::after {
+          width: 18px;
+          border-width: 2px;
+        }
+
+        .coin-word {
+          font-size: 13px;
+        }
+
+        .coin-word.top { top: 10px; }
+        .coin-word.right { right: 10px; }
+        .coin-word.bottom { bottom: 9px; }
+        .coin-word.left { left: 10px; }
+
+        .oracle-lines {
+          grid-template-columns: repeat(6, 1fr);
+          gap: 5px;
+        }
+
+        .oracle-line-slot {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          text-align: center;
+        }
+
+        .oracle-line-slot > span:last-child {
+          min-height: 12px;
+        }
+
+        .oracle-hexagrams,
+        .oracle-reading-grid,
+        .pro-plan-grid,
+        .pro-includes-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .oracle-arrow {
+          transform: rotate(90deg);
+          justify-self: center;
+        }
+
+        .ritual-title {
+          font-size: 20px;
+        }
+
+        .ritual-steps {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          text-align: left;
+        }
+
+        .ritual-step {
+          border-top: 0;
+          border-left: 2px solid rgba(255, 255, 255, 0.12);
+          padding: 3px 0 3px 9px;
+        }
+
+        .ritual-result-pillars {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .ritual-result-pillar {
+          padding: 7px 4px;
+        }
+
+        .ritual-result-pillar strong {
+          font-size: 17px;
+        }
+
+        main,
+        .hero-inner {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }

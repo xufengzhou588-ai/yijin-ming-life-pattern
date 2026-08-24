@@ -1,10 +1,20 @@
 {
   "schema_version": "1.0.0",
+  "model_versions": {
+    "calculation_model": "bazi-calculation-rules-v1",
+    "interpretation_model": "bazi-structural-interpretation-v1"
+  },
+  "confidence": 0.82,
+  "uncertainty_reasons": [
+    "gender_unknown_luck_direction_defaulted",
+    "true_solar_time_uses_approximate_equation_of_time"
+  ],
   "input": {
     "calendar": "gregorian",
     "birth_datetime": "2001-02-04T04:45:00-05:00",
     "timezone": "America/New_York",
     "gender": "unknown",
+    "birth_time_accuracy": "exact",
     "location": {
       "country": "US",
       "region": "New York",
@@ -1187,6 +1197,19 @@
   ],
   "evidence": [
     {
+      "id": "input.time_basis",
+      "type": "calculation",
+      "target": "chart",
+      "description": "true solar time applied: civil time 2001-02-04T04:45:00-05:00 shifted by -9.60 minutes to 2001-02-04T04:35:24.085262-05:00",
+      "weight": -9.6,
+      "confidence": 0.88,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "noaa_equation_of_time_longitude_v1",
+        "position": "hour"
+      }
+    },
+    {
       "id": "year.pillar",
       "type": "calculation",
       "target": "chart.year",
@@ -1968,7 +1991,6 @@
     }
   ],
   "warnings": [
-    "true solar time requested but not applied in MVP generator",
     "gender unknown; luck cycle direction defaults to forward"
   ]
 }
