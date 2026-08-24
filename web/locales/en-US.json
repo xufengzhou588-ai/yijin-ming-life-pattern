@@ -153,9 +153,23 @@
     "manage": "财物有界，事乃可成",
     "pressure": "止躁听令，辨其急缓"
   },
-  "dailyBoostLabel": "Today’s Momentum Seal",
-  "dailyBoostUnit": "seal",
-  "dailyBoostBody": "Not a real user ranking. It highlights the strongest friendly signal in your own pattern, so the day starts with a little momentum.",
+  "dailyBoostLabel": "Today’s action tendency",
+  "dailyBoostUnit": "mode",
+  "dailyBoostBody": "This is not a luck score or an event forecast. It blends your long-term pattern, today’s date, and recent choices into one small direction.",
+  "dailyBoostLevels": {
+    "bright": {
+      "mark": "C",
+      "label": "clear"
+    },
+    "steady": {
+      "mark": "S",
+      "label": "steady"
+    },
+    "gentle": {
+      "mark": "L",
+      "label": "light"
+    }
+  },
   "dailyBoostTopics": {
     "career": "progress",
     "wealth": "resource",
@@ -163,7 +177,20 @@
     "stability": "stability"
   },
   "dailyCheckinEyebrow": "Daily Seal",
-  "dailyCheckinTitle": "Choose today’s action mark",
+  "dailyCheckinTitle": "Complete today’s action loop",
+  "dailyRhythmHidden": "Rhythm hidden",
+  "dailyHideStreak": "Hide",
+  "dailyShowStreak": "Show",
+  "dailyPause": "Pause today",
+  "dailyPaused": "Paused",
+  "dailyJourneyLabel": "Daily retention loop",
+  "dailyJourneySteps": [
+    "Focus",
+    "Seal",
+    "Muyu",
+    "Action",
+    "Evening"
+  ],
   "dailyCheckinTrail": "7-day seals",
   "dailyCheckinPrivacy": "On this device only",
   "dailyCheckinSave": "Collect Seal",
@@ -191,6 +218,119 @@
       "label": "Restore"
     }
   ],
+  "muyuTitle": "Muyu Reset",
+  "muyuSubtitle": "A 60-second wooden fish ritual",
+  "muyuGuide": "One sound. One breath. One intention.",
+  "muyuIntentionLabel": "Choose an intention first",
+  "muyuDurationLabel": "Muyu duration",
+  "muyuSound": "Sound",
+  "muyuHaptics": "Light haptics",
+  "muyuMotion": "Gentle motion",
+  "muyuTap": "Mindful tap",
+  "muyuTapAria": "Tap the wooden fish",
+  "muyuStart": "Start Reset",
+  "muyuReady": "Choose an intention and begin. Sound, haptics, and motion can all be turned off.",
+  "muyuComplete": "Intention set. You made space before acting.",
+  "muyuProNote": "Free includes the daily basic Muyu ritual. Pro may add tones, soundscapes, custom duration, history trends, and personalized ritual sets. No merit, luck, auto-tapping, or leaderboards are sold.",
+  "muyuIntentions": [
+    {
+      "key": "steady_first_step",
+      "label": "steady first step"
+    },
+    {
+      "key": "speak_clearly",
+      "label": "speak clearly"
+    },
+    {
+      "key": "protect_energy",
+      "label": "protect energy"
+    },
+    {
+      "key": "finish_visible",
+      "label": "finish one visible result"
+    }
+  ],
+  "dailyActionChoiceTitle": "One small action today",
+  "dailyActionSave": "Save action",
+  "dailyActionSaved": "Action saved",
+  "dailyActionChoices": {
+    "career": [
+      {
+        "key": "visible_result",
+        "label": "Ship one visible result"
+      },
+      {
+        "key": "single_priority",
+        "label": "Move one priority only"
+      },
+      {
+        "key": "ask_feedback",
+        "label": "Ask one person for feedback"
+      }
+    ],
+    "wealth": [
+      {
+        "key": "set_boundary",
+        "label": "Write the budget boundary"
+      },
+      {
+        "key": "pause_purchase",
+        "label": "Delay one impulse spend"
+      },
+      {
+        "key": "review_resource",
+        "label": "Review one resource promise"
+      }
+    ],
+    "relationship": [
+      {
+        "key": "clear_request",
+        "label": "Make one clear request"
+      },
+      {
+        "key": "repair_message",
+        "label": "Send one repair message"
+      },
+      {
+        "key": "listen_first",
+        "label": "Listen before replying"
+      }
+    ],
+    "stability": [
+      {
+        "key": "remove_parallel",
+        "label": "Remove one parallel task"
+      },
+      {
+        "key": "set_review_point",
+        "label": "Set one review point"
+      },
+      {
+        "key": "protect_recovery",
+        "label": "Protect one recovery block"
+      }
+    ]
+  },
+  "dailyEveningTitle": "Evening mark",
+  "dailyEveningBody": "One tap is enough. Completed, adjusted, and skipped are records, not judgments.",
+  "dailyEveningGentle": "Come back tonight to mark it.",
+  "dailyEveningStatuses": [
+    {
+      "key": "completed",
+      "label": "Completed"
+    },
+    {
+      "key": "adjusted",
+      "label": "Adjusted"
+    },
+    {
+      "key": "skipped",
+      "label": "Skipped"
+    }
+  ],
+  "dailyMonthReviewTitle": "Monthly review",
+  "dailyMonthReviewNote": "These records feed the 7-day trail and monthly review. There is no failure penalty.",
+  "dailyRecentNone": "no recent choice yet",
   "dailyActionLabel": "Best small move",
   "dailyDrainLabel": "Energy leak",
   "dailyQuestionLabel": "Reflection question",

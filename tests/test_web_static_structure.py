@@ -1,4 +1,5 @@
 import http.client
+import json
 import threading
 import unittest
 from pathlib import Path
@@ -15,16 +16,16 @@ class WebStaticStructureTests(unittest.TestCase):
         self.assertNotIn("<style>", html)
         self.assertNotIn("<script>", html)
         for asset in [
-            "/styles/tokens-v20260824.css",
-            "/styles/base-v20260824.css",
-            "/styles/components-v20260824.css",
-            "/styles/responsive-v20260824.css",
-            "/js/state-v20260824.js",
-            "/js/storage-v20260824.js",
-            "/js/api-v20260824.js",
-            "/js/analytics-v20260824.js",
-            "/js/locales-v20260824.js",
-            "/js/app-v20260824.js",
+            "/styles/tokens-v20260825.css",
+            "/styles/base-v20260825.css",
+            "/styles/components-v20260825.css",
+            "/styles/responsive-v20260825.css",
+            "/js/state-v20260825.js",
+            "/js/storage-v20260825.js",
+            "/js/api-v20260825.js",
+            "/js/analytics-v20260825.js",
+            "/js/locales-v20260825.js",
+            "/js/app-v20260825.js",
         ]:
             self.assertIn(asset, html)
 
@@ -37,12 +38,38 @@ class WebStaticStructureTests(unittest.TestCase):
         self.assertNotIn('data-mobile-target="chart"', html)
 
     def test_locales_and_modules_are_split_from_app(self):
-        app = (WEB_ROOT / "js" / "app-v20260824.js").read_text(encoding="utf-8")
+        app = (WEB_ROOT / "js" / "app-v20260825.js").read_text(encoding="utf-8")
         self.assertNotIn("const copy = {", app)
         self.assertIn("window.MINGApi.fetchJson", app)
         self.assertIn("window.MINGAnalytics.record", app)
         self.assertTrue((WEB_ROOT / "locales" / "zh-CN.json").exists())
         self.assertTrue((WEB_ROOT / "locales" / "en-US.json").exists())
+
+    def test_today_retention_loop_and_muyu_reset_are_present(self):
+        app = (WEB_ROOT / "js" / "app-v20260825.js").read_text(encoding="utf-8")
+        state = (WEB_ROOT / "js" / "state-v20260825.js").read_text(encoding="utf-8")
+        locales = (WEB_ROOT / "js" / "locales-v20260825.js").read_text(encoding="utf-8")
+        zh = json.loads((WEB_ROOT / "locales" / "zh-CN.json").read_text(encoding="utf-8"))
+        en = json.loads((WEB_ROOT / "locales" / "en-US.json").read_text(encoding="utf-8"))
+
+        self.assertIn("dailyPreferences", state)
+        self.assertIn("recentDailySignature", app)
+        self.assertIn("data-muyu-sound", app)
+        self.assertIn("data-muyu-haptics", app)
+        self.assertIn("data-muyu-motion", app)
+        self.assertIn("data-daily-pause", app)
+        self.assertIn("data-daily-repair", app)
+        self.assertIn("data-evening-status", app)
+        self.assertIn("dailyActionChoices", locales)
+        self.assertIn("Muyu Reset", locales)
+        self.assertIn("Intention set", locales)
+        self.assertIn("No merit, luck, auto-tapping, or leaderboards are sold.", locales)
+        self.assertNotIn("dailyBoost.score", app)
+        self.assertNotIn("高于常规基线", locales)
+        self.assertNotIn("above baseline", locales)
+        self.assertEqual([item["label"] for item in zh["dailyCheckinOptions"]], ["Focus", "Spark", "Ground", "Connect", "Restore"])
+        self.assertEqual([item["label"] for item in en["dailyCheckinOptions"]], ["Focus", "Spark", "Ground", "Connect", "Restore"])
+        self.assertEqual({item["key"] for item in en["dailyEveningStatuses"]}, {"completed", "adjusted", "skipped"})
 
     def test_versioned_static_assets_get_long_cache(self):
         httpd = server.ExclusiveThreadingHTTPServer(("127.0.0.1", 0), server.BaziHandler)
@@ -50,7 +77,7 @@ class WebStaticStructureTests(unittest.TestCase):
         thread.start()
         try:
             conn = http.client.HTTPConnection("127.0.0.1", httpd.server_address[1], timeout=10)
-            conn.request("GET", "/js/app-v20260824.js")
+            conn.request("GET", "/js/app-v20260825.js")
             response = conn.getresponse()
             response.read()
             conn.close()

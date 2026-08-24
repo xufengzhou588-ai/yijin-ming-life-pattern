@@ -153,9 +153,23 @@
     "manage": "财物有界，事乃可成",
     "pressure": "止躁听令，辨其急缓"
   },
-  "dailyBoostLabel": "今日启运印",
-  "dailyBoostUnit": "启运",
-  "dailyBoostBody": "不是全站真实排名，而是从你的命盘结构里挑出今天最容易发光的一项。把它当作开一天的好心情。",
+  "dailyBoostLabel": "今日行动倾向",
+  "dailyBoostUnit": "倾向",
+  "dailyBoostBody": "不是运势分数，也不预测结果；它把你的长期结构、今天日期和最近选择合成一个小行动方向。",
+  "dailyBoostLevels": {
+    "bright": {
+      "mark": "明",
+      "label": "清晰"
+    },
+    "steady": {
+      "mark": "稳",
+      "label": "稳步"
+    },
+    "gentle": {
+      "mark": "缓",
+      "label": "轻量"
+    }
+  },
   "dailyBoostTopics": {
     "career": "推进",
     "wealth": "资源",
@@ -163,7 +177,20 @@
     "stability": "稳定"
   },
   "dailyCheckinEyebrow": "每日灵印",
-  "dailyCheckinTitle": "选一枚今天的行动印",
+  "dailyCheckinTitle": "完成今天的行动闭环",
+  "dailyRhythmHidden": "节奏已隐藏",
+  "dailyHideStreak": "隐藏",
+  "dailyShowStreak": "显示",
+  "dailyPause": "Pause 今天",
+  "dailyPaused": "已 Pause",
+  "dailyJourneyLabel": "今日留存流程",
+  "dailyJourneySteps": [
+    "今日焦点",
+    "灵印",
+    "木鱼",
+    "小行动",
+    "晚间"
+  ],
   "dailyCheckinTrail": "7 日灵印",
   "dailyCheckinPrivacy": "仅保存在本机",
   "dailyCheckinSave": "收下灵印",
@@ -172,25 +199,138 @@
   "dailyCheckinOptions": [
     {
       "key": "focus",
-      "label": "定心"
+      "label": "Focus"
     },
     {
       "key": "spark",
-      "label": "起势"
+      "label": "Spark"
     },
     {
       "key": "ground",
-      "label": "安土"
+      "label": "Ground"
     },
     {
       "key": "connect",
-      "label": "结缘"
+      "label": "Connect"
     },
     {
       "key": "restore",
-      "label": "养源"
+      "label": "Restore"
     }
   ],
+  "muyuTitle": "Muyu Reset",
+  "muyuSubtitle": "A 60-second wooden fish ritual",
+  "muyuGuide": "One sound. One breath. One intention.",
+  "muyuIntentionLabel": "开始前选择一个意图",
+  "muyuDurationLabel": "木鱼时长",
+  "muyuSound": "声音",
+  "muyuHaptics": "轻触触感",
+  "muyuMotion": "柔和动画",
+  "muyuTap": "Mindful tap",
+  "muyuTapAria": "轻触木鱼",
+  "muyuStart": "开始 Reset",
+  "muyuReady": "选择意图后开始；声音、触感和动画都可关闭。",
+  "muyuComplete": "Intention set. You made space before acting.",
+  "muyuProNote": "免费版包含每日基础木鱼仪式。Pro 未来只扩展音色、音景、自定义时长、历史趋势和个性化组合；不出售功德、好运、自动敲击或排行榜。",
+  "muyuIntentions": [
+    {
+      "key": "steady_first_step",
+      "label": "稳住第一步"
+    },
+    {
+      "key": "speak_clearly",
+      "label": "把话说清楚"
+    },
+    {
+      "key": "protect_energy",
+      "label": "保护能量"
+    },
+    {
+      "key": "finish_visible",
+      "label": "完成一个可见结果"
+    }
+  ],
+  "dailyActionChoiceTitle": "今天一个小行动",
+  "dailyActionSave": "保存小行动",
+  "dailyActionSaved": "行动已保存",
+  "dailyActionChoices": {
+    "career": [
+      {
+        "key": "visible_result",
+        "label": "交付一个可见结果"
+      },
+      {
+        "key": "single_priority",
+        "label": "只推进一个优先级"
+      },
+      {
+        "key": "ask_feedback",
+        "label": "向一个人要反馈"
+      }
+    ],
+    "wealth": [
+      {
+        "key": "set_boundary",
+        "label": "写下预算边界"
+      },
+      {
+        "key": "pause_purchase",
+        "label": "延迟一项冲动投入"
+      },
+      {
+        "key": "review_resource",
+        "label": "复盘一项资源承诺"
+      }
+    ],
+    "relationship": [
+      {
+        "key": "clear_request",
+        "label": "说出一个具体请求"
+      },
+      {
+        "key": "repair_message",
+        "label": "发出一句修复沟通"
+      },
+      {
+        "key": "listen_first",
+        "label": "先听完再回应"
+      }
+    ],
+    "stability": [
+      {
+        "key": "remove_parallel",
+        "label": "删掉一个并行任务"
+      },
+      {
+        "key": "set_review_point",
+        "label": "设置一个复盘点"
+      },
+      {
+        "key": "protect_recovery",
+        "label": "保留一段恢复时间"
+      }
+    ]
+  },
+  "dailyEveningTitle": "晚间标记",
+  "dailyEveningBody": "回来只需点一次。完成、调整、跳过都只是记录，不是评判。",
+  "dailyEveningGentle": "今晚回来时再标记。",
+  "dailyEveningStatuses": [
+    {
+      "key": "completed",
+      "label": "完成"
+    },
+    {
+      "key": "adjusted",
+      "label": "调整"
+    },
+    {
+      "key": "skipped",
+      "label": "跳过"
+    }
+  ],
+  "dailyMonthReviewTitle": "月度回顾",
+  "dailyMonthReviewNote": "这些记录只用于七日轨迹和月度复盘，不会生成失败惩罚。",
+  "dailyRecentNone": "暂无最近选择",
   "dailyActionLabel": "今日适合",
   "dailyDrainLabel": "容易消耗",
   "dailyQuestionLabel": "反思问题",

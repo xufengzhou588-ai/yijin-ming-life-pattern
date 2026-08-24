@@ -13,10 +13,12 @@
       const productEventStorageKey = appState.storageKeys.productEvents;
       const oracleJournalStorageKey = appState.storageKeys.oracleJournal;
       const dailyCheckInStorageKey = appState.storageKeys.dailyCheckins;
+      const dailyPreferencesStorageKey = appState.storageKeys.dailyPreferences;
       const fetchJson = window.MINGApi.fetchJson;
       const releaseMode = new URLSearchParams(window.location.search).get("release") || "storekit";
       const isFreeFirstRelease = releaseMode === "free_first";
       const ritualState = appState.ritualState;
+      const dailyRitualState = appState.dailyRitualState;
       const oracleState = appState.oracleState;
       const resultState = appState.resultState;
       let currentLang = navigator.language && navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
@@ -907,6 +909,7 @@
           .map((step, index) => `<span class="ritual-step" data-ritual-step="${index}">${step}</span>`)
           .join("");
         overlay.classList.add("active");
+        overlay.removeAttribute("inert");
         overlay.setAttribute("aria-hidden", "false");
         overlay.focus({ preventScroll: true });
         document.body.style.overflow = "hidden";
@@ -980,6 +983,7 @@
         const overlay = document.querySelector("#calculation-ritual");
         overlay.classList.remove("active");
         overlay.setAttribute("aria-hidden", "true");
+        overlay.setAttribute("inert", "");
         document.body.style.overflow = "";
         if (ritualReturnFocus && document.contains(ritualReturnFocus)) {
           ritualReturnFocus.focus({ preventScroll: true });
@@ -1526,7 +1530,7 @@
         }, 7);
       }
 
-      function selectDailyTheme(metrics, payload, relation, today) {
+      function selectDailyTheme(metrics, payload, relation, today, recentSignature = "") {
         const reminderTheme = {
           wealth_retention: "wealth",
           relationship_pressure: "relationship",
@@ -1536,7 +1540,7 @@
         if (relation === "output") return "career";
         if (relation === "manage") return "wealth";
         if (relation === "support") return "stability";
-        const seed = stableDailySeed(`${payload.input.birth_datetime}|${metrics.strongestTenGod[0]}|${today.dateKey}`);
+        const seed = stableDailySeed(`${payload.input.birth_datetime}|${metrics.strongestTenGod[0]}|${today.dateKey}|${recentSignature}`);
         return dailyThemeKeys[positiveMod(seed + today.cycleIndex, dailyThemeKeys.length)];
       }
 
@@ -1561,11 +1565,12 @@
           }))
           .sort((a, b) => b.adjusted - a.adjusted);
         const top = ranked[0];
-        const score = Math.max(72, Math.min(94, Math.round(70 + top.adjusted * 0.24)));
+        const adjusted = Math.max(0, Math.min(100, Math.round(top.adjusted)));
+        const level = adjusted >= 72 ? "bright" : adjusted >= 54 ? "steady" : "gentle";
         return {
           key: top.key,
-          score,
-          angle: `${Math.round(score * 3.6)}deg`
+          level,
+          angle: `${Math.round((adjusted || 48) * 3.6)}deg`
         };
       }
 
@@ -1628,7 +1633,7 @@
 
       function readDailyCheckins() {
         try {
-          const parsed = JSON.parse(localStorage.getItem(dailyCheckInStorageKey) || "[]");
+          const parsed = window.MINGStorage.readJSON(dailyCheckInStorageKey, []);
           return Array.isArray(parsed)
             ? parsed.filter((item) => item && item.date && item.optionKey).slice(-80)
             : [];
@@ -1639,11 +1644,29 @@
 
       function writeDailyCheckins(records) {
         try {
-          localStorage.setItem(dailyCheckInStorageKey, JSON.stringify(records.slice(-80)));
+          window.MINGStorage.writeJSON(dailyCheckInStorageKey, records.slice(-80));
           return true;
         } catch {
           return false;
         }
+      }
+
+      function readDailyPreferences() {
+        const saved = window.MINGStorage.readJSON(dailyPreferencesStorageKey, {});
+        return {
+          showStreak: saved.showStreak !== false,
+          sound: saved.sound !== false,
+          haptics: saved.haptics !== false,
+          motion: saved.motion !== false && motionAllowed,
+          durationSeconds: [30, 60].includes(Number(saved.durationSeconds)) ? Number(saved.durationSeconds) : 60
+        };
+      }
+
+      function writeDailyPreferences(prefs) {
+        const next = { ...readDailyPreferences(), ...prefs };
+        next.motion = Boolean(next.motion) && motionAllowed;
+        window.MINGStorage.writeJSON(dailyPreferencesStorageKey, next);
+        return next;
       }
 
       function recommendedDailyCheckin(themeKey, relation) {
@@ -1661,6 +1684,76 @@
           same: "focus"
         };
         return byTheme[themeKey] || byRelation[relation] || "focus";
+      }
+
+      function sortedDailyRecords(records) {
+        return [...records].sort((a, b) => String(a.date).localeCompare(String(b.date)));
+      }
+
+      function recentDailySignature(records) {
+        return sortedDailyRecords(records)
+          .slice(-5)
+          .map((item) => [item.optionKey, item.actionKey || "", item.eveningStatus || "", item.softPause ? "pause" : ""].join(":"))
+          .join("|") || "new";
+      }
+
+      function dailyRecordSummary(record) {
+        if (!record) return t("dailyRecentNone");
+        const option = t("dailyCheckinOptions").find((item) => item.key === record.optionKey);
+        const status = t("dailyEveningStatuses").find((item) => item.key === record.eveningStatus);
+        const label = option?.label || record.optionKey;
+        return status ? t("dailyRecentWithStatus")(label, status.label) : label;
+      }
+
+      function monthlyDailyReview(records, todayDate = new Date()) {
+        const monthPrefix = localDateKey(todayDate).slice(0, 7);
+        const monthRecords = records.filter((item) => String(item.date).startsWith(monthPrefix));
+        const tally = { completed: 0, adjusted: 0, skipped: 0, paused: 0, intention: 0 };
+        monthRecords.forEach((item) => {
+          if (item.softPause || item.eveningStatus === "paused") tally.paused += 1;
+          else if (item.eveningStatus === "completed") tally.completed += 1;
+          else if (item.eveningStatus === "adjusted") tally.adjusted += 1;
+          else if (item.eveningStatus === "skipped") tally.skipped += 1;
+          if (item.intentionKey || item.ritualCompleted) tally.intention += 1;
+        });
+        return {
+          activeDays: monthRecords.filter((item) => item.eveningStatus !== "skipped").length,
+          ...tally
+        };
+      }
+
+      function dailyRepairsUsed(records, todayDate = new Date()) {
+        const monthPrefix = localDateKey(todayDate).slice(0, 7);
+        return records.filter((item) => item.repaired && String(item.date).startsWith(monthPrefix)).length;
+      }
+
+      function dailyRepairTarget(records, todayDate = new Date()) {
+        if (!records.length) return null;
+        const yesterday = shiftLocalDate(todayDate, -1);
+        const key = localDateKey(yesterday);
+        const record = records.find((item) => item.date === key);
+        if (record && record.eveningStatus !== "skipped") return null;
+        return key;
+      }
+
+      function upsertDailyRecord(dateKey, updates, context) {
+        const records = readDailyCheckins();
+        const existing = records.find((item) => item.date === dateKey) || {};
+        const record = {
+          date: dateKey,
+          optionKey: updates.optionKey || existing.optionKey || recommendedDailyCheckin(context.themeKey, context.relation),
+          pillar: context.pillarLabel,
+          relation: context.relation,
+          theme: context.themeKey,
+          elements: context.todayElements,
+          ...existing,
+          ...updates,
+          updatedAt: new Date().toISOString()
+        };
+        if (!record.savedAt) record.savedAt = record.updatedAt;
+        const next = [...records.filter((item) => item.date !== dateKey), record];
+        writeDailyCheckins(sortedDailyRecords(next));
+        return record;
       }
 
       const motionAllowed = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1713,19 +1806,25 @@
       }
 
       function dailyCheckinStats(records, todayDate = new Date()) {
-        const dates = new Set(records.map((item) => item.date));
+        const byDate = new Map(records.map((item) => [item.date, item]));
         const todayKey = localDateKey(todayDate);
-        const checkedToday = dates.has(todayKey);
+        const checkedToday = byDate.has(todayKey);
         let streak = 0;
         let offset = checkedToday ? 0 : -1;
-        while (dates.has(localDateKey(shiftLocalDate(todayDate, offset)))) {
-          streak += 1;
+        let inspected = 0;
+        while (inspected < 80) {
+          const record = byDate.get(localDateKey(shiftLocalDate(todayDate, offset)));
+          if (!record) break;
+          if (!record.softPause && record.eveningStatus !== "paused" && record.eveningStatus !== "skipped") {
+            streak += 1;
+          }
           offset -= 1;
+          inspected += 1;
         }
         return {
           checkedToday,
           streak,
-          todayRecord: records.find((item) => item.date === todayKey) || null
+          todayRecord: byDate.get(todayKey) || null
         };
       }
 
@@ -1745,20 +1844,154 @@
         });
       }
 
-      function saveDailyCheckin(optionKey, context) {
+      function dailyActionChoices(themeKey) {
+        const choices = t("dailyActionChoices");
+        return choices[themeKey] || choices.stability || [];
+      }
+
+      function selectedDailyAction(widget, context, todayRecord) {
+        const choices = dailyActionChoices(context.themeKey);
+        const key = widget.dataset.selectedAction || todayRecord?.actionKey || choices[0]?.key || "one_small_step";
+        return choices.find((item) => item.key === key) || choices[0] || { key: "one_small_step", label: t("dailyFallbackAction") };
+      }
+
+      function selectedDailyIntention(widget, todayRecord) {
+        const intentions = t("muyuIntentions");
+        const key = widget.dataset.selectedIntention || todayRecord?.intentionKey || dailyRitualState.intentionKey || intentions[0]?.key || "steady_first_step";
+        return intentions.find((item) => item.key === key) || intentions[0] || { key: "steady_first_step", label: t("muyuFallbackIntention") };
+      }
+
+      function saveDailyCheckin(optionKey, context, updates = {}) {
         const todayKey = localDateKey();
-        const record = {
-          date: todayKey,
+        const record = upsertDailyRecord(todayKey, {
           optionKey,
-          pillar: context.pillarLabel,
-          relation: context.relation,
-          theme: context.themeKey,
-          elements: context.todayElements,
-          savedAt: new Date().toISOString()
-        };
-        const next = [...readDailyCheckins().filter((item) => item.date !== todayKey), record];
-        writeDailyCheckins(next);
+          dayStatus: "intention_set",
+          ...updates
+        }, context);
         trackProductEvent("daily_checkin_collected", { language: currentLang, module: optionKey });
+        return record;
+      }
+
+      let muyuAudioContext = null;
+
+      async function ensureMuyuAudioContext() {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return null;
+        muyuAudioContext ||= new AudioContextClass({ latencyHint: "interactive" });
+        if (muyuAudioContext.state === "suspended") {
+          try {
+            await muyuAudioContext.resume();
+          } catch {
+            return null;
+          }
+        }
+        return muyuAudioContext;
+      }
+
+      async function playMuyuSound() {
+        if (!dailyRitualState.sound) return;
+        const context = await ensureMuyuAudioContext();
+        if (!context) return;
+        const now = context.currentTime;
+        const master = context.createGain();
+        master.gain.setValueAtTime(0.0001, now);
+        master.gain.exponentialRampToValueAtTime(0.64, now + 0.006);
+        master.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        master.connect(context.destination);
+
+        const low = context.createOscillator();
+        const lowGain = context.createGain();
+        low.type = "triangle";
+        low.frequency.setValueAtTime(238, now);
+        low.frequency.exponentialRampToValueAtTime(142, now + 0.16);
+        lowGain.gain.setValueAtTime(0.75, now);
+        lowGain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        low.connect(lowGain);
+        lowGain.connect(master);
+
+        const wood = context.createOscillator();
+        const woodGain = context.createGain();
+        wood.type = "square";
+        wood.frequency.setValueAtTime(710, now);
+        wood.frequency.exponentialRampToValueAtTime(392, now + 0.055);
+        woodGain.gain.setValueAtTime(0.22, now);
+        woodGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        wood.connect(woodGain);
+        woodGain.connect(master);
+
+        low.start(now);
+        wood.start(now);
+        low.stop(now + 0.26);
+        wood.stop(now + 0.10);
+      }
+
+      function playMuyuHaptic() {
+        if (dailyRitualState.haptics && navigator.vibrate) navigator.vibrate(14);
+      }
+
+      function setMuyuStatus(widget, text) {
+        const status = widget.querySelector("[data-muyu-status]");
+        if (status) status.textContent = text;
+      }
+
+      function stopMuyuTimer() {
+        if (dailyRitualState.intervalId) {
+          window.clearInterval(dailyRitualState.intervalId);
+          dailyRitualState.intervalId = null;
+        }
+      }
+
+      function updateMuyuProgress(widget, context) {
+        const elapsed = Math.max(0, (Date.now() - dailyRitualState.startedAt) / 1000);
+        const remaining = Math.max(0, Math.ceil(dailyRitualState.durationSeconds - elapsed));
+        const progress = Math.min(1, elapsed / dailyRitualState.durationSeconds);
+        const fill = widget.querySelector("[data-muyu-progress]");
+        const timer = widget.querySelector("[data-muyu-timer]");
+        if (fill) fill.style.width = `${Math.round(progress * 100)}%`;
+        if (timer) timer.textContent = t("muyuCountdown")(remaining);
+        if (remaining <= 0) completeMuyuRitual(widget, context);
+      }
+
+      function completeMuyuRitual(widget, context) {
+        if (!dailyRitualState.active) return;
+        dailyRitualState.active = false;
+        stopMuyuTimer();
+        const optionKey = widget.dataset.selectedCheckin || recommendedDailyCheckin(context.themeKey, context.relation);
+        const intention = selectedDailyIntention(widget, dailyCheckinStats(readDailyCheckins()).todayRecord);
+        saveDailyCheckin(optionKey, context, {
+          intentionKey: intention.key,
+          ritualCompleted: true,
+          ritualSeconds: dailyRitualState.durationSeconds,
+          muyuTaps: dailyRitualState.taps,
+          completedAt: new Date().toISOString()
+        });
+        setMuyuStatus(widget, t("muyuComplete"));
+        renderDailyCheckin(widget.closest(".daily-card") || document, context);
+      }
+
+      function startMuyuReset(widget, context) {
+        const durationButton = widget.querySelector("[data-muyu-duration].is-selected");
+        const durationSeconds = Number(durationButton?.dataset.muyuDuration || readDailyPreferences().durationSeconds);
+        const intention = selectedDailyIntention(widget, dailyCheckinStats(readDailyCheckins()).todayRecord);
+        const prefs = writeDailyPreferences({
+          durationSeconds,
+          sound: dailyRitualState.sound,
+          haptics: dailyRitualState.haptics,
+          motion: dailyRitualState.motion
+        });
+        dailyRitualState.active = true;
+        dailyRitualState.startedAt = Date.now();
+        dailyRitualState.durationSeconds = prefs.durationSeconds;
+        dailyRitualState.intentionKey = intention.key;
+        dailyRitualState.taps = 0;
+        widget.querySelector(".muyu-reset")?.classList.add("is-running");
+        setMuyuStatus(widget, t("muyuRunning")(prefs.durationSeconds, intention.label));
+        playMuyuSound();
+        playMuyuHaptic();
+        updateMuyuProgress(widget, context);
+        stopMuyuTimer();
+        dailyRitualState.intervalId = window.setInterval(() => updateMuyuProgress(widget, context), 250);
+        trackProductEvent("muyu_reset_started", { language: currentLang, duration_seconds: prefs.durationSeconds });
       }
 
       function renderDailyCheckin(container, context) {
@@ -1766,19 +1999,44 @@
         if (!widget) return;
         const options = t("dailyCheckinOptions");
         const records = readDailyCheckins();
+        const prefs = readDailyPreferences();
+        dailyRitualState.sound = prefs.sound;
+        dailyRitualState.haptics = prefs.haptics;
+        dailyRitualState.motion = prefs.motion;
+        dailyRitualState.durationSeconds = prefs.durationSeconds;
         const stats = dailyCheckinStats(records);
         const todayRecord = stats.todayRecord;
         const selectedKey = widget.dataset.selectedCheckin || todayRecord?.optionKey || recommendedDailyCheckin(context.themeKey, context.relation);
         const selectedOption = options.find((item) => item.key === selectedKey) || options[0];
         widget.dataset.selectedCheckin = selectedOption.key;
+        const selectedAction = selectedDailyAction(widget, context, todayRecord);
+        widget.dataset.selectedAction = selectedAction.key;
+        const selectedIntention = selectedDailyIntention(widget, todayRecord);
+        widget.dataset.selectedIntention = selectedIntention.key;
+        const actions = dailyActionChoices(context.themeKey);
+        const intentions = t("muyuIntentions");
+        const statuses = t("dailyEveningStatuses");
         const trail = dailyCheckinTrail(records);
+        const month = monthlyDailyReview(records);
+        const repairsUsed = dailyRepairsUsed(records);
+        const repairTarget = dailyRepairTarget(records);
+        const canRepair = repairTarget && repairsUsed < 2;
+        const rhythmLabel = prefs.showStreak ? t("dailyRhythmCount")(stats.streak) : t("dailyRhythmHidden");
         widget.innerHTML = `
           <div class="daily-checkin-header">
             <div>
               <span class="daily-checkin-kicker">${t("dailyCheckinEyebrow")}</span>
               <strong class="daily-checkin-title">${t("dailyCheckinTitle")}</strong>
             </div>
-            <span class="daily-checkin-streak">${escapeHtml(t("dailyCheckinStreak")(stats.streak))}</span>
+            <div class="daily-checkin-controls">
+              <span class="daily-checkin-streak">${escapeHtml(rhythmLabel)}</span>
+              <button type="button" class="daily-soft-button" data-streak-toggle="1">${prefs.showStreak ? t("dailyHideStreak") : t("dailyShowStreak")}</button>
+              <button type="button" class="daily-soft-button" data-daily-pause="1">${todayRecord?.softPause ? t("dailyPaused") : t("dailyPause")}</button>
+              ${canRepair ? `<button type="button" class="daily-soft-button" data-daily-repair="${escapeHtml(repairTarget)}">${t("dailyRepair")(2 - repairsUsed)}</button>` : ""}
+            </div>
+          </div>
+          <div class="daily-journey" aria-label="${escapeHtml(t("dailyJourneyLabel"))}">
+            ${t("dailyJourneySteps").map((step, index) => `<span class="${todayRecord && index < 2 ? "is-done" : ""}">${escapeHtml(step)}</span>`).join("")}
           </div>
           <div class="daily-checkin-options" role="group" aria-label="${escapeHtml(t("dailyCheckinTitle"))}">
             ${options.map((option) => `<button class="daily-checkin-option ${escapeHtml(option.key)} ${option.key === selectedOption.key ? "is-selected" : ""} ${todayRecord?.optionKey === option.key ? "is-saved" : ""}" type="button" data-checkin-option="${escapeHtml(option.key)}" aria-pressed="${option.key === selectedOption.key ? "true" : "false"}">
@@ -1786,9 +2044,58 @@
               <span>${escapeHtml(option.label)}</span>
             </button>`).join("")}
           </div>
-          <div class="daily-checkin-action">
-            <p class="daily-checkin-prompt">${escapeHtml(t("dailyCheckinPrompt")(selectedOption.label))}</p>
-            <button class="daily-checkin-save" type="button" data-checkin-save="1">${todayRecord ? t("dailyCheckinSaved") : t("dailyCheckinSave")}</button>
+          <section class="muyu-reset ${dailyRitualState.active ? "is-running" : ""} ${dailyRitualState.motion ? "" : "is-still"}" aria-label="${escapeHtml(t("muyuTitle"))}">
+            <div class="muyu-copy">
+              <span class="daily-checkin-kicker">${t("muyuTitle")}</span>
+              <strong>${t("muyuSubtitle")}</strong>
+              <p>${t("muyuGuide")}</p>
+            </div>
+            <div class="muyu-settings">
+              <label>
+                <span>${t("muyuIntentionLabel")}</span>
+                <select data-muyu-intention>
+                  ${intentions.map((item) => `<option value="${escapeHtml(item.key)}" ${item.key === selectedIntention.key ? "selected" : ""}>${escapeHtml(item.label)}</option>`).join("")}
+                </select>
+              </label>
+              <div class="muyu-duration" role="group" aria-label="${escapeHtml(t("muyuDurationLabel"))}">
+                ${[30, 60].map((seconds) => `<button type="button" class="${prefs.durationSeconds === seconds ? "is-selected" : ""}" data-muyu-duration="${seconds}" aria-pressed="${prefs.durationSeconds === seconds ? "true" : "false"}">${t("muyuDuration")(seconds)}</button>`).join("")}
+              </div>
+              <label class="muyu-toggle"><input type="checkbox" data-muyu-sound ${prefs.sound ? "checked" : ""}> <span>${t("muyuSound")}</span></label>
+              <label class="muyu-toggle"><input type="checkbox" data-muyu-haptics ${prefs.haptics ? "checked" : ""}> <span>${t("muyuHaptics")}</span></label>
+              <label class="muyu-toggle"><input type="checkbox" data-muyu-motion ${prefs.motion ? "checked" : ""} ${motionAllowed ? "" : "disabled"}> <span>${t("muyuMotion")}</span></label>
+            </div>
+            <div class="muyu-stage">
+              <button class="muyu-bowl" type="button" data-muyu-tap aria-label="${escapeHtml(t("muyuTapAria"))}">
+                <span class="muyu-ring"></span>
+                <strong data-muyu-timer>${todayRecord?.ritualCompleted ? t("muyuDoneShort") : t("muyuReadyShort")}</strong>
+                <small>${t("muyuTap")}</small>
+              </button>
+              <div class="muyu-progress"><span data-muyu-progress style="width:${todayRecord?.ritualCompleted ? "100" : "0"}%"></span></div>
+              <div class="muyu-actions">
+                <button type="button" class="daily-checkin-save" data-muyu-start ${dailyRitualState.active ? "disabled" : ""}>${todayRecord?.ritualCompleted ? t("muyuRestart") : t("muyuStart")}</button>
+                <span data-muyu-status aria-live="polite">${todayRecord?.ritualCompleted ? t("muyuComplete") : t("muyuReady")}</span>
+              </div>
+            </div>
+          </section>
+          <div class="daily-action-picker">
+            <div>
+              <span class="daily-checkin-kicker">${t("dailyActionChoiceTitle")}</span>
+              <p class="daily-checkin-prompt">${escapeHtml(t("dailyCheckinPrompt")(selectedOption.label))}</p>
+            </div>
+            <div class="daily-action-options" role="group" aria-label="${escapeHtml(t("dailyActionChoiceTitle"))}">
+              ${actions.map((action) => `<button type="button" class="${action.key === selectedAction.key ? "is-selected" : ""}" data-daily-action="${escapeHtml(action.key)}" aria-pressed="${action.key === selectedAction.key ? "true" : "false"}">${escapeHtml(action.label)}</button>`).join("")}
+            </div>
+            <button class="daily-checkin-save" type="button" data-action-save="1">${todayRecord?.actionKey ? t("dailyActionSaved") : t("dailyActionSave")}</button>
+          </div>
+          <div class="daily-evening">
+            <div>
+              <span class="daily-checkin-kicker">${t("dailyEveningTitle")}</span>
+              <p>${t("dailyEveningBody")}</p>
+            </div>
+            <div class="daily-evening-options" role="group" aria-label="${escapeHtml(t("dailyEveningTitle"))}">
+              ${statuses.map((status) => `<button type="button" class="${todayRecord?.eveningStatus === status.key ? "is-selected" : ""}" data-evening-status="${escapeHtml(status.key)}" aria-pressed="${todayRecord?.eveningStatus === status.key ? "true" : "false"}">${escapeHtml(status.label)}</button>`).join("")}
+            </div>
+            <strong>${todayRecord?.eveningStatus ? escapeHtml(t("dailyEveningSaved")(statuses.find((item) => item.key === todayRecord.eveningStatus)?.label || todayRecord.eveningStatus)) : t("dailyEveningGentle")}</strong>
           </div>
           <div class="daily-stamp-rail">
             <div class="daily-stamp-label">
@@ -1796,14 +2103,20 @@
               <span>${t("dailyCheckinPrivacy")}</span>
             </div>
             <div class="daily-stamp-row">
-              ${trail.map((item) => `<span class="daily-stamp-wrap" title="${escapeHtml(item.record ? item.record.optionKey : t("dailyCheckinEmpty"))}">
+              ${trail.map((item) => `<span class="daily-stamp-wrap" title="${escapeHtml(item.record ? dailyRecordSummary(item.record) : t("dailyCheckinEmpty"))}">
                 <span class="daily-stamp ${item.record ? `is-filled ${escapeHtml(item.record.optionKey)}` : ""} ${item.isToday ? "is-today" : ""}">
                   ${item.record ? checkInIcon(item.record.optionKey, { animated: false }) : ""}
                 </span>
                 <span class="daily-stamp-day">${escapeHtml(item.label)}</span>
               </span>`).join("")}
             </div>
-          </div>`;
+          </div>
+          <div class="daily-month-review">
+            <span>${t("dailyMonthReviewTitle")}</span>
+            <strong>${escapeHtml(t("dailyMonthReview")(month.activeDays, month.completed, month.adjusted, month.paused))}</strong>
+            <p>${t("dailyMonthReviewNote")}</p>
+          </div>
+          <p class="daily-pro-note">${t("muyuProNote")}</p>`;
         widget.onclick = (event) => {
           const optionButton = event.target.closest("[data-checkin-option]");
           if (optionButton) {
@@ -1811,8 +2124,89 @@
             renderDailyCheckin(container, context);
             return;
           }
-          if (event.target.closest("[data-checkin-save]")) {
-            saveDailyCheckin(widget.dataset.selectedCheckin || selectedOption.key, context);
+          const durationButton = event.target.closest("[data-muyu-duration]");
+          if (durationButton) {
+            writeDailyPreferences({ durationSeconds: Number(durationButton.dataset.muyuDuration) });
+            renderDailyCheckin(container, context);
+            return;
+          }
+          const actionButton = event.target.closest("[data-daily-action]");
+          if (actionButton) {
+            widget.dataset.selectedAction = actionButton.dataset.dailyAction;
+            renderDailyCheckin(container, context);
+            return;
+          }
+          if (event.target.closest("[data-muyu-start]")) {
+            startMuyuReset(widget, context);
+            return;
+          }
+          if (event.target.closest("[data-muyu-tap]")) {
+            dailyRitualState.taps += 1;
+            playMuyuSound();
+            playMuyuHaptic();
+            setMuyuStatus(widget, dailyRitualState.active ? t("muyuTapped")(dailyRitualState.taps) : t("muyuTapPreview"));
+            return;
+          }
+          if (event.target.closest("[data-action-save]")) {
+            saveDailyCheckin(widget.dataset.selectedCheckin || selectedOption.key, context, {
+              intentionKey: selectedDailyIntention(widget, todayRecord).key,
+              actionKey: widget.dataset.selectedAction || selectedAction.key
+            });
+            renderDailyCheckin(container, context);
+            return;
+          }
+          const eveningButton = event.target.closest("[data-evening-status]");
+          if (eveningButton) {
+            saveDailyCheckin(widget.dataset.selectedCheckin || selectedOption.key, context, {
+              intentionKey: selectedDailyIntention(widget, todayRecord).key,
+              actionKey: widget.dataset.selectedAction || selectedAction.key,
+              eveningStatus: eveningButton.dataset.eveningStatus
+            });
+            renderDailyCheckin(container, context);
+            return;
+          }
+          if (event.target.closest("[data-streak-toggle]")) {
+            writeDailyPreferences({ showStreak: !readDailyPreferences().showStreak });
+            renderDailyCheckin(container, context);
+            return;
+          }
+          if (event.target.closest("[data-daily-pause]")) {
+            saveDailyCheckin(widget.dataset.selectedCheckin || selectedOption.key, context, {
+              softPause: true,
+              eveningStatus: "paused"
+            });
+            renderDailyCheckin(container, context);
+            return;
+          }
+          const repairButton = event.target.closest("[data-daily-repair]");
+          if (repairButton) {
+            upsertDailyRecord(repairButton.dataset.dailyRepair, {
+              optionKey: widget.dataset.selectedCheckin || selectedOption.key,
+              actionKey: widget.dataset.selectedAction || selectedAction.key,
+              eveningStatus: "adjusted",
+              repaired: true,
+              repairNote: "gentle_repair"
+            }, context);
+            trackProductEvent("daily_gentle_repair_used", { language: currentLang });
+            renderDailyCheckin(container, context);
+          }
+        };
+        widget.onchange = (event) => {
+          if (event.target.matches("[data-muyu-intention]")) {
+            widget.dataset.selectedIntention = event.target.value;
+            dailyRitualState.intentionKey = event.target.value;
+          }
+          if (event.target.matches("[data-muyu-sound]")) {
+            dailyRitualState.sound = event.target.checked;
+            writeDailyPreferences({ sound: event.target.checked });
+          }
+          if (event.target.matches("[data-muyu-haptics]")) {
+            dailyRitualState.haptics = event.target.checked;
+            writeDailyPreferences({ haptics: event.target.checked });
+          }
+          if (event.target.matches("[data-muyu-motion]")) {
+            dailyRitualState.motion = event.target.checked && motionAllowed;
+            writeDailyPreferences({ motion: dailyRitualState.motion });
             renderDailyCheckin(container, context);
           }
         };
@@ -1884,12 +2278,16 @@
         const today = buildDailyPillar();
         const dayMasterElement = payload.chart.day_master?.element || metrics.strongestElement[0];
         const relation = dailyRelationKey(dayMasterElement, today.stem.element);
-        const themeKey = selectDailyTheme(metrics, payload, relation, today);
+        const dailyRecords = readDailyCheckins();
+        const recentSignature = recentDailySignature(dailyRecords);
+        const recentRecord = sortedDailyRecords(dailyRecords).slice(-1)[0] || null;
+        const themeKey = selectDailyTheme(metrics, payload, relation, today, recentSignature);
         const relationCopy = t("dailyRelations")[relation];
         const themeCopy = t("dailyThemes")[themeKey];
         const oracleLine = t("dailyOracleLines")[relation];
         const dailyBoost = buildDailyBoost(metrics, payload, today, themeKey);
         const boostTopic = t("dailyBoostTopics")[dailyBoost.key];
+        const boostLevel = t("dailyBoostLevels")[dailyBoost.level] || t("dailyBoostLevels").gentle;
         const todayElements = `${labels[today.stem.element]} → ${labels[today.branch.element]}`;
         const pillarLabel = formatDailyPillarLabel(today);
         const dateStamp = t("dailyDateStamp")(formatDailyDate(), pillarLabel);
@@ -1925,11 +2323,11 @@
           </div>
           <div class="daily-boost" style="--boost-angle:${dailyBoost.angle}">
             <div class="daily-boost-score">
-              <div><strong>${dailyBoost.score}</strong><span>${t("dailyBoostUnit")}</span></div>
+              <div><strong>${escapeHtml(boostLevel.mark)}</strong><span>${t("dailyBoostUnit")}</span></div>
             </div>
             <div class="daily-boost-copy">
               <span>${t("dailyBoostLabel")}</span>
-              <strong>${escapeHtml(t("dailyBoostTitle")(boostTopic, dailyBoost.score))}</strong>
+              <strong>${escapeHtml(t("dailyBoostTitle")(boostTopic, boostLevel.label))}</strong>
               <p>${t("dailyBoostBody")}</p>
             </div>
           </div>
@@ -1952,6 +2350,7 @@
             <span>${escapeHtml(t("dailyEvidenceDayMaster")(labels[dayMasterElement]))}</span>
             <span>${escapeHtml(t("dailyEvidenceCore")(tenLabels[metrics.strongestTenGod[0]]))}</span>
             <span>${escapeHtml(t("dailyEvidenceToday")(pillarLabel))}</span>
+            <span>${escapeHtml(t("dailyEvidenceRecent")(dailyRecordSummary(recentRecord)))}</span>
             <span>${escapeHtml(t("dailyEvidenceReminder")(metrics.mainReminderTopic))}</span>
           </div>
           <p class="daily-card-note">${t("dailyNote")}</p>
@@ -1965,12 +2364,13 @@
           pillarLabel,
           relation,
           themeKey,
-          todayElements
+          todayElements,
+          recentSignature
         });
         const dailyShareText = t("shareDailyText")(
           relationCopy.title,
           oracleLine,
-          t("dailyBoostTitle")(boostTopic, dailyBoost.score),
+          t("dailyBoostTitle")(boostTopic, boostLevel.label),
           themeCopy.action,
           themeCopy.drain,
           themeCopy.question

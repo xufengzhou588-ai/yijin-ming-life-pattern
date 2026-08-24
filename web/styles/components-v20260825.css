@@ -179,6 +179,7 @@
       .technical-details {
         position: relative;
         overflow: hidden;
+        min-width: 0;
         isolation: isolate;
       }
 
@@ -2179,6 +2180,55 @@
         box-shadow: 0 0 10px rgba(40, 245, 190, 0.64);
       }
 
+      .daily-checkin-controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 7px;
+      }
+
+      .daily-soft-button {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.045);
+        padding: 6px 10px;
+        color: #d8e1e0;
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .daily-soft-button:hover {
+        border-color: rgba(255, 209, 102, 0.36);
+        color: #fff3bd;
+      }
+
+      .daily-journey {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 7px;
+        margin-top: 13px;
+      }
+
+      .daily-journey span {
+        min-width: 0;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        padding: 6px 8px;
+        color: rgba(216, 225, 224, 0.72);
+        font-size: 10px;
+        font-weight: 900;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .daily-journey span.is-done {
+        border-color: rgba(40, 245, 190, 0.30);
+        background: rgba(40, 245, 190, 0.08);
+        color: #d8fff6;
+      }
+
       .daily-checkin-options {
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -2954,6 +3004,217 @@
 
       .daily-checkin-save:hover {
         transform: translateY(-1px);
+      }
+
+      .muyu-reset {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(190px, 0.76fr) minmax(190px, 0.72fr);
+        gap: 13px;
+        align-items: stretch;
+        margin-top: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        border-radius: 14px;
+        background:
+          radial-gradient(circle at 12% 18%, rgba(201, 166, 91, 0.17), transparent 34%),
+          radial-gradient(circle at 82% 82%, rgba(119, 184, 160, 0.12), transparent 34%),
+          rgba(2, 9, 10, 0.34);
+        padding: 13px;
+      }
+
+      .muyu-copy strong {
+        display: block;
+        margin-top: 4px;
+        color: #fff;
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .muyu-copy p,
+      .daily-evening p,
+      .daily-pro-note,
+      .daily-month-review p {
+        margin: 6px 0 0;
+        color: #bdd3d2;
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .muyu-settings {
+        display: grid;
+        gap: 8px;
+      }
+
+      .muyu-settings label {
+        display: grid;
+        gap: 5px;
+        margin: 0;
+      }
+
+      .muyu-settings label > span,
+      .daily-month-review > span {
+        color: #f3d77e;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .muyu-settings select {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        background: rgba(3, 9, 10, 0.58);
+        color: #eff3f1;
+        padding: 8px 10px;
+      }
+
+      .muyu-duration,
+      .daily-action-options,
+      .daily-evening-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .muyu-duration button,
+      .daily-action-options button,
+      .daily-evening-options button {
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.045);
+        padding: 8px 11px;
+        color: #d8e1e0;
+        font-size: 12px;
+        font-weight: 850;
+        cursor: pointer;
+      }
+
+      .muyu-duration button.is-selected,
+      .daily-action-options button.is-selected,
+      .daily-evening-options button.is-selected {
+        border-color: rgba(255, 209, 102, 0.58);
+        background: rgba(255, 209, 102, 0.14);
+        color: #fff2bd;
+      }
+
+      .muyu-toggle {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: center;
+        color: #d8e1e0;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .muyu-stage {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 9px;
+      }
+
+      .muyu-bowl {
+        display: grid;
+        width: 138px;
+        aspect-ratio: 1;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 209, 102, 0.48);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 34% 24%, rgba(255, 246, 194, 0.28), transparent 18%),
+          radial-gradient(circle at 50% 64%, rgba(37, 22, 12, 0.80), transparent 54%),
+          linear-gradient(145deg, #926832, #2e1b10 66%, #0c0907);
+        color: #fff1bd;
+        cursor: pointer;
+        box-shadow:
+          inset -12px -18px 28px rgba(0, 0, 0, 0.38),
+          inset 8px 8px 18px rgba(255, 227, 153, 0.16),
+          0 14px 28px rgba(0, 0, 0, 0.24);
+      }
+
+      .muyu-ring {
+        position: absolute;
+        inset: 15px;
+        border: 1px solid rgba(255, 235, 169, 0.26);
+        border-radius: 50%;
+      }
+
+      .muyu-bowl strong {
+        position: relative;
+        z-index: 1;
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      .muyu-bowl small {
+        position: relative;
+        z-index: 1;
+        align-self: end;
+        margin-bottom: 24px;
+        color: rgba(255, 240, 184, 0.76);
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .muyu-reset.is-running:not(.is-still) .muyu-ring {
+        animation: muyu-breathe 2.8s ease-in-out infinite;
+      }
+
+      .muyu-progress {
+        width: 100%;
+        height: 7px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.10);
+      }
+
+      .muyu-progress span {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #c9a65b, #77b8a0);
+      }
+
+      .muyu-actions {
+        display: grid;
+        justify-items: center;
+        gap: 7px;
+        color: #bdd3d2;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .daily-action-picker,
+      .daily-evening,
+      .daily-month-review {
+        display: grid;
+        gap: 10px;
+        margin-top: 13px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        background: rgba(3, 9, 10, 0.26);
+        padding: 12px;
+      }
+
+      .daily-action-picker {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .daily-evening strong,
+      .daily-month-review strong {
+        color: #d8fff6;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .daily-pro-note {
+        border-left: 3px solid rgba(255, 209, 102, 0.46);
+        padding-left: 10px;
+      }
+
+      @keyframes muyu-breathe {
+        0%, 100% { opacity: 0.42; transform: scale(0.96); }
+        50% { opacity: 0.90; transform: scale(1.08); }
       }
 
       .daily-stamp-rail {

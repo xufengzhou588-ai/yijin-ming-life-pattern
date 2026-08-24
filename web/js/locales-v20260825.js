@@ -139,10 +139,15 @@ window.MING_COPY = {
             manage: "财物有界，事乃可成",
             pressure: "止躁听令，辨其急缓"
           },
-          dailyBoostLabel: "今日启运印",
-          dailyBoostUnit: "启运",
-          dailyBoostTitle: (topic, score) => `今天你的${topic}感高于常规基线 ${score}%`,
-          dailyBoostBody: "不是全站真实排名，而是从你的命盘结构里挑出今天最容易发光的一项。把它当作开一天的好心情。",
+          dailyBoostLabel: "今日行动倾向",
+          dailyBoostUnit: "倾向",
+          dailyBoostTitle: (topic, level) => `今天的${topic}主题适合${level}推进`,
+          dailyBoostBody: "不是运势分数，也不预测结果；它把你的长期结构、今天日期和最近选择合成一个小行动方向。",
+          dailyBoostLevels: {
+            bright: { mark: "明", label: "清晰" },
+            steady: { mark: "稳", label: "稳步" },
+            gentle: { mark: "缓", label: "轻量" }
+          },
           dailyBoostTopics: {
             career: "推进",
             wealth: "资源",
@@ -150,8 +155,17 @@ window.MING_COPY = {
             stability: "稳定"
           },
           dailyCheckinEyebrow: "每日灵印",
-          dailyCheckinTitle: "选一枚今天的行动印",
+          dailyCheckinTitle: "完成今天的行动闭环",
           dailyCheckinStreak: (count) => `连续 ${count} 天`,
+          dailyRhythmCount: (count) => `节奏 ${count} 天`,
+          dailyRhythmHidden: "节奏已隐藏",
+          dailyHideStreak: "隐藏",
+          dailyShowStreak: "显示",
+          dailyPause: "Pause 今天",
+          dailyPaused: "已 Pause",
+          dailyRepair: (remaining) => `修复一次 · 余 ${remaining}`,
+          dailyJourneyLabel: "今日留存流程",
+          dailyJourneySteps: ["今日焦点", "灵印", "木鱼", "小行动", "晚间"],
           dailyCheckinTrail: "7 日灵印",
           dailyCheckinPrivacy: "仅保存在本机",
           dailyCheckinPrompt: (label) => `今天先带着「${label}」做一件小事。不是写日记，是给行动盖一枚印。`,
@@ -159,18 +173,88 @@ window.MING_COPY = {
           dailyCheckinSaved: "今日已收",
           dailyCheckinEmpty: "未收",
           dailyCheckinOptions: [
-            { key: "focus", label: "定心" },
-            { key: "spark", label: "起势" },
-            { key: "ground", label: "安土" },
-            { key: "connect", label: "结缘" },
-            { key: "restore", label: "养源" }
+            { key: "focus", label: "Focus" },
+            { key: "spark", label: "Spark" },
+            { key: "ground", label: "Ground" },
+            { key: "connect", label: "Connect" },
+            { key: "restore", label: "Restore" }
           ],
+          muyuTitle: "Muyu Reset",
+          muyuSubtitle: "A 60-second wooden fish ritual",
+          muyuGuide: "One sound. One breath. One intention.",
+          muyuIntentionLabel: "开始前选择一个意图",
+          muyuDurationLabel: "木鱼时长",
+          muyuDuration: (seconds) => `${seconds} 秒`,
+          muyuSound: "声音",
+          muyuHaptics: "轻触触感",
+          muyuMotion: "柔和动画",
+          muyuTap: "Mindful tap",
+          muyuTapAria: "轻触木鱼",
+          muyuStart: "开始 Reset",
+          muyuRestart: "再次 Reset",
+          muyuReady: "选择意图后开始；声音、触感和动画都可关闭。",
+          muyuReadyShort: "Ready",
+          muyuDoneShort: "Set",
+          muyuCountdown: (seconds) => `${seconds}s`,
+          muyuRunning: (seconds, intention) => `${seconds} 秒 · ${intention}`,
+          muyuTapped: (count) => `Mindful tap ${count}`,
+          muyuTapPreview: "轻敲预览，不会计入功德或分数。",
+          muyuComplete: "Intention set. You made space before acting.",
+          muyuProNote: "免费版包含每日基础木鱼仪式。Pro 未来只扩展音色、音景、自定义时长、历史趋势和个性化组合；不出售功德、好运、自动敲击或排行榜。",
+          muyuFallbackIntention: "稳住第一步",
+          muyuIntentions: [
+            { key: "steady_first_step", label: "稳住第一步" },
+            { key: "speak_clearly", label: "把话说清楚" },
+            { key: "protect_energy", label: "保护能量" },
+            { key: "finish_visible", label: "完成一个可见结果" }
+          ],
+          dailyActionChoiceTitle: "今天一个小行动",
+          dailyActionSave: "保存小行动",
+          dailyActionSaved: "行动已保存",
+          dailyFallbackAction: "做一个最小动作",
+          dailyActionChoices: {
+            career: [
+              { key: "visible_result", label: "交付一个可见结果" },
+              { key: "single_priority", label: "只推进一个优先级" },
+              { key: "ask_feedback", label: "向一个人要反馈" }
+            ],
+            wealth: [
+              { key: "set_boundary", label: "写下预算边界" },
+              { key: "pause_purchase", label: "延迟一项冲动投入" },
+              { key: "review_resource", label: "复盘一项资源承诺" }
+            ],
+            relationship: [
+              { key: "clear_request", label: "说出一个具体请求" },
+              { key: "repair_message", label: "发出一句修复沟通" },
+              { key: "listen_first", label: "先听完再回应" }
+            ],
+            stability: [
+              { key: "remove_parallel", label: "删掉一个并行任务" },
+              { key: "set_review_point", label: "设置一个复盘点" },
+              { key: "protect_recovery", label: "保留一段恢复时间" }
+            ]
+          },
+          dailyEveningTitle: "晚间标记",
+          dailyEveningBody: "回来只需点一次。完成、调整、跳过都只是记录，不是评判。",
+          dailyEveningGentle: "今晚回来时再标记。",
+          dailyEveningSaved: (label) => `已标记：${label}`,
+          dailyEveningStatuses: [
+            { key: "completed", label: "完成" },
+            { key: "adjusted", label: "调整" },
+            { key: "skipped", label: "跳过" }
+          ],
+          dailyMonthReviewTitle: "月度回顾",
+          dailyMonthReview: (active, completed, adjusted, paused) => `${active} 天回来 · ${completed} 完成 · ${adjusted} 调整 · ${paused} Pause`,
+          dailyMonthReviewNote: "这些记录只用于七日轨迹和月度复盘，不会生成失败惩罚。",
+          dailyRecentNone: "暂无最近选择",
+          dailyRecentWithStatus: (label, status) => `${label} / ${status}`,
           dailyActionLabel: "今日适合",
           dailyDrainLabel: "容易消耗",
           dailyQuestionLabel: "反思问题",
           dailyEvidenceDayMaster: (element) => `日主 ${element}`,
           dailyEvidenceCore: (pattern) => `核心倾向 ${pattern}`,
           dailyEvidenceToday: (pillar) => `今日 ${pillar}日签`,
+          dailyEvidenceRecent: (recent) => `最近选择 ${recent}`,
           dailyEvidenceReminder: (topic) => `提醒 ${topic}`,
           dailyNote: "这不是绝对运势，也不预测具体事件；它把你的核心结构和今日日期节奏翻译成一个可执行的小提醒。",
           shareCoreButton: "分享核心画像",
@@ -182,7 +266,7 @@ window.MING_COPY = {
           shareCoreTitle: "我的 MING 核心画像",
           shareDailyTitle: "我的 MING 今日焦点",
           shareCoreText: (archetype, element, pattern, action) => `我的 MING 核心画像：${archetype}\n主导五行：${element}\n核心倾向：${pattern}\n${action}\n\n用于文化探索与个人反思，不做绝对预测。`,
-          shareDailyText: (title, oracleLine, boostTitle, action, drain, question) => `我的 MING 今日焦点：${title}\n今日签文：${oracleLine}\n今日开局：${boostTitle}\n今日适合：${action}\n容易消耗：${drain}\n反思问题：${question}\n\n每日提示用于行动反思，不预测具体事件。`,
+          shareDailyText: (title, oracleLine, boostTitle, action, drain, question) => `我的 MING 今日焦点：${title}\n今日签文：${oracleLine}\n今日方向：${boostTitle}\n今日适合：${action}\n容易消耗：${drain}\n反思问题：${question}\n\n每日提示用于行动反思，不预测具体事件。`,
           dailyRelations: {
             support: {
               title: "今天适合补给、整理和借力",
@@ -679,10 +763,15 @@ window.MING_COPY = {
             manage: "财物有界，事乃可成",
             pressure: "止躁听令，辨其急缓"
           },
-          dailyBoostLabel: "Today’s Momentum Seal",
-          dailyBoostUnit: "seal",
-          dailyBoostTitle: (topic, score) => `Your ${topic} signal starts above baseline today: ${score}%`,
-          dailyBoostBody: "Not a real user ranking. It highlights the strongest friendly signal in your own pattern, so the day starts with a little momentum.",
+          dailyBoostLabel: "Today’s action tendency",
+          dailyBoostUnit: "mode",
+          dailyBoostTitle: (topic, level) => `Today’s ${topic} theme works best with a ${level} pace`,
+          dailyBoostBody: "This is not a luck score or an event forecast. It blends your long-term pattern, today’s date, and recent choices into one small direction.",
+          dailyBoostLevels: {
+            bright: { mark: "C", label: "clear" },
+            steady: { mark: "S", label: "steady" },
+            gentle: { mark: "L", label: "light" }
+          },
           dailyBoostTopics: {
             career: "progress",
             wealth: "resource",
@@ -690,8 +779,17 @@ window.MING_COPY = {
             stability: "stability"
           },
           dailyCheckinEyebrow: "Daily Seal",
-          dailyCheckinTitle: "Choose today’s action mark",
+          dailyCheckinTitle: "Complete today’s action loop",
           dailyCheckinStreak: (count) => `${count}-day streak`,
+          dailyRhythmCount: (count) => `${count}-day rhythm`,
+          dailyRhythmHidden: "Rhythm hidden",
+          dailyHideStreak: "Hide",
+          dailyShowStreak: "Show",
+          dailyPause: "Pause today",
+          dailyPaused: "Paused",
+          dailyRepair: (remaining) => `Repair · ${remaining} left`,
+          dailyJourneyLabel: "Daily retention loop",
+          dailyJourneySteps: ["Focus", "Seal", "Muyu", "Action", "Evening"],
           dailyCheckinTrail: "7-day seals",
           dailyCheckinPrivacy: "On this device only",
           dailyCheckinPrompt: (label) => `Carry the ${label} mark into one small action today. Less journaling, more ritual stamp.`,
@@ -705,12 +803,82 @@ window.MING_COPY = {
             { key: "connect", label: "Connect" },
             { key: "restore", label: "Restore" }
           ],
+          muyuTitle: "Muyu Reset",
+          muyuSubtitle: "A 60-second wooden fish ritual",
+          muyuGuide: "One sound. One breath. One intention.",
+          muyuIntentionLabel: "Choose an intention first",
+          muyuDurationLabel: "Muyu duration",
+          muyuDuration: (seconds) => `${seconds} sec`,
+          muyuSound: "Sound",
+          muyuHaptics: "Light haptics",
+          muyuMotion: "Gentle motion",
+          muyuTap: "Mindful tap",
+          muyuTapAria: "Tap the wooden fish",
+          muyuStart: "Start Reset",
+          muyuRestart: "Reset again",
+          muyuReady: "Choose an intention and begin. Sound, haptics, and motion can all be turned off.",
+          muyuReadyShort: "Ready",
+          muyuDoneShort: "Set",
+          muyuCountdown: (seconds) => `${seconds}s`,
+          muyuRunning: (seconds, intention) => `${seconds} seconds · ${intention}`,
+          muyuTapped: (count) => `Mindful tap ${count}`,
+          muyuTapPreview: "Preview tap. No merit, score, or currency is created.",
+          muyuComplete: "Intention set. You made space before acting.",
+          muyuProNote: "Free includes the daily basic Muyu ritual. Pro may add tones, soundscapes, custom duration, history trends, and personalized ritual sets. No merit, luck, auto-tapping, or leaderboards are sold.",
+          muyuFallbackIntention: "steady first step",
+          muyuIntentions: [
+            { key: "steady_first_step", label: "steady first step" },
+            { key: "speak_clearly", label: "speak clearly" },
+            { key: "protect_energy", label: "protect energy" },
+            { key: "finish_visible", label: "finish one visible result" }
+          ],
+          dailyActionChoiceTitle: "One small action today",
+          dailyActionSave: "Save action",
+          dailyActionSaved: "Action saved",
+          dailyFallbackAction: "Take one small step",
+          dailyActionChoices: {
+            career: [
+              { key: "visible_result", label: "Ship one visible result" },
+              { key: "single_priority", label: "Move one priority only" },
+              { key: "ask_feedback", label: "Ask one person for feedback" }
+            ],
+            wealth: [
+              { key: "set_boundary", label: "Write the budget boundary" },
+              { key: "pause_purchase", label: "Delay one impulse spend" },
+              { key: "review_resource", label: "Review one resource promise" }
+            ],
+            relationship: [
+              { key: "clear_request", label: "Make one clear request" },
+              { key: "repair_message", label: "Send one repair message" },
+              { key: "listen_first", label: "Listen before replying" }
+            ],
+            stability: [
+              { key: "remove_parallel", label: "Remove one parallel task" },
+              { key: "set_review_point", label: "Set one review point" },
+              { key: "protect_recovery", label: "Protect one recovery block" }
+            ]
+          },
+          dailyEveningTitle: "Evening mark",
+          dailyEveningBody: "One tap is enough. Completed, adjusted, and skipped are records, not judgments.",
+          dailyEveningGentle: "Come back tonight to mark it.",
+          dailyEveningSaved: (label) => `Marked: ${label}`,
+          dailyEveningStatuses: [
+            { key: "completed", label: "Completed" },
+            { key: "adjusted", label: "Adjusted" },
+            { key: "skipped", label: "Skipped" }
+          ],
+          dailyMonthReviewTitle: "Monthly review",
+          dailyMonthReview: (active, completed, adjusted, paused) => `${active} return days · ${completed} completed · ${adjusted} adjusted · ${paused} paused`,
+          dailyMonthReviewNote: "These records feed the 7-day trail and monthly review. There is no failure penalty.",
+          dailyRecentNone: "no recent choice yet",
+          dailyRecentWithStatus: (label, status) => `${label} / ${status}`,
           dailyActionLabel: "Best small move",
           dailyDrainLabel: "Energy leak",
           dailyQuestionLabel: "Reflection question",
           dailyEvidenceDayMaster: (element) => `日主 ${element}`,
           dailyEvidenceCore: (pattern) => `十神 ${pattern}`,
           dailyEvidenceToday: (pillar) => `Today ${pillar} mark`,
+          dailyEvidenceRecent: (recent) => `Recent choice ${recent}`,
           dailyEvidenceReminder: (topic) => `Watch ${topic}`,
           dailyNote: "This is not a fixed prediction or an event forecast. It translates your core structure and today's date rhythm into one small, usable prompt.",
           shareCoreButton: "Share Core Card",
@@ -722,7 +890,7 @@ window.MING_COPY = {
           shareCoreTitle: "My MING Core Pattern",
           shareDailyTitle: "My MING Daily Focus",
           shareCoreText: (archetype, element, pattern, action) => `My MING core pattern: ${archetype}\nElement: ${element}\nPattern: ${pattern}\n${action}\n\nFor cultural exploration and personal reflection. Not a fixed prediction.`,
-          shareDailyText: (title, oracleLine, boostTitle, action, drain, question) => `My MING daily focus: ${title}\n今日签文: ${oracleLine}\nToday’s boost: ${boostTitle}\nBest small move: ${action}\nEnergy leak: ${drain}\nReflection question: ${question}\n\nA daily reflection prompt, not an event forecast.`,
+          shareDailyText: (title, oracleLine, boostTitle, action, drain, question) => `My MING daily focus: ${title}\nDaily line: ${oracleLine}\nToday’s direction: ${boostTitle}\nBest small move: ${action}\nEnergy leak: ${drain}\nReflection question: ${question}\n\nA daily reflection prompt, not an event forecast.`,
           dailyRelations: {
             support: {
               title: "Today favors recovery, preparation, and support",

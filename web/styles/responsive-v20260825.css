@@ -90,6 +90,22 @@
           padding-bottom: 96px;
         }
 
+        main {
+          width: 100%;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+
+        .panel-title {
+          flex-wrap: wrap;
+          align-items: flex-start;
+        }
+
+        .schema-pill {
+          white-space: normal;
+          overflow-wrap: anywhere;
+        }
+
         body:not([data-active-mobile-pane="input"]) .hero {
           display: none;
         }
@@ -113,7 +129,7 @@
           right: 8px;
           bottom: max(8px, env(safe-area-inset-bottom));
           display: grid;
-          grid-template-columns: repeat(5, minmax(0, 1fr));
+          grid-template-columns: repeat(4, minmax(0, 1fr));
           gap: 4px;
           border: 1px solid rgba(97, 232, 255, 0.24);
           border-radius: 12px;
@@ -289,8 +305,42 @@
           display: grid;
         }
 
+        .daily-checkin-controls {
+          justify-content: flex-start;
+        }
+
+        .daily-journey {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
         .daily-checkin-options {
           grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .muyu-reset {
+          grid-template-columns: 1fr;
+        }
+
+        .muyu-stage {
+          justify-items: stretch;
+        }
+
+        .muyu-bowl {
+          justify-self: center;
+          width: min(138px, 52vw);
+        }
+
+        .daily-action-options,
+        .daily-evening-options,
+        .muyu-duration {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .daily-action-options button,
+        .daily-evening-options button,
+        .muyu-duration button {
+          white-space: normal;
         }
 
         .daily-card-grid {
@@ -402,7 +452,7 @@
 
         main,
         .hero-inner {
-          padding-left: 16px;
-          padding-right: 16px;
+          padding-left: 12px;
+          padding-right: 12px;
         }
       }

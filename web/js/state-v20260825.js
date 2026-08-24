@@ -4,9 +4,21 @@ window.MING_STATE = {
     profile: "ming.birthProfile.v1",
     productEvents: "ming.productEvents.v1",
     oracleJournal: "ming.oracleJournal.v1",
-    dailyCheckins: "ming.dailyCheckins.v1"
+    dailyCheckins: "ming.dailyCheckins.v1",
+    dailyPreferences: "ming.dailyPreferences.v1"
   },
   ritualState: { skip: false, active: false },
+  dailyRitualState: {
+    active: false,
+    startedAt: 0,
+    durationSeconds: 60,
+    intervalId: null,
+    intentionKey: "steady_first_step",
+    sound: true,
+    haptics: true,
+    motion: true,
+    taps: 0
+  },
   oracleState: {
     lines: [],
     question: "",
