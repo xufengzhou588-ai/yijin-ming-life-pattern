@@ -1,0 +1,32 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+ENV/
+
+# Xcode
+build/
+DerivedData/
+*.xcarchive
+*.xcresult
+*.ipa
+
+# Logs
+*.log
+
+# Generated packages and local backups
+dist/
+backups/
+*.html.backup*
+*.backup-before-*
+web/*.backup*

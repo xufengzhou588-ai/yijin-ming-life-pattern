@@ -1,0 +1,511 @@
+{
+  "model_version": "three-coin-change-rules-v1",
+  "trigrams": {
+    "111": {
+      "key": "qian",
+      "zh": "乾",
+      "en": "Heaven",
+      "image": "天",
+      "motion": "initiative and creative force"
+    },
+    "110": {
+      "key": "dui",
+      "zh": "兑",
+      "en": "Lake",
+      "image": "泽",
+      "motion": "exchange, openness, and persuasion"
+    },
+    "101": {
+      "key": "li",
+      "zh": "离",
+      "en": "Fire",
+      "image": "火",
+      "motion": "clarity, visibility, and discernment"
+    },
+    "100": {
+      "key": "zhen",
+      "zh": "震",
+      "en": "Thunder",
+      "image": "雷",
+      "motion": "activation, surprise, and movement"
+    },
+    "011": {
+      "key": "xun",
+      "zh": "巽",
+      "en": "Wind",
+      "image": "风",
+      "motion": "gradual influence, entry, and adaptation"
+    },
+    "010": {
+      "key": "kan",
+      "zh": "坎",
+      "en": "Water",
+      "image": "水",
+      "motion": "risk, depth, and repeated testing"
+    },
+    "001": {
+      "key": "gen",
+      "zh": "艮",
+      "en": "Mountain",
+      "image": "山",
+      "motion": "limits, stillness, and deliberate stopping"
+    },
+    "000": {
+      "key": "kun",
+      "zh": "坤",
+      "en": "Earth",
+      "image": "地",
+      "motion": "receptivity, support, and patient development"
+    }
+  },
+  "hexagrams": {
+    "qian|qian": {
+      "number": 1,
+      "name_zh": "乾",
+      "name_en": "The Creative",
+      "theme": "initiative needs purpose and disciplined follow-through",
+      "unicode": "䷀"
+    },
+    "kun|kun": {
+      "number": 2,
+      "name_zh": "坤",
+      "name_en": "The Receptive",
+      "theme": "progress comes through support, patience, and responsiveness",
+      "unicode": "䷁"
+    },
+    "zhen|kan": {
+      "number": 3,
+      "name_zh": "屯",
+      "name_en": "Difficulty at the Beginning",
+      "theme": "a new beginning needs structure before speed",
+      "unicode": "䷂"
+    },
+    "kan|gen": {
+      "number": 4,
+      "name_zh": "蒙",
+      "name_en": "Youthful Learning",
+      "theme": "uncertainty calls for questions, instruction, and humility",
+      "unicode": "䷃"
+    },
+    "qian|kan": {
+      "number": 5,
+      "name_zh": "需",
+      "name_en": "Waiting",
+      "theme": "prepare carefully while timing develops",
+      "unicode": "䷄"
+    },
+    "kan|qian": {
+      "number": 6,
+      "name_zh": "讼",
+      "name_en": "Conflict",
+      "theme": "clarify facts and limits before pushing the dispute",
+      "unicode": "䷅"
+    },
+    "kan|kun": {
+      "number": 7,
+      "name_zh": "师",
+      "name_en": "Collective Discipline",
+      "theme": "coordination requires clear roles and responsible leadership",
+      "unicode": "䷆"
+    },
+    "kun|kan": {
+      "number": 8,
+      "name_zh": "比",
+      "name_en": "Holding Together",
+      "theme": "commitment grows through trust and chosen alignment",
+      "unicode": "䷇"
+    },
+    "qian|xun": {
+      "number": 9,
+      "name_zh": "小畜",
+      "name_en": "Small Accumulating",
+      "theme": "small restraints and steady preparation build leverage",
+      "unicode": "䷈"
+    },
+    "dui|qian": {
+      "number": 10,
+      "name_zh": "履",
+      "name_en": "Treading Carefully",
+      "theme": "move with awareness of power, etiquette, and consequence",
+      "unicode": "䷉"
+    },
+    "qian|kun": {
+      "number": 11,
+      "name_zh": "泰",
+      "name_en": "Peace",
+      "theme": "different forces can cooperate when exchange remains open",
+      "unicode": "䷊"
+    },
+    "kun|qian": {
+      "number": 12,
+      "name_zh": "否",
+      "name_en": "Standstill",
+      "theme": "do not force growth where communication and alignment are blocked",
+      "unicode": "䷋"
+    },
+    "li|qian": {
+      "number": 13,
+      "name_zh": "同人",
+      "name_en": "Fellowship",
+      "theme": "shared purpose matters more than superficial agreement",
+      "unicode": "䷌"
+    },
+    "qian|li": {
+      "number": 14,
+      "name_zh": "大有",
+      "name_en": "Great Possession",
+      "theme": "abundance needs stewardship, visibility, and proportion",
+      "unicode": "䷍"
+    },
+    "gen|kun": {
+      "number": 15,
+      "name_zh": "谦",
+      "name_en": "Modesty",
+      "theme": "quiet competence creates room for sustainable influence",
+      "unicode": "䷎"
+    },
+    "kun|zhen": {
+      "number": 16,
+      "name_zh": "豫",
+      "name_en": "Enthusiasm",
+      "theme": "mobilize energy without letting excitement replace preparation",
+      "unicode": "䷏"
+    },
+    "zhen|dui": {
+      "number": 17,
+      "name_zh": "随",
+      "name_en": "Following",
+      "theme": "adapt to what is timely without surrendering discernment",
+      "unicode": "䷐"
+    },
+    "xun|gen": {
+      "number": 18,
+      "name_zh": "蛊",
+      "name_en": "Repairing Decay",
+      "theme": "old damage must be named, cleaned, and given a new system",
+      "unicode": "䷑"
+    },
+    "dui|kun": {
+      "number": 19,
+      "name_zh": "临",
+      "name_en": "Approach",
+      "theme": "influence is growing; meet it with attention and responsibility",
+      "unicode": "䷒"
+    },
+    "kun|xun": {
+      "number": 20,
+      "name_zh": "观",
+      "name_en": "Contemplation",
+      "theme": "step back and observe the pattern before intervening",
+      "unicode": "䷓"
+    },
+    "zhen|li": {
+      "number": 21,
+      "name_zh": "噬嗑",
+      "name_en": "Biting Through",
+      "theme": "a clear obstacle needs a proportionate and decisive response",
+      "unicode": "䷔"
+    },
+    "li|gen": {
+      "number": 22,
+      "name_zh": "贲",
+      "name_en": "Grace",
+      "theme": "presentation helps, but form must continue to serve substance",
+      "unicode": "䷕"
+    },
+    "kun|gen": {
+      "number": 23,
+      "name_zh": "剥",
+      "name_en": "Splitting Apart",
+      "theme": "remove what can no longer support the whole",
+      "unicode": "䷖"
+    },
+    "zhen|kun": {
+      "number": 24,
+      "name_zh": "复",
+      "name_en": "Return",
+      "theme": "a small return to the right path matters more than dramatic correction",
+      "unicode": "䷗"
+    },
+    "zhen|qian": {
+      "number": 25,
+      "name_zh": "无妄",
+      "name_en": "Innocence",
+      "theme": "act from what is real rather than from manipulation or fantasy",
+      "unicode": "䷘"
+    },
+    "qian|gen": {
+      "number": 26,
+      "name_zh": "大畜",
+      "name_en": "Great Accumulating",
+      "theme": "contain strength until knowledge and timing are sufficient",
+      "unicode": "䷙"
+    },
+    "zhen|gen": {
+      "number": 27,
+      "name_zh": "颐",
+      "name_en": "Nourishment",
+      "theme": "watch what you consume, repeat, and feed in others",
+      "unicode": "䷚"
+    },
+    "xun|dui": {
+      "number": 28,
+      "name_zh": "大过",
+      "name_en": "Great Exceeding",
+      "theme": "the load is exceptional; reinforce the structure or reduce it",
+      "unicode": "䷛"
+    },
+    "kan|kan": {
+      "number": 29,
+      "name_zh": "坎",
+      "name_en": "The Abysmal",
+      "theme": "repeated risk rewards skill, honesty, and a reliable method",
+      "unicode": "䷜"
+    },
+    "li|li": {
+      "number": 30,
+      "name_zh": "离",
+      "name_en": "The Clinging Fire",
+      "theme": "clarity must attach to something worthy and sustainable",
+      "unicode": "䷝"
+    },
+    "gen|dui": {
+      "number": 31,
+      "name_zh": "咸",
+      "name_en": "Influence",
+      "theme": "mutual responsiveness works better than pressure",
+      "unicode": "䷞"
+    },
+    "xun|zhen": {
+      "number": 32,
+      "name_zh": "恒",
+      "name_en": "Duration",
+      "theme": "lasting change depends on rhythm rather than intensity",
+      "unicode": "䷟"
+    },
+    "gen|qian": {
+      "number": 33,
+      "name_zh": "遁",
+      "name_en": "Retreat",
+      "theme": "strategic distance can protect what matters",
+      "unicode": "䷠"
+    },
+    "qian|zhen": {
+      "number": 34,
+      "name_zh": "大壮",
+      "name_en": "Great Power",
+      "theme": "strength is useful only when governed by restraint",
+      "unicode": "䷡"
+    },
+    "kun|li": {
+      "number": 35,
+      "name_zh": "晋",
+      "name_en": "Progress",
+      "theme": "make constructive work visible and accept support",
+      "unicode": "䷢"
+    },
+    "li|kun": {
+      "number": 36,
+      "name_zh": "明夷",
+      "name_en": "Darkening of the Light",
+      "theme": "protect clarity when the environment cannot receive it",
+      "unicode": "䷣"
+    },
+    "li|xun": {
+      "number": 37,
+      "name_zh": "家人",
+      "name_en": "The Family",
+      "theme": "healthy systems begin with roles, habits, and truthful communication",
+      "unicode": "䷤"
+    },
+    "dui|li": {
+      "number": 38,
+      "name_zh": "睽",
+      "name_en": "Opposition",
+      "theme": "difference can clarify perspective without requiring total agreement",
+      "unicode": "䷥"
+    },
+    "gen|kan": {
+      "number": 39,
+      "name_zh": "蹇",
+      "name_en": "Obstruction",
+      "theme": "change route, seek help, and stop treating resistance as a dare",
+      "unicode": "䷦"
+    },
+    "kan|zhen": {
+      "number": 40,
+      "name_zh": "解",
+      "name_en": "Release",
+      "theme": "resolve the binding issue, then simplify the aftermath",
+      "unicode": "䷧"
+    },
+    "dui|gen": {
+      "number": 41,
+      "name_zh": "损",
+      "name_en": "Decrease",
+      "theme": "intentional reduction can restore balance and focus",
+      "unicode": "䷨"
+    },
+    "zhen|xun": {
+      "number": 42,
+      "name_zh": "益",
+      "name_en": "Increase",
+      "theme": "growth is strongest when benefit is shared and well directed",
+      "unicode": "䷩"
+    },
+    "qian|dui": {
+      "number": 43,
+      "name_zh": "夬",
+      "name_en": "Breakthrough",
+      "theme": "state the decision clearly and avoid theatrical aggression",
+      "unicode": "䷪"
+    },
+    "xun|qian": {
+      "number": 44,
+      "name_zh": "姤",
+      "name_en": "Coming to Meet",
+      "theme": "a small influence can become powerful; examine it early",
+      "unicode": "䷫"
+    },
+    "kun|dui": {
+      "number": 45,
+      "name_zh": "萃",
+      "name_en": "Gathering Together",
+      "theme": "concentration needs a center, a purpose, and preparation",
+      "unicode": "䷬"
+    },
+    "xun|kun": {
+      "number": 46,
+      "name_zh": "升",
+      "name_en": "Pushing Upward",
+      "theme": "patient effort and the right support enable gradual ascent",
+      "unicode": "䷭"
+    },
+    "kan|dui": {
+      "number": 47,
+      "name_zh": "困",
+      "name_en": "Oppression",
+      "theme": "when resources are constrained, preserve integrity and essentials",
+      "unicode": "䷮"
+    },
+    "xun|kan": {
+      "number": 48,
+      "name_zh": "井",
+      "name_en": "The Well",
+      "theme": "renew the shared source instead of only changing the container",
+      "unicode": "䷯"
+    },
+    "li|dui": {
+      "number": 49,
+      "name_zh": "革",
+      "name_en": "Revolution",
+      "theme": "change becomes legitimate when timing, need, and trust align",
+      "unicode": "䷰"
+    },
+    "xun|li": {
+      "number": 50,
+      "name_zh": "鼎",
+      "name_en": "The Cauldron",
+      "theme": "transform raw material into culture, capability, and shared value",
+      "unicode": "䷱"
+    },
+    "zhen|zhen": {
+      "number": 51,
+      "name_zh": "震",
+      "name_en": "The Arousing",
+      "theme": "shock reveals readiness; recover your center before acting",
+      "unicode": "䷲"
+    },
+    "gen|gen": {
+      "number": 52,
+      "name_zh": "艮",
+      "name_en": "Keeping Still",
+      "theme": "stop at the right boundary and let attention settle",
+      "unicode": "䷳"
+    },
+    "gen|xun": {
+      "number": 53,
+      "name_zh": "渐",
+      "name_en": "Gradual Development",
+      "theme": "stable progress follows sequence, fit, and patience",
+      "unicode": "䷴"
+    },
+    "dui|zhen": {
+      "number": 54,
+      "name_zh": "归妹",
+      "name_en": "The Marrying Maiden",
+      "theme": "limited influence requires realism about role and timing",
+      "unicode": "䷵"
+    },
+    "li|zhen": {
+      "number": 55,
+      "name_zh": "丰",
+      "name_en": "Abundance",
+      "theme": "use the bright moment fully without assuming it will remain",
+      "unicode": "䷶"
+    },
+    "gen|li": {
+      "number": 56,
+      "name_zh": "旅",
+      "name_en": "The Traveler",
+      "theme": "when you are not at home, travel light and respect local limits",
+      "unicode": "䷷"
+    },
+    "xun|xun": {
+      "number": 57,
+      "name_zh": "巽",
+      "name_en": "The Gentle Wind",
+      "theme": "subtle influence works through repetition and precise entry",
+      "unicode": "䷸"
+    },
+    "dui|dui": {
+      "number": 58,
+      "name_zh": "兑",
+      "name_en": "The Joyous Lake",
+      "theme": "open exchange creates energy when sincerity anchors it",
+      "unicode": "䷹"
+    },
+    "kan|xun": {
+      "number": 59,
+      "name_zh": "涣",
+      "name_en": "Dispersion",
+      "theme": "dissolve rigidity and reconnect around a meaningful center",
+      "unicode": "䷺"
+    },
+    "dui|kan": {
+      "number": 60,
+      "name_zh": "节",
+      "name_en": "Limitation",
+      "theme": "use limits that protect flow rather than limits that suffocate it",
+      "unicode": "䷻"
+    },
+    "dui|xun": {
+      "number": 61,
+      "name_zh": "中孚",
+      "name_en": "Inner Truth",
+      "theme": "credibility grows when inner intent and outward action match",
+      "unicode": "䷼"
+    },
+    "gen|zhen": {
+      "number": 62,
+      "name_zh": "小过",
+      "name_en": "Small Exceeding",
+      "theme": "attend to details and modest corrections, not grand gestures",
+      "unicode": "䷽"
+    },
+    "li|kan": {
+      "number": 63,
+      "name_zh": "既济",
+      "name_en": "After Completion",
+      "theme": "success still needs maintenance, vigilance, and small corrections",
+      "unicode": "䷾"
+    },
+    "kan|li": {
+      "number": 64,
+      "name_zh": "未济",
+      "name_en": "Before Completion",
+      "theme": "the transition is not finished; sequence the final steps carefully",
+      "unicode": "䷿"
+    }
+  }
+}

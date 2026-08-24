@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/bazi-trait-output-v1.schema.json",
+  "title": "BaziTraitOutput v1",
+  "type": "object",
+  "required": ["schema_version", "model_version", "core_schema_version", "context", "traits", "evidence_ids"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "model_version": { "type": "string" },
+    "core_schema_version": { "const": "1.0.0" },
+    "context": {
+      "type": "object",
+      "required": ["strongest_element", "strongest_ten_god", "main_reminder"],
+      "additionalProperties": false,
+      "properties": {
+        "strongest_element": { "enum": ["wood", "fire", "earth", "metal", "water"] },
+        "strongest_ten_god": {
+          "enum": ["peer", "rob_wealth", "eating_god", "hurting_officer", "direct_wealth", "indirect_wealth", "direct_officer", "seven_killings", "direct_resource", "indirect_resource"]
+        },
+        "main_reminder": { "enum": ["wealth_retention", "relationship_pressure", "execution_stability"] }
+      }
+    },
+    "traits": {
+      "type": "object",
+      "required": ["career_momentum", "leadership_drive", "execution_stability", "learning_capacity", "wealth_generation", "wealth_retention", "relationship_support", "relationship_pressure", "risk_appetite", "resource_integration"],
+      "additionalProperties": false,
+      "properties": {
+        "career_momentum": { "$ref": "#/$defs/trait" },
+        "leadership_drive": { "$ref": "#/$defs/trait" },
+        "execution_stability": { "$ref": "#/$defs/trait" },
+        "learning_capacity": { "$ref": "#/$defs/trait" },
+        "wealth_generation": { "$ref": "#/$defs/trait" },
+        "wealth_retention": { "$ref": "#/$defs/trait" },
+        "relationship_support": { "$ref": "#/$defs/trait" },
+        "relationship_pressure": { "$ref": "#/$defs/trait" },
+        "risk_appetite": { "$ref": "#/$defs/trait" },
+        "resource_integration": { "$ref": "#/$defs/trait" }
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "trait": {
+      "type": "object",
+      "required": ["trait", "score", "level", "confidence", "positive_factors", "negative_factors", "evidence_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "trait": { "type": "string" },
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "level": { "enum": ["very_prominent", "relatively_strong", "moderate", "relatively_weak", "very_weak"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "positive_factors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/factor" }
+        },
+        "negative_factors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/factor" }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "factor": {
+      "type": "object",
+      "required": ["id", "label_key", "direction", "contribution", "evidence_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "label_key": { "type": "string" },
+        "direction": { "enum": ["positive", "negative"] },
+        "contribution": { "type": "number", "minimum": 0 },
+        "evidence_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

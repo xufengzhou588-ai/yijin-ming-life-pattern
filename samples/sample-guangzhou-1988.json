@@ -1,0 +1,1934 @@
+{
+  "schema_version": "1.0.0",
+  "input": {
+    "calendar": "gregorian",
+    "birth_datetime": "1988-11-03T22:15:00+08:00",
+    "timezone": "Asia/Shanghai",
+    "gender": "female",
+    "location": {
+      "country": "CN",
+      "region": "Guangdong",
+      "city": "Guangzhou",
+      "longitude": 113.2644,
+      "latitude": 23.1291
+    },
+    "use_true_solar_time": false
+  },
+  "chart": {
+    "year": {
+      "stem": {
+        "char": "戊",
+        "element": "earth",
+        "yin_yang": "yang"
+      },
+      "branch": {
+        "char": "辰",
+        "element": "earth",
+        "yin_yang": "yang",
+        "hidden_stems": [
+          {
+            "stem": {
+              "char": "戊",
+              "element": "earth",
+              "yin_yang": "yang"
+            },
+            "qi_type": "main",
+            "weight": 0.6
+          },
+          {
+            "stem": {
+              "char": "乙",
+              "element": "wood",
+              "yin_yang": "yin"
+            },
+            "qi_type": "middle",
+            "weight": 0.3
+          },
+          {
+            "stem": {
+              "char": "癸",
+              "element": "water",
+              "yin_yang": "yin"
+            },
+            "qi_type": "residual",
+            "weight": 0.1
+          }
+        ]
+      }
+    },
+    "month": {
+      "stem": {
+        "char": "壬",
+        "element": "water",
+        "yin_yang": "yang"
+      },
+      "branch": {
+        "char": "戌",
+        "element": "earth",
+        "yin_yang": "yang",
+        "hidden_stems": [
+          {
+            "stem": {
+              "char": "戊",
+              "element": "earth",
+              "yin_yang": "yang"
+            },
+            "qi_type": "main",
+            "weight": 0.6
+          },
+          {
+            "stem": {
+              "char": "辛",
+              "element": "metal",
+              "yin_yang": "yin"
+            },
+            "qi_type": "middle",
+            "weight": 0.3
+          },
+          {
+            "stem": {
+              "char": "丁",
+              "element": "fire",
+              "yin_yang": "yin"
+            },
+            "qi_type": "residual",
+            "weight": 0.1
+          }
+        ]
+      }
+    },
+    "day": {
+      "stem": {
+        "char": "壬",
+        "element": "water",
+        "yin_yang": "yang"
+      },
+      "branch": {
+        "char": "戌",
+        "element": "earth",
+        "yin_yang": "yang",
+        "hidden_stems": [
+          {
+            "stem": {
+              "char": "戊",
+              "element": "earth",
+              "yin_yang": "yang"
+            },
+            "qi_type": "main",
+            "weight": 0.6
+          },
+          {
+            "stem": {
+              "char": "辛",
+              "element": "metal",
+              "yin_yang": "yin"
+            },
+            "qi_type": "middle",
+            "weight": 0.3
+          },
+          {
+            "stem": {
+              "char": "丁",
+              "element": "fire",
+              "yin_yang": "yin"
+            },
+            "qi_type": "residual",
+            "weight": 0.1
+          }
+        ]
+      }
+    },
+    "hour": {
+      "stem": {
+        "char": "辛",
+        "element": "metal",
+        "yin_yang": "yin"
+      },
+      "branch": {
+        "char": "亥",
+        "element": "water",
+        "yin_yang": "yin",
+        "hidden_stems": [
+          {
+            "stem": {
+              "char": "壬",
+              "element": "water",
+              "yin_yang": "yang"
+            },
+            "qi_type": "main",
+            "weight": 0.7
+          },
+          {
+            "stem": {
+              "char": "甲",
+              "element": "wood",
+              "yin_yang": "yang"
+            },
+            "qi_type": "middle",
+            "weight": 0.3
+          }
+        ]
+      }
+    },
+    "day_master": {
+      "char": "壬",
+      "element": "water",
+      "yin_yang": "yang"
+    }
+  },
+  "elements": {
+    "wood": {
+      "raw": 0.3,
+      "adjusted": 0.3,
+      "confidence": 0.72,
+      "evidence_ids": [
+        "year.branch.辰.hidden.乙.middle",
+        "hour.branch.亥.hidden.甲.middle",
+        "elements.wood.season_adjustment"
+      ]
+    },
+    "fire": {
+      "raw": 0.1,
+      "adjusted": 0.09,
+      "confidence": 0.72,
+      "evidence_ids": [
+        "month.branch.戌.hidden.丁.residual",
+        "day.branch.戌.hidden.丁.residual",
+        "elements.fire.season_adjustment"
+      ]
+    },
+    "earth": {
+      "raw": 1.9,
+      "adjusted": 2.375,
+      "confidence": 0.72,
+      "evidence_ids": [
+        "year.stem.戊",
+        "year.branch.辰.hidden.戊.main",
+        "month.branch.戌.hidden.戊.main",
+        "day.branch.戌.hidden.戊.main",
+        "elements.earth.season_adjustment"
+      ]
+    },
+    "metal": {
+      "raw": 1.3,
+      "adjusted": 1.43,
+      "confidence": 0.72,
+      "evidence_ids": [
+        "month.branch.戌.hidden.辛.middle",
+        "day.branch.戌.hidden.辛.middle",
+        "hour.stem.辛",
+        "elements.metal.season_adjustment"
+      ]
+    },
+    "water": {
+      "raw": 2.4,
+      "adjusted": 2.04,
+      "confidence": 0.72,
+      "evidence_ids": [
+        "year.branch.辰.hidden.癸.residual",
+        "month.stem.壬",
+        "day.stem.壬",
+        "hour.branch.亥.hidden.壬.main",
+        "elements.water.season_adjustment"
+      ]
+    }
+  },
+  "ten_gods": {
+    "peer": {
+      "raw": 1.35,
+      "adjusted": 1.35,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "month.stem.壬",
+        "hour.branch.亥.hidden.壬.main"
+      ]
+    },
+    "rob_wealth": {
+      "raw": 0.05,
+      "adjusted": 0.05,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "year.branch.辰.hidden.癸.residual"
+      ]
+    },
+    "eating_god": {
+      "raw": 0.15,
+      "adjusted": 0.15,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "hour.branch.亥.hidden.甲.middle"
+      ]
+    },
+    "hurting_officer": {
+      "raw": 0.15,
+      "adjusted": 0.15,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "year.branch.辰.hidden.乙.middle"
+      ]
+    },
+    "direct_wealth": {
+      "raw": 0.1,
+      "adjusted": 0.1,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "month.branch.戌.hidden.丁.residual",
+        "day.branch.戌.hidden.丁.residual"
+      ]
+    },
+    "indirect_wealth": {
+      "raw": 0.0,
+      "adjusted": 0.0,
+      "confidence": 1.0,
+      "evidence_ids": []
+    },
+    "direct_officer": {
+      "raw": 0.0,
+      "adjusted": 0.0,
+      "confidence": 1.0,
+      "evidence_ids": []
+    },
+    "seven_killings": {
+      "raw": 1.9,
+      "adjusted": 1.9,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "year.stem.戊",
+        "year.branch.辰.hidden.戊.main",
+        "month.branch.戌.hidden.戊.main",
+        "day.branch.戌.hidden.戊.main"
+      ]
+    },
+    "direct_resource": {
+      "raw": 1.3,
+      "adjusted": 1.3,
+      "confidence": 0.78,
+      "evidence_ids": [
+        "month.branch.戌.hidden.辛.middle",
+        "day.branch.戌.hidden.辛.middle",
+        "hour.stem.辛"
+      ]
+    },
+    "indirect_resource": {
+      "raw": 0.0,
+      "adjusted": 0.0,
+      "confidence": 1.0,
+      "evidence_ids": []
+    }
+  },
+  "luck_cycles": [
+    {
+      "index": 1,
+      "start_age": 8.84,
+      "end_age": 18.84,
+      "start_year": 1996,
+      "end_year": 2005,
+      "pillar": {
+        "stem": {
+          "char": "辛",
+          "element": "metal",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "酉",
+          "element": "metal",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "辛",
+                "element": "metal",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 1.0
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.1.calculation"
+      ]
+    },
+    {
+      "index": 2,
+      "start_age": 18.84,
+      "end_age": 28.84,
+      "start_year": 2006,
+      "end_year": 2015,
+      "pillar": {
+        "stem": {
+          "char": "庚",
+          "element": "metal",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "申",
+          "element": "metal",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "庚",
+                "element": "metal",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "壬",
+                "element": "water",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.2.calculation"
+      ]
+    },
+    {
+      "index": 3,
+      "start_age": 28.84,
+      "end_age": 38.84,
+      "start_year": 2016,
+      "end_year": 2025,
+      "pillar": {
+        "stem": {
+          "char": "己",
+          "element": "earth",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "未",
+          "element": "earth",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "己",
+                "element": "earth",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "丁",
+                "element": "fire",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "乙",
+                "element": "wood",
+                "yin_yang": "yin"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.3.calculation"
+      ]
+    },
+    {
+      "index": 4,
+      "start_age": 38.84,
+      "end_age": 48.84,
+      "start_year": 2026,
+      "end_year": 2035,
+      "pillar": {
+        "stem": {
+          "char": "戊",
+          "element": "earth",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "午",
+          "element": "fire",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "丁",
+                "element": "fire",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 0.7
+            },
+            {
+              "stem": {
+                "char": "己",
+                "element": "earth",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.4.calculation"
+      ]
+    },
+    {
+      "index": 5,
+      "start_age": 48.84,
+      "end_age": 58.84,
+      "start_year": 2036,
+      "end_year": 2045,
+      "pillar": {
+        "stem": {
+          "char": "丁",
+          "element": "fire",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "巳",
+          "element": "fire",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "丙",
+                "element": "fire",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "庚",
+                "element": "metal",
+                "yin_yang": "yang"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.5.calculation"
+      ]
+    },
+    {
+      "index": 6,
+      "start_age": 58.84,
+      "end_age": 68.84,
+      "start_year": 2046,
+      "end_year": 2055,
+      "pillar": {
+        "stem": {
+          "char": "丙",
+          "element": "fire",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "辰",
+          "element": "earth",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "乙",
+                "element": "wood",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "癸",
+                "element": "water",
+                "yin_yang": "yin"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.6.calculation"
+      ]
+    },
+    {
+      "index": 7,
+      "start_age": 68.84,
+      "end_age": 78.84,
+      "start_year": 2056,
+      "end_year": 2065,
+      "pillar": {
+        "stem": {
+          "char": "乙",
+          "element": "wood",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "卯",
+          "element": "wood",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "乙",
+                "element": "wood",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 1.0
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.7.calculation"
+      ]
+    },
+    {
+      "index": 8,
+      "start_age": 78.84,
+      "end_age": 88.84,
+      "start_year": 2066,
+      "end_year": 2075,
+      "pillar": {
+        "stem": {
+          "char": "甲",
+          "element": "wood",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "寅",
+          "element": "wood",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "甲",
+                "element": "wood",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "丙",
+                "element": "fire",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "luck_cycle.8.calculation"
+      ]
+    }
+  ],
+  "annual_flows": [
+    {
+      "year": 1988,
+      "pillar": {
+        "stem": {
+          "char": "戊",
+          "element": "earth",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "辰",
+          "element": "earth",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "乙",
+                "element": "wood",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "癸",
+                "element": "water",
+                "yin_yang": "yin"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1988.calculation"
+      ]
+    },
+    {
+      "year": 1989,
+      "pillar": {
+        "stem": {
+          "char": "己",
+          "element": "earth",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "巳",
+          "element": "fire",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "丙",
+                "element": "fire",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "庚",
+                "element": "metal",
+                "yin_yang": "yang"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1989.calculation"
+      ]
+    },
+    {
+      "year": 1990,
+      "pillar": {
+        "stem": {
+          "char": "庚",
+          "element": "metal",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "午",
+          "element": "fire",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "丁",
+                "element": "fire",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 0.7
+            },
+            {
+              "stem": {
+                "char": "己",
+                "element": "earth",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1990.calculation"
+      ]
+    },
+    {
+      "year": 1991,
+      "pillar": {
+        "stem": {
+          "char": "辛",
+          "element": "metal",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "未",
+          "element": "earth",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "己",
+                "element": "earth",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "丁",
+                "element": "fire",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "乙",
+                "element": "wood",
+                "yin_yang": "yin"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1991.calculation"
+      ]
+    },
+    {
+      "year": 1992,
+      "pillar": {
+        "stem": {
+          "char": "壬",
+          "element": "water",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "申",
+          "element": "metal",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "庚",
+                "element": "metal",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "壬",
+                "element": "water",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1992.calculation"
+      ]
+    },
+    {
+      "year": 1993,
+      "pillar": {
+        "stem": {
+          "char": "癸",
+          "element": "water",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "酉",
+          "element": "metal",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "辛",
+                "element": "metal",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 1.0
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1993.calculation"
+      ]
+    },
+    {
+      "year": 1994,
+      "pillar": {
+        "stem": {
+          "char": "甲",
+          "element": "wood",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "戌",
+          "element": "earth",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "辛",
+                "element": "metal",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "丁",
+                "element": "fire",
+                "yin_yang": "yin"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1994.calculation"
+      ]
+    },
+    {
+      "year": 1995,
+      "pillar": {
+        "stem": {
+          "char": "乙",
+          "element": "wood",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "亥",
+          "element": "water",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "壬",
+                "element": "water",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.7
+            },
+            {
+              "stem": {
+                "char": "甲",
+                "element": "wood",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1995.calculation"
+      ]
+    },
+    {
+      "year": 1996,
+      "pillar": {
+        "stem": {
+          "char": "丙",
+          "element": "fire",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "子",
+          "element": "water",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "癸",
+                "element": "water",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 1.0
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1996.calculation"
+      ]
+    },
+    {
+      "year": 1997,
+      "pillar": {
+        "stem": {
+          "char": "丁",
+          "element": "fire",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "丑",
+          "element": "earth",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "己",
+                "element": "earth",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "癸",
+                "element": "water",
+                "yin_yang": "yin"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "辛",
+                "element": "metal",
+                "yin_yang": "yin"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1997.calculation"
+      ]
+    },
+    {
+      "year": 1998,
+      "pillar": {
+        "stem": {
+          "char": "戊",
+          "element": "earth",
+          "yin_yang": "yang"
+        },
+        "branch": {
+          "char": "寅",
+          "element": "wood",
+          "yin_yang": "yang",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "甲",
+                "element": "wood",
+                "yin_yang": "yang"
+              },
+              "qi_type": "main",
+              "weight": 0.6
+            },
+            {
+              "stem": {
+                "char": "丙",
+                "element": "fire",
+                "yin_yang": "yang"
+              },
+              "qi_type": "middle",
+              "weight": 0.3
+            },
+            {
+              "stem": {
+                "char": "戊",
+                "element": "earth",
+                "yin_yang": "yang"
+              },
+              "qi_type": "residual",
+              "weight": 0.1
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1998.calculation"
+      ]
+    },
+    {
+      "year": 1999,
+      "pillar": {
+        "stem": {
+          "char": "己",
+          "element": "earth",
+          "yin_yang": "yin"
+        },
+        "branch": {
+          "char": "卯",
+          "element": "wood",
+          "yin_yang": "yin",
+          "hidden_stems": [
+            {
+              "stem": {
+                "char": "乙",
+                "element": "wood",
+                "yin_yang": "yin"
+              },
+              "qi_type": "main",
+              "weight": 1.0
+            }
+          ]
+        }
+      },
+      "evidence_ids": [
+        "annual_flow.1999.calculation"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "year.pillar",
+      "type": "calculation",
+      "target": "chart.year",
+      "description": "year pillar calculated as 戊辰",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "year.stem.戊",
+      "type": "stem_visible",
+      "target": "chart.year.stem",
+      "description": "year visible heavenly stem is 戊",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "year.branch.辰.hidden.戊.main",
+      "type": "branch_hidden_stem",
+      "target": "year.branch.hidden_stems",
+      "description": "year branch 辰 contains hidden stem 戊 as main qi",
+      "weight": 0.6,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "year.branch.辰.hidden.乙.middle",
+      "type": "branch_hidden_stem",
+      "target": "year.branch.hidden_stems",
+      "description": "year branch 辰 contains hidden stem 乙 as middle qi",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "year.branch.辰.hidden.癸.residual",
+      "type": "branch_hidden_stem",
+      "target": "year.branch.hidden_stems",
+      "description": "year branch 辰 contains hidden stem 癸 as residual qi",
+      "weight": 0.1,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "month.pillar",
+      "type": "calculation",
+      "target": "chart.month",
+      "description": "month pillar calculated as 壬戌",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "month.stem.壬",
+      "type": "stem_visible",
+      "target": "chart.month.stem",
+      "description": "month visible heavenly stem is 壬",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "month.branch.戌.hidden.戊.main",
+      "type": "branch_hidden_stem",
+      "target": "month.branch.hidden_stems",
+      "description": "month branch 戌 contains hidden stem 戊 as main qi",
+      "weight": 0.6,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "month.branch.戌.hidden.辛.middle",
+      "type": "branch_hidden_stem",
+      "target": "month.branch.hidden_stems",
+      "description": "month branch 戌 contains hidden stem 辛 as middle qi",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "month.branch.戌.hidden.丁.residual",
+      "type": "branch_hidden_stem",
+      "target": "month.branch.hidden_stems",
+      "description": "month branch 戌 contains hidden stem 丁 as residual qi",
+      "weight": 0.1,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "day.pillar",
+      "type": "calculation",
+      "target": "chart.day",
+      "description": "day pillar calculated as 壬戌",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "day.stem.壬",
+      "type": "stem_visible",
+      "target": "chart.day.stem",
+      "description": "day visible heavenly stem is 壬",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "day.branch.戌.hidden.戊.main",
+      "type": "branch_hidden_stem",
+      "target": "day.branch.hidden_stems",
+      "description": "day branch 戌 contains hidden stem 戊 as main qi",
+      "weight": 0.6,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "day.branch.戌.hidden.辛.middle",
+      "type": "branch_hidden_stem",
+      "target": "day.branch.hidden_stems",
+      "description": "day branch 戌 contains hidden stem 辛 as middle qi",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "day.branch.戌.hidden.丁.residual",
+      "type": "branch_hidden_stem",
+      "target": "day.branch.hidden_stems",
+      "description": "day branch 戌 contains hidden stem 丁 as residual qi",
+      "weight": 0.1,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "hour.pillar",
+      "type": "calculation",
+      "target": "chart.hour",
+      "description": "hour pillar calculated as 辛亥",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "hour.stem.辛",
+      "type": "stem_visible",
+      "target": "chart.hour.stem",
+      "description": "hour visible heavenly stem is 辛",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "sxtwl_ganzhi_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "hour.branch.亥.hidden.壬.main",
+      "type": "branch_hidden_stem",
+      "target": "hour.branch.hidden_stems",
+      "description": "hour branch 亥 contains hidden stem 壬 as main qi",
+      "weight": 0.7,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "hour.branch.亥.hidden.甲.middle",
+      "type": "branch_hidden_stem",
+      "target": "hour.branch.hidden_stems",
+      "description": "hour branch 亥 contains hidden stem 甲 as middle qi",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "deterministic_core",
+        "rule_id": "hidden_stem_table_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "ten_god.year.戊.seven_killings",
+      "type": "ten_god_relation",
+      "target": "ten_gods.seven_killings",
+      "description": "year stem 戊 maps to seven_killings relative to day master; source evidence year.stem.戊",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "ten_god.year.戊.seven_killings",
+      "type": "ten_god_relation",
+      "target": "ten_gods.seven_killings",
+      "description": "year stem 戊 maps to seven_killings relative to day master; source evidence year.branch.辰.hidden.戊.main",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "ten_god.year.乙.hurting_officer",
+      "type": "ten_god_relation",
+      "target": "ten_gods.hurting_officer",
+      "description": "year stem 乙 maps to hurting_officer relative to day master; source evidence year.branch.辰.hidden.乙.middle",
+      "weight": 0.15,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "ten_god.year.癸.rob_wealth",
+      "type": "ten_god_relation",
+      "target": "ten_gods.rob_wealth",
+      "description": "year stem 癸 maps to rob_wealth relative to day master; source evidence year.branch.辰.hidden.癸.residual",
+      "weight": 0.05,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "year"
+      }
+    },
+    {
+      "id": "ten_god.month.壬.peer",
+      "type": "ten_god_relation",
+      "target": "ten_gods.peer",
+      "description": "month stem 壬 maps to peer relative to day master; source evidence month.stem.壬",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "ten_god.month.戊.seven_killings",
+      "type": "ten_god_relation",
+      "target": "ten_gods.seven_killings",
+      "description": "month stem 戊 maps to seven_killings relative to day master; source evidence month.branch.戌.hidden.戊.main",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "ten_god.month.辛.direct_resource",
+      "type": "ten_god_relation",
+      "target": "ten_gods.direct_resource",
+      "description": "month stem 辛 maps to direct_resource relative to day master; source evidence month.branch.戌.hidden.辛.middle",
+      "weight": 0.15,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "ten_god.month.丁.direct_wealth",
+      "type": "ten_god_relation",
+      "target": "ten_gods.direct_wealth",
+      "description": "month stem 丁 maps to direct_wealth relative to day master; source evidence month.branch.戌.hidden.丁.residual",
+      "weight": 0.05,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "ten_god.day.戊.seven_killings",
+      "type": "ten_god_relation",
+      "target": "ten_gods.seven_killings",
+      "description": "day stem 戊 maps to seven_killings relative to day master; source evidence day.branch.戌.hidden.戊.main",
+      "weight": 0.3,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "ten_god.day.辛.direct_resource",
+      "type": "ten_god_relation",
+      "target": "ten_gods.direct_resource",
+      "description": "day stem 辛 maps to direct_resource relative to day master; source evidence day.branch.戌.hidden.辛.middle",
+      "weight": 0.15,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "ten_god.day.丁.direct_wealth",
+      "type": "ten_god_relation",
+      "target": "ten_gods.direct_wealth",
+      "description": "day stem 丁 maps to direct_wealth relative to day master; source evidence day.branch.戌.hidden.丁.residual",
+      "weight": 0.05,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "day"
+      }
+    },
+    {
+      "id": "ten_god.hour.辛.direct_resource",
+      "type": "ten_god_relation",
+      "target": "ten_gods.direct_resource",
+      "description": "hour stem 辛 maps to direct_resource relative to day master; source evidence hour.stem.辛",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "ten_god.hour.壬.peer",
+      "type": "ten_god_relation",
+      "target": "ten_gods.peer",
+      "description": "hour stem 壬 maps to peer relative to day master; source evidence hour.branch.亥.hidden.壬.main",
+      "weight": 0.35,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "ten_god.hour.甲.eating_god",
+      "type": "ten_god_relation",
+      "target": "ten_gods.eating_god",
+      "description": "hour stem 甲 maps to eating_god relative to day master; source evidence hour.branch.亥.hidden.甲.middle",
+      "weight": 0.15,
+      "confidence": 1.0,
+      "source": {
+        "layer": "ten_god_engine",
+        "rule_id": "ten_god_relation_v1",
+        "position": "hour"
+      }
+    },
+    {
+      "id": "elements.wood.season_adjustment",
+      "type": "month_order",
+      "target": "elements.wood.adjusted",
+      "description": "wood adjusted by month branch element earth with multiplier 1.0",
+      "weight": 1.0,
+      "confidence": 0.72,
+      "source": {
+        "layer": "energy_engine",
+        "rule_id": "season_multiplier_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "elements.fire.season_adjustment",
+      "type": "month_order",
+      "target": "elements.fire.adjusted",
+      "description": "fire adjusted by month branch element earth with multiplier 0.9",
+      "weight": 0.9,
+      "confidence": 0.72,
+      "source": {
+        "layer": "energy_engine",
+        "rule_id": "season_multiplier_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "elements.earth.season_adjustment",
+      "type": "month_order",
+      "target": "elements.earth.adjusted",
+      "description": "earth adjusted by month branch element earth with multiplier 1.25",
+      "weight": 1.25,
+      "confidence": 0.72,
+      "source": {
+        "layer": "energy_engine",
+        "rule_id": "season_multiplier_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "elements.metal.season_adjustment",
+      "type": "month_order",
+      "target": "elements.metal.adjusted",
+      "description": "metal adjusted by month branch element earth with multiplier 1.1",
+      "weight": 1.1,
+      "confidence": 0.72,
+      "source": {
+        "layer": "energy_engine",
+        "rule_id": "season_multiplier_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "elements.water.season_adjustment",
+      "type": "month_order",
+      "target": "elements.water.adjusted",
+      "description": "water adjusted by month branch element earth with multiplier 0.85",
+      "weight": 0.85,
+      "confidence": 0.72,
+      "source": {
+        "layer": "energy_engine",
+        "rule_id": "season_multiplier_v1",
+        "position": "month"
+      }
+    },
+    {
+      "id": "luck_cycle.1.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[0]",
+      "description": "luck cycle 1 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.2.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[1]",
+      "description": "luck cycle 2 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.3.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[2]",
+      "description": "luck cycle 3 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.4.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[3]",
+      "description": "luck cycle 4 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.5.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[4]",
+      "description": "luck cycle 5 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.6.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[5]",
+      "description": "luck cycle 6 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.7.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[6]",
+      "description": "luck cycle 7 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "luck_cycle.8.calculation",
+      "type": "calculation",
+      "target": "luck_cycles[7]",
+      "description": "luck cycle 8 derived from month pillar with 寒露 anchor",
+      "weight": 1.0,
+      "confidence": 0.62,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "luck_cycle_mvp_v1",
+        "position": "luck_cycle"
+      }
+    },
+    {
+      "id": "annual_flow.1988.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1988",
+      "description": "annual flow for 1988 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1989.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1989",
+      "description": "annual flow for 1989 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1990.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1990",
+      "description": "annual flow for 1990 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1991.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1991",
+      "description": "annual flow for 1991 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1992.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1992",
+      "description": "annual flow for 1992 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1993.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1993",
+      "description": "annual flow for 1993 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1994.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1994",
+      "description": "annual flow for 1994 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1995.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1995",
+      "description": "annual flow for 1995 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1996.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1996",
+      "description": "annual flow for 1996 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1997.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1997",
+      "description": "annual flow for 1997 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1998.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1998",
+      "description": "annual flow for 1998 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    },
+    {
+      "id": "annual_flow.1999.calculation",
+      "type": "calculation",
+      "target": "annual_flows.1999",
+      "description": "annual flow for 1999 calculated from year pillar",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": {
+        "layer": "luck_engine",
+        "rule_id": "sxtwl_year_ganzhi_v1",
+        "position": "annual_flow"
+      }
+    }
+  ]
+}

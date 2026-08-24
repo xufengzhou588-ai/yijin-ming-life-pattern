@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "I Ching Oracle v1",
+  "type": "object",
+  "required": ["schema_version", "model_version", "method", "horizon", "category", "lines", "moving_lines", "primary", "relating", "interpretation", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "model_version": { "type": "string" },
+    "method": { "const": "three_coin" },
+    "horizon": { "type": "string" },
+    "category": { "enum": ["general", "career", "wealth", "relationship", "decision", "growth"] },
+    "lines": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["position", "value", "yin_yang", "moving"],
+        "additionalProperties": false,
+        "properties": {
+          "position": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "value": { "enum": [6, 7, 8, 9] },
+          "yin_yang": { "enum": ["yin", "yang"] },
+          "moving": { "type": "boolean" }
+        }
+      }
+    },
+    "moving_lines": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1, "maximum": 6 },
+      "uniqueItems": true
+    },
+    "primary": { "$ref": "#/$defs/hexagram" },
+    "relating": { "$ref": "#/$defs/hexagram" },
+    "interpretation": {
+      "type": "object",
+      "required": ["current_state", "change_dynamic", "direction", "action", "boundary"],
+      "additionalProperties": false,
+      "properties": {
+        "current_state": { "type": "string" },
+        "change_dynamic": { "type": "string" },
+        "direction": { "type": "string" },
+        "action": { "type": "string" },
+        "boundary": { "type": "string" }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "rule_id", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "rule_id": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "trigram": {
+      "type": "object",
+      "required": ["key", "zh", "en", "image", "motion"],
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string" },
+        "zh": { "type": "string" },
+        "en": { "type": "string" },
+        "image": { "type": "string" },
+        "motion": { "type": "string" }
+      }
+    },
+    "hexagram": {
+      "type": "object",
+      "required": ["number", "name_zh", "name_en", "theme", "unicode", "lower", "upper", "binary_bottom_up"],
+      "additionalProperties": false,
+      "properties": {
+        "number": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "name_zh": { "type": "string" },
+        "name_en": { "type": "string" },
+        "theme": { "type": "string" },
+        "unicode": { "type": "string" },
+        "lower": { "$ref": "#/$defs/trigram" },
+        "upper": { "$ref": "#/$defs/trigram" },
+        "binary_bottom_up": { "type": "string", "pattern": "^[01]{6}$" }
+      }
+    }
+  }
+}

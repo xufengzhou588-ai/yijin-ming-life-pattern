@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/bazi-core-output-v1.schema.json",
+  "title": "BaziCoreOutput v1",
+  "type": "object",
+  "required": ["schema_version", "input", "chart", "elements", "ten_gods", "luck_cycles", "annual_flows", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "input": {
+      "$ref": "#/$defs/input"
+    },
+    "chart": {
+      "$ref": "#/$defs/chart"
+    },
+    "elements": {
+      "$ref": "#/$defs/elementScores"
+    },
+    "ten_gods": {
+      "$ref": "#/$defs/tenGodScores"
+    },
+    "luck_cycles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/luckCycle"
+      }
+    },
+    "annual_flows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/annualFlow"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "input": {
+      "type": "object",
+      "required": ["calendar", "birth_datetime", "timezone", "gender", "location", "use_true_solar_time"],
+      "additionalProperties": false,
+      "properties": {
+        "calendar": {
+          "enum": ["gregorian", "lunar"]
+        },
+        "birth_datetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "gender": {
+          "enum": ["male", "female", "unknown"]
+        },
+        "location": {
+          "type": "object",
+          "required": ["country", "region", "city"],
+          "additionalProperties": false,
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "longitude": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "latitude": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            }
+          }
+        },
+        "use_true_solar_time": {
+          "type": "boolean"
+        }
+      }
+    },
+    "chart": {
+      "type": "object",
+      "required": ["year", "month", "day", "hour", "day_master"],
+      "additionalProperties": false,
+      "properties": {
+        "year": {
+          "$ref": "#/$defs/pillar"
+        },
+        "month": {
+          "$ref": "#/$defs/pillar"
+        },
+        "day": {
+          "$ref": "#/$defs/pillar"
+        },
+        "hour": {
+          "$ref": "#/$defs/pillar"
+        },
+        "day_master": {
+          "$ref": "#/$defs/stem"
+        }
+      }
+    },
+    "pillar": {
+      "type": "object",
+      "required": ["stem", "branch"],
+      "additionalProperties": false,
+      "properties": {
+        "stem": {
+          "$ref": "#/$defs/stem"
+        },
+        "branch": {
+          "$ref": "#/$defs/branch"
+        }
+      }
+    },
+    "stem": {
+      "type": "object",
+      "required": ["char", "element", "yin_yang"],
+      "additionalProperties": false,
+      "properties": {
+        "char": {
+          "enum": ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
+        },
+        "element": {
+          "$ref": "#/$defs/element"
+        },
+        "yin_yang": {
+          "$ref": "#/$defs/yinYang"
+        }
+      }
+    },
+    "branch": {
+      "type": "object",
+      "required": ["char", "element", "yin_yang", "hidden_stems"],
+      "additionalProperties": false,
+      "properties": {
+        "char": {
+          "enum": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+        },
+        "element": {
+          "$ref": "#/$defs/element"
+        },
+        "yin_yang": {
+          "$ref": "#/$defs/yinYang"
+        },
+        "hidden_stems": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/hiddenStem"
+          }
+        }
+      }
+    },
+    "hiddenStem": {
+      "type": "object",
+      "required": ["stem", "qi_type", "weight"],
+      "additionalProperties": false,
+      "properties": {
+        "stem": {
+          "$ref": "#/$defs/stem"
+        },
+        "qi_type": {
+          "enum": ["main", "middle", "residual"]
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "elementScores": {
+      "type": "object",
+      "required": ["wood", "fire", "earth", "metal", "water"],
+      "additionalProperties": false,
+      "properties": {
+        "wood": {
+          "$ref": "#/$defs/scoreBundle"
+        },
+        "fire": {
+          "$ref": "#/$defs/scoreBundle"
+        },
+        "earth": {
+          "$ref": "#/$defs/scoreBundle"
+        },
+        "metal": {
+          "$ref": "#/$defs/scoreBundle"
+        },
+        "water": {
+          "$ref": "#/$defs/scoreBundle"
+        }
+      }
+    },
+    "tenGodScores": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/scoreBundle"
+      },
+      "propertyNames": {
+        "enum": ["peer", "rob_wealth", "eating_god", "hurting_officer", "direct_wealth", "indirect_wealth", "direct_officer", "seven_killings", "direct_resource", "indirect_resource"]
+      }
+    },
+    "scoreBundle": {
+      "type": "object",
+      "required": ["raw", "adjusted", "confidence", "evidence_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "raw": {
+          "type": "number",
+          "minimum": 0
+        },
+        "adjusted": {
+          "type": "number",
+          "minimum": 0
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "luckCycle": {
+      "type": "object",
+      "required": ["index", "start_age", "end_age", "start_year", "end_year", "pillar"],
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start_age": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_age": {
+          "type": "number",
+          "minimum": 0
+        },
+        "start_year": {
+          "type": "integer"
+        },
+        "end_year": {
+          "type": "integer"
+        },
+        "pillar": {
+          "$ref": "#/$defs/pillar"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "annualFlow": {
+      "type": "object",
+      "required": ["year", "pillar"],
+      "additionalProperties": false,
+      "properties": {
+        "year": {
+          "type": "integer"
+        },
+        "pillar": {
+          "$ref": "#/$defs/pillar"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "type", "target", "description", "weight", "confidence", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["stem_visible", "branch_hidden_stem", "month_order", "root", "combination", "clash", "penalty", "harm", "ten_god_relation", "calculation"]
+        },
+        "target": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source": {
+          "type": "object",
+          "required": ["layer", "rule_id"],
+          "additionalProperties": false,
+          "properties": {
+            "layer": {
+              "enum": ["deterministic_core", "energy_engine", "ten_god_engine", "luck_engine"]
+            },
+            "rule_id": {
+              "type": "string"
+            },
+            "position": {
+              "enum": ["year", "month", "day", "hour", "luck_cycle", "annual_flow"]
+            }
+          }
+        }
+      }
+    },
+    "element": {
+      "enum": ["wood", "fire", "earth", "metal", "water"]
+    },
+    "yinYang": {
+      "enum": ["yang", "yin"]
+    }
+  }
+}

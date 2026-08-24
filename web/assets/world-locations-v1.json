@@ -1,0 +1,5264 @@
+{
+  "AF": {
+    "label": "Afghanistan",
+    "label_en": "Afghanistan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kabul": {
+            "label": "Kabul",
+            "timezone": "Asia/Kabul",
+            "longitude": 69.2,
+            "latitude": 34.5167
+          }
+        }
+      }
+    }
+  },
+  "AL": {
+    "label": "Albania",
+    "label_en": "Albania",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tirane": {
+            "label": "Tirane",
+            "timezone": "Europe/Tirane",
+            "longitude": 19.8333,
+            "latitude": 41.3333
+          }
+        }
+      }
+    }
+  },
+  "DZ": {
+    "label": "Algeria",
+    "label_en": "Algeria",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Algiers": {
+            "label": "Algiers",
+            "timezone": "Africa/Algiers",
+            "longitude": 3.05,
+            "latitude": 36.7833
+          }
+        }
+      }
+    }
+  },
+  "AD": {
+    "label": "Andorra",
+    "label_en": "Andorra",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Andorra": {
+            "label": "Andorra",
+            "timezone": "Europe/Andorra",
+            "longitude": 1.5167,
+            "latitude": 42.5
+          }
+        }
+      }
+    }
+  },
+  "AO": {
+    "label": "Angola",
+    "label_en": "Angola",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Luanda": {
+            "label": "Luanda",
+            "timezone": "Africa/Luanda",
+            "longitude": 13.2333,
+            "latitude": -8.8
+          }
+        }
+      }
+    }
+  },
+  "AI": {
+    "label": "Anguilla",
+    "label_en": "Anguilla",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Anguilla": {
+            "label": "Anguilla",
+            "timezone": "America/Anguilla",
+            "longitude": -63.0667,
+            "latitude": 18.2
+          }
+        }
+      }
+    }
+  },
+  "AQ": {
+    "label": "Antarctica",
+    "label_en": "Antarctica",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Casey": {
+            "label": "Casey",
+            "timezone": "Antarctica/Casey",
+            "longitude": 110.5167,
+            "latitude": -66.2833
+          },
+          "Davis": {
+            "label": "Davis",
+            "timezone": "Antarctica/Davis",
+            "longitude": 77.9667,
+            "latitude": -68.5833
+          },
+          "DumontDUrville": {
+            "label": "DumontDUrville",
+            "timezone": "Antarctica/DumontDUrville",
+            "longitude": 140.0167,
+            "latitude": -66.6667
+          },
+          "Mawson": {
+            "label": "Mawson",
+            "timezone": "Antarctica/Mawson",
+            "longitude": 62.8833,
+            "latitude": -67.6
+          },
+          "McMurdo": {
+            "label": "McMurdo",
+            "timezone": "Antarctica/McMurdo",
+            "longitude": 166.6,
+            "latitude": -77.8333
+          },
+          "Palmer": {
+            "label": "Palmer",
+            "timezone": "Antarctica/Palmer",
+            "longitude": -64.1,
+            "latitude": -64.8
+          },
+          "Rothera": {
+            "label": "Rothera",
+            "timezone": "Antarctica/Rothera",
+            "longitude": -68.1333,
+            "latitude": -67.5667
+          },
+          "Syowa": {
+            "label": "Syowa",
+            "timezone": "Antarctica/Syowa",
+            "longitude": 39.59,
+            "latitude": -69.0061
+          },
+          "Troll": {
+            "label": "Troll",
+            "timezone": "Antarctica/Troll",
+            "longitude": 2.535,
+            "latitude": -72.0114
+          },
+          "Vostok": {
+            "label": "Vostok",
+            "timezone": "Antarctica/Vostok",
+            "longitude": 106.9,
+            "latitude": -78.4
+          }
+        }
+      }
+    }
+  },
+  "AG": {
+    "label": "Antigua & Barbuda",
+    "label_en": "Antigua & Barbuda",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Antigua": {
+            "label": "Antigua",
+            "timezone": "America/Antigua",
+            "longitude": -61.8,
+            "latitude": 17.05
+          }
+        }
+      }
+    }
+  },
+  "AR": {
+    "label": "Argentina",
+    "label_en": "Argentina",
+    "regions": {
+      "Argentina": {
+        "label": "Argentina",
+        "label_en": "Argentina",
+        "cities": {
+          "Buenos Aires": {
+            "label": "Buenos Aires",
+            "timezone": "America/Argentina/Buenos_Aires",
+            "longitude": -58.45,
+            "latitude": -34.6
+          },
+          "Catamarca": {
+            "label": "Catamarca",
+            "timezone": "America/Argentina/Catamarca",
+            "longitude": -65.7833,
+            "latitude": -28.4667
+          },
+          "Cordoba": {
+            "label": "Cordoba",
+            "timezone": "America/Argentina/Cordoba",
+            "longitude": -64.1833,
+            "latitude": -31.4
+          },
+          "Jujuy": {
+            "label": "Jujuy",
+            "timezone": "America/Argentina/Jujuy",
+            "longitude": -65.3,
+            "latitude": -24.1833
+          },
+          "La Rioja": {
+            "label": "La Rioja",
+            "timezone": "America/Argentina/La_Rioja",
+            "longitude": -66.85,
+            "latitude": -29.4333
+          },
+          "Mendoza": {
+            "label": "Mendoza",
+            "timezone": "America/Argentina/Mendoza",
+            "longitude": -68.8167,
+            "latitude": -32.8833
+          },
+          "Rio Gallegos": {
+            "label": "Rio Gallegos",
+            "timezone": "America/Argentina/Rio_Gallegos",
+            "longitude": -69.2167,
+            "latitude": -51.6333
+          },
+          "Salta": {
+            "label": "Salta",
+            "timezone": "America/Argentina/Salta",
+            "longitude": -65.4167,
+            "latitude": -24.7833
+          },
+          "San Juan": {
+            "label": "San Juan",
+            "timezone": "America/Argentina/San_Juan",
+            "longitude": -68.5167,
+            "latitude": -31.5333
+          },
+          "San Luis": {
+            "label": "San Luis",
+            "timezone": "America/Argentina/San_Luis",
+            "longitude": -66.35,
+            "latitude": -33.3167
+          },
+          "Tucuman": {
+            "label": "Tucuman",
+            "timezone": "America/Argentina/Tucuman",
+            "longitude": -65.2167,
+            "latitude": -26.8167
+          },
+          "Ushuaia": {
+            "label": "Ushuaia",
+            "timezone": "America/Argentina/Ushuaia",
+            "longitude": -68.3,
+            "latitude": -54.8
+          }
+        }
+      }
+    }
+  },
+  "AM": {
+    "label": "Armenia",
+    "label_en": "Armenia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Yerevan": {
+            "label": "Yerevan",
+            "timezone": "Asia/Yerevan",
+            "longitude": 44.5,
+            "latitude": 40.1833
+          }
+        }
+      }
+    }
+  },
+  "AW": {
+    "label": "Aruba",
+    "label_en": "Aruba",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Aruba": {
+            "label": "Aruba",
+            "timezone": "America/Aruba",
+            "longitude": -69.9667,
+            "latitude": 12.5
+          }
+        }
+      }
+    }
+  },
+  "AU": {
+    "label": "Australia",
+    "label_en": "Australia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Adelaide": {
+            "label": "Adelaide",
+            "timezone": "Australia/Adelaide",
+            "longitude": 138.5833,
+            "latitude": -34.9167
+          },
+          "Brisbane": {
+            "label": "Brisbane",
+            "timezone": "Australia/Brisbane",
+            "longitude": 153.0333,
+            "latitude": -27.4667
+          },
+          "Broken Hill": {
+            "label": "Broken Hill",
+            "timezone": "Australia/Broken_Hill",
+            "longitude": 141.45,
+            "latitude": -31.95
+          },
+          "Darwin": {
+            "label": "Darwin",
+            "timezone": "Australia/Darwin",
+            "longitude": 130.8333,
+            "latitude": -12.4667
+          },
+          "Eucla": {
+            "label": "Eucla",
+            "timezone": "Australia/Eucla",
+            "longitude": 128.8667,
+            "latitude": -31.7167
+          },
+          "Hobart": {
+            "label": "Hobart",
+            "timezone": "Australia/Hobart",
+            "longitude": 147.3167,
+            "latitude": -42.8833
+          },
+          "Lindeman": {
+            "label": "Lindeman",
+            "timezone": "Australia/Lindeman",
+            "longitude": 149.0,
+            "latitude": -20.2667
+          },
+          "Lord Howe": {
+            "label": "Lord Howe",
+            "timezone": "Australia/Lord_Howe",
+            "longitude": 159.0833,
+            "latitude": -31.55
+          },
+          "Macquarie": {
+            "label": "Macquarie",
+            "timezone": "Antarctica/Macquarie",
+            "longitude": 158.95,
+            "latitude": -54.5
+          },
+          "Melbourne": {
+            "label": "Melbourne",
+            "timezone": "Australia/Melbourne",
+            "longitude": 144.9667,
+            "latitude": -37.8167
+          },
+          "Perth": {
+            "label": "Perth",
+            "timezone": "Australia/Perth",
+            "longitude": 115.85,
+            "latitude": -31.95
+          },
+          "Sydney": {
+            "label": "Sydney",
+            "timezone": "Australia/Sydney",
+            "longitude": 151.2167,
+            "latitude": -33.8667
+          }
+        }
+      }
+    }
+  },
+  "AT": {
+    "label": "Austria",
+    "label_en": "Austria",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Vienna": {
+            "label": "Vienna",
+            "timezone": "Europe/Vienna",
+            "longitude": 16.3333,
+            "latitude": 48.2167
+          }
+        }
+      }
+    }
+  },
+  "AZ": {
+    "label": "Azerbaijan",
+    "label_en": "Azerbaijan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Baku": {
+            "label": "Baku",
+            "timezone": "Asia/Baku",
+            "longitude": 49.85,
+            "latitude": 40.3833
+          }
+        }
+      }
+    }
+  },
+  "BS": {
+    "label": "Bahamas",
+    "label_en": "Bahamas",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Nassau": {
+            "label": "Nassau",
+            "timezone": "America/Nassau",
+            "longitude": -77.35,
+            "latitude": 25.0833
+          }
+        }
+      }
+    }
+  },
+  "BH": {
+    "label": "Bahrain",
+    "label_en": "Bahrain",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bahrain": {
+            "label": "Bahrain",
+            "timezone": "Asia/Bahrain",
+            "longitude": 50.5833,
+            "latitude": 26.3833
+          }
+        }
+      }
+    }
+  },
+  "BD": {
+    "label": "Bangladesh",
+    "label_en": "Bangladesh",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dhaka": {
+            "label": "Dhaka",
+            "timezone": "Asia/Dhaka",
+            "longitude": 90.4167,
+            "latitude": 23.7167
+          }
+        }
+      }
+    }
+  },
+  "BB": {
+    "label": "Barbados",
+    "label_en": "Barbados",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Barbados": {
+            "label": "Barbados",
+            "timezone": "America/Barbados",
+            "longitude": -59.6167,
+            "latitude": 13.1
+          }
+        }
+      }
+    }
+  },
+  "BY": {
+    "label": "Belarus",
+    "label_en": "Belarus",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Minsk": {
+            "label": "Minsk",
+            "timezone": "Europe/Minsk",
+            "longitude": 27.5667,
+            "latitude": 53.9
+          }
+        }
+      }
+    }
+  },
+  "BE": {
+    "label": "Belgium",
+    "label_en": "Belgium",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Brussels": {
+            "label": "Brussels",
+            "timezone": "Europe/Brussels",
+            "longitude": 4.3333,
+            "latitude": 50.8333
+          }
+        }
+      }
+    }
+  },
+  "BZ": {
+    "label": "Belize",
+    "label_en": "Belize",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Belize": {
+            "label": "Belize",
+            "timezone": "America/Belize",
+            "longitude": -88.2,
+            "latitude": 17.5
+          }
+        }
+      }
+    }
+  },
+  "BJ": {
+    "label": "Benin",
+    "label_en": "Benin",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Porto Novo": {
+            "label": "Porto Novo",
+            "timezone": "Africa/Porto-Novo",
+            "longitude": 2.6167,
+            "latitude": 6.4833
+          }
+        }
+      }
+    }
+  },
+  "BM": {
+    "label": "Bermuda",
+    "label_en": "Bermuda",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bermuda": {
+            "label": "Bermuda",
+            "timezone": "Atlantic/Bermuda",
+            "longitude": -64.7667,
+            "latitude": 32.2833
+          }
+        }
+      }
+    }
+  },
+  "BT": {
+    "label": "Bhutan",
+    "label_en": "Bhutan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Thimphu": {
+            "label": "Thimphu",
+            "timezone": "Asia/Thimphu",
+            "longitude": 89.65,
+            "latitude": 27.4667
+          }
+        }
+      }
+    }
+  },
+  "BO": {
+    "label": "Bolivia",
+    "label_en": "Bolivia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "La Paz": {
+            "label": "La Paz",
+            "timezone": "America/La_Paz",
+            "longitude": -68.15,
+            "latitude": -16.5
+          }
+        }
+      }
+    }
+  },
+  "BA": {
+    "label": "Bosnia & Herzegovina",
+    "label_en": "Bosnia & Herzegovina",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Sarajevo": {
+            "label": "Sarajevo",
+            "timezone": "Europe/Sarajevo",
+            "longitude": 18.4167,
+            "latitude": 43.8667
+          }
+        }
+      }
+    }
+  },
+  "BW": {
+    "label": "Botswana",
+    "label_en": "Botswana",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Gaborone": {
+            "label": "Gaborone",
+            "timezone": "Africa/Gaborone",
+            "longitude": 25.9167,
+            "latitude": -24.65
+          }
+        }
+      }
+    }
+  },
+  "BR": {
+    "label": "Brazil",
+    "label_en": "Brazil",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Araguaina": {
+            "label": "Araguaina",
+            "timezone": "America/Araguaina",
+            "longitude": -48.2,
+            "latitude": -7.2
+          },
+          "Bahia": {
+            "label": "Bahia",
+            "timezone": "America/Bahia",
+            "longitude": -38.5167,
+            "latitude": -12.9833
+          },
+          "Belem": {
+            "label": "Belem",
+            "timezone": "America/Belem",
+            "longitude": -48.4833,
+            "latitude": -1.45
+          },
+          "Boa Vista": {
+            "label": "Boa Vista",
+            "timezone": "America/Boa_Vista",
+            "longitude": -60.6667,
+            "latitude": 2.8167
+          },
+          "Campo Grande": {
+            "label": "Campo Grande",
+            "timezone": "America/Campo_Grande",
+            "longitude": -54.6167,
+            "latitude": -20.45
+          },
+          "Cuiaba": {
+            "label": "Cuiaba",
+            "timezone": "America/Cuiaba",
+            "longitude": -56.0833,
+            "latitude": -15.5833
+          },
+          "Eirunepe": {
+            "label": "Eirunepe",
+            "timezone": "America/Eirunepe",
+            "longitude": -69.8667,
+            "latitude": -6.6667
+          },
+          "Fortaleza": {
+            "label": "Fortaleza",
+            "timezone": "America/Fortaleza",
+            "longitude": -38.5,
+            "latitude": -3.7167
+          },
+          "Maceio": {
+            "label": "Maceio",
+            "timezone": "America/Maceio",
+            "longitude": -35.7167,
+            "latitude": -9.6667
+          },
+          "Manaus": {
+            "label": "Manaus",
+            "timezone": "America/Manaus",
+            "longitude": -60.0167,
+            "latitude": -3.1333
+          },
+          "Noronha": {
+            "label": "Noronha",
+            "timezone": "America/Noronha",
+            "longitude": -32.4167,
+            "latitude": -3.85
+          },
+          "Porto Velho": {
+            "label": "Porto Velho",
+            "timezone": "America/Porto_Velho",
+            "longitude": -63.9,
+            "latitude": -8.7667
+          },
+          "Recife": {
+            "label": "Recife",
+            "timezone": "America/Recife",
+            "longitude": -34.9,
+            "latitude": -8.05
+          },
+          "Rio Branco": {
+            "label": "Rio Branco",
+            "timezone": "America/Rio_Branco",
+            "longitude": -67.8,
+            "latitude": -9.9667
+          },
+          "Santarem": {
+            "label": "Santarem",
+            "timezone": "America/Santarem",
+            "longitude": -54.8667,
+            "latitude": -2.4333
+          },
+          "Sao Paulo": {
+            "label": "Sao Paulo",
+            "timezone": "America/Sao_Paulo",
+            "longitude": -46.6167,
+            "latitude": -23.5333
+          }
+        }
+      }
+    }
+  },
+  "GB": {
+    "label": "Britain (UK)",
+    "label_en": "Britain (UK)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "London": {
+            "label": "London",
+            "timezone": "Europe/London",
+            "longitude": -0.1253,
+            "latitude": 51.5083
+          }
+        }
+      }
+    }
+  },
+  "IO": {
+    "label": "British Indian Ocean Territory",
+    "label_en": "British Indian Ocean Territory",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Chagos": {
+            "label": "Chagos",
+            "timezone": "Indian/Chagos",
+            "longitude": 72.4167,
+            "latitude": -7.3333
+          }
+        }
+      }
+    }
+  },
+  "BN": {
+    "label": "Brunei",
+    "label_en": "Brunei",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Brunei": {
+            "label": "Brunei",
+            "timezone": "Asia/Brunei",
+            "longitude": 114.9167,
+            "latitude": 4.9333
+          }
+        }
+      }
+    }
+  },
+  "BG": {
+    "label": "Bulgaria",
+    "label_en": "Bulgaria",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Sofia": {
+            "label": "Sofia",
+            "timezone": "Europe/Sofia",
+            "longitude": 23.3167,
+            "latitude": 42.6833
+          }
+        }
+      }
+    }
+  },
+  "BF": {
+    "label": "Burkina Faso",
+    "label_en": "Burkina Faso",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Ouagadougou": {
+            "label": "Ouagadougou",
+            "timezone": "Africa/Ouagadougou",
+            "longitude": -1.5167,
+            "latitude": 12.3667
+          }
+        }
+      }
+    }
+  },
+  "BI": {
+    "label": "Burundi",
+    "label_en": "Burundi",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bujumbura": {
+            "label": "Bujumbura",
+            "timezone": "Africa/Bujumbura",
+            "longitude": 29.3667,
+            "latitude": -3.3833
+          }
+        }
+      }
+    }
+  },
+  "KH": {
+    "label": "Cambodia",
+    "label_en": "Cambodia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Phnom Penh": {
+            "label": "Phnom Penh",
+            "timezone": "Asia/Phnom_Penh",
+            "longitude": 104.9167,
+            "latitude": 11.55
+          }
+        }
+      }
+    }
+  },
+  "CM": {
+    "label": "Cameroon",
+    "label_en": "Cameroon",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Douala": {
+            "label": "Douala",
+            "timezone": "Africa/Douala",
+            "longitude": 9.7,
+            "latitude": 4.05
+          }
+        }
+      }
+    }
+  },
+  "CA": {
+    "label": "Canada",
+    "label_en": "Canada",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Atikokan": {
+            "label": "Atikokan",
+            "timezone": "America/Atikokan",
+            "longitude": -91.6217,
+            "latitude": 48.7586
+          },
+          "Blanc Sablon": {
+            "label": "Blanc Sablon",
+            "timezone": "America/Blanc-Sablon",
+            "longitude": -57.1167,
+            "latitude": 51.4167
+          },
+          "Cambridge Bay": {
+            "label": "Cambridge Bay",
+            "timezone": "America/Cambridge_Bay",
+            "longitude": -105.0528,
+            "latitude": 69.1139
+          },
+          "Creston": {
+            "label": "Creston",
+            "timezone": "America/Creston",
+            "longitude": -116.5167,
+            "latitude": 49.1
+          },
+          "Dawson": {
+            "label": "Dawson",
+            "timezone": "America/Dawson",
+            "longitude": -139.4167,
+            "latitude": 64.0667
+          },
+          "Dawson Creek": {
+            "label": "Dawson Creek",
+            "timezone": "America/Dawson_Creek",
+            "longitude": -120.2333,
+            "latitude": 55.7667
+          },
+          "Edmonton": {
+            "label": "Edmonton",
+            "timezone": "America/Edmonton",
+            "longitude": -113.4667,
+            "latitude": 53.55
+          },
+          "Fort Nelson": {
+            "label": "Fort Nelson",
+            "timezone": "America/Fort_Nelson",
+            "longitude": -122.7,
+            "latitude": 58.8
+          },
+          "Glace Bay": {
+            "label": "Glace Bay",
+            "timezone": "America/Glace_Bay",
+            "longitude": -59.95,
+            "latitude": 46.2
+          },
+          "Goose Bay": {
+            "label": "Goose Bay",
+            "timezone": "America/Goose_Bay",
+            "longitude": -60.4167,
+            "latitude": 53.3333
+          },
+          "Halifax": {
+            "label": "Halifax",
+            "timezone": "America/Halifax",
+            "longitude": -63.6,
+            "latitude": 44.65
+          },
+          "Inuvik": {
+            "label": "Inuvik",
+            "timezone": "America/Inuvik",
+            "longitude": -133.7167,
+            "latitude": 68.3497
+          },
+          "Iqaluit": {
+            "label": "Iqaluit",
+            "timezone": "America/Iqaluit",
+            "longitude": -68.4667,
+            "latitude": 63.7333
+          },
+          "Moncton": {
+            "label": "Moncton",
+            "timezone": "America/Moncton",
+            "longitude": -64.7833,
+            "latitude": 46.1
+          },
+          "Rankin Inlet": {
+            "label": "Rankin Inlet",
+            "timezone": "America/Rankin_Inlet",
+            "longitude": -92.0831,
+            "latitude": 62.8167
+          },
+          "Regina": {
+            "label": "Regina",
+            "timezone": "America/Regina",
+            "longitude": -104.65,
+            "latitude": 50.4
+          },
+          "Resolute": {
+            "label": "Resolute",
+            "timezone": "America/Resolute",
+            "longitude": -94.8292,
+            "latitude": 74.6956
+          },
+          "St Johns": {
+            "label": "St Johns",
+            "timezone": "America/St_Johns",
+            "longitude": -52.7167,
+            "latitude": 47.5667
+          },
+          "Swift Current": {
+            "label": "Swift Current",
+            "timezone": "America/Swift_Current",
+            "longitude": -107.8333,
+            "latitude": 50.2833
+          },
+          "Toronto": {
+            "label": "Toronto",
+            "timezone": "America/Toronto",
+            "longitude": -79.3833,
+            "latitude": 43.65
+          },
+          "Vancouver": {
+            "label": "Vancouver",
+            "timezone": "America/Vancouver",
+            "longitude": -123.1167,
+            "latitude": 49.2667
+          },
+          "Whitehorse": {
+            "label": "Whitehorse",
+            "timezone": "America/Whitehorse",
+            "longitude": -135.05,
+            "latitude": 60.7167
+          },
+          "Winnipeg": {
+            "label": "Winnipeg",
+            "timezone": "America/Winnipeg",
+            "longitude": -97.15,
+            "latitude": 49.8833
+          }
+        }
+      }
+    }
+  },
+  "CV": {
+    "label": "Cape Verde",
+    "label_en": "Cape Verde",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Cape Verde": {
+            "label": "Cape Verde",
+            "timezone": "Atlantic/Cape_Verde",
+            "longitude": -23.5167,
+            "latitude": 14.9167
+          }
+        }
+      }
+    }
+  },
+  "BQ": {
+    "label": "Caribbean NL",
+    "label_en": "Caribbean NL",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kralendijk": {
+            "label": "Kralendijk",
+            "timezone": "America/Kralendijk",
+            "longitude": -68.2767,
+            "latitude": 12.1508
+          }
+        }
+      }
+    }
+  },
+  "KY": {
+    "label": "Cayman Islands",
+    "label_en": "Cayman Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Cayman": {
+            "label": "Cayman",
+            "timezone": "America/Cayman",
+            "longitude": -81.3833,
+            "latitude": 19.3
+          }
+        }
+      }
+    }
+  },
+  "CF": {
+    "label": "Central African Rep.",
+    "label_en": "Central African Rep.",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bangui": {
+            "label": "Bangui",
+            "timezone": "Africa/Bangui",
+            "longitude": 18.5833,
+            "latitude": 4.3667
+          }
+        }
+      }
+    }
+  },
+  "TD": {
+    "label": "Chad",
+    "label_en": "Chad",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Ndjamena": {
+            "label": "Ndjamena",
+            "timezone": "Africa/Ndjamena",
+            "longitude": 15.05,
+            "latitude": 12.1167
+          }
+        }
+      }
+    }
+  },
+  "CL": {
+    "label": "Chile",
+    "label_en": "Chile",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Coyhaique": {
+            "label": "Coyhaique",
+            "timezone": "America/Coyhaique",
+            "longitude": -72.0667,
+            "latitude": -45.5667
+          },
+          "Easter": {
+            "label": "Easter",
+            "timezone": "Pacific/Easter",
+            "longitude": -109.4333,
+            "latitude": -27.15
+          },
+          "Punta Arenas": {
+            "label": "Punta Arenas",
+            "timezone": "America/Punta_Arenas",
+            "longitude": -70.9167,
+            "latitude": -53.15
+          },
+          "Santiago": {
+            "label": "Santiago",
+            "timezone": "America/Santiago",
+            "longitude": -70.6667,
+            "latitude": -33.45
+          }
+        }
+      }
+    }
+  },
+  "CX": {
+    "label": "Christmas Island",
+    "label_en": "Christmas Island",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Christmas": {
+            "label": "Christmas",
+            "timezone": "Indian/Christmas",
+            "longitude": 105.7167,
+            "latitude": -10.4167
+          }
+        }
+      }
+    }
+  },
+  "CC": {
+    "label": "Cocos (Keeling) Islands",
+    "label_en": "Cocos (Keeling) Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Cocos": {
+            "label": "Cocos",
+            "timezone": "Indian/Cocos",
+            "longitude": 96.9167,
+            "latitude": -12.1667
+          }
+        }
+      }
+    }
+  },
+  "CO": {
+    "label": "Colombia",
+    "label_en": "Colombia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bogota": {
+            "label": "Bogota",
+            "timezone": "America/Bogota",
+            "longitude": -74.0833,
+            "latitude": 4.6
+          }
+        }
+      }
+    }
+  },
+  "KM": {
+    "label": "Comoros",
+    "label_en": "Comoros",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Comoro": {
+            "label": "Comoro",
+            "timezone": "Indian/Comoro",
+            "longitude": 43.2667,
+            "latitude": -11.6833
+          }
+        }
+      }
+    }
+  },
+  "CD": {
+    "label": "Congo (Dem. Rep.)",
+    "label_en": "Congo (Dem. Rep.)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kinshasa": {
+            "label": "Kinshasa",
+            "timezone": "Africa/Kinshasa",
+            "longitude": 15.3,
+            "latitude": -4.3
+          },
+          "Lubumbashi": {
+            "label": "Lubumbashi",
+            "timezone": "Africa/Lubumbashi",
+            "longitude": 27.4667,
+            "latitude": -11.6667
+          }
+        }
+      }
+    }
+  },
+  "CG": {
+    "label": "Congo (Rep.)",
+    "label_en": "Congo (Rep.)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Brazzaville": {
+            "label": "Brazzaville",
+            "timezone": "Africa/Brazzaville",
+            "longitude": 15.2833,
+            "latitude": -4.2667
+          }
+        }
+      }
+    }
+  },
+  "CK": {
+    "label": "Cook Islands",
+    "label_en": "Cook Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Rarotonga": {
+            "label": "Rarotonga",
+            "timezone": "Pacific/Rarotonga",
+            "longitude": -159.7667,
+            "latitude": -21.2333
+          }
+        }
+      }
+    }
+  },
+  "CR": {
+    "label": "Costa Rica",
+    "label_en": "Costa Rica",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Costa Rica": {
+            "label": "Costa Rica",
+            "timezone": "America/Costa_Rica",
+            "longitude": -84.0833,
+            "latitude": 9.9333
+          }
+        }
+      }
+    }
+  },
+  "HR": {
+    "label": "Croatia",
+    "label_en": "Croatia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Zagreb": {
+            "label": "Zagreb",
+            "timezone": "Europe/Zagreb",
+            "longitude": 15.9667,
+            "latitude": 45.8
+          }
+        }
+      }
+    }
+  },
+  "CU": {
+    "label": "Cuba",
+    "label_en": "Cuba",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Havana": {
+            "label": "Havana",
+            "timezone": "America/Havana",
+            "longitude": -82.3667,
+            "latitude": 23.1333
+          }
+        }
+      }
+    }
+  },
+  "CW": {
+    "label": "Curaçao",
+    "label_en": "Curaçao",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Curacao": {
+            "label": "Curacao",
+            "timezone": "America/Curacao",
+            "longitude": -69.0,
+            "latitude": 12.1833
+          }
+        }
+      }
+    }
+  },
+  "CY": {
+    "label": "Cyprus",
+    "label_en": "Cyprus",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Famagusta": {
+            "label": "Famagusta",
+            "timezone": "Asia/Famagusta",
+            "longitude": 33.95,
+            "latitude": 35.1167
+          },
+          "Nicosia": {
+            "label": "Nicosia",
+            "timezone": "Asia/Nicosia",
+            "longitude": 33.3667,
+            "latitude": 35.1667
+          }
+        }
+      }
+    }
+  },
+  "CZ": {
+    "label": "Czech Republic",
+    "label_en": "Czech Republic",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Prague": {
+            "label": "Prague",
+            "timezone": "Europe/Prague",
+            "longitude": 14.4333,
+            "latitude": 50.0833
+          }
+        }
+      }
+    }
+  },
+  "CI": {
+    "label": "Côte d’Ivoire",
+    "label_en": "Côte d’Ivoire",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Abidjan": {
+            "label": "Abidjan",
+            "timezone": "Africa/Abidjan",
+            "longitude": -4.0333,
+            "latitude": 5.3167
+          }
+        }
+      }
+    }
+  },
+  "DK": {
+    "label": "Denmark",
+    "label_en": "Denmark",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Copenhagen": {
+            "label": "Copenhagen",
+            "timezone": "Europe/Copenhagen",
+            "longitude": 12.5833,
+            "latitude": 55.6667
+          }
+        }
+      }
+    }
+  },
+  "DJ": {
+    "label": "Djibouti",
+    "label_en": "Djibouti",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Djibouti": {
+            "label": "Djibouti",
+            "timezone": "Africa/Djibouti",
+            "longitude": 43.15,
+            "latitude": 11.6
+          }
+        }
+      }
+    }
+  },
+  "DM": {
+    "label": "Dominica",
+    "label_en": "Dominica",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dominica": {
+            "label": "Dominica",
+            "timezone": "America/Dominica",
+            "longitude": -61.4,
+            "latitude": 15.3
+          }
+        }
+      }
+    }
+  },
+  "DO": {
+    "label": "Dominican Republic",
+    "label_en": "Dominican Republic",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Santo Domingo": {
+            "label": "Santo Domingo",
+            "timezone": "America/Santo_Domingo",
+            "longitude": -69.9,
+            "latitude": 18.4667
+          }
+        }
+      }
+    }
+  },
+  "TL": {
+    "label": "East Timor",
+    "label_en": "East Timor",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dili": {
+            "label": "Dili",
+            "timezone": "Asia/Dili",
+            "longitude": 125.5833,
+            "latitude": -8.55
+          }
+        }
+      }
+    }
+  },
+  "EC": {
+    "label": "Ecuador",
+    "label_en": "Ecuador",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Galapagos": {
+            "label": "Galapagos",
+            "timezone": "Pacific/Galapagos",
+            "longitude": -89.6,
+            "latitude": -0.9
+          },
+          "Guayaquil": {
+            "label": "Guayaquil",
+            "timezone": "America/Guayaquil",
+            "longitude": -79.8333,
+            "latitude": -2.1667
+          }
+        }
+      }
+    }
+  },
+  "EG": {
+    "label": "Egypt",
+    "label_en": "Egypt",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Cairo": {
+            "label": "Cairo",
+            "timezone": "Africa/Cairo",
+            "longitude": 31.25,
+            "latitude": 30.05
+          }
+        }
+      }
+    }
+  },
+  "SV": {
+    "label": "El Salvador",
+    "label_en": "El Salvador",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "El Salvador": {
+            "label": "El Salvador",
+            "timezone": "America/El_Salvador",
+            "longitude": -89.2,
+            "latitude": 13.7
+          }
+        }
+      }
+    }
+  },
+  "GQ": {
+    "label": "Equatorial Guinea",
+    "label_en": "Equatorial Guinea",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Malabo": {
+            "label": "Malabo",
+            "timezone": "Africa/Malabo",
+            "longitude": 8.7833,
+            "latitude": 3.75
+          }
+        }
+      }
+    }
+  },
+  "ER": {
+    "label": "Eritrea",
+    "label_en": "Eritrea",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Asmara": {
+            "label": "Asmara",
+            "timezone": "Africa/Asmara",
+            "longitude": 38.8833,
+            "latitude": 15.3333
+          }
+        }
+      }
+    }
+  },
+  "EE": {
+    "label": "Estonia",
+    "label_en": "Estonia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tallinn": {
+            "label": "Tallinn",
+            "timezone": "Europe/Tallinn",
+            "longitude": 24.75,
+            "latitude": 59.4167
+          }
+        }
+      }
+    }
+  },
+  "SZ": {
+    "label": "Eswatini (Swaziland)",
+    "label_en": "Eswatini (Swaziland)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Mbabane": {
+            "label": "Mbabane",
+            "timezone": "Africa/Mbabane",
+            "longitude": 31.1,
+            "latitude": -26.3
+          }
+        }
+      }
+    }
+  },
+  "ET": {
+    "label": "Ethiopia",
+    "label_en": "Ethiopia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Addis Ababa": {
+            "label": "Addis Ababa",
+            "timezone": "Africa/Addis_Ababa",
+            "longitude": 38.7,
+            "latitude": 9.0333
+          }
+        }
+      }
+    }
+  },
+  "FK": {
+    "label": "Falkland Islands",
+    "label_en": "Falkland Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Stanley": {
+            "label": "Stanley",
+            "timezone": "Atlantic/Stanley",
+            "longitude": -57.85,
+            "latitude": -51.7
+          }
+        }
+      }
+    }
+  },
+  "FO": {
+    "label": "Faroe Islands",
+    "label_en": "Faroe Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Faroe": {
+            "label": "Faroe",
+            "timezone": "Atlantic/Faroe",
+            "longitude": -6.7667,
+            "latitude": 62.0167
+          }
+        }
+      }
+    }
+  },
+  "FJ": {
+    "label": "Fiji",
+    "label_en": "Fiji",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Fiji": {
+            "label": "Fiji",
+            "timezone": "Pacific/Fiji",
+            "longitude": 178.4167,
+            "latitude": -18.1333
+          }
+        }
+      }
+    }
+  },
+  "FI": {
+    "label": "Finland",
+    "label_en": "Finland",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Helsinki": {
+            "label": "Helsinki",
+            "timezone": "Europe/Helsinki",
+            "longitude": 24.9667,
+            "latitude": 60.1667
+          }
+        }
+      }
+    }
+  },
+  "FR": {
+    "label": "France",
+    "label_en": "France",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Paris": {
+            "label": "Paris",
+            "timezone": "Europe/Paris",
+            "longitude": 2.3333,
+            "latitude": 48.8667
+          }
+        }
+      }
+    }
+  },
+  "GF": {
+    "label": "French Guiana",
+    "label_en": "French Guiana",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Cayenne": {
+            "label": "Cayenne",
+            "timezone": "America/Cayenne",
+            "longitude": -52.3333,
+            "latitude": 4.9333
+          }
+        }
+      }
+    }
+  },
+  "PF": {
+    "label": "French Polynesia",
+    "label_en": "French Polynesia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Gambier": {
+            "label": "Gambier",
+            "timezone": "Pacific/Gambier",
+            "longitude": -134.95,
+            "latitude": -23.1333
+          },
+          "Marquesas": {
+            "label": "Marquesas",
+            "timezone": "Pacific/Marquesas",
+            "longitude": -139.5,
+            "latitude": -9.0
+          },
+          "Tahiti": {
+            "label": "Tahiti",
+            "timezone": "Pacific/Tahiti",
+            "longitude": -149.5667,
+            "latitude": -17.5333
+          }
+        }
+      }
+    }
+  },
+  "TF": {
+    "label": "French S. Terr.",
+    "label_en": "French S. Terr.",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kerguelen": {
+            "label": "Kerguelen",
+            "timezone": "Indian/Kerguelen",
+            "longitude": 70.2175,
+            "latitude": -49.3528
+          }
+        }
+      }
+    }
+  },
+  "GA": {
+    "label": "Gabon",
+    "label_en": "Gabon",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Libreville": {
+            "label": "Libreville",
+            "timezone": "Africa/Libreville",
+            "longitude": 9.45,
+            "latitude": 0.3833
+          }
+        }
+      }
+    }
+  },
+  "GM": {
+    "label": "Gambia",
+    "label_en": "Gambia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Banjul": {
+            "label": "Banjul",
+            "timezone": "Africa/Banjul",
+            "longitude": -16.65,
+            "latitude": 13.4667
+          }
+        }
+      }
+    }
+  },
+  "GE": {
+    "label": "Georgia",
+    "label_en": "Georgia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tbilisi": {
+            "label": "Tbilisi",
+            "timezone": "Asia/Tbilisi",
+            "longitude": 44.8167,
+            "latitude": 41.7167
+          }
+        }
+      }
+    }
+  },
+  "DE": {
+    "label": "Germany",
+    "label_en": "Germany",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Berlin": {
+            "label": "Berlin",
+            "timezone": "Europe/Berlin",
+            "longitude": 13.3667,
+            "latitude": 52.5
+          },
+          "Busingen": {
+            "label": "Busingen",
+            "timezone": "Europe/Busingen",
+            "longitude": 8.6833,
+            "latitude": 47.7
+          }
+        }
+      }
+    }
+  },
+  "GH": {
+    "label": "Ghana",
+    "label_en": "Ghana",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Accra": {
+            "label": "Accra",
+            "timezone": "Africa/Accra",
+            "longitude": -0.2167,
+            "latitude": 5.55
+          }
+        }
+      }
+    }
+  },
+  "GI": {
+    "label": "Gibraltar",
+    "label_en": "Gibraltar",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Gibraltar": {
+            "label": "Gibraltar",
+            "timezone": "Europe/Gibraltar",
+            "longitude": -5.35,
+            "latitude": 36.1333
+          }
+        }
+      }
+    }
+  },
+  "GR": {
+    "label": "Greece",
+    "label_en": "Greece",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Athens": {
+            "label": "Athens",
+            "timezone": "Europe/Athens",
+            "longitude": 23.7167,
+            "latitude": 37.9667
+          }
+        }
+      }
+    }
+  },
+  "GL": {
+    "label": "Greenland",
+    "label_en": "Greenland",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Danmarkshavn": {
+            "label": "Danmarkshavn",
+            "timezone": "America/Danmarkshavn",
+            "longitude": -18.6667,
+            "latitude": 76.7667
+          },
+          "Nuuk": {
+            "label": "Nuuk",
+            "timezone": "America/Nuuk",
+            "longitude": -51.7333,
+            "latitude": 64.1833
+          },
+          "Scoresbysund": {
+            "label": "Scoresbysund",
+            "timezone": "America/Scoresbysund",
+            "longitude": -21.9667,
+            "latitude": 70.4833
+          },
+          "Thule": {
+            "label": "Thule",
+            "timezone": "America/Thule",
+            "longitude": -68.7833,
+            "latitude": 76.5667
+          }
+        }
+      }
+    }
+  },
+  "GD": {
+    "label": "Grenada",
+    "label_en": "Grenada",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Grenada": {
+            "label": "Grenada",
+            "timezone": "America/Grenada",
+            "longitude": -61.75,
+            "latitude": 12.05
+          }
+        }
+      }
+    }
+  },
+  "GP": {
+    "label": "Guadeloupe",
+    "label_en": "Guadeloupe",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Guadeloupe": {
+            "label": "Guadeloupe",
+            "timezone": "America/Guadeloupe",
+            "longitude": -61.5333,
+            "latitude": 16.2333
+          }
+        }
+      }
+    }
+  },
+  "GU": {
+    "label": "Guam",
+    "label_en": "Guam",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Guam": {
+            "label": "Guam",
+            "timezone": "Pacific/Guam",
+            "longitude": 144.75,
+            "latitude": 13.4667
+          }
+        }
+      }
+    }
+  },
+  "GT": {
+    "label": "Guatemala",
+    "label_en": "Guatemala",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Guatemala": {
+            "label": "Guatemala",
+            "timezone": "America/Guatemala",
+            "longitude": -90.5167,
+            "latitude": 14.6333
+          }
+        }
+      }
+    }
+  },
+  "GG": {
+    "label": "Guernsey",
+    "label_en": "Guernsey",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Guernsey": {
+            "label": "Guernsey",
+            "timezone": "Europe/Guernsey",
+            "longitude": -2.5361,
+            "latitude": 49.4547
+          }
+        }
+      }
+    }
+  },
+  "GN": {
+    "label": "Guinea",
+    "label_en": "Guinea",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Conakry": {
+            "label": "Conakry",
+            "timezone": "Africa/Conakry",
+            "longitude": -13.7167,
+            "latitude": 9.5167
+          }
+        }
+      }
+    }
+  },
+  "GW": {
+    "label": "Guinea-Bissau",
+    "label_en": "Guinea-Bissau",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bissau": {
+            "label": "Bissau",
+            "timezone": "Africa/Bissau",
+            "longitude": -15.5833,
+            "latitude": 11.85
+          }
+        }
+      }
+    }
+  },
+  "GY": {
+    "label": "Guyana",
+    "label_en": "Guyana",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Guyana": {
+            "label": "Guyana",
+            "timezone": "America/Guyana",
+            "longitude": -58.1667,
+            "latitude": 6.8
+          }
+        }
+      }
+    }
+  },
+  "HT": {
+    "label": "Haiti",
+    "label_en": "Haiti",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Port au Prince": {
+            "label": "Port au Prince",
+            "timezone": "America/Port-au-Prince",
+            "longitude": -72.3333,
+            "latitude": 18.5333
+          }
+        }
+      }
+    }
+  },
+  "HN": {
+    "label": "Honduras",
+    "label_en": "Honduras",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tegucigalpa": {
+            "label": "Tegucigalpa",
+            "timezone": "America/Tegucigalpa",
+            "longitude": -87.2167,
+            "latitude": 14.1
+          }
+        }
+      }
+    }
+  },
+  "HK": {
+    "label": "Hong Kong",
+    "label_en": "Hong Kong",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Hong Kong": {
+            "label": "Hong Kong",
+            "timezone": "Asia/Hong_Kong",
+            "longitude": 114.15,
+            "latitude": 22.2833
+          }
+        }
+      }
+    }
+  },
+  "HU": {
+    "label": "Hungary",
+    "label_en": "Hungary",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Budapest": {
+            "label": "Budapest",
+            "timezone": "Europe/Budapest",
+            "longitude": 19.0833,
+            "latitude": 47.5
+          }
+        }
+      }
+    }
+  },
+  "IS": {
+    "label": "Iceland",
+    "label_en": "Iceland",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Reykjavik": {
+            "label": "Reykjavik",
+            "timezone": "Atlantic/Reykjavik",
+            "longitude": -21.85,
+            "latitude": 64.15
+          }
+        }
+      }
+    }
+  },
+  "IN": {
+    "label": "India",
+    "label_en": "India",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kolkata": {
+            "label": "Kolkata",
+            "timezone": "Asia/Kolkata",
+            "longitude": 88.3667,
+            "latitude": 22.5333
+          }
+        }
+      }
+    }
+  },
+  "ID": {
+    "label": "Indonesia",
+    "label_en": "Indonesia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Jakarta": {
+            "label": "Jakarta",
+            "timezone": "Asia/Jakarta",
+            "longitude": 106.8,
+            "latitude": -6.1667
+          },
+          "Jayapura": {
+            "label": "Jayapura",
+            "timezone": "Asia/Jayapura",
+            "longitude": 140.7,
+            "latitude": -2.5333
+          },
+          "Makassar": {
+            "label": "Makassar",
+            "timezone": "Asia/Makassar",
+            "longitude": 119.4,
+            "latitude": -5.1167
+          },
+          "Pontianak": {
+            "label": "Pontianak",
+            "timezone": "Asia/Pontianak",
+            "longitude": 109.3333,
+            "latitude": -0.0333
+          }
+        }
+      }
+    }
+  },
+  "IR": {
+    "label": "Iran",
+    "label_en": "Iran",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tehran": {
+            "label": "Tehran",
+            "timezone": "Asia/Tehran",
+            "longitude": 51.4333,
+            "latitude": 35.6667
+          }
+        }
+      }
+    }
+  },
+  "IQ": {
+    "label": "Iraq",
+    "label_en": "Iraq",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Baghdad": {
+            "label": "Baghdad",
+            "timezone": "Asia/Baghdad",
+            "longitude": 44.4167,
+            "latitude": 33.35
+          }
+        }
+      }
+    }
+  },
+  "IE": {
+    "label": "Ireland",
+    "label_en": "Ireland",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dublin": {
+            "label": "Dublin",
+            "timezone": "Europe/Dublin",
+            "longitude": -6.25,
+            "latitude": 53.3333
+          }
+        }
+      }
+    }
+  },
+  "IM": {
+    "label": "Isle of Man",
+    "label_en": "Isle of Man",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Isle of Man": {
+            "label": "Isle of Man",
+            "timezone": "Europe/Isle_of_Man",
+            "longitude": -4.4667,
+            "latitude": 54.15
+          }
+        }
+      }
+    }
+  },
+  "IL": {
+    "label": "Israel",
+    "label_en": "Israel",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Jerusalem": {
+            "label": "Jerusalem",
+            "timezone": "Asia/Jerusalem",
+            "longitude": 35.2239,
+            "latitude": 31.7806
+          }
+        }
+      }
+    }
+  },
+  "IT": {
+    "label": "Italy",
+    "label_en": "Italy",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Rome": {
+            "label": "Rome",
+            "timezone": "Europe/Rome",
+            "longitude": 12.4833,
+            "latitude": 41.9
+          }
+        }
+      }
+    }
+  },
+  "JM": {
+    "label": "Jamaica",
+    "label_en": "Jamaica",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Jamaica": {
+            "label": "Jamaica",
+            "timezone": "America/Jamaica",
+            "longitude": -76.7933,
+            "latitude": 17.9681
+          }
+        }
+      }
+    }
+  },
+  "JP": {
+    "label": "Japan",
+    "label_en": "Japan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tokyo": {
+            "label": "Tokyo",
+            "timezone": "Asia/Tokyo",
+            "longitude": 139.7447,
+            "latitude": 35.6544
+          }
+        }
+      }
+    }
+  },
+  "JE": {
+    "label": "Jersey",
+    "label_en": "Jersey",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Jersey": {
+            "label": "Jersey",
+            "timezone": "Europe/Jersey",
+            "longitude": -2.1067,
+            "latitude": 49.1836
+          }
+        }
+      }
+    }
+  },
+  "JO": {
+    "label": "Jordan",
+    "label_en": "Jordan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Amman": {
+            "label": "Amman",
+            "timezone": "Asia/Amman",
+            "longitude": 35.9333,
+            "latitude": 31.95
+          }
+        }
+      }
+    }
+  },
+  "KZ": {
+    "label": "Kazakhstan",
+    "label_en": "Kazakhstan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Almaty": {
+            "label": "Almaty",
+            "timezone": "Asia/Almaty",
+            "longitude": 76.95,
+            "latitude": 43.25
+          },
+          "Aqtau": {
+            "label": "Aqtau",
+            "timezone": "Asia/Aqtau",
+            "longitude": 50.2667,
+            "latitude": 44.5167
+          },
+          "Aqtobe": {
+            "label": "Aqtobe",
+            "timezone": "Asia/Aqtobe",
+            "longitude": 57.1667,
+            "latitude": 50.2833
+          },
+          "Atyrau": {
+            "label": "Atyrau",
+            "timezone": "Asia/Atyrau",
+            "longitude": 51.9333,
+            "latitude": 47.1167
+          },
+          "Oral": {
+            "label": "Oral",
+            "timezone": "Asia/Oral",
+            "longitude": 51.35,
+            "latitude": 51.2167
+          },
+          "Qostanay": {
+            "label": "Qostanay",
+            "timezone": "Asia/Qostanay",
+            "longitude": 63.6167,
+            "latitude": 53.2
+          },
+          "Qyzylorda": {
+            "label": "Qyzylorda",
+            "timezone": "Asia/Qyzylorda",
+            "longitude": 65.4667,
+            "latitude": 44.8
+          }
+        }
+      }
+    }
+  },
+  "KE": {
+    "label": "Kenya",
+    "label_en": "Kenya",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Nairobi": {
+            "label": "Nairobi",
+            "timezone": "Africa/Nairobi",
+            "longitude": 36.8167,
+            "latitude": -1.2833
+          }
+        }
+      }
+    }
+  },
+  "KI": {
+    "label": "Kiribati",
+    "label_en": "Kiribati",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kanton": {
+            "label": "Kanton",
+            "timezone": "Pacific/Kanton",
+            "longitude": -171.7167,
+            "latitude": -2.7833
+          },
+          "Kiritimati": {
+            "label": "Kiritimati",
+            "timezone": "Pacific/Kiritimati",
+            "longitude": -157.3333,
+            "latitude": 1.8667
+          },
+          "Tarawa": {
+            "label": "Tarawa",
+            "timezone": "Pacific/Tarawa",
+            "longitude": 173.0,
+            "latitude": 1.4167
+          }
+        }
+      }
+    }
+  },
+  "KP": {
+    "label": "Korea (North)",
+    "label_en": "Korea (North)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Pyongyang": {
+            "label": "Pyongyang",
+            "timezone": "Asia/Pyongyang",
+            "longitude": 125.75,
+            "latitude": 39.0167
+          }
+        }
+      }
+    }
+  },
+  "KR": {
+    "label": "Korea (South)",
+    "label_en": "Korea (South)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Seoul": {
+            "label": "Seoul",
+            "timezone": "Asia/Seoul",
+            "longitude": 126.9667,
+            "latitude": 37.55
+          }
+        }
+      }
+    }
+  },
+  "KW": {
+    "label": "Kuwait",
+    "label_en": "Kuwait",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kuwait": {
+            "label": "Kuwait",
+            "timezone": "Asia/Kuwait",
+            "longitude": 47.9833,
+            "latitude": 29.3333
+          }
+        }
+      }
+    }
+  },
+  "KG": {
+    "label": "Kyrgyzstan",
+    "label_en": "Kyrgyzstan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bishkek": {
+            "label": "Bishkek",
+            "timezone": "Asia/Bishkek",
+            "longitude": 74.6,
+            "latitude": 42.9
+          }
+        }
+      }
+    }
+  },
+  "LA": {
+    "label": "Laos",
+    "label_en": "Laos",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Vientiane": {
+            "label": "Vientiane",
+            "timezone": "Asia/Vientiane",
+            "longitude": 102.6,
+            "latitude": 17.9667
+          }
+        }
+      }
+    }
+  },
+  "LV": {
+    "label": "Latvia",
+    "label_en": "Latvia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Riga": {
+            "label": "Riga",
+            "timezone": "Europe/Riga",
+            "longitude": 24.1,
+            "latitude": 56.95
+          }
+        }
+      }
+    }
+  },
+  "LB": {
+    "label": "Lebanon",
+    "label_en": "Lebanon",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Beirut": {
+            "label": "Beirut",
+            "timezone": "Asia/Beirut",
+            "longitude": 35.5,
+            "latitude": 33.8833
+          }
+        }
+      }
+    }
+  },
+  "LS": {
+    "label": "Lesotho",
+    "label_en": "Lesotho",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Maseru": {
+            "label": "Maseru",
+            "timezone": "Africa/Maseru",
+            "longitude": 27.5,
+            "latitude": -29.4667
+          }
+        }
+      }
+    }
+  },
+  "LR": {
+    "label": "Liberia",
+    "label_en": "Liberia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Monrovia": {
+            "label": "Monrovia",
+            "timezone": "Africa/Monrovia",
+            "longitude": -10.7833,
+            "latitude": 6.3
+          }
+        }
+      }
+    }
+  },
+  "LY": {
+    "label": "Libya",
+    "label_en": "Libya",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tripoli": {
+            "label": "Tripoli",
+            "timezone": "Africa/Tripoli",
+            "longitude": 13.1833,
+            "latitude": 32.9
+          }
+        }
+      }
+    }
+  },
+  "LI": {
+    "label": "Liechtenstein",
+    "label_en": "Liechtenstein",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Vaduz": {
+            "label": "Vaduz",
+            "timezone": "Europe/Vaduz",
+            "longitude": 9.5167,
+            "latitude": 47.15
+          }
+        }
+      }
+    }
+  },
+  "LT": {
+    "label": "Lithuania",
+    "label_en": "Lithuania",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Vilnius": {
+            "label": "Vilnius",
+            "timezone": "Europe/Vilnius",
+            "longitude": 25.3167,
+            "latitude": 54.6833
+          }
+        }
+      }
+    }
+  },
+  "LU": {
+    "label": "Luxembourg",
+    "label_en": "Luxembourg",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Luxembourg": {
+            "label": "Luxembourg",
+            "timezone": "Europe/Luxembourg",
+            "longitude": 6.15,
+            "latitude": 49.6
+          }
+        }
+      }
+    }
+  },
+  "MO": {
+    "label": "Macau",
+    "label_en": "Macau",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Macau": {
+            "label": "Macau",
+            "timezone": "Asia/Macau",
+            "longitude": 113.5417,
+            "latitude": 22.1972
+          }
+        }
+      }
+    }
+  },
+  "MG": {
+    "label": "Madagascar",
+    "label_en": "Madagascar",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Antananarivo": {
+            "label": "Antananarivo",
+            "timezone": "Indian/Antananarivo",
+            "longitude": 47.5167,
+            "latitude": -18.9167
+          }
+        }
+      }
+    }
+  },
+  "MW": {
+    "label": "Malawi",
+    "label_en": "Malawi",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Blantyre": {
+            "label": "Blantyre",
+            "timezone": "Africa/Blantyre",
+            "longitude": 35.0,
+            "latitude": -15.7833
+          }
+        }
+      }
+    }
+  },
+  "MY": {
+    "label": "Malaysia",
+    "label_en": "Malaysia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kuala Lumpur": {
+            "label": "Kuala Lumpur",
+            "timezone": "Asia/Kuala_Lumpur",
+            "longitude": 101.7,
+            "latitude": 3.1667
+          },
+          "Kuching": {
+            "label": "Kuching",
+            "timezone": "Asia/Kuching",
+            "longitude": 110.3333,
+            "latitude": 1.55
+          }
+        }
+      }
+    }
+  },
+  "MV": {
+    "label": "Maldives",
+    "label_en": "Maldives",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Maldives": {
+            "label": "Maldives",
+            "timezone": "Indian/Maldives",
+            "longitude": 73.5,
+            "latitude": 4.1667
+          }
+        }
+      }
+    }
+  },
+  "ML": {
+    "label": "Mali",
+    "label_en": "Mali",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bamako": {
+            "label": "Bamako",
+            "timezone": "Africa/Bamako",
+            "longitude": -8.0,
+            "latitude": 12.65
+          }
+        }
+      }
+    }
+  },
+  "MT": {
+    "label": "Malta",
+    "label_en": "Malta",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Malta": {
+            "label": "Malta",
+            "timezone": "Europe/Malta",
+            "longitude": 14.5167,
+            "latitude": 35.9
+          }
+        }
+      }
+    }
+  },
+  "MH": {
+    "label": "Marshall Islands",
+    "label_en": "Marshall Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kwajalein": {
+            "label": "Kwajalein",
+            "timezone": "Pacific/Kwajalein",
+            "longitude": 167.3333,
+            "latitude": 9.0833
+          },
+          "Majuro": {
+            "label": "Majuro",
+            "timezone": "Pacific/Majuro",
+            "longitude": 171.2,
+            "latitude": 7.15
+          }
+        }
+      }
+    }
+  },
+  "MQ": {
+    "label": "Martinique",
+    "label_en": "Martinique",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Martinique": {
+            "label": "Martinique",
+            "timezone": "America/Martinique",
+            "longitude": -61.0833,
+            "latitude": 14.6
+          }
+        }
+      }
+    }
+  },
+  "MR": {
+    "label": "Mauritania",
+    "label_en": "Mauritania",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Nouakchott": {
+            "label": "Nouakchott",
+            "timezone": "Africa/Nouakchott",
+            "longitude": -15.95,
+            "latitude": 18.1
+          }
+        }
+      }
+    }
+  },
+  "MU": {
+    "label": "Mauritius",
+    "label_en": "Mauritius",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Mauritius": {
+            "label": "Mauritius",
+            "timezone": "Indian/Mauritius",
+            "longitude": 57.5,
+            "latitude": -20.1667
+          }
+        }
+      }
+    }
+  },
+  "YT": {
+    "label": "Mayotte",
+    "label_en": "Mayotte",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Mayotte": {
+            "label": "Mayotte",
+            "timezone": "Indian/Mayotte",
+            "longitude": 45.2333,
+            "latitude": -12.7833
+          }
+        }
+      }
+    }
+  },
+  "MX": {
+    "label": "Mexico",
+    "label_en": "Mexico",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bahia Banderas": {
+            "label": "Bahia Banderas",
+            "timezone": "America/Bahia_Banderas",
+            "longitude": -105.25,
+            "latitude": 20.8
+          },
+          "Cancun": {
+            "label": "Cancun",
+            "timezone": "America/Cancun",
+            "longitude": -86.7667,
+            "latitude": 21.0833
+          },
+          "Chihuahua": {
+            "label": "Chihuahua",
+            "timezone": "America/Chihuahua",
+            "longitude": -106.0833,
+            "latitude": 28.6333
+          },
+          "Ciudad Juarez": {
+            "label": "Ciudad Juarez",
+            "timezone": "America/Ciudad_Juarez",
+            "longitude": -106.4833,
+            "latitude": 31.7333
+          },
+          "Hermosillo": {
+            "label": "Hermosillo",
+            "timezone": "America/Hermosillo",
+            "longitude": -110.9667,
+            "latitude": 29.0667
+          },
+          "Matamoros": {
+            "label": "Matamoros",
+            "timezone": "America/Matamoros",
+            "longitude": -97.5,
+            "latitude": 25.8333
+          },
+          "Mazatlan": {
+            "label": "Mazatlan",
+            "timezone": "America/Mazatlan",
+            "longitude": -106.4167,
+            "latitude": 23.2167
+          },
+          "Merida": {
+            "label": "Merida",
+            "timezone": "America/Merida",
+            "longitude": -89.6167,
+            "latitude": 20.9667
+          },
+          "Mexico City": {
+            "label": "Mexico City",
+            "timezone": "America/Mexico_City",
+            "longitude": -99.15,
+            "latitude": 19.4
+          },
+          "Monterrey": {
+            "label": "Monterrey",
+            "timezone": "America/Monterrey",
+            "longitude": -100.3167,
+            "latitude": 25.6667
+          },
+          "Ojinaga": {
+            "label": "Ojinaga",
+            "timezone": "America/Ojinaga",
+            "longitude": -104.4167,
+            "latitude": 29.5667
+          },
+          "Tijuana": {
+            "label": "Tijuana",
+            "timezone": "America/Tijuana",
+            "longitude": -117.0167,
+            "latitude": 32.5333
+          }
+        }
+      }
+    }
+  },
+  "FM": {
+    "label": "Micronesia",
+    "label_en": "Micronesia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Chuuk": {
+            "label": "Chuuk",
+            "timezone": "Pacific/Chuuk",
+            "longitude": 151.7833,
+            "latitude": 7.4167
+          },
+          "Kosrae": {
+            "label": "Kosrae",
+            "timezone": "Pacific/Kosrae",
+            "longitude": 162.9833,
+            "latitude": 5.3167
+          },
+          "Pohnpei": {
+            "label": "Pohnpei",
+            "timezone": "Pacific/Pohnpei",
+            "longitude": 158.2167,
+            "latitude": 6.9667
+          }
+        }
+      }
+    }
+  },
+  "MD": {
+    "label": "Moldova",
+    "label_en": "Moldova",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Chisinau": {
+            "label": "Chisinau",
+            "timezone": "Europe/Chisinau",
+            "longitude": 28.8333,
+            "latitude": 47.0
+          }
+        }
+      }
+    }
+  },
+  "MC": {
+    "label": "Monaco",
+    "label_en": "Monaco",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Monaco": {
+            "label": "Monaco",
+            "timezone": "Europe/Monaco",
+            "longitude": 7.3833,
+            "latitude": 43.7
+          }
+        }
+      }
+    }
+  },
+  "MN": {
+    "label": "Mongolia",
+    "label_en": "Mongolia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Hovd": {
+            "label": "Hovd",
+            "timezone": "Asia/Hovd",
+            "longitude": 91.65,
+            "latitude": 48.0167
+          },
+          "Ulaanbaatar": {
+            "label": "Ulaanbaatar",
+            "timezone": "Asia/Ulaanbaatar",
+            "longitude": 106.8833,
+            "latitude": 47.9167
+          }
+        }
+      }
+    }
+  },
+  "ME": {
+    "label": "Montenegro",
+    "label_en": "Montenegro",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Podgorica": {
+            "label": "Podgorica",
+            "timezone": "Europe/Podgorica",
+            "longitude": 19.2667,
+            "latitude": 42.4333
+          }
+        }
+      }
+    }
+  },
+  "MS": {
+    "label": "Montserrat",
+    "label_en": "Montserrat",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Montserrat": {
+            "label": "Montserrat",
+            "timezone": "America/Montserrat",
+            "longitude": -62.2167,
+            "latitude": 16.7167
+          }
+        }
+      }
+    }
+  },
+  "MA": {
+    "label": "Morocco",
+    "label_en": "Morocco",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Casablanca": {
+            "label": "Casablanca",
+            "timezone": "Africa/Casablanca",
+            "longitude": -7.5833,
+            "latitude": 33.65
+          }
+        }
+      }
+    }
+  },
+  "MZ": {
+    "label": "Mozambique",
+    "label_en": "Mozambique",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Maputo": {
+            "label": "Maputo",
+            "timezone": "Africa/Maputo",
+            "longitude": 32.5833,
+            "latitude": -25.9667
+          }
+        }
+      }
+    }
+  },
+  "MM": {
+    "label": "Myanmar (Burma)",
+    "label_en": "Myanmar (Burma)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Yangon": {
+            "label": "Yangon",
+            "timezone": "Asia/Yangon",
+            "longitude": 96.1667,
+            "latitude": 16.7833
+          }
+        }
+      }
+    }
+  },
+  "NA": {
+    "label": "Namibia",
+    "label_en": "Namibia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Windhoek": {
+            "label": "Windhoek",
+            "timezone": "Africa/Windhoek",
+            "longitude": 17.1,
+            "latitude": -22.5667
+          }
+        }
+      }
+    }
+  },
+  "NR": {
+    "label": "Nauru",
+    "label_en": "Nauru",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Nauru": {
+            "label": "Nauru",
+            "timezone": "Pacific/Nauru",
+            "longitude": 166.9167,
+            "latitude": -0.5167
+          }
+        }
+      }
+    }
+  },
+  "NP": {
+    "label": "Nepal",
+    "label_en": "Nepal",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kathmandu": {
+            "label": "Kathmandu",
+            "timezone": "Asia/Kathmandu",
+            "longitude": 85.3167,
+            "latitude": 27.7167
+          }
+        }
+      }
+    }
+  },
+  "NL": {
+    "label": "Netherlands",
+    "label_en": "Netherlands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Amsterdam": {
+            "label": "Amsterdam",
+            "timezone": "Europe/Amsterdam",
+            "longitude": 4.9,
+            "latitude": 52.3667
+          }
+        }
+      }
+    }
+  },
+  "NC": {
+    "label": "New Caledonia",
+    "label_en": "New Caledonia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Noumea": {
+            "label": "Noumea",
+            "timezone": "Pacific/Noumea",
+            "longitude": 166.45,
+            "latitude": -22.2667
+          }
+        }
+      }
+    }
+  },
+  "NZ": {
+    "label": "New Zealand",
+    "label_en": "New Zealand",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Auckland": {
+            "label": "Auckland",
+            "timezone": "Pacific/Auckland",
+            "longitude": 174.7667,
+            "latitude": -36.8667
+          },
+          "Chatham": {
+            "label": "Chatham",
+            "timezone": "Pacific/Chatham",
+            "longitude": -176.55,
+            "latitude": -43.95
+          }
+        }
+      }
+    }
+  },
+  "NI": {
+    "label": "Nicaragua",
+    "label_en": "Nicaragua",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Managua": {
+            "label": "Managua",
+            "timezone": "America/Managua",
+            "longitude": -86.2833,
+            "latitude": 12.15
+          }
+        }
+      }
+    }
+  },
+  "NE": {
+    "label": "Niger",
+    "label_en": "Niger",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Niamey": {
+            "label": "Niamey",
+            "timezone": "Africa/Niamey",
+            "longitude": 2.1167,
+            "latitude": 13.5167
+          }
+        }
+      }
+    }
+  },
+  "NG": {
+    "label": "Nigeria",
+    "label_en": "Nigeria",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Lagos": {
+            "label": "Lagos",
+            "timezone": "Africa/Lagos",
+            "longitude": 3.4,
+            "latitude": 6.45
+          }
+        }
+      }
+    }
+  },
+  "NU": {
+    "label": "Niue",
+    "label_en": "Niue",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Niue": {
+            "label": "Niue",
+            "timezone": "Pacific/Niue",
+            "longitude": -169.9167,
+            "latitude": -19.0167
+          }
+        }
+      }
+    }
+  },
+  "NF": {
+    "label": "Norfolk Island",
+    "label_en": "Norfolk Island",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Norfolk": {
+            "label": "Norfolk",
+            "timezone": "Pacific/Norfolk",
+            "longitude": 167.9667,
+            "latitude": -29.05
+          }
+        }
+      }
+    }
+  },
+  "MK": {
+    "label": "North Macedonia",
+    "label_en": "North Macedonia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Skopje": {
+            "label": "Skopje",
+            "timezone": "Europe/Skopje",
+            "longitude": 21.4333,
+            "latitude": 41.9833
+          }
+        }
+      }
+    }
+  },
+  "MP": {
+    "label": "Northern Mariana Islands",
+    "label_en": "Northern Mariana Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Saipan": {
+            "label": "Saipan",
+            "timezone": "Pacific/Saipan",
+            "longitude": 145.75,
+            "latitude": 15.2
+          }
+        }
+      }
+    }
+  },
+  "NO": {
+    "label": "Norway",
+    "label_en": "Norway",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Oslo": {
+            "label": "Oslo",
+            "timezone": "Europe/Oslo",
+            "longitude": 10.75,
+            "latitude": 59.9167
+          }
+        }
+      }
+    }
+  },
+  "OM": {
+    "label": "Oman",
+    "label_en": "Oman",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Muscat": {
+            "label": "Muscat",
+            "timezone": "Asia/Muscat",
+            "longitude": 58.5833,
+            "latitude": 23.6
+          }
+        }
+      }
+    }
+  },
+  "PK": {
+    "label": "Pakistan",
+    "label_en": "Pakistan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Karachi": {
+            "label": "Karachi",
+            "timezone": "Asia/Karachi",
+            "longitude": 67.05,
+            "latitude": 24.8667
+          }
+        }
+      }
+    }
+  },
+  "PW": {
+    "label": "Palau",
+    "label_en": "Palau",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Palau": {
+            "label": "Palau",
+            "timezone": "Pacific/Palau",
+            "longitude": 134.4833,
+            "latitude": 7.3333
+          }
+        }
+      }
+    }
+  },
+  "PS": {
+    "label": "Palestine",
+    "label_en": "Palestine",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Gaza": {
+            "label": "Gaza",
+            "timezone": "Asia/Gaza",
+            "longitude": 34.4667,
+            "latitude": 31.5
+          },
+          "Hebron": {
+            "label": "Hebron",
+            "timezone": "Asia/Hebron",
+            "longitude": 35.095,
+            "latitude": 31.5333
+          }
+        }
+      }
+    }
+  },
+  "PA": {
+    "label": "Panama",
+    "label_en": "Panama",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Panama": {
+            "label": "Panama",
+            "timezone": "America/Panama",
+            "longitude": -79.5333,
+            "latitude": 8.9667
+          }
+        }
+      }
+    }
+  },
+  "PG": {
+    "label": "Papua New Guinea",
+    "label_en": "Papua New Guinea",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bougainville": {
+            "label": "Bougainville",
+            "timezone": "Pacific/Bougainville",
+            "longitude": 155.5667,
+            "latitude": -6.2167
+          },
+          "Port Moresby": {
+            "label": "Port Moresby",
+            "timezone": "Pacific/Port_Moresby",
+            "longitude": 147.1667,
+            "latitude": -9.5
+          }
+        }
+      }
+    }
+  },
+  "PY": {
+    "label": "Paraguay",
+    "label_en": "Paraguay",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Asuncion": {
+            "label": "Asuncion",
+            "timezone": "America/Asuncion",
+            "longitude": -57.6667,
+            "latitude": -25.2667
+          }
+        }
+      }
+    }
+  },
+  "PE": {
+    "label": "Peru",
+    "label_en": "Peru",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Lima": {
+            "label": "Lima",
+            "timezone": "America/Lima",
+            "longitude": -77.05,
+            "latitude": -12.05
+          }
+        }
+      }
+    }
+  },
+  "PH": {
+    "label": "Philippines",
+    "label_en": "Philippines",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Manila": {
+            "label": "Manila",
+            "timezone": "Asia/Manila",
+            "longitude": 120.9678,
+            "latitude": 14.5867
+          }
+        }
+      }
+    }
+  },
+  "PN": {
+    "label": "Pitcairn",
+    "label_en": "Pitcairn",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Pitcairn": {
+            "label": "Pitcairn",
+            "timezone": "Pacific/Pitcairn",
+            "longitude": -130.0833,
+            "latitude": -25.0667
+          }
+        }
+      }
+    }
+  },
+  "PL": {
+    "label": "Poland",
+    "label_en": "Poland",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Warsaw": {
+            "label": "Warsaw",
+            "timezone": "Europe/Warsaw",
+            "longitude": 21.0,
+            "latitude": 52.25
+          }
+        }
+      }
+    }
+  },
+  "PT": {
+    "label": "Portugal",
+    "label_en": "Portugal",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Azores": {
+            "label": "Azores",
+            "timezone": "Atlantic/Azores",
+            "longitude": -25.6667,
+            "latitude": 37.7333
+          },
+          "Lisbon": {
+            "label": "Lisbon",
+            "timezone": "Europe/Lisbon",
+            "longitude": -9.1333,
+            "latitude": 38.7167
+          },
+          "Madeira": {
+            "label": "Madeira",
+            "timezone": "Atlantic/Madeira",
+            "longitude": -16.9,
+            "latitude": 32.6333
+          }
+        }
+      }
+    }
+  },
+  "PR": {
+    "label": "Puerto Rico",
+    "label_en": "Puerto Rico",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Puerto Rico": {
+            "label": "Puerto Rico",
+            "timezone": "America/Puerto_Rico",
+            "longitude": -66.1061,
+            "latitude": 18.4683
+          }
+        }
+      }
+    }
+  },
+  "QA": {
+    "label": "Qatar",
+    "label_en": "Qatar",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Qatar": {
+            "label": "Qatar",
+            "timezone": "Asia/Qatar",
+            "longitude": 51.5333,
+            "latitude": 25.2833
+          }
+        }
+      }
+    }
+  },
+  "RO": {
+    "label": "Romania",
+    "label_en": "Romania",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bucharest": {
+            "label": "Bucharest",
+            "timezone": "Europe/Bucharest",
+            "longitude": 26.1,
+            "latitude": 44.4333
+          }
+        }
+      }
+    }
+  },
+  "RU": {
+    "label": "Russia",
+    "label_en": "Russia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Anadyr": {
+            "label": "Anadyr",
+            "timezone": "Asia/Anadyr",
+            "longitude": 177.4833,
+            "latitude": 64.75
+          },
+          "Astrakhan": {
+            "label": "Astrakhan",
+            "timezone": "Europe/Astrakhan",
+            "longitude": 48.05,
+            "latitude": 46.35
+          },
+          "Barnaul": {
+            "label": "Barnaul",
+            "timezone": "Asia/Barnaul",
+            "longitude": 83.75,
+            "latitude": 53.3667
+          },
+          "Chita": {
+            "label": "Chita",
+            "timezone": "Asia/Chita",
+            "longitude": 113.4667,
+            "latitude": 52.05
+          },
+          "Irkutsk": {
+            "label": "Irkutsk",
+            "timezone": "Asia/Irkutsk",
+            "longitude": 104.3333,
+            "latitude": 52.2667
+          },
+          "Kaliningrad": {
+            "label": "Kaliningrad",
+            "timezone": "Europe/Kaliningrad",
+            "longitude": 20.5,
+            "latitude": 54.7167
+          },
+          "Kamchatka": {
+            "label": "Kamchatka",
+            "timezone": "Asia/Kamchatka",
+            "longitude": 158.65,
+            "latitude": 53.0167
+          },
+          "Khandyga": {
+            "label": "Khandyga",
+            "timezone": "Asia/Khandyga",
+            "longitude": 135.5539,
+            "latitude": 62.6564
+          },
+          "Kirov": {
+            "label": "Kirov",
+            "timezone": "Europe/Kirov",
+            "longitude": 49.65,
+            "latitude": 58.6
+          },
+          "Krasnoyarsk": {
+            "label": "Krasnoyarsk",
+            "timezone": "Asia/Krasnoyarsk",
+            "longitude": 92.8333,
+            "latitude": 56.0167
+          },
+          "Magadan": {
+            "label": "Magadan",
+            "timezone": "Asia/Magadan",
+            "longitude": 150.8,
+            "latitude": 59.5667
+          },
+          "Moscow": {
+            "label": "Moscow",
+            "timezone": "Europe/Moscow",
+            "longitude": 37.6178,
+            "latitude": 55.7558
+          },
+          "Novokuznetsk": {
+            "label": "Novokuznetsk",
+            "timezone": "Asia/Novokuznetsk",
+            "longitude": 87.1167,
+            "latitude": 53.75
+          },
+          "Novosibirsk": {
+            "label": "Novosibirsk",
+            "timezone": "Asia/Novosibirsk",
+            "longitude": 82.9167,
+            "latitude": 55.0333
+          },
+          "Omsk": {
+            "label": "Omsk",
+            "timezone": "Asia/Omsk",
+            "longitude": 73.4,
+            "latitude": 55.0
+          },
+          "Sakhalin": {
+            "label": "Sakhalin",
+            "timezone": "Asia/Sakhalin",
+            "longitude": 142.7,
+            "latitude": 46.9667
+          },
+          "Samara": {
+            "label": "Samara",
+            "timezone": "Europe/Samara",
+            "longitude": 50.15,
+            "latitude": 53.2
+          },
+          "Saratov": {
+            "label": "Saratov",
+            "timezone": "Europe/Saratov",
+            "longitude": 46.0333,
+            "latitude": 51.5667
+          },
+          "Srednekolymsk": {
+            "label": "Srednekolymsk",
+            "timezone": "Asia/Srednekolymsk",
+            "longitude": 153.7167,
+            "latitude": 67.4667
+          },
+          "Tomsk": {
+            "label": "Tomsk",
+            "timezone": "Asia/Tomsk",
+            "longitude": 84.9667,
+            "latitude": 56.5
+          },
+          "Ulyanovsk": {
+            "label": "Ulyanovsk",
+            "timezone": "Europe/Ulyanovsk",
+            "longitude": 48.4,
+            "latitude": 54.3333
+          },
+          "Ust Nera": {
+            "label": "Ust Nera",
+            "timezone": "Asia/Ust-Nera",
+            "longitude": 143.2267,
+            "latitude": 64.5603
+          },
+          "Vladivostok": {
+            "label": "Vladivostok",
+            "timezone": "Asia/Vladivostok",
+            "longitude": 131.9333,
+            "latitude": 43.1667
+          },
+          "Volgograd": {
+            "label": "Volgograd",
+            "timezone": "Europe/Volgograd",
+            "longitude": 44.4167,
+            "latitude": 48.7333
+          },
+          "Yakutsk": {
+            "label": "Yakutsk",
+            "timezone": "Asia/Yakutsk",
+            "longitude": 129.6667,
+            "latitude": 62.0
+          },
+          "Yekaterinburg": {
+            "label": "Yekaterinburg",
+            "timezone": "Asia/Yekaterinburg",
+            "longitude": 60.6,
+            "latitude": 56.85
+          }
+        }
+      }
+    }
+  },
+  "RW": {
+    "label": "Rwanda",
+    "label_en": "Rwanda",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kigali": {
+            "label": "Kigali",
+            "timezone": "Africa/Kigali",
+            "longitude": 30.0667,
+            "latitude": -1.95
+          }
+        }
+      }
+    }
+  },
+  "RE": {
+    "label": "Réunion",
+    "label_en": "Réunion",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Reunion": {
+            "label": "Reunion",
+            "timezone": "Indian/Reunion",
+            "longitude": 55.4667,
+            "latitude": -20.8667
+          }
+        }
+      }
+    }
+  },
+  "AS": {
+    "label": "Samoa (American)",
+    "label_en": "Samoa (American)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Pago Pago": {
+            "label": "Pago Pago",
+            "timezone": "Pacific/Pago_Pago",
+            "longitude": -170.7,
+            "latitude": -14.2667
+          }
+        }
+      }
+    }
+  },
+  "WS": {
+    "label": "Samoa (western)",
+    "label_en": "Samoa (western)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Apia": {
+            "label": "Apia",
+            "timezone": "Pacific/Apia",
+            "longitude": -171.7333,
+            "latitude": -13.8333
+          }
+        }
+      }
+    }
+  },
+  "SM": {
+    "label": "San Marino",
+    "label_en": "San Marino",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "San Marino": {
+            "label": "San Marino",
+            "timezone": "Europe/San_Marino",
+            "longitude": 12.4667,
+            "latitude": 43.9167
+          }
+        }
+      }
+    }
+  },
+  "ST": {
+    "label": "Sao Tome & Principe",
+    "label_en": "Sao Tome & Principe",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Sao Tome": {
+            "label": "Sao Tome",
+            "timezone": "Africa/Sao_Tome",
+            "longitude": 6.7333,
+            "latitude": 0.3333
+          }
+        }
+      }
+    }
+  },
+  "SA": {
+    "label": "Saudi Arabia",
+    "label_en": "Saudi Arabia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Riyadh": {
+            "label": "Riyadh",
+            "timezone": "Asia/Riyadh",
+            "longitude": 46.7167,
+            "latitude": 24.6333
+          }
+        }
+      }
+    }
+  },
+  "SN": {
+    "label": "Senegal",
+    "label_en": "Senegal",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dakar": {
+            "label": "Dakar",
+            "timezone": "Africa/Dakar",
+            "longitude": -17.4333,
+            "latitude": 14.6667
+          }
+        }
+      }
+    }
+  },
+  "RS": {
+    "label": "Serbia",
+    "label_en": "Serbia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Belgrade": {
+            "label": "Belgrade",
+            "timezone": "Europe/Belgrade",
+            "longitude": 20.5,
+            "latitude": 44.8333
+          }
+        }
+      }
+    }
+  },
+  "SC": {
+    "label": "Seychelles",
+    "label_en": "Seychelles",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Mahe": {
+            "label": "Mahe",
+            "timezone": "Indian/Mahe",
+            "longitude": 55.4667,
+            "latitude": -4.6667
+          }
+        }
+      }
+    }
+  },
+  "SL": {
+    "label": "Sierra Leone",
+    "label_en": "Sierra Leone",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Freetown": {
+            "label": "Freetown",
+            "timezone": "Africa/Freetown",
+            "longitude": -13.25,
+            "latitude": 8.5
+          }
+        }
+      }
+    }
+  },
+  "SG": {
+    "label": "Singapore",
+    "label_en": "Singapore",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Singapore": {
+            "label": "Singapore",
+            "timezone": "Asia/Singapore",
+            "longitude": 103.85,
+            "latitude": 1.2833
+          }
+        }
+      }
+    }
+  },
+  "SK": {
+    "label": "Slovakia",
+    "label_en": "Slovakia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bratislava": {
+            "label": "Bratislava",
+            "timezone": "Europe/Bratislava",
+            "longitude": 17.1167,
+            "latitude": 48.15
+          }
+        }
+      }
+    }
+  },
+  "SI": {
+    "label": "Slovenia",
+    "label_en": "Slovenia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Ljubljana": {
+            "label": "Ljubljana",
+            "timezone": "Europe/Ljubljana",
+            "longitude": 14.5167,
+            "latitude": 46.05
+          }
+        }
+      }
+    }
+  },
+  "SB": {
+    "label": "Solomon Islands",
+    "label_en": "Solomon Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Guadalcanal": {
+            "label": "Guadalcanal",
+            "timezone": "Pacific/Guadalcanal",
+            "longitude": 160.2,
+            "latitude": -9.5333
+          }
+        }
+      }
+    }
+  },
+  "SO": {
+    "label": "Somalia",
+    "label_en": "Somalia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Mogadishu": {
+            "label": "Mogadishu",
+            "timezone": "Africa/Mogadishu",
+            "longitude": 45.3667,
+            "latitude": 2.0667
+          }
+        }
+      }
+    }
+  },
+  "ZA": {
+    "label": "South Africa",
+    "label_en": "South Africa",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Johannesburg": {
+            "label": "Johannesburg",
+            "timezone": "Africa/Johannesburg",
+            "longitude": 28.0,
+            "latitude": -26.25
+          }
+        }
+      }
+    }
+  },
+  "GS": {
+    "label": "South Georgia & the South Sandwich Islands",
+    "label_en": "South Georgia & the South Sandwich Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "South Georgia": {
+            "label": "South Georgia",
+            "timezone": "Atlantic/South_Georgia",
+            "longitude": -36.5333,
+            "latitude": -54.2667
+          }
+        }
+      }
+    }
+  },
+  "SS": {
+    "label": "South Sudan",
+    "label_en": "South Sudan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Juba": {
+            "label": "Juba",
+            "timezone": "Africa/Juba",
+            "longitude": 31.6167,
+            "latitude": 4.85
+          }
+        }
+      }
+    }
+  },
+  "ES": {
+    "label": "Spain",
+    "label_en": "Spain",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Canary": {
+            "label": "Canary",
+            "timezone": "Atlantic/Canary",
+            "longitude": -15.4,
+            "latitude": 28.1
+          },
+          "Ceuta": {
+            "label": "Ceuta",
+            "timezone": "Africa/Ceuta",
+            "longitude": -5.3167,
+            "latitude": 35.8833
+          },
+          "Madrid": {
+            "label": "Madrid",
+            "timezone": "Europe/Madrid",
+            "longitude": -3.6833,
+            "latitude": 40.4
+          }
+        }
+      }
+    }
+  },
+  "LK": {
+    "label": "Sri Lanka",
+    "label_en": "Sri Lanka",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Colombo": {
+            "label": "Colombo",
+            "timezone": "Asia/Colombo",
+            "longitude": 79.85,
+            "latitude": 6.9333
+          }
+        }
+      }
+    }
+  },
+  "BL": {
+    "label": "St Barthelemy",
+    "label_en": "St Barthelemy",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "St Barthelemy": {
+            "label": "St Barthelemy",
+            "timezone": "America/St_Barthelemy",
+            "longitude": -62.85,
+            "latitude": 17.8833
+          }
+        }
+      }
+    }
+  },
+  "SH": {
+    "label": "St Helena",
+    "label_en": "St Helena",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "St Helena": {
+            "label": "St Helena",
+            "timezone": "Atlantic/St_Helena",
+            "longitude": -5.7,
+            "latitude": -15.9167
+          }
+        }
+      }
+    }
+  },
+  "KN": {
+    "label": "St Kitts & Nevis",
+    "label_en": "St Kitts & Nevis",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "St Kitts": {
+            "label": "St Kitts",
+            "timezone": "America/St_Kitts",
+            "longitude": -62.7167,
+            "latitude": 17.3
+          }
+        }
+      }
+    }
+  },
+  "LC": {
+    "label": "St Lucia",
+    "label_en": "St Lucia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "St Lucia": {
+            "label": "St Lucia",
+            "timezone": "America/St_Lucia",
+            "longitude": -61.0,
+            "latitude": 14.0167
+          }
+        }
+      }
+    }
+  },
+  "SX": {
+    "label": "St Maarten (Dutch)",
+    "label_en": "St Maarten (Dutch)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Lower Princes": {
+            "label": "Lower Princes",
+            "timezone": "America/Lower_Princes",
+            "longitude": -63.0472,
+            "latitude": 18.0514
+          }
+        }
+      }
+    }
+  },
+  "MF": {
+    "label": "St Martin (French)",
+    "label_en": "St Martin (French)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Marigot": {
+            "label": "Marigot",
+            "timezone": "America/Marigot",
+            "longitude": -63.0833,
+            "latitude": 18.0667
+          }
+        }
+      }
+    }
+  },
+  "PM": {
+    "label": "St Pierre & Miquelon",
+    "label_en": "St Pierre & Miquelon",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Miquelon": {
+            "label": "Miquelon",
+            "timezone": "America/Miquelon",
+            "longitude": -56.3333,
+            "latitude": 47.05
+          }
+        }
+      }
+    }
+  },
+  "VC": {
+    "label": "St Vincent",
+    "label_en": "St Vincent",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "St Vincent": {
+            "label": "St Vincent",
+            "timezone": "America/St_Vincent",
+            "longitude": -61.2333,
+            "latitude": 13.15
+          }
+        }
+      }
+    }
+  },
+  "SD": {
+    "label": "Sudan",
+    "label_en": "Sudan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Khartoum": {
+            "label": "Khartoum",
+            "timezone": "Africa/Khartoum",
+            "longitude": 32.5333,
+            "latitude": 15.6
+          }
+        }
+      }
+    }
+  },
+  "SR": {
+    "label": "Suriname",
+    "label_en": "Suriname",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Paramaribo": {
+            "label": "Paramaribo",
+            "timezone": "America/Paramaribo",
+            "longitude": -55.1667,
+            "latitude": 5.8333
+          }
+        }
+      }
+    }
+  },
+  "SJ": {
+    "label": "Svalbard & Jan Mayen",
+    "label_en": "Svalbard & Jan Mayen",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Longyearbyen": {
+            "label": "Longyearbyen",
+            "timezone": "Arctic/Longyearbyen",
+            "longitude": 16.0,
+            "latitude": 78.0
+          }
+        }
+      }
+    }
+  },
+  "SE": {
+    "label": "Sweden",
+    "label_en": "Sweden",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Stockholm": {
+            "label": "Stockholm",
+            "timezone": "Europe/Stockholm",
+            "longitude": 18.05,
+            "latitude": 59.3333
+          }
+        }
+      }
+    }
+  },
+  "CH": {
+    "label": "Switzerland",
+    "label_en": "Switzerland",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Zurich": {
+            "label": "Zurich",
+            "timezone": "Europe/Zurich",
+            "longitude": 8.5333,
+            "latitude": 47.3833
+          }
+        }
+      }
+    }
+  },
+  "SY": {
+    "label": "Syria",
+    "label_en": "Syria",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Damascus": {
+            "label": "Damascus",
+            "timezone": "Asia/Damascus",
+            "longitude": 36.3,
+            "latitude": 33.5
+          }
+        }
+      }
+    }
+  },
+  "TW": {
+    "label": "Taiwan",
+    "label_en": "Taiwan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Taipei": {
+            "label": "Taipei",
+            "timezone": "Asia/Taipei",
+            "longitude": 121.5,
+            "latitude": 25.05
+          }
+        }
+      }
+    }
+  },
+  "TJ": {
+    "label": "Tajikistan",
+    "label_en": "Tajikistan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dushanbe": {
+            "label": "Dushanbe",
+            "timezone": "Asia/Dushanbe",
+            "longitude": 68.8,
+            "latitude": 38.5833
+          }
+        }
+      }
+    }
+  },
+  "TZ": {
+    "label": "Tanzania",
+    "label_en": "Tanzania",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dar es Salaam": {
+            "label": "Dar es Salaam",
+            "timezone": "Africa/Dar_es_Salaam",
+            "longitude": 39.2833,
+            "latitude": -6.8
+          }
+        }
+      }
+    }
+  },
+  "TH": {
+    "label": "Thailand",
+    "label_en": "Thailand",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Bangkok": {
+            "label": "Bangkok",
+            "timezone": "Asia/Bangkok",
+            "longitude": 100.5167,
+            "latitude": 13.75
+          }
+        }
+      }
+    }
+  },
+  "TG": {
+    "label": "Togo",
+    "label_en": "Togo",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Lome": {
+            "label": "Lome",
+            "timezone": "Africa/Lome",
+            "longitude": 1.2167,
+            "latitude": 6.1333
+          }
+        }
+      }
+    }
+  },
+  "TK": {
+    "label": "Tokelau",
+    "label_en": "Tokelau",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Fakaofo": {
+            "label": "Fakaofo",
+            "timezone": "Pacific/Fakaofo",
+            "longitude": -171.2333,
+            "latitude": -9.3667
+          }
+        }
+      }
+    }
+  },
+  "TO": {
+    "label": "Tonga",
+    "label_en": "Tonga",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tongatapu": {
+            "label": "Tongatapu",
+            "timezone": "Pacific/Tongatapu",
+            "longitude": -175.2,
+            "latitude": -21.1333
+          }
+        }
+      }
+    }
+  },
+  "TT": {
+    "label": "Trinidad & Tobago",
+    "label_en": "Trinidad & Tobago",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Port of Spain": {
+            "label": "Port of Spain",
+            "timezone": "America/Port_of_Spain",
+            "longitude": -61.5167,
+            "latitude": 10.65
+          }
+        }
+      }
+    }
+  },
+  "TN": {
+    "label": "Tunisia",
+    "label_en": "Tunisia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tunis": {
+            "label": "Tunis",
+            "timezone": "Africa/Tunis",
+            "longitude": 10.1833,
+            "latitude": 36.8
+          }
+        }
+      }
+    }
+  },
+  "TR": {
+    "label": "Turkey",
+    "label_en": "Turkey",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Istanbul": {
+            "label": "Istanbul",
+            "timezone": "Europe/Istanbul",
+            "longitude": 28.9667,
+            "latitude": 41.0167
+          }
+        }
+      }
+    }
+  },
+  "TM": {
+    "label": "Turkmenistan",
+    "label_en": "Turkmenistan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Ashgabat": {
+            "label": "Ashgabat",
+            "timezone": "Asia/Ashgabat",
+            "longitude": 58.3833,
+            "latitude": 37.95
+          }
+        }
+      }
+    }
+  },
+  "TC": {
+    "label": "Turks & Caicos Is",
+    "label_en": "Turks & Caicos Is",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Grand Turk": {
+            "label": "Grand Turk",
+            "timezone": "America/Grand_Turk",
+            "longitude": -71.1333,
+            "latitude": 21.4667
+          }
+        }
+      }
+    }
+  },
+  "TV": {
+    "label": "Tuvalu",
+    "label_en": "Tuvalu",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Funafuti": {
+            "label": "Funafuti",
+            "timezone": "Pacific/Funafuti",
+            "longitude": 179.2167,
+            "latitude": -8.5167
+          }
+        }
+      }
+    }
+  },
+  "UM": {
+    "label": "US minor outlying islands",
+    "label_en": "US minor outlying islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Midway": {
+            "label": "Midway",
+            "timezone": "Pacific/Midway",
+            "longitude": -177.3667,
+            "latitude": 28.2167
+          },
+          "Wake": {
+            "label": "Wake",
+            "timezone": "Pacific/Wake",
+            "longitude": 166.6167,
+            "latitude": 19.2833
+          }
+        }
+      }
+    }
+  },
+  "UG": {
+    "label": "Uganda",
+    "label_en": "Uganda",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kampala": {
+            "label": "Kampala",
+            "timezone": "Africa/Kampala",
+            "longitude": 32.4167,
+            "latitude": 0.3167
+          }
+        }
+      }
+    }
+  },
+  "UA": {
+    "label": "Ukraine",
+    "label_en": "Ukraine",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Kyiv": {
+            "label": "Kyiv",
+            "timezone": "Europe/Kyiv",
+            "longitude": 30.5167,
+            "latitude": 50.4333
+          },
+          "Simferopol": {
+            "label": "Simferopol",
+            "timezone": "Europe/Simferopol",
+            "longitude": 34.1,
+            "latitude": 44.95
+          }
+        }
+      }
+    }
+  },
+  "AE": {
+    "label": "United Arab Emirates",
+    "label_en": "United Arab Emirates",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Dubai": {
+            "label": "Dubai",
+            "timezone": "Asia/Dubai",
+            "longitude": 55.3,
+            "latitude": 25.3
+          }
+        }
+      }
+    }
+  },
+  "UY": {
+    "label": "Uruguay",
+    "label_en": "Uruguay",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Montevideo": {
+            "label": "Montevideo",
+            "timezone": "America/Montevideo",
+            "longitude": -56.2125,
+            "latitude": -34.9092
+          }
+        }
+      }
+    }
+  },
+  "UZ": {
+    "label": "Uzbekistan",
+    "label_en": "Uzbekistan",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Samarkand": {
+            "label": "Samarkand",
+            "timezone": "Asia/Samarkand",
+            "longitude": 66.8,
+            "latitude": 39.6667
+          },
+          "Tashkent": {
+            "label": "Tashkent",
+            "timezone": "Asia/Tashkent",
+            "longitude": 69.3,
+            "latitude": 41.3333
+          }
+        }
+      }
+    }
+  },
+  "VU": {
+    "label": "Vanuatu",
+    "label_en": "Vanuatu",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Efate": {
+            "label": "Efate",
+            "timezone": "Pacific/Efate",
+            "longitude": 168.4167,
+            "latitude": -17.6667
+          }
+        }
+      }
+    }
+  },
+  "VA": {
+    "label": "Vatican City",
+    "label_en": "Vatican City",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Vatican": {
+            "label": "Vatican",
+            "timezone": "Europe/Vatican",
+            "longitude": 12.4531,
+            "latitude": 41.9022
+          }
+        }
+      }
+    }
+  },
+  "VE": {
+    "label": "Venezuela",
+    "label_en": "Venezuela",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Caracas": {
+            "label": "Caracas",
+            "timezone": "America/Caracas",
+            "longitude": -66.9333,
+            "latitude": 10.5
+          }
+        }
+      }
+    }
+  },
+  "VN": {
+    "label": "Vietnam",
+    "label_en": "Vietnam",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Ho Chi Minh": {
+            "label": "Ho Chi Minh",
+            "timezone": "Asia/Ho_Chi_Minh",
+            "longitude": 106.6667,
+            "latitude": 10.75
+          }
+        }
+      }
+    }
+  },
+  "VG": {
+    "label": "Virgin Islands (UK)",
+    "label_en": "Virgin Islands (UK)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Tortola": {
+            "label": "Tortola",
+            "timezone": "America/Tortola",
+            "longitude": -64.6167,
+            "latitude": 18.45
+          }
+        }
+      }
+    }
+  },
+  "VI": {
+    "label": "Virgin Islands (US)",
+    "label_en": "Virgin Islands (US)",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "St Thomas": {
+            "label": "St Thomas",
+            "timezone": "America/St_Thomas",
+            "longitude": -64.9333,
+            "latitude": 18.35
+          }
+        }
+      }
+    }
+  },
+  "WF": {
+    "label": "Wallis & Futuna",
+    "label_en": "Wallis & Futuna",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Wallis": {
+            "label": "Wallis",
+            "timezone": "Pacific/Wallis",
+            "longitude": -176.1667,
+            "latitude": -13.3
+          }
+        }
+      }
+    }
+  },
+  "EH": {
+    "label": "Western Sahara",
+    "label_en": "Western Sahara",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "El Aaiun": {
+            "label": "El Aaiun",
+            "timezone": "Africa/El_Aaiun",
+            "longitude": -13.2,
+            "latitude": 27.15
+          }
+        }
+      }
+    }
+  },
+  "YE": {
+    "label": "Yemen",
+    "label_en": "Yemen",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Aden": {
+            "label": "Aden",
+            "timezone": "Asia/Aden",
+            "longitude": 45.2,
+            "latitude": 12.75
+          }
+        }
+      }
+    }
+  },
+  "ZM": {
+    "label": "Zambia",
+    "label_en": "Zambia",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Lusaka": {
+            "label": "Lusaka",
+            "timezone": "Africa/Lusaka",
+            "longitude": 28.2833,
+            "latitude": -15.4167
+          }
+        }
+      }
+    }
+  },
+  "ZW": {
+    "label": "Zimbabwe",
+    "label_en": "Zimbabwe",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Harare": {
+            "label": "Harare",
+            "timezone": "Africa/Harare",
+            "longitude": 31.05,
+            "latitude": -17.8333
+          }
+        }
+      }
+    }
+  },
+  "AX": {
+    "label": "Åland Islands",
+    "label_en": "Åland Islands",
+    "regions": {
+      "Major cities": {
+        "label": "Major cities",
+        "label_en": "Major cities",
+        "cities": {
+          "Mariehamn": {
+            "label": "Mariehamn",
+            "timezone": "Europe/Mariehamn",
+            "longitude": 19.95,
+            "latitude": 60.1
+          }
+        }
+      }
+    }
+  }
+}
