@@ -20,8 +20,8 @@ struct MINGWebView: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        context.coordinator.applyNativeProCookie(
-            isPro: entitlementStore.isPro,
+        context.coordinator.applySessionCookie(
+            sessionToken: entitlementStore.sessionToken,
             url: url,
             webView: webView
         )
@@ -35,30 +35,53 @@ struct MINGWebView: UIViewRepresentable {
     }
 
     final class Coordinator: NSObject, WKNavigationDelegate {
-        private var lastAppliedIsPro: Bool?
+        private var lastAppliedSessionToken: String?
+        private var didClearLegacyProCookie = false
 
-        func applyNativeProCookie(isPro: Bool, url: URL, webView: WKWebView) {
-            guard lastAppliedIsPro != isPro else { return }
-            lastAppliedIsPro = isPro
+        func applySessionCookie(sessionToken: String?, url: URL, webView: WKWebView) {
+            let token = sessionToken ?? ""
+            guard lastAppliedSessionToken != token || !didClearLegacyProCookie else { return }
+            lastAppliedSessionToken = token
+            didClearLegacyProCookie = true
 
             guard let host = url.host else { return }
-            var properties: [HTTPCookiePropertyKey: Any] = [
-                .domain: host,
-                .path: "/",
-                .name: "bazi_native_pro",
-                .value: isPro ? "1" : "",
-                .expires: isPro ? Date().addingTimeInterval(60 * 60 * 24 * 30) : Date(timeIntervalSince1970: 0)
-            ]
-            if url.scheme == "https" {
-                properties[.secure] = "TRUE"
-            }
+            let cookies = [
+                makeCookie(name: "bazi_native_pro", value: "", host: host, url: url, expires: Date(timeIntervalSince1970: 0)),
+                makeCookie(
+                    name: "bazi_session",
+                    value: token,
+                    host: host,
+                    url: url,
+                    expires: token.isEmpty ? Date(timeIntervalSince1970: 0) : Date().addingTimeInterval(60 * 30)
+                )
+            ].compactMap { $0 }
 
-            guard let cookie = HTTPCookie(properties: properties) else { return }
-            webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) {
+            let group = DispatchGroup()
+            for cookie in cookies {
+                group.enter()
+                webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) {
+                    group.leave()
+                }
+            }
+            group.notify(queue: .main) {
                 if webView.url != nil {
                     webView.reload()
                 }
             }
+        }
+
+        private func makeCookie(name: String, value: String, host: String, url: URL, expires: Date) -> HTTPCookie? {
+            var properties: [HTTPCookiePropertyKey: Any] = [
+                .domain: host,
+                .path: "/",
+                .name: name,
+                .value: value,
+                .expires: expires
+            ]
+            if url.scheme == "https" {
+                properties[.secure] = "TRUE"
+            }
+            return HTTPCookie(properties: properties)
         }
 
         func webView(

@@ -57,7 +57,7 @@ enum AppEnvironment {
            let mode = ProMode(rawValue: rawValue) {
             return mode
         }
-        return .freeFirst
+        return .storeKit
     }
 
     static var isFreeFirstRelease: Bool {

@@ -1016,6 +1016,58 @@
         top: 12px;
       }
 
+      body:not([data-has-reading="true"]) .results {
+        display: none;
+      }
+
+      .onboarding-panel {
+        border: 1px solid rgba(201, 166, 91, 0.34);
+        border-radius: 8px;
+        padding: 14px;
+        margin-bottom: 16px;
+        background: rgba(19, 22, 23, 0.92);
+      }
+
+      .onboarding-panel h3 {
+        margin: 6px 0 8px;
+        font-size: 16px;
+      }
+
+      .onboarding-panel p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .onboarding-steps {
+        display: grid;
+        gap: 7px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .onboarding-steps li {
+        display: grid;
+        grid-template-columns: 24px minmax(0, 1fr);
+        gap: 8px;
+        align-items: start;
+        color: var(--text);
+        font-size: 13px;
+      }
+
+      .onboarding-steps span {
+        display: grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border: 1px solid rgba(201, 166, 91, 0.45);
+        border-radius: 999px;
+        color: var(--gold);
+        font-size: 12px;
+      }
+
       .panel-title {
         display: flex;
         align-items: center;
@@ -4920,10 +4972,22 @@
           <h2 data-i18n="inputTitle">输入</h2>
           <span class="schema-pill" data-i18n="coreVersion">内核 v1.0</span>
         </div>
+        <div id="onboarding-panel" class="onboarding-panel">
+          <span class="brand-eyebrow" data-i18n="onboardingEyebrow">首次设置</span>
+          <h3 data-i18n="onboardingTitle">先建立你的出生资料</h3>
+          <p data-i18n="onboardingBody">完成后此设备会保存设置状态，下次直接进入今日解读；你仍可在这里修改资料并确认重新计算。</p>
+          <ol class="onboarding-steps">
+            <li><span>1</span><strong data-i18n="onboardingStepProduct">产品解释</strong></li>
+            <li><span>2</span><strong data-i18n="onboardingStepBirth">出生资料</strong></li>
+            <li><span>3</span><strong data-i18n="onboardingStepAccuracy">时间准确度</strong></li>
+            <li><span>4</span><strong data-i18n="onboardingStepPrivacy">隐私确认</strong></li>
+            <li><span>5</span><strong data-i18n="onboardingStepGenerate">生成</strong></li>
+          </ol>
+        </div>
         <form id="form">
           <label data-i18n="birthTime">出生时间</label>
           <div class="time-grid">
-            <input id="birth_date" name="birth_date" type="date" value="1990-05-17" aria-label="出生日期" />
+            <input id="birth_date" name="birth_date" type="date" value="" aria-label="出生日期" required />
             <select id="birth_period" name="birth_period" aria-label="上午下午">
               <option value="AM" selected>上午</option>
               <option value="PM">下午</option>
@@ -5207,10 +5271,11 @@
       const statusEl = document.querySelector("#status");
       const generateButton = document.querySelector("#generate-button");
       const historyStorageKey = "bazi.recentCharts.v1";
+      const profileStorageKey = "ming.birthProfile.v1";
       const productEventStorageKey = "ming.productEvents.v1";
       const oracleJournalStorageKey = "ming.oracleJournal.v1";
       const dailyCheckInStorageKey = "ming.dailyCheckins.v1";
-      const releaseMode = new URLSearchParams(window.location.search).get("release") || "free_first";
+      const releaseMode = new URLSearchParams(window.location.search).get("release") || "storekit";
       const isFreeFirstRelease = releaseMode === "free_first";
       const ritualState = { skip: false, active: false };
       const oracleState = {
@@ -5233,7 +5298,9 @@
         generatedAt: "",
         isPro: false,
         entitlementReady: false,
-        canDemoUnlock: false
+        canDemoUnlock: false,
+        setupComplete: false,
+        proReports: {}
       };
       let currentLang = navigator.language && navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
       const copy = {
@@ -5245,6 +5312,15 @@
           heroSignalTraceable: "结论可追溯",
           heroSignalGrounded: "不做宿命恐吓",
           inputTitle: "建立你的生命模式",
+          onboardingEyebrow: "首次设置",
+          onboardingTitle: "先建立你的出生资料",
+          onboardingBody: "完成后此设备会保存设置状态，下次直接进入今日解读；你仍可在这里修改资料并确认重新计算。",
+          onboardingStepProduct: "产品解释",
+          onboardingStepBirth: "出生资料",
+          onboardingStepAccuracy: "时间准确度",
+          onboardingStepPrivacy: "隐私确认",
+          onboardingStepGenerate: "生成",
+          onboardingStatus: "请先完成出生资料，不会显示默认个性化结论。",
           mobileNavInput: "起盘",
           mobileNavOverview: "解读",
           mobileNavChart: "命盘",
@@ -5278,11 +5354,14 @@
           longitude: "经度",
           latitude: "纬度",
           trueSolarTime: "使用真太阳时",
-          saveOnDevice: "将本次命盘保存在此设备",
+          saveOnDevice: "同时保存到最近命盘历史",
+          birthDateRequired: "请先填写出生日期。",
+          profileChangeConfirm: "出生资料已改变。确认重新计算会把此设备上的当前资料更新为新输入，旧记录只会保留在最近命盘历史中。",
+          profileSaved: "已保存设置，下次会直接进入今日解读。",
           recentCharts: "最近命盘",
-          historyPrivacy: "仅在此浏览器保存输入信息，不上传；可随时删除。",
+          historyPrivacy: "完成设置后会在此设备保存当前资料；勾选后还会加入最近命盘历史，可随时删除历史。",
           trustTitle: "隐私与边界",
-          trustData: "出生信息只用于生成本次结构化解读；未勾选保存时，不会写入本机历史。",
+          trustData: "出生信息用于生成结构化解读，并保存在此设备用于下次直接进入 Today；不会用于广告追踪。",
           trustBoundary: "内容用于文化探索和个人反思，不替代医疗、法律、金融或心理专业建议。",
           trustPro: "Pro 解锁的是更完整的解释、行动建议和依据展示，不承诺绝对结果。",
           historyEmpty: "还没有保存在本机的命盘。",
@@ -5773,6 +5852,15 @@
           heroSignalTraceable: "Traceable reasoning",
           heroSignalGrounded: "No fear-based claims",
           inputTitle: "Build Your Life Pattern",
+          onboardingEyebrow: "First Setup",
+          onboardingTitle: "Create your birth profile first",
+          onboardingBody: "After setup, this device remembers the setup state and opens directly to Today. You can still edit details here and confirm recalculation.",
+          onboardingStepProduct: "Product explanation",
+          onboardingStepBirth: "Birth details",
+          onboardingStepAccuracy: "Time accuracy",
+          onboardingStepPrivacy: "Privacy confirmation",
+          onboardingStepGenerate: "Generate",
+          onboardingStatus: "Enter birth details first. No default personalized reading is shown.",
           mobileNavInput: "Start",
           mobileNavOverview: "Reading",
           mobileNavChart: "Chart",
@@ -5806,11 +5894,14 @@
           longitude: "Longitude",
           latitude: "Latitude",
           trueSolarTime: "Use true solar time",
-          saveOnDevice: "Save this chart on this device",
+          saveOnDevice: "Also save to recent chart history",
+          birthDateRequired: "Enter a birth date first.",
+          profileChangeConfirm: "Birth details changed. Confirm recalculation to update the active profile on this device. Older records remain only in recent chart history.",
+          profileSaved: "Setup saved. Next launch opens directly to Today.",
           recentCharts: "Recent Charts",
-          historyPrivacy: "Input details stay in this browser and are never uploaded. Delete them anytime.",
+          historyPrivacy: "After setup, the active profile is saved on this device. Selecting this option also adds a recent chart history entry that can be deleted anytime.",
           trustTitle: "Privacy and Limits",
-          trustData: "Birth details are used to generate this structured reading. If you do not opt in to save, they are not written to local history.",
+          trustData: "Birth details are used to generate this structured reading and are saved on this device for returning directly to Today. They are not used for ad tracking.",
           trustBoundary: "This is for cultural exploration and personal reflection. It is not medical, legal, financial, mental-health, or safety advice.",
           trustPro: "Pro unlocks deeper explanation, practical guidance, and traceable reasoning. It does not promise fixed outcomes.",
           historyEmpty: "No charts have been saved on this device.",
@@ -7100,10 +7191,16 @@
         generateButton.textContent = t("generating");
         statusEl.textContent = t("calculating");
         statusEl.classList.remove("error");
-        resultState.displayName = document.querySelector("#display_name").value.trim();
-        const data = buildRequestData();
-        const ritualPromise = animate ? playCalculationRitual() : Promise.resolve();
+        let data;
+        let ritualPromise = Promise.resolve();
         try {
+          resultState.displayName = document.querySelector("#display_name").value.trim();
+          data = buildRequestData();
+          if (!shouldReplaceActiveProfile(data)) {
+            statusEl.textContent = "";
+            return;
+          }
+          ritualPromise = animate ? playCalculationRitual() : Promise.resolve();
           const { payload } = await fetchJson("/api/generate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -7117,6 +7214,7 @@
           resultState.selectedMonthIndex = 0;
           resultState.activePro = "";
           resultState.requestedPro = "";
+          resultState.proReports = {};
           resultState.generatedAt = new Date().toLocaleTimeString();
           await ritualPromise;
           if (animate && !ritualState.skip) await completeCalculationRitual(payload.result, payload.traits);
@@ -7130,7 +7228,9 @@
           if (document.querySelector("#save_on_device").checked) {
             saveRecentChart(data);
           }
-          statusEl.textContent = `${t("updated")}, ${resultState.generatedAt} ${t("schemaPassed")}`;
+          const profileSaved = writeActiveProfile(data);
+          document.body.dataset.hasReading = "true";
+          statusEl.textContent = `${t("updated")}, ${resultState.generatedAt} ${t("schemaPassed")}${profileSaved ? ` ${t("profileSaved")}` : ""}`;
           if (animate) setMobilePane("overview");
         } catch (error) {
           hideCalculationRitual();
@@ -7277,7 +7377,7 @@
         document.querySelector("#birth_minute").innerHTML = Array.from({ length: 60 }, (_, minute) => {
           return `<option value="${minute}">${String(minute).padStart(2, "0")} ${t("minuteUnit")}</option>`;
         }).join("");
-        setBirthTime("1990-05-17", "AM", 8, 30);
+        setBirthTime("", "AM", 8, 30);
       }
 
       function refreshTimeOptionLabels() {
@@ -7365,12 +7465,104 @@
 
       function buildBirthDateTime() {
         const date = form.birth_date.value;
+        if (!date) throw new Error(t("birthDateRequired"));
         const hour12 = Number(form.birth_hour.value);
         const minute = Number(form.birth_minute.value);
         const period = form.birth_period.value;
         let hour24 = hour12 % 12;
         if (period === "PM") hour24 += 12;
         return `${date}T${String(hour24).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00`;
+      }
+
+      function profileSignatureFromInput(input) {
+        return [
+          input.birth_datetime,
+          input.timezone,
+          input.gender,
+          input.country,
+          input.region,
+          input.city,
+          input.longitude,
+          input.latitude,
+          Boolean(input.use_true_solar_time),
+          input.birth_time_accuracy || ""
+        ].join("|");
+      }
+
+      function readActiveProfile() {
+        try {
+          const profile = JSON.parse(localStorage.getItem(profileStorageKey) || "null");
+          return profile?.setup_complete && profile.input ? profile : null;
+        } catch {
+          return null;
+        }
+      }
+
+      function writeActiveProfile(data) {
+        const profile = {
+          setup_complete: true,
+          saved_at: new Date().toISOString(),
+          display_name: resultState.displayName,
+          input: {
+            birth_datetime: data.birth_datetime,
+            timezone: data.timezone,
+            gender: data.gender,
+            country: data.country,
+            region: data.region,
+            city: data.city,
+            longitude: data.longitude,
+            latitude: data.latitude,
+            use_true_solar_time: Boolean(data.use_true_solar_time),
+            birth_time_accuracy: document.querySelector("#birth_time_accuracy").value
+          }
+        };
+        try {
+          localStorage.setItem(profileStorageKey, JSON.stringify(profile));
+          resultState.setupComplete = true;
+          hideOnboardingPanel();
+          return true;
+        } catch {
+          return false;
+        }
+      }
+
+      function hideOnboardingPanel() {
+        const panel = document.querySelector("#onboarding-panel");
+        if (panel) panel.classList.toggle("hidden", resultState.setupComplete);
+      }
+
+      function applyProfile(profile) {
+        const input = profile.input || {};
+        const dateTime = String(input.birth_datetime || "");
+        const [date, clock = "08:30:00"] = dateTime.split("T");
+        const hour24 = Number(clock.slice(0, 2));
+        const minute = Number(clock.slice(3, 5));
+        const period = hour24 >= 12 ? "PM" : "AM";
+        const hour12 = hour24 % 12 || 12;
+        setBirthTime(date, period, hour12, Number.isFinite(minute) ? minute : 30);
+        if (
+          locationData[input.country]
+          && locationData[input.country].regions[input.region]
+          && locationData[input.country].regions[input.region].cities[input.city]
+        ) {
+          setLocation(input.country, input.region, input.city);
+        }
+        form.gender.value = input.gender || "unknown";
+        form.use_true_solar_time.checked = Boolean(input.use_true_solar_time);
+        document.querySelector("#birth_time_accuracy").value = input.birth_time_accuracy || "exact";
+        updateAccuracyNote();
+        document.querySelector("#display_name").value = profile.display_name || "";
+        resultState.displayName = profile.display_name || "";
+        resultState.setupComplete = true;
+        hideOnboardingPanel();
+      }
+
+      function shouldReplaceActiveProfile(data) {
+        const profile = readActiveProfile();
+        if (!profile?.input) return true;
+        const next = { ...data, birth_time_accuracy: document.querySelector("#birth_time_accuracy").value };
+        if (profileSignatureFromInput(profile.input) === profileSignatureFromInput(next)) return true;
+        return window.confirm(t("profileChangeConfirm"));
       }
 
       function readRecentCharts() {
@@ -7551,7 +7743,12 @@
               requestMonthlyCompass();
             }
           } else {
-            renderProReport(resultState.activePro, productMetrics, payload);
+            const cachedReport = resultState.proReports[resultState.activePro];
+            if (cachedReport) {
+              renderServerProReport(cachedReport);
+            } else {
+              requestProReport(resultState.activePro);
+            }
           }
         } else if (!resultState.isPro) {
           document.querySelector("#pro-report-view").innerHTML = "";
@@ -8469,12 +8666,82 @@
             } else if (resultState.activePro === "monthly") {
               requestMonthlyCompass();
             } else {
-              renderProReport(resultState.activePro, metrics, payload);
+              requestProReport(resultState.activePro);
               statusEl.textContent = t("premiumPending");
             }
             document.querySelector("#pro-report-view").scrollIntoView({ behavior: "smooth", block: "start" });
           });
         });
+      }
+
+      async function requestProReport(moduleKey) {
+        const reportView = document.querySelector("#pro-report-view");
+        reportView.innerHTML = `<article class="pro-report-card"><p>${t("annualLoading")}</p></article>`;
+        statusEl.textContent = t("proUnlocking");
+        try {
+          const { response, payload } = await fetchJson("/api/pro/report", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...buildRequestData(), module: moduleKey, language: currentLang })
+          });
+          if (response.status === 403) {
+            resultState.isPro = false;
+            resultState.activePro = "";
+            updateProAccessState();
+            renderProPaywall();
+            throw new Error(t("proLockedStatus"));
+          }
+          if (!payload.ok) throw new Error(payload.error || "pro_report_failed");
+          resultState.proReports[moduleKey] = payload.report;
+          renderServerProReport(payload.report);
+          statusEl.textContent = t("premiumPending");
+        } catch (error) {
+          statusEl.textContent = error instanceof TypeError ? t("serviceUnavailable") : error.message;
+          statusEl.classList.add("error");
+        }
+      }
+
+      function renderServerProReport(report) {
+        const badges = Array.isArray(report.badges) ? report.badges : [t("proFixedBadge"), t("proNoPredictionBadge")];
+        const summary = Array.isArray(report.summary) ? report.summary : [];
+        const evidence = report.evidence || {};
+        document.querySelector("#pro-report-view").innerHTML = `<article class="pro-report-card">
+          <div class="report-badges">
+            ${badges.map((badge) => `<span class="report-badge">${escapeHtml(badge)}</span>`).join("")}
+          </div>
+          <span class="insight-tag">${t("premiumLayer")}</span>
+          <h3 style="margin: 8px 0 8px; font-size: 18px;">${escapeHtml(report.title || t("premiumTitle"))}</h3>
+          <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75;">${escapeHtml(report.intro || "")}</p>
+          <div class="pro-summary-panel">
+            <div class="pro-summary-header">
+              <h4>${t("proSummaryTitle")}</h4>
+              <span>${t("proSummarySubtitle")}</span>
+            </div>
+            <div class="pro-summary-grid">
+              ${summary.map((card, index) => `<section class="pro-summary-card" style="--summary-color: ${["#c9a65b", "#77b8a0", "#d87863", "#73a8d8"][index % 4]};" data-mark="${index + 1}">
+                <span class="pro-summary-kicker">${escapeHtml(card.label || "")}</span>
+                <strong>${escapeHtml(card.title || "")}</strong>
+                <p>${escapeHtml(card.body || "")}</p>
+              </section>`).join("")}
+            </div>
+          </div>
+          <div class="report-grid">
+            ${(report.blocks || []).map((block) => `<section class="report-block"><h4>${escapeHtml(block.title)}</h4><p>${escapeHtml(block.body)}</p></section>`).join("")}
+            <section class="report-block">
+              <h4>${t("actionChecklistTitle")}</h4>
+              <ul class="report-actions">
+                ${(report.actions || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+              </ul>
+            </section>
+            <section class="report-block">
+              <h4>${t("proEvidenceTitle")}</h4>
+              <p>${escapeHtml(evidence.body || "")}</p>
+            </section>
+          </div>
+          ${reportActionButtons()}
+        </article>`;
+        bindReportActions();
       }
 
       async function requestMonthlyCompass() {
@@ -8753,266 +9020,6 @@
         }
       }
 
-      function compactReportText(text, maxLength = currentLang === "en" ? 138 : 72) {
-        const clean = String(text || "").replace(/\s+/g, " ").trim();
-        if (clean.length <= maxLength) return clean;
-        const firstStop = currentLang === "en"
-          ? clean.search(/[.!?]\s/)
-          : clean.search(/[。！？]/);
-        if (firstStop > 28 && firstStop < maxLength + 18) {
-          return clean.slice(0, firstStop + 1);
-        }
-        return `${clean.slice(0, maxLength).replace(/[，,;；:\s]+$/u, "")}…`;
-      }
-
-      function buildProSummaryCards(report) {
-        const byTitle = new Map(report.blocks.map((block) => [block.title, block]));
-        const core = report.blocks[0];
-        const advantage = byTitle.get(t("advantagePathTitle")) || report.blocks[4] || core;
-        const risk = byTitle.get(t("riskBoundaryTitle")) || report.blocks[5] || core;
-        const marks = currentLang === "en"
-          ? ["P", "U", "!", "→"]
-          : ["象", "用", "界", "行"];
-        return [
-          {
-            label: t("summaryCoreLabel"),
-            title: core.title,
-            body: compactReportText(core.body),
-            color: "#c9a65b",
-            mark: marks[0]
-          },
-          {
-            label: t("summaryAdvantageLabel"),
-            title: advantage.title,
-            body: compactReportText(advantage.body),
-            color: "#77b8a0",
-            mark: marks[1]
-          },
-          {
-            label: t("summaryRiskLabel"),
-            title: risk.title,
-            body: compactReportText(risk.body),
-            color: "#d87863",
-            mark: marks[2]
-          },
-          {
-            label: t("summaryActionLabel"),
-            title: t("summaryActionTitle"),
-            body: compactReportText(report.actions[0] || report.blocks[report.blocks.length - 1]?.body || report.intro),
-            color: "#73a8d8",
-            mark: marks[3]
-          }
-        ];
-      }
-
-      function buildPatternChoiceModule(moduleKey, metrics) {
-        const isEn = currentLang === "en";
-        const labels = activeElementLabels();
-        const tenLabels = activeTenGodLabels();
-        const strongestElement = labels[metrics.strongestElement[0]];
-        const strongestTenGod = tenLabels[metrics.strongestTenGod[0]];
-        const data = {
-          career: {
-            rows: isEn
-              ? [
-                  [
-                    `Your work rhythm leans ${metrics.careerStyle}, with ${metrics.level(metrics.outputScore)} output tendency.`,
-                    "Which role, industry, or collaboration format you actually choose."
-                  ],
-                  [
-                    `Your advantage enters through ${strongestElement} and ${strongestTenGod}.`,
-                    "Whether you turn that advantage into a portfolio, service, process, or business."
-                  ],
-                  [
-                    `Execution stability is ${metrics.level(metrics.ruleScore)}.`,
-                    "How clear you make scope, standards, feedback rhythm, and deadlines."
-                  ]
-                ]
-              : [
-                  [
-                    `你的工作节奏偏${metrics.careerStyle}，输出表达${metrics.level(metrics.outputScore)}。`,
-                    "你最终选择哪个行业、岗位、合作方式。"
-                  ],
-                  [
-                    `优势更容易从${strongestElement}和${strongestTenGod}切入。`,
-                    "你是否把优势沉淀成作品、服务、流程或生意。"
-                  ],
-                  [
-                    `执行稳定性${metrics.level(metrics.ruleScore)}。`,
-                    "你如何设定边界、标准、反馈节奏和期限。"
-                  ]
-                ],
-            checks: isEn
-              ? [
-                  "What is the one deliverable I can finish this week?",
-                  "Who needs to recognize the value this month?",
-                  "What proof, case, or reusable process should remain three months later?"
-                ]
-              : [
-                  "本周我能交付的一个具体结果是什么？",
-                  "本月需要被谁认可，认可标准是什么？",
-                  "三个月后我能留下什么作品、案例或流程？"
-                ]
-          },
-          wealth: {
-            rows: isEn
-              ? [
-                  [
-                    `Opportunity access is ${metrics.level(metrics.wealthScore)}.`,
-                    "Which opportunity deserves time, money, attention, or a small test."
-                  ],
-                  [
-                    `Resource-retention pressure is ${metrics.level(metrics.retentionPressure)}.`,
-                    "Where you set budget caps, review dates, and exit conditions."
-                  ],
-                  [
-                    `The current lens is “${metrics.wealthTag}.”`,
-                    "Whether you slow down enough to compare options instead of reacting."
-                  ]
-                ]
-              : [
-                  [
-                    `机会获取${metrics.level(metrics.wealthScore)}。`,
-                    "哪些机会值得投入时间、金钱、注意力或小规模试错。"
-                  ],
-                  [
-                    `资源留存压力${metrics.level(metrics.retentionPressure)}。`,
-                    "你在哪里设置预算上限、复盘日期和退出条件。"
-                  ],
-                  [
-                    `当前更适合从“${metrics.wealthTag}”角度管理财富议题。`,
-                    "你是否先比较选项，而不是被情绪和外部刺激推着走。"
-                  ]
-                ],
-            checks: isEn
-              ? [
-                  "Is this income potential, necessary cost, or emotional spending?",
-                  "What is the maximum loss I can accept before starting?",
-                  "When will I review the result and stop adding cost?"
-                ]
-              : [
-                  "这是收入机会、必要成本，还是情绪性消费？",
-                  "开始前我能接受的最大损失是多少？",
-                  "我什么时候复盘，什么时候停止追加成本？"
-                ]
-          },
-          relationship: {
-            rows: isEn
-              ? [
-                  [
-                    `Support is ${metrics.level(metrics.supportScore)} and pressure boundary is ${metrics.level(metrics.relationshipPressure)}.`,
-                    "Which relationship, agreement, or conversation you choose to invest in."
-                  ],
-                  [
-                    `The current lens is “${metrics.relationTag}.”`,
-                    "Whether expectations, responsibilities, and requests are spoken clearly."
-                  ],
-                  [
-                    `Your watch point is ${metrics.mainReminderTopic}.`,
-                    "Whether you reduce guessing and turn emotion into a specific request."
-                  ]
-                ]
-              : [
-                  [
-                    `支持感${metrics.level(metrics.supportScore)}，压力边界${metrics.level(metrics.relationshipPressure)}。`,
-                    "你选择把精力投入哪段关系、协议或沟通。"
-                  ],
-                  [
-                    `当前更适合从“${metrics.relationTag}”角度理解互动。`,
-                    "期待、责任和请求是否被具体说清楚。"
-                  ],
-                  [
-                    `最需要留意的是${metrics.mainReminderTopic}。`,
-                    "你是否减少猜测，把情绪翻译成具体请求。"
-                  ]
-                ],
-            checks: isEn
-              ? [
-                  "What fact happened, separate from my interpretation?",
-                  "What concrete request do I want the other person to hear?",
-                  "What boundary protects both support and self-respect?"
-                ]
-              : [
-                  "事实发生了什么，和我的解读分别是什么？",
-                  "我真正希望对方听见的具体请求是什么？",
-                  "什么边界能同时保护支持感和自尊？"
-                ]
-          }
-        };
-        return data[moduleKey] || data.career;
-      }
-
-      function renderProReport(moduleKey, metrics, payload) {
-        const report = buildProReportBlocks(moduleKey, metrics, payload);
-        const summaryCards = buildProSummaryCards(report);
-        const patternChoice = buildPatternChoiceModule(moduleKey, metrics);
-        const badges = [t("proFixedBadge"), t("proLocalBadge"), t("proNoPredictionBadge")];
-        document.querySelector("#pro-report-view").innerHTML = `<article class="pro-report-card">
-          <div class="report-badges">
-            ${badges.map((badge) => `<span class="report-badge">${badge}</span>`).join("")}
-          </div>
-          <span class="insight-tag">${t("premiumLayer")}</span>
-          <h3 style="margin: 8px 0 8px; font-size: 18px;">${report.title}</h3>
-          <p style="margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75;">${report.intro}</p>
-          <div class="pro-summary-panel">
-            <div class="pro-summary-header">
-              <h4>${t("proSummaryTitle")}</h4>
-              <span>${t("proSummarySubtitle")}</span>
-            </div>
-            <div class="pro-summary-grid">
-              ${summaryCards.map((card) => `<section class="pro-summary-card" style="--summary-color: ${card.color};" data-mark="${escapeHtml(card.mark)}">
-                <span class="pro-summary-kicker">${escapeHtml(card.label)}</span>
-                <strong>${escapeHtml(card.title)}</strong>
-                <p>${escapeHtml(card.body)}</p>
-              </section>`).join("")}
-            </div>
-          </div>
-          <div class="pro-method-panel">
-            <section class="pro-method-copy">
-              <span class="pro-method-eyebrow">${t("patternChoiceEyebrow")}</span>
-              <h4>${t("patternChoiceTitle")}</h4>
-              <p>${t("patternChoiceBody")}</p>
-            </section>
-            <section class="pattern-choice-card">
-              <div class="pattern-choice-row header">
-                <div class="pattern-choice-cell">${t("patternShowsLabel")}</div>
-                <div class="pattern-choice-cell">${t("choiceRemainsLabel")}</div>
-              </div>
-              ${patternChoice.rows.map((row) => `<div class="pattern-choice-row">
-                <div class="pattern-choice-cell">${escapeHtml(row[0])}</div>
-                <div class="pattern-choice-cell">${escapeHtml(row[1])}</div>
-              </div>`).join("")}
-            </section>
-            <section class="decision-check-card">
-              <h4>${t("beforeDecisionTitle")}</h4>
-              <p>${t("beforeDecisionSubtitle")}</p>
-              <ul class="decision-check-list">
-                ${patternChoice.checks.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-              </ul>
-            </section>
-          </div>
-          <div class="pro-detail-heading">
-            <strong>${t("proDetailTitle")}</strong>
-            <span>${t("proDetailSubtitle")}</span>
-          </div>
-          <div class="report-grid">
-            ${report.blocks.map((block) => `<section class="report-block"><h4>${block.title}</h4><p>${block.body}</p></section>`).join("")}
-            <section class="report-block">
-              <h4>${t("actionChecklistTitle")}</h4>
-              <ul class="report-actions">
-                ${report.actions.map((item) => `<li>${item}</li>`).join("")}
-              </ul>
-            </section>
-            <section class="report-block">
-              <h4>${t("proEvidenceTitle")}</h4>
-              <p>${report.evidence}</p>
-            </section>
-          </div>
-          ${reportActionButtons()}
-        </article>`;
-        bindReportActions();
-      }
-
       function reportActionButtons() {
         return `<div class="pro-access-actions">
           <button type="button" id="export-pro-report">${t("exportReport")}</button>
@@ -9061,91 +9068,6 @@
         link.click();
         link.remove();
         URL.revokeObjectURL(url);
-      }
-
-      function traitFactorSummary(metrics, traitKey) {
-        const trait = metrics.trait(traitKey);
-        const labels = traitFactorLabels[currentLang];
-        const summarize = (factors) => factors
-          .slice(0, 3)
-          .map((factor) => labels[factor.label_key] || factor.label_key)
-          .join(currentLang === "en" ? ", " : "、");
-        return {
-          positive: summarize(trait.positive_factors) || (currentLang === "en" ? "no dominant factor" : "暂无单一主导因素"),
-          negative: summarize(trait.negative_factors) || (currentLang === "en" ? "no dominant constraint" : "暂无明显制约因素")
-        };
-      }
-
-      function buildProReportBlocks(moduleKey, metrics, payload) {
-        const labels = activeElementLabels();
-        const tenLabels = activeTenGodLabels();
-        const annual = payload.annual_flows.slice(0, 3)
-          .map((item) => `${item.year}${item.pillar.stem.char}${item.pillar.branch.char}/${labels[item.pillar.branch.element]}`)
-          .join("、");
-        const evidenceCount = {
-          career: metrics.traitEvidenceCount("career_momentum"),
-          wealth: metrics.traitEvidenceCount("wealth_generation", "wealth_retention"),
-          relationship: metrics.traitEvidenceCount("relationship_support", "relationship_pressure")
-        };
-        const confidence = {
-          career: metrics.traitConfidenceLabel("career_momentum"),
-          wealth: metrics.traitConfidenceLabel("wealth_retention"),
-          relationship: metrics.traitConfidenceLabel("relationship_pressure")
-        };
-        const factorSummary = {
-          career: traitFactorSummary(metrics, "career_momentum"),
-          wealth: traitFactorSummary(metrics, "wealth_retention"),
-          relationship: traitFactorSummary(metrics, "relationship_pressure")
-        };
-        const common = {
-          career: {
-            title: t("careerReportTitle"),
-            intro: t("careerReportIntro"),
-            blocks: [
-              { title: t("coreProfileTitle"), body: t("workDriverBody")(metrics.careerStyle, metrics.level(metrics.outputScore)) },
-              { title: t("proReadingTitle"), body: t("careerReadingBody")(metrics.careerStyle, metrics.level(metrics.outputScore), metrics.level(metrics.ruleScore)) },
-              { title: t("traitFactorsTitle"), body: t("traitFactorsBody")(factorSummary.career.positive, factorSummary.career.negative) },
-              { title: t("workEnvironmentTitle"), body: t("workEnvironmentBody")(metrics.level(metrics.ruleScore)) },
-              { title: t("advantagePathTitle"), body: t("advantageScenarioBody")(labels[metrics.strongestElement[0]], tenLabels[metrics.strongestTenGod[0]]) },
-              { title: t("riskBoundaryTitle"), body: t("stuckPointBody")(metrics.mainReminderTopic) },
-              { title: t("threeYearTitle"), body: t("threeYearBody")(annual) },
-              { title: t("practicalPlanTitle"), body: t("careerPracticalBody") }
-            ],
-            actions: t("actionChecklist"),
-            evidence: t("proEvidenceBody")(confidence.career, evidenceCount.career)
-          },
-          wealth: {
-            title: t("wealthReportTitle"),
-            intro: t("wealthReportIntro"),
-            blocks: [
-              { title: t("coreProfileTitle"), body: t("wealthCoreProfileBody")(metrics.level(metrics.wealthScore), metrics.level(metrics.retentionPressure), metrics.wealthTag) },
-              { title: t("proReadingTitle"), body: t("wealthReadingBody")(metrics.level(metrics.wealthScore), metrics.level(metrics.retentionPressure)) },
-              { title: t("traitFactorsTitle"), body: t("traitFactorsBody")(factorSummary.wealth.positive, factorSummary.wealth.negative) },
-              { title: t("advantagePathTitle"), body: t("wealthAdvantageBody")(labels[metrics.strongestElement[0]], tenLabels[metrics.strongestTenGod[0]]) },
-              { title: t("riskBoundaryTitle"), body: t("wealthRiskBody")(metrics.level(metrics.retentionPressure), metrics.level(metrics.trait("risk_appetite").score)) },
-              { title: t("threeYearTitle"), body: t("threeYearBody")(annual) },
-              { title: t("practicalPlanTitle"), body: t("wealthPracticalBody") }
-            ],
-            actions: t("wealthActionChecklist"),
-            evidence: t("proEvidenceBody")(confidence.wealth, evidenceCount.wealth)
-          },
-          relationship: {
-            title: t("relationshipReportTitle"),
-            intro: t("relationshipReportIntro"),
-            blocks: [
-              { title: t("coreProfileTitle"), body: t("relationshipCoreProfileBody")(metrics.level(metrics.supportScore), metrics.level(metrics.relationshipPressure), metrics.relationTag) },
-              { title: t("proReadingTitle"), body: t("relationshipReadingBody")(metrics.level(metrics.supportScore), metrics.level(metrics.relationshipPressure)) },
-              { title: t("traitFactorsTitle"), body: t("traitFactorsBody")(factorSummary.relationship.positive, factorSummary.relationship.negative) },
-              { title: t("advantagePathTitle"), body: t("relationshipAdvantageBody")(labels[metrics.strongestElement[0]], tenLabels[metrics.strongestTenGod[0]]) },
-              { title: t("riskBoundaryTitle"), body: t("relationshipRiskBody")(metrics.level(metrics.relationshipPressure), metrics.mainReminderTopic) },
-              { title: t("threeYearTitle"), body: t("threeYearBody")(annual) },
-              { title: t("practicalPlanTitle"), body: t("relationshipPracticalBody") }
-            ],
-            actions: t("relationshipActionChecklist"),
-            evidence: t("proEvidenceBody")(confidence.relationship, evidenceCount.relationship)
-          }
-        };
-        return common[moduleKey] || common.career;
       }
 
       function renderPillars(chart) {
@@ -9496,96 +9418,9 @@
             message.classList.add("error");
             return;
           }
-          try {
-            const oracle = await buildLocalOracleInterpretation(
-              oracleState.lines,
-              oracleState.category,
-              oracleState.horizon
-            );
-            oracleState.result = oracle;
-            renderOracleResult(oracle);
-            message.textContent = t("oracleCastAgainLater");
-          } catch {
-            message.textContent = t("oracleResultError");
-            message.classList.add("error");
-          }
+          message.textContent = t("oracleResultError");
+          message.classList.add("error");
         }
-      }
-
-      async function buildLocalOracleInterpretation(lines, category, horizon) {
-        const response = await fetch("/assets/oracle-rules-v1.json", { cache: "no-store" });
-        if (!response.ok) throw new Error("oracle_rules_unavailable");
-        const rules = await response.json();
-        const primaryBits = lines.map((value) => value === 7 || value === 9 ? "1" : "0");
-        const relatingBits = lines.map((value, index) => {
-          if (value === 9) return "0";
-          if (value === 6) return "1";
-          return primaryBits[index];
-        });
-        const makeHexagram = (bits) => {
-          const lower = rules.trigrams[bits.slice(0, 3).join("")];
-          const upper = rules.trigrams[bits.slice(3).join("")];
-          const row = rules.hexagrams[`${lower.key}|${upper.key}`];
-          return {
-            ...row,
-            lower,
-            upper,
-            binary_bottom_up: bits.join("")
-          };
-        };
-        const primary = makeHexagram(primaryBits);
-        const relating = makeHexagram(relatingBits);
-        const moving = lines
-          .map((value, index) => value === 6 || value === 9 ? index + 1 : null)
-          .filter(Boolean);
-        const positions = {
-          1: "the beginning, motive, and first practical step",
-          2: "inner relationships, support, and workable cooperation",
-          3: "the threshold, pressure, and risk of moving too quickly",
-          4: "the outer environment, access, and influence",
-          5: "the decision center, responsibility, and leadership",
-          6: "culmination, excess, and knowing when to change"
-        };
-        const actions = {
-          general: "Choose one action that tests the reading without making the outcome irreversible.",
-          career: "Translate the pattern into one deliverable, one boundary, and one conversation at work.",
-          wealth: "Set a cost ceiling, validation period, and exit condition before committing resources.",
-          relationship: "State one expectation as a concrete request and confirm what the other person can actually offer.",
-          decision: "Define the smallest reversible test before making the larger commitment.",
-          growth: "Observe the habit the reading points to, then practice one different response for seven days."
-        };
-        return {
-          schema_version: "1.0.0",
-          model_version: `${rules.model_version}-local`,
-          method: "three_coin",
-          horizon,
-          category,
-          lines: lines.map((value, index) => ({
-            position: index + 1,
-            value,
-            yin_yang: value === 7 || value === 9 ? "yang" : "yin",
-            moving: value === 6 || value === 9
-          })),
-          moving_lines: moving,
-          primary,
-          relating,
-          interpretation: {
-            current_state: `${primary.name_en} describes the current structure: ${primary.theme}. The lower trigram points to ${primary.lower.motion}; the upper trigram frames it through ${primary.upper.motion}.`,
-            change_dynamic: moving.length
-              ? `Changing lines ${moving.join(", ")} emphasize ${moving.map((position) => positions[position]).join("; ")}.`
-              : "No line is changing. Read the primary hexagram as a stable snapshot and avoid inventing urgency.",
-            direction: moving.length >= 3
-              ? `With ${moving.length} changing lines, the situation is highly transitional. Give greater weight to movement toward ${relating.name_en}.`
-              : `The relating hexagram, ${relating.name_en}, shows the direction created by the specific changing line or lines.`,
-            action: actions[category],
-            boundary: "Treat the reading as structured reflection, not a promise of outcomes or a substitute for professional advice."
-          },
-          evidence: [
-            { id: "oracle.cast.lines", rule_id: "three_coin_sum_6_7_8_9", description: "Six coin totals supplied bottom to top." },
-            { id: "oracle.hexagram.primary", rule_id: "king_wen_trigram_pair_v1", description: `Primary hexagram mapped to ${primary.number}.` },
-            { id: "oracle.hexagram.relating", rule_id: "moving_lines_invert_v1", description: `Relating hexagram mapped to ${relating.number}.` }
-          ]
-        };
       }
 
       function oracleReadingCopy(result) {
@@ -10007,7 +9842,18 @@
         initLocationSelectors();
         applyLanguage(currentLang);
         await loadEntitlement();
-        await generate({ animate: false });
+        const profile = readActiveProfile();
+        if (profile) {
+          applyProfile(profile);
+          document.body.dataset.hasReading = "true";
+          await generate({ animate: false });
+          setMobilePane("overview", { scroll: false });
+          return;
+        }
+        resultState.setupComplete = false;
+        document.body.dataset.hasReading = "false";
+        hideOnboardingPanel();
+        statusEl.textContent = t("onboardingStatus");
       }
 
       initialize();

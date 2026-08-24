@@ -6,6 +6,7 @@ struct Entitlement: Codable, Equatable {
         case proActive = "pro_active"
         case expired
         case needsRestore = "needs_restore"
+        case revoked
     }
 
     let status: Status
@@ -46,4 +47,11 @@ struct Entitlement: Codable, Equatable {
 struct EntitlementResponse: Codable {
     let ok: Bool
     let entitlement: Entitlement
+    let sessionToken: String?
+
+    enum CodingKeys: String, CodingKey {
+        case ok
+        case entitlement
+        case sessionToken = "session_token"
+    }
 }

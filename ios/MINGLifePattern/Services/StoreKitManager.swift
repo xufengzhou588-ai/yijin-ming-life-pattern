@@ -21,6 +21,7 @@ final class StoreKitManager: ObservableObject {
     @Published private(set) var state: PurchaseState = .idle
 
     private let apiClient = APIClient()
+    private let appAccountToken = InstallationIdentity.appAccountToken
     private var transactionUpdatesTask: Task<Void, Never>?
     private weak var entitlementStore: EntitlementStore?
 
@@ -50,12 +51,12 @@ final class StoreKitManager: ObservableObject {
     func purchase(_ product: Product) async {
         state = .purchasing
         do {
-            let result = try await product.purchase()
+            let result = try await product.purchase(options: [.appAccountToken(appAccountToken)])
             switch result {
             case .success(let verificationResult):
                 let transaction = try checkVerified(verificationResult)
-                entitlementStore?.apply(transaction: transaction, environment: storeEnvironment)
-                await sync(signedTransaction: nil)
+                let response = try await sync(transaction: transaction, verificationResult: verificationResult)
+                entitlementStore?.apply(response)
                 await transaction.finish()
                 state = .purchased
             case .userCancelled, .pending:
@@ -88,10 +89,10 @@ final class StoreKitManager: ObservableObject {
                 let transaction = try checkVerified(result)
                 guard Self.productIDs.contains(transaction.productID) else { continue }
                 foundPro = true
-                entitlementStore?.apply(transaction: transaction, environment: storeEnvironment)
-                await sync(signedTransaction: nil)
+                let response = try await sync(transaction: transaction, verificationResult: result)
+                entitlementStore?.apply(response)
             } catch {
-                entitlementStore?.setError(error.localizedDescription)
+                entitlementStore?.markEntitlementUnavailable(error.localizedDescription)
             }
         }
         if !foundPro {
@@ -112,31 +113,25 @@ final class StoreKitManager: ObservableObject {
         do {
             let transaction = try checkVerified(result)
             guard Self.productIDs.contains(transaction.productID) else { return }
-            entitlementStore?.apply(transaction: transaction, environment: storeEnvironment)
-            await sync(signedTransaction: nil)
+            let response = try await sync(transaction: transaction, verificationResult: result)
+            entitlementStore?.apply(response)
             await transaction.finish()
         } catch {
-            entitlementStore?.setError(error.localizedDescription)
+            entitlementStore?.markEntitlementUnavailable(error.localizedDescription)
         }
     }
 
-    private func sync(signedTransaction: String?) async {
-        guard let signedTransaction else {
-            // Xcode 16.1's StoreKit Transaction type does not expose a signed JWS payload.
-            // Keep the locally verified entitlement active; production server validation
-            // should be wired in the Xcode 26 upload environment where signed transaction
-            // payloads are available.
-            return
-        }
-        do {
-            let entitlement = try await apiClient.syncAppStoreTransaction(
-                jwsRepresentation: signedTransaction
-            )
-            entitlementStore?.apply(entitlement)
-        } catch {
-            // Keep locally verified StoreKit entitlement active if backend sync is temporarily unavailable.
-            entitlementStore?.setError(error.localizedDescription)
-        }
+    private func sync(
+        transaction: Transaction,
+        verificationResult: VerificationResult<Transaction>
+    ) async throws -> EntitlementResponse {
+        try await apiClient.syncAppStoreTransaction(
+            jwsRepresentation: verificationResult.jwsRepresentation,
+            transactionID: String(transaction.id),
+            originalTransactionID: String(transaction.originalID),
+            appAccountToken: transaction.appAccountToken ?? appAccountToken,
+            anonymousInstallID: appAccountToken
+        )
     }
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
@@ -148,15 +143,21 @@ final class StoreKitManager: ObservableObject {
         }
     }
 
-    private var storeEnvironment: String {
-        #if DEBUG
-        return "sandbox"
-        #else
-        return "production"
-        #endif
-    }
-
     private func productPriority(_ id: String) -> Int {
         id == "ming.pro.yearly" ? 0 : 1
+    }
+}
+
+private enum InstallationIdentity {
+    private static let defaultsKey = "ming.appAccountToken.v1"
+
+    static var appAccountToken: UUID {
+        if let stored = UserDefaults.standard.string(forKey: defaultsKey),
+           let uuid = UUID(uuidString: stored) {
+            return uuid
+        }
+        let uuid = UUID()
+        UserDefaults.standard.set(uuid.uuidString, forKey: defaultsKey)
+        return uuid
     }
 }

@@ -4,6 +4,7 @@ import StoreKit
 @MainActor
 final class EntitlementStore: ObservableObject {
     @Published private(set) var entitlement: Entitlement = .free
+    @Published private(set) var sessionToken: String?
     @Published private(set) var lastError: String?
 
     var isPro: Bool {
@@ -12,26 +13,35 @@ final class EntitlementStore: ObservableObject {
 
     func apply(_ entitlement: Entitlement) {
         self.entitlement = entitlement
+        if !entitlement.isPro {
+            self.sessionToken = nil
+        }
         self.lastError = nil
     }
 
-    func apply(transaction: Transaction, environment: String) {
-        let active = transaction.revocationDate == nil && (transaction.expirationDate ?? .distantFuture) > Date()
-        entitlement = Entitlement(
-            status: active ? .proActive : .expired,
-            isPro: active,
-            tier: active ? "pro" : "free",
-            source: "app_store",
-            environment: environment,
-            productID: transaction.productID,
-            expiresAt: transaction.expirationDate,
-            needsRestore: !active,
-            storeKitReady: true
-        )
+    func apply(_ response: EntitlementResponse) {
+        entitlement = response.entitlement
+        sessionToken = response.entitlement.isPro ? response.sessionToken : nil
         lastError = nil
     }
 
     func setError(_ message: String) {
+        lastError = message
+    }
+
+    func markEntitlementUnavailable(_ message: String) {
+        entitlement = Entitlement(
+            status: .needsRestore,
+            isPro: false,
+            tier: "free",
+            source: "app_store",
+            environment: "app",
+            productID: nil,
+            expiresAt: nil,
+            needsRestore: true,
+            storeKitReady: false
+        )
+        sessionToken = nil
         lastError = message
     }
 }
