@@ -11,6 +11,47 @@ Subscription group: `MING Pro`
 | `ming.pro.monthly` | Auto-renewable subscription | USD 9.99 / month | MING Pro Monthly | All Pro reports, monthly compass, annual rhythm, guided oracle, local export. |
 | `ming.pro.yearly` | Auto-renewable subscription | USD 59.99 / year | MING Pro Yearly | Same as monthly, positioned as best value for ongoing reflection. |
 
+## P3 Product Ladder
+
+The US paid release separates static report value from ongoing reflection value.
+
+Free includes:
+
+- core life-pattern blueprint;
+- Today card;
+- daily seal;
+- Muyu Reset;
+- one seven-day pattern quest;
+- simple Oracle preview;
+- on-device history.
+
+One-time purchases are reserved for static or edition-based reports:
+
+| Reserved Product ID | Type | Price test | User-facing name | Included access |
+| --- | --- | --- | --- | --- |
+| `ming.blueprint.complete` | Non-consumable | USD 9.99-14.99 | Complete Life Blueprint | Full static blueprint report. |
+| `ming.year_ahead.2027` | Non-consumable annual edition | Around USD 11.99 | Year Ahead 2027 | One annual rhythm report for the named edition year. |
+
+Do not expose the reserved one-time products in the paywall until the backend
+entitlement contract supports scoped non-subscription purchases.
+
+Pro remains the subscription tier for continuing value:
+
+- Monthly Compass;
+- complete Oracle and Journal;
+- personalized seven-day quests;
+- weekly and monthly history reviews;
+- more rituals and soundscapes;
+- future cross-device sync.
+
+P3 subscription price experiments:
+
+- Monthly: USD 7.99, 8.99, 9.99.
+- Yearly: USD 39.99, 49.99, 59.99.
+
+Current App Store Connect control values remain USD 9.99 monthly and USD 59.99
+yearly until a pricing experiment is explicitly scheduled.
+
 ## Entitlement Shape
 
 The backend and app should normalize Apple purchase state into this response:
@@ -54,6 +95,7 @@ The backend and app should normalize Apple purchase state into this response:
 - Paywall must show subscription nature, price, and restore entry.
 - Pro does not promise guaranteed outcomes.
 - Pro content is informational and reflective, not professional advice.
+- Do not sell luck, merit, random rewards, auto-tapping, or leaderboards.
 
 ## Web Prototype Status
 

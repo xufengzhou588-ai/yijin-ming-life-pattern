@@ -231,7 +231,7 @@
   "muyuStart": "Start Reset",
   "muyuReady": "Choose an intention and begin. Sound, haptics, and motion can all be turned off.",
   "muyuComplete": "Intention set. You made space before acting.",
-  "muyuProNote": "Free includes the daily basic Muyu ritual. Pro may add tones, soundscapes, custom duration, history trends, and personalized ritual sets. No merit, luck, auto-tapping, or leaderboards are sold.",
+  "muyuProNote": "Free includes the daily basic Muyu ritual. Pro adds tones, soundscapes, custom duration, history trends, and personalized ritual sets. No merit, luck, auto-tapping, or leaderboards are sold.",
   "muyuIntentions": [
     {
       "key": "steady_first_step",
@@ -472,7 +472,7 @@
   "proLockedState": "Pro Locked",
   "proUnlockedState": "Pro Active",
   "proPaywallTitle": "Unlock Your Complete Life Blueprint",
-  "proPaywallBody": "The free reading shows your core pattern. Pro turns it into usable personal strategy: deep reports, monthly guidance, annual rhythm, guided oracle reflection, and a private journal. The App Store version will unlock this through subscriptions; this web build is a commercial-flow test only.",
+  "proPaywallBody": "The free reading shows your core pattern. Pro turns it into usable personal strategy: deep reports, monthly guidance, annual rhythm, guided oracle reflection, and a private journal. Purchase and restore are handled through the App Store.",
   "proPlanRecommended": "Recommended",
   "proMonthlyTitle": "Pro Monthly",
   "proMonthlyPrice": "$9.99 / month",
@@ -504,8 +504,8 @@
   "proPrivacy": "Privacy",
   "proSupport": "Support",
   "proMethodology": "Data Sources",
-  "proStoreNote": "The iOS release will use Apple StoreKit for purchase, subscription management, and restore. This web build does not charge real money.",
-  "proRestorePlaceholder": "The iOS release will restore subscriptions from the App Store. This web build is a test environment.",
+  "proStoreNote": "Apple StoreKit handles purchase, subscription management, and restore. MING does not promise luck, outcomes, or professional advice.",
+  "proRestorePlaceholder": "Restore Purchase runs through the App Store in the iOS app; this browser preview cannot restore a native purchase.",
   "proDemoUnlock": "Unlock Pro Preview (Test)",
   "proDemoReset": "Reset to Standard User",
   "proUnlocking": "Verifying Pro entitlement...",

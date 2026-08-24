@@ -60,7 +60,9 @@ Birth date, birth time, birthplace, and optional gender/name are highly personal
 
 ## If Analytics Are Added
 
-Before upload, update the labels if any analytics SDK/server logging collects:
+P3 adds a first-party anonymous event dictionary in `docs/analytics-events-v1.md`.
+The current implementation stores a capped local queue only. Before upload,
+update the labels if any analytics SDK/server logging collects or uploads:
 
 - device identifiers;
 - coarse or precise location;
@@ -70,6 +72,19 @@ Before upload, update the labels if any analytics SDK/server logging collects:
 - birth-input completion funnels.
 
 Analytics must not include raw birth details, oracle questions, or generated reading text.
+
+Allowed P3 events are categorical only: onboarding, reading generation, Today
+view, seal selection, Muyu start/complete, seven-day task completion, weekly
+review view, Oracle start/save, paywall view, purchase start/complete, and
+subscription restore.
+
+Do not include:
+
+- birth date or birth time;
+- country, region, city, timezone, longitude, latitude, or precise birthplace;
+- name or nickname;
+- raw Oracle question;
+- report body, reading JSON, or journal text.
 
 ## Privacy Policy Copy Alignment
 
@@ -81,4 +96,3 @@ The privacy policy should say:
 - how users can contact support;
 - that MING does not sell personal data;
 - that MING does not use personal data for third-party advertising tracking.
-

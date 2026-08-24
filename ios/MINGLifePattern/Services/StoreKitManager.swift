@@ -50,6 +50,10 @@ final class StoreKitManager: ObservableObject {
 
     func purchase(_ product: Product) async {
         state = .purchasing
+        AppAnalytics.record("purchase_started", metadata: [
+            "product_id": product.id,
+            "source": "storekit"
+        ])
         do {
             let result = try await product.purchase(options: [.appAccountToken(appAccountToken)])
             switch result {
@@ -59,6 +63,11 @@ final class StoreKitManager: ObservableObject {
                 entitlementStore?.apply(response)
                 await transaction.finish()
                 state = .purchased
+                AppAnalytics.record("purchase_completed", metadata: [
+                    "product_id": product.id,
+                    "entitlement_status": response.entitlement.status.rawValue,
+                    "source": "storekit"
+                ])
             case .userCancelled, .pending:
                 state = .idle
             @unknown default:
@@ -76,6 +85,10 @@ final class StoreKitManager: ObservableObject {
             try await AppStore.sync()
             await refreshCurrentEntitlements()
             state = entitlementStore?.isPro == true ? .purchased : .idle
+            AppAnalytics.record("subscription_restored", metadata: [
+                "entitlement_status": entitlementStore?.entitlement.status.rawValue ?? Entitlement.Status.free.rawValue,
+                "source": "storekit"
+            ])
         } catch {
             state = .failed("Restore could not be completed.")
             entitlementStore?.setError(error.localizedDescription)

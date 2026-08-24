@@ -25,17 +25,21 @@ Enter your birth details to generate a structured life-pattern reading that expl
 Free features include:
 
 - A core life-pattern overview
-- Structured chart output
-- Plain-language interpretation
-- Privacy-first local review
+- A Today card
+- Daily Focus, Spark, Ground, Connect, and Restore seals
+- Daily Muyu Reset
+- One seven-day pattern quest
+- A simple Oracle preview
+- On-device history
 
-MING Pro adds deeper tools for reflection and decision awareness:
+MING Pro adds ongoing tools for reflection and decision awareness:
 
-- Deeper reports
-- Monthly guidance
-- Annual rhythm analysis
-- Guided I Ching oracle reflection
-- Local export and ongoing review tools
+- Monthly Compass
+- Complete Oracle and Journal
+- Personalized seven-day quests
+- Weekly and monthly review history
+- More rituals and soundscapes
+- Deeper blueprint reports and annual rhythm analysis
 
 MING is for cultural exploration, journaling, and personal reflection. It is not medical, legal, financial, mental-health, safety, or emergency advice, and it does not promise future outcomes.
 
@@ -73,3 +77,4 @@ Prepare before upload:
 - Keep `Lifestyle` as the safest primary category because the app is reflective and cultural.
 - Avoid `Medical`, `Finance`, or wellness-advice positioning.
 - Do not use screenshots or copy that promises fixed outcomes, certainty claims, or professional advice.
+- Keep traditional terms behind optional Chinese Roots or methodology sections; default English should explain the experience without requiring prior Bazi knowledge.

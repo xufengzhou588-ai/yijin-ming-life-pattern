@@ -21,10 +21,12 @@ your birth details to generate a structured reading that explains how you tend
 to move, connect, build, decide, and respond to change.
 
 Free features include a core life-pattern overview, structured chart output,
-and plain-language interpretation.
+plain-language interpretation, Today card, daily seals, Muyu Reset, a simple
+Oracle preview, and on-device history.
 
-MING Pro adds deeper reports, monthly guidance, annual rhythm analysis, and a
-guided three-coin I Ching oracle with a private journal.
+MING Pro adds Monthly Compass, complete Oracle and Journal, personalized
+seven-day quests, weekly and monthly review history, more rituals and
+soundscapes, deeper reports, and annual rhythm analysis.
 
 MING is for cultural exploration and personal reflection. It is not medical,
 legal, financial, mental-health, safety, or emergency advice, and it does not
@@ -42,7 +44,8 @@ life pattern, personal growth, oracle, monthly guidance
 3. Traceable reasoning: evidence-backed structure without fatalistic claims.
 4. Pro reports: career, wealth, relationship, annual, monthly.
 5. Guided oracle: three-coin reflection and private journal.
-6. Privacy-first: save only when you opt in.
+6. Today loop: daily seal, Muyu Reset, small action, seven-day trail.
+7. Privacy-first: save only when you opt in.
 
 ## Review Notes Draft
 
@@ -81,9 +84,12 @@ Prepared production URL targets:
 - Subscription setup: `ios/AppStoreConnect/subscription-products.md`
 - Review notes: `ios/AppStoreConnect/review-notes.md`
 - Screenshot plan: `ios/AppStoreConnect/screenshot-plan.md`
-- TestFlight QA: `ios/AppStoreConnect/testflight-qa-checklist-20260715.md`
+- TestFlight QA: `ios/AppStoreConnect/testflight-qa-checklist-20260825.md`
 - Xcode upload runbook: `ios/AppStoreConnect/xcode26-upload-runbook.md`
 - Export options plist: `ios/AppStoreConnect/exportOptions-app-store-connect.plist`
+- P3 paid release plan: `docs/p3-us-paid-release-2026-08-25.md`
+- Analytics event dictionary: `docs/analytics-events-v1.md`
+- P3 verification baseline: `docs/p3-verification-baseline-2026-08-25.md`
 
 ## Remaining Before Submission
 
@@ -92,5 +98,6 @@ Prepared production URL targets:
 - Backend App Store Server API validation behind `POST /api/app-store/transactions`.
 - Public HTTPS legal/support URLs.
 - Final App icon and screenshots.
-- App privacy questionnaire.
-- TestFlight build and QA.
+- App privacy questionnaire aligned to actual analytics/upload behavior.
+- StoreKit Sandbox purchase, restore, expiry, refund, and revocation QA.
+- 50-100 US TestFlight testers and P3 study notes.

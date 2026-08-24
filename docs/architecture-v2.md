@@ -12,6 +12,7 @@ This document fixes the module boundaries for the P0 paid-access and onboarding 
 - `ios/MINGLifePattern/Stores/` owns app-visible entitlement state returned by the backend.
 - `ios/MINGLifePattern/Views/` owns SwiftUI/WebView presentation only. Views must not mint entitlement cookies or declare Pro directly.
 - `docs/` owns product, release, compliance, architecture, and test-baseline records.
+- `web/js/analytics-*.js` and `ios/MINGLifePattern/Services/AppAnalytics.swift` own the anonymous event contract. They must not accept birth inputs, precise birthplace, names, raw Oracle questions, report text, or journal text.
 
 ## Public Interfaces
 
@@ -47,6 +48,14 @@ Pro modules:
 - `POST /api/oracle/interpret`
 - All require active server-side entitlement.
 
+Analytics:
+
+- Contract: `docs/analytics-events-v1.md`.
+- Web storage key: `ming.productEvents.v1`.
+- iOS storage key: `ming.productEvents.v1`.
+- Current behavior: capped local queue; no third-party SDK.
+- Any future upload pipeline must reuse the event dictionary and privacy denylist.
+
 ## Entitlement Boundary
 
 - The server must reject forged `bazi_native_pro=1` or any other client-declared Pro flag.
@@ -71,3 +80,16 @@ Pro modules:
 - P0 onboarding work owns: `web/index.html`, future `web/onboarding`, `web/profile`, and `web/state` modules, and related docs.
 - If two windows need the same file, one window commits or hands off before the other edits.
 - Generated logs, DerivedData, virtual environments, AppleDouble files, and HTML backups stay out of Git.
+
+## P3 Coordination Ownership
+
+- Window 00 / current task: total control, architecture, API contracts, integration, final gate.
+- Window 01: `server.py`, backend entitlement modules, backend security tests.
+- Window 02: `bazi_core/`, `schemas/`, calculation reliability tests and policy docs.
+- Window 03: `web/index.html`, `web/styles/`, `web/js/`, `web/features/`, `web/locales/`.
+- Window 04: Today retention, Muyu Reset, seven-day quest, retention events.
+- Window 05: `ios/MINGLifePattern/`, Xcode project, StoreKit2, WebView bridge, native haptics and notifications.
+- Window 06: `docs/`, `ios/AppStoreConnect/`, commercial model, US copy, event dictionary, TestFlight research, App Store metadata.
+
+If a task crosses ownership, the owning window commits first or hands off a
+documented contract before another window edits the same files.

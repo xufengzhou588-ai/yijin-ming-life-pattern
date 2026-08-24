@@ -1,4 +1,4 @@
-      const appBuildVersion = "123";
+      const appBuildVersion = "124";
       const appUrl = new URL(window.location.href);
       if (appUrl.searchParams.get("v") !== appBuildVersion) {
         appUrl.searchParams.set("v", appBuildVersion);
@@ -23,6 +23,7 @@
       const resultState = appState.resultState;
       let currentLang = navigator.language && navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
       let ritualReturnFocus = null;
+      const sessionTrackedEvents = new Set();
       const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const copy = window.MING_COPY || { zh: {}, en: {} };
       const elementLabels = {
@@ -841,6 +842,7 @@
         let data;
         let ritualPromise = Promise.resolve();
         try {
+          const wasSetupComplete = resultState.setupComplete;
           resultState.displayName = document.querySelector("#display_name").value.trim();
           data = buildRequestData();
           if (!shouldReplaceActiveProfile(data)) {
@@ -868,7 +870,6 @@
           render(payload.result, payload.traits);
           trackProductEvent("reading_generated", {
             language: currentLang,
-            country: data.country,
             time_accuracy: document.querySelector("#birth_time_accuracy").value,
             true_solar_time: Boolean(data.use_true_solar_time)
           });
@@ -876,6 +877,13 @@
             saveRecentChart(data);
           }
           const profileSaved = writeActiveProfile(data);
+          if (profileSaved && !wasSetupComplete) {
+            trackProductEvent("onboarding_completed", {
+              language: currentLang,
+              time_accuracy: document.querySelector("#birth_time_accuracy").value,
+              true_solar_time: Boolean(data.use_true_solar_time)
+            }, { oncePerSession: true });
+          }
           document.body.dataset.hasReading = "true";
           statusEl.textContent = `${t("updated")}, ${resultState.generatedAt} ${t("schemaPassed")}${profileSaved ? ` ${t("profileSaved")}` : ""}`;
           if (animate) setMobilePane("today");
@@ -1223,8 +1231,12 @@
         return true;
       }
 
-      function trackProductEvent(name, metadata = {}) {
-        window.MINGAnalytics.record(name, metadata, productEventStorageKey);
+      function trackProductEvent(name, metadata = {}, options = {}) {
+        const eventKey = `${name}:${JSON.stringify(metadata)}`;
+        if (options.oncePerSession && sessionTrackedEvents.has(eventKey)) return false;
+        const recorded = window.MINGAnalytics.record(name, metadata, productEventStorageKey);
+        if (recorded && options.oncePerSession) sessionTrackedEvents.add(eventKey);
+        return recorded;
       }
 
       function saveRecentChart(data) {
@@ -1868,7 +1880,6 @@
           dayStatus: "intention_set",
           ...updates
         }, context);
-        trackProductEvent("daily_checkin_collected", { language: currentLang, module: optionKey });
         return record;
       }
 
@@ -1965,6 +1976,11 @@
           muyuTaps: dailyRitualState.taps,
           completedAt: new Date().toISOString()
         });
+        trackProductEvent("muyu_completed", {
+          language: currentLang,
+          duration_seconds: dailyRitualState.durationSeconds,
+          seal_key: optionKey
+        });
         setMuyuStatus(widget, t("muyuComplete"));
         renderDailyCheckin(widget.closest(".daily-card") || document, context);
       }
@@ -1991,7 +2007,11 @@
         updateMuyuProgress(widget, context);
         stopMuyuTimer();
         dailyRitualState.intervalId = window.setInterval(() => updateMuyuProgress(widget, context), 250);
-        trackProductEvent("muyu_reset_started", { language: currentLang, duration_seconds: prefs.durationSeconds });
+        trackProductEvent("muyu_started", {
+          language: currentLang,
+          duration_seconds: prefs.durationSeconds,
+          seal_key: widget.dataset.selectedCheckin || recommendedDailyCheckin(context.themeKey, context.relation)
+        });
       }
 
       function renderDailyCheckin(container, context) {
@@ -2022,6 +2042,12 @@
         const repairTarget = dailyRepairTarget(records);
         const canRepair = repairTarget && repairsUsed < 2;
         const rhythmLabel = prefs.showStreak ? t("dailyRhythmCount")(stats.streak) : t("dailyRhythmHidden");
+        if (records.length) {
+          trackProductEvent("weekly_review_viewed", {
+            language: currentLang,
+            review_period: "seven_day"
+          }, { oncePerSession: true });
+        }
         widget.innerHTML = `
           <div class="daily-checkin-header">
             <div>
@@ -2121,6 +2147,11 @@
           const optionButton = event.target.closest("[data-checkin-option]");
           if (optionButton) {
             widget.dataset.selectedCheckin = optionButton.dataset.checkinOption;
+            trackProductEvent("seal_selected", {
+              language: currentLang,
+              seal_key: widget.dataset.selectedCheckin,
+              module: context.themeKey
+            });
             renderDailyCheckin(container, context);
             return;
           }
@@ -2162,6 +2193,13 @@
               actionKey: widget.dataset.selectedAction || selectedAction.key,
               eveningStatus: eveningButton.dataset.eveningStatus
             });
+            if (eveningButton.dataset.eveningStatus === "completed") {
+              trackProductEvent("quest_action_completed", {
+                language: currentLang,
+                action_key: widget.dataset.selectedAction || selectedAction.key,
+                seal_key: widget.dataset.selectedCheckin || selectedOption.key
+              });
+            }
             renderDailyCheckin(container, context);
             return;
           }
@@ -2292,6 +2330,11 @@
         const pillarLabel = formatDailyPillarLabel(today);
         const dateStamp = t("dailyDateStamp")(formatDailyDate(), pillarLabel);
         const dailySealKey = recommendedDailyCheckin(themeKey, relation);
+        trackProductEvent("today_viewed", {
+          language: currentLang,
+          module: themeKey,
+          surface: "today"
+        }, { oncePerSession: true });
         container.innerHTML = `<article class="daily-card">
           <img class="daily-card-spirit" src="${dailySealImageSrc(dailySealKey)}" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div class="daily-card-header">
@@ -3306,7 +3349,7 @@
           oracleState.question = question;
           oracleState.category = document.querySelector("#oracle_category").value;
           oracleState.horizon = document.querySelector("#oracle_horizon").value;
-          trackProductEvent("oracle_cast_started", {
+          trackProductEvent("oracle_started", {
             language: currentLang,
             module: oracleState.category
           });
@@ -3424,10 +3467,6 @@
           oracleState.result = oracle;
           renderOracleResult(oracle);
           message.textContent = t("oracleCastAgainLater");
-          trackProductEvent("oracle_reading_completed", {
-            language: currentLang,
-            module: oracleState.category
-          });
         } catch (error) {
           if (!resultState.isPro || error.message === t("oracleProRequired")) {
             message.textContent = t("oracleProRequired");
@@ -3771,7 +3810,7 @@
         writeOracleJournal([record, ...items]);
         renderOracleJournal();
         document.querySelector("#oracle-message").textContent = t("oracleSaved");
-        trackProductEvent("oracle_reading_saved", {
+        trackProductEvent("oracle_saved", {
           language: currentLang,
           module: oracleState.category
         });
@@ -3870,6 +3909,7 @@
         document.body.dataset.hasReading = "false";
         hideOnboardingPanel();
         statusEl.textContent = t("onboardingStatus");
+        trackProductEvent("onboarding_started", { language: currentLang }, { oncePerSession: true });
       }
 
       initialize();

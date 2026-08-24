@@ -231,7 +231,7 @@
   "muyuStart": "开始 Reset",
   "muyuReady": "选择意图后开始；声音、触感和动画都可关闭。",
   "muyuComplete": "Intention set. You made space before acting.",
-  "muyuProNote": "免费版包含每日基础木鱼仪式。Pro 未来只扩展音色、音景、自定义时长、历史趋势和个性化组合；不出售功德、好运、自动敲击或排行榜。",
+  "muyuProNote": "免费版包含每日基础木鱼仪式。Pro 可解锁更多音色、音景、自定义时长、历史趋势和个性化组合；不出售功德、好运、自动敲击或排行榜。",
   "muyuIntentions": [
     {
       "key": "steady_first_step",
@@ -472,7 +472,7 @@
   "proLockedState": "Pro 未解锁",
   "proUnlockedState": "Pro 已解锁",
   "proPaywallTitle": "解锁你的完整生命蓝图",
-  "proPaywallBody": "免费解读展示核心模式；Pro 负责把它变成可执行的个人策略：深度报告、月度指南、年度节奏、一问一卦和本地记录。上线后将通过 App Store 订阅解锁，当前网页仅用于商业化流程测试。",
+  "proPaywallBody": "免费解读展示核心模式；Pro 把它变成可执行的个人策略：深度报告、月度指南、年度节奏、一问一卦和本地记录。购买与恢复通过 App Store 处理。",
   "proPlanRecommended": "推荐",
   "proMonthlyTitle": "Pro 月度会员",
   "proMonthlyPrice": "$9.99 / 月",
@@ -504,8 +504,8 @@
   "proPrivacy": "隐私政策",
   "proSupport": "支持",
   "proMethodology": "数据来源",
-  "proStoreNote": "正式 iOS 版将使用 Apple StoreKit 购买、订阅管理和恢复购买；网页测试不会真实扣款。",
-  "proRestorePlaceholder": "正式 iOS 版会从 App Store 恢复订阅；当前网页为测试环境。",
+  "proStoreNote": "购买、订阅管理和恢复购买由 Apple StoreKit 处理。MING 不承诺好运、结果或专业建议。",
+  "proRestorePlaceholder": "恢复购买需要在 iOS App 中通过 App Store 完成；浏览器预览不能恢复原生购买。",
   "proDemoUnlock": "解锁 Pro 预览（测试）",
   "proDemoReset": "重置为普通用户",
   "proUnlocking": "正在验证 Pro 权益...",

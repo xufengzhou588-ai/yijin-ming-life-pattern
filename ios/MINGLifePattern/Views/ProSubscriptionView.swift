@@ -30,6 +30,11 @@ struct ProSubscriptionView: View {
                     await storeKitManager.loadProducts()
                 }
             }
+            .onAppear {
+                AppAnalytics.record("paywall_viewed", metadata: [
+                    "surface": "native_pro"
+                ])
+            }
         }
     }
 
@@ -37,7 +42,7 @@ struct ProSubscriptionView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Unlock your complete life blueprint")
                 .font(.title2.bold())
-            Text(AppEnvironment.isFreeFirstRelease ? "Pro reports are being polished for the next release." : "Deep reports, monthly guidance, annual rhythm, and guided oracle reflection.")
+            Text(AppEnvironment.isFreeFirstRelease ? "Pro reports are being polished for the next release." : "Monthly Compass, complete Oracle and Journal, review history, deeper reports, and ritual soundscapes.")
                 .foregroundStyle(.secondary)
         }
     }
@@ -63,10 +68,10 @@ struct ProSubscriptionView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(AppEnvironment.isFreeFirstRelease ? "Planned for Pro" : "Included with Pro")
                 .font(.headline)
-            benefit("Complete Life Blueprint", "Career, wealth, and relationship deep reports.")
+            benefit("Complete Life Blueprint", "Career, money, relationship, and annual rhythm reports.")
             benefit("Monthly Compass", "One focus, one boundary, one experiment, one reflection prompt.")
-            benefit("Annual Rhythm", "Five-year timing map without fixed predictions.")
-            benefit("Guided Oracle", "Three-coin casting, plain-English reading, and private journal.")
+            benefit("Oracle and Journal", "Complete three-coin reading with private on-device history.")
+            benefit("Ritual Soundscapes", "More Muyu tones, soundscapes, and personalized ritual sets.")
         }
     }
 

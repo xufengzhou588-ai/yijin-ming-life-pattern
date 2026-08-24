@@ -11,6 +11,7 @@
 		2A1001022C45A00100000001 /* Entitlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1002022C45A00100000001 /* Entitlement.swift */; };
 		2A1001032C45A00100000001 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1002032C45A00100000001 /* APIClient.swift */; };
 		2A1001042C45A00100000001 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1002042C45A00100000001 /* StoreKitManager.swift */; };
+		2A10010C2C45A00100000001 /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10020E2C45A00100000001 /* AppAnalytics.swift */; };
 		2A1001052C45A00100000001 /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1002052C45A00100000001 /* EntitlementStore.swift */; };
 		2A1001062C45A00100000001 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1002062C45A00100000001 /* AppEnvironment.swift */; };
 		2A1001072C45A00100000001 /* LegalLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1002072C45A00100000001 /* LegalLinksView.swift */; };
@@ -25,6 +26,7 @@
 		2A1002022C45A00100000001 /* Entitlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entitlement.swift; sourceTree = "<group>"; };
 		2A1002032C45A00100000001 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		2A1002042C45A00100000001 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		2A10020E2C45A00100000001 /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
 		2A1002052C45A00100000001 /* EntitlementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementStore.swift; sourceTree = "<group>"; };
 		2A1002062C45A00100000001 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		2A1002072C45A00100000001 /* LegalLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinksView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		2A1004062C45A00100000001 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2A10020E2C45A00100000001 /* AppAnalytics.swift */,
 				2A1002032C45A00100000001 /* APIClient.swift */,
 				2A1002042C45A00100000001 /* StoreKitManager.swift */,
 			);
@@ -211,6 +214,7 @@
 			files = (
 				2A1001012C45A00100000001 /* MINGLifePatternApp.swift in Sources */,
 				2A1001022C45A00100000001 /* Entitlement.swift in Sources */,
+				2A10010C2C45A00100000001 /* AppAnalytics.swift in Sources */,
 				2A1001032C45A00100000001 /* APIClient.swift in Sources */,
 				2A1001042C45A00100000001 /* StoreKitManager.swift in Sources */,
 				2A1001052C45A00100000001 /* EntitlementStore.swift in Sources */,
