@@ -13,9 +13,8 @@ This project currently compiles locally with Xcode 16.1 for simulator developmen
 - Bundle ID: `app.mingpattern.life`.
 - Xcode 26+ selected with `xcode-select`.
 - Signing team configured in Xcode.
-- Subscription products created:
-  - `ming.pro.monthly`
-  - `ming.pro.yearly`
+- `MING_PRO_MODE` is `free_first` in
+  `ios/MINGLifePattern/Resources/Info.plist`.
 - Public HTTPS URLs live:
   - `https://mingpattern.app/app`
   - `https://mingpattern.app/legal/privacy`
@@ -29,13 +28,14 @@ This project currently compiles locally with Xcode 16.1 for simulator developmen
 3. Set Team under Signing & Capabilities.
 4. Confirm Bundle Identifier is `app.mingpattern.life`.
 5. Confirm Version and Build in `Info.plist`.
-6. Select a generic iOS device destination.
-7. Run `Product > Archive`.
-8. In Organizer, choose `Distribute App`.
-9. Select `App Store Connect`.
-10. Upload symbols.
-11. Let Xcode manage signing unless the team requires manual profiles.
-12. Upload.
+6. Confirm `MING_PRO_MODE` is `free_first`.
+7. Select a generic iOS device destination.
+8. Run `Product > Archive`.
+9. In Organizer, choose `Distribute App`.
+10. Select `App Store Connect`.
+11. Upload symbols.
+12. Let Xcode manage signing unless the team requires manual profiles.
+13. Upload.
 
 ## Command-Line Archive Path
 
@@ -73,11 +73,10 @@ Then manually verify on a simulator or device:
 
 - launch app;
 - generate a free reading;
-- open Pro tab;
-- products load from StoreKit sandbox;
-- purchase sandbox subscription;
-- restore purchase;
-- web reading unlocks Pro through native entitlement;
+- open MING Pro preview;
+- confirm no purchase button is visible;
+- confirm no Restore Purchase button is visible;
+- confirm no demo unlock is visible;
 - legal/support links open;
 - no demo unlock endpoint works in production mode.
 

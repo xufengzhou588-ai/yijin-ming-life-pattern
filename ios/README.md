@@ -5,9 +5,9 @@ This folder contains the SwiftUI source skeleton for the App Store version of
 
 The first release strategy is a native iOS shell with:
 
-- SwiftUI tab navigation;
+- SwiftUI navigation;
 - WKWebView for the existing life-pattern experience;
-- native StoreKit2 Pro purchase and restore flow;
+- free-first MING Pro preview with no active purchase or Restore Purchase flow;
 - native Trust screen for privacy, terms, and support;
 - production-shaped entitlement models matching the Python backend.
 
@@ -22,7 +22,7 @@ The first release strategy is a native iOS shell with:
 7. Bundle ID target: `app.mingpattern.life`.
 8. Copy the files under `ios/MINGLifePattern/` into the Xcode target.
 9. Add `ios/MINGLifePattern/Resources/Info.plist` values to the target Info settings.
-10. Add StoreKit products from `ios/StoreKit/storekit-products-local.md` or create a `.storekit` file in Xcode.
+10. Confirm `MING_PRO_MODE` is `free_first` for the 1.0 App Store submission.
 
 ## Required Runtime URLs
 
@@ -42,20 +42,33 @@ The current defaults are placeholders:
 - `https://mingpattern.app/legal/terms`
 - `https://mingpattern.app/support`
 
-## StoreKit Product IDs
+## Later StoreKit Product IDs
 
 - `ming.pro.monthly`
 - `ming.pro.yearly`
 
-The app source uses these IDs in `StoreKitManager.productIDs`.
+The app source uses these IDs in `StoreKitManager.productIDs`, but StoreKit is
+not started when `MING_PRO_MODE=free_first`.
 
 ## App Store Boundary
 
-MING Pro sells digital interpretation content. It must use App Store IAP.
-Do not add external payment links or external purchase language.
+MING 1.0 is free. It must not show purchase, Restore Purchase, external payment
+links, or external purchase language.
 
-## Current Gap
+The later paid MING Pro update sells digital interpretation content and must use
+App Store IAP.
 
-The Python backend exposes a production-shaped entitlement object, but it does
-not yet validate App Store signed transactions. Implement
-`POST /api/app-store/transactions` before TestFlight payment testing.
+## Current StoreKit Status
+
+The Python backend exposes `POST /api/app-store/transactions` and
+`POST /api/app-store/notifications` for App Store signed transaction and server
+notification validation.
+
+Real Sandbox/TestFlight testing still requires App Store Connect products,
+sandbox tester accounts, Apple signing, public HTTPS runtime URLs, and App
+Store Server API credentials configured on the backend. Do not use the local
+demo unlock or insecure StoreKit stub as App Review evidence.
+
+Use `docs/p5-02-storekit-sandbox-app-store-submission-2026-08-25.md` for the
+later paid Sandbox QA checklist, evidence template, and remaining submission
+blockers.

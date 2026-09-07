@@ -49,15 +49,16 @@ life pattern, personal growth, oracle, monthly guidance
 
 ## Review Notes Draft
 
+Use `ios/AppStoreConnect/review-notes-free-first.md` for the 1.0 free-first
+submission.
+
+MING's first App Store release is free. It does not include active In-App
+Purchase, external payment, active subscriptions, StoreKit purchase, or Restore
+Purchase. Pro surfaces preview planned future functionality only.
+
 MING is an informational lifestyle app for cultural exploration and personal
 reflection. It does not provide medical, legal, financial, mental-health, safety,
 or emergency advice. It does not guarantee outcomes or make absolute predictions.
-
-Pro access is sold through App Store auto-renewable subscriptions. Restore
-Purchase is available on the Pro paywall.
-
-If a reviewer needs Pro access, provide a sandbox account or review instructions
-after StoreKit is connected.
 
 ## Required URLs
 
@@ -90,14 +91,34 @@ Prepared production URL targets:
 - P3 paid release plan: `docs/p3-us-paid-release-2026-08-25.md`
 - Analytics event dictionary: `docs/analytics-events-v1.md`
 - P3 verification baseline: `docs/p3-verification-baseline-2026-08-25.md`
+- US free App Store launch checklist:
+  `docs/us-free-app-store-launch-2026-09-07.md`
+- App Store preflight checkpoint:
+  `docs/app-store-preflight-2026-08-26.md`
+- P5-01 production persistence:
+  `docs/p5-production-persistence-2026-08-25.md`
+- P5-02 StoreKit Sandbox and submission checklist:
+  `docs/p5-02-storekit-sandbox-app-store-submission-2026-08-25.md`
+- P5-03 navigation, Paywall, and accessibility:
+  `docs/p5-nav-paywall-a11y-2026-08-25.md`
+- P5-04 anonymous funnel and TestFlight experiment:
+  `docs/p5-anonymous-funnel-testflight-2026-08-25.md`
 
 ## Remaining Before Submission
 
 - Build/archive on Xcode 26+ with valid Apple signing.
-- StoreKit products in App Store Connect.
-- Backend App Store Server API validation behind `POST /api/app-store/transactions`.
 - Public HTTPS legal/support URLs.
 - Final App icon and screenshots.
 - App privacy questionnaire aligned to actual analytics/upload behavior.
+- App Store Connect app record, price set to Free, and first availability set
+  to United States.
+- TestFlight smoke on a real iPhone.
+
+Deferred to the paid v1.1 submission:
+
+- StoreKit products in App Store Connect.
+- Backend App Store Server API credentials and Apple root certificates deployed
+  for `POST /api/app-store/transactions` and
+  `POST /api/app-store/notifications`.
 - StoreKit Sandbox purchase, restore, expiry, refund, and revocation QA.
-- 50-100 US TestFlight testers and P3 study notes.
+- 50-100 US TestFlight paid-study testers and P3 study notes.

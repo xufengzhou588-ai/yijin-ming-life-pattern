@@ -27,13 +27,20 @@ Reference name: `MING Pro`
 - Display name: `MING Pro Yearly`
 - Description: `A year of MING Pro reflection tools and deep reports.`
 
-## Sandbox Test Cases
+## Local StoreKit Test Cases
 
 1. Purchase monthly from a free account.
 2. Purchase yearly from a free account.
 3. Restore purchase after app reinstall.
 4. Cancel or expire subscription in StoreKit test session.
 5. Confirm Pro endpoints lock again when entitlement is expired.
+6. Force a pending purchase state and confirm Pro remains locked.
+7. Point the app at a backend without Apple validation credentials and confirm
+   the app shows validation unavailable.
+
+Local StoreKit configuration verifies UI and StoreKit state handling only. Real
+Sandbox/TestFlight evidence must use App Store Connect products, sandbox Apple
+accounts, a signed build, and backend App Store Server API validation.
 
 ## Expected App Entitlement Mapping
 
@@ -42,4 +49,7 @@ Reference name: `MING Pro`
 | Verified active monthly/yearly transaction | `pro_active` |
 | No current transaction | `free` |
 | Expired transaction | `expired` |
+| Refunded or revoked transaction | `revoked` |
 | Restore requested but no transaction found | `needs_restore` |
+| Pending purchase | no Pro unlock until Apple completes the transaction |
+| Cancelled purchase | no Pro unlock and no backend sync |

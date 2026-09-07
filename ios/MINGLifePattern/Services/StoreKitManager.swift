@@ -9,6 +9,10 @@ final class StoreKitManager: ObservableObject {
         case purchasing
         case restoring
         case purchased
+        case restored
+        case cancelled
+        case pending
+        case noActiveSubscription
         case failed(String)
     }
 
@@ -50,7 +54,7 @@ final class StoreKitManager: ObservableObject {
 
     func purchase(_ product: Product) async {
         state = .purchasing
-        AppAnalytics.record("purchase_started", metadata: [
+        AppAnalytics.record("purchase_start", metadata: [
             "product_id": product.id,
             "source": "storekit"
         ])
@@ -63,40 +67,85 @@ final class StoreKitManager: ObservableObject {
                 entitlementStore?.apply(response)
                 await transaction.finish()
                 state = .purchased
-                AppAnalytics.record("purchase_completed", metadata: [
+                AppAnalytics.record("purchase_success", metadata: [
                     "product_id": product.id,
                     "entitlement_status": response.entitlement.status.rawValue,
                     "source": "storekit"
                 ])
-            case .userCancelled, .pending:
-                state = .idle
+            case .userCancelled:
+                AppAnalytics.record("purchase_cancel", metadata: [
+                    "product_id": product.id,
+                    "source": "storekit",
+                    "cancel_reason": "user_cancelled"
+                ])
+                state = .cancelled
+            case .pending:
+                AppAnalytics.record("purchase_failure", metadata: [
+                    "product_id": product.id,
+                    "source": "storekit",
+                    "failure_stage": "purchase",
+                    "error_code": "pending_approval"
+                ])
+                state = .pending
             @unknown default:
+                AppAnalytics.record("purchase_failure", metadata: [
+                    "product_id": product.id,
+                    "source": "storekit",
+                    "failure_stage": "purchase",
+                    "error_code": "unknown_result"
+                ])
                 state = .failed("Unknown purchase result.")
             }
         } catch {
-            state = .failed("Purchase could not be completed.")
-            entitlementStore?.setError(error.localizedDescription)
+            let message = userFacingMessage(for: error)
+            AppAnalytics.record("purchase_failure", metadata: [
+                "product_id": product.id,
+                "source": "storekit",
+                "failure_stage": "purchase",
+                "error_code": "storekit_error"
+            ])
+            state = .failed(message)
+            entitlementStore?.setError(message)
         }
     }
 
     func restorePurchases() async {
         state = .restoring
+        AppAnalytics.record("restore", metadata: [
+            "source": "storekit",
+            "status": "started"
+        ])
         do {
             try await AppStore.sync()
-            await refreshCurrentEntitlements()
-            state = entitlementStore?.isPro == true ? .purchased : .idle
-            AppAnalytics.record("subscription_restored", metadata: [
+            let entitlement = await refreshCurrentEntitlements()
+            if entitlementStore?.isPro == true {
+                state = .restored
+            } else if entitlement.status == .expired || entitlement.status == .revoked || entitlement.status == .needsRestore {
+                state = .failed(statusMessage(for: entitlement))
+            } else {
+                state = .noActiveSubscription
+            }
+            AppAnalytics.record("restore", metadata: [
                 "entitlement_status": entitlementStore?.entitlement.status.rawValue ?? Entitlement.Status.free.rawValue,
-                "source": "storekit"
+                "source": "storekit",
+                "status": "success"
             ])
         } catch {
-            state = .failed("Restore could not be completed.")
-            entitlementStore?.setError(error.localizedDescription)
+            let message = userFacingMessage(for: error)
+            AppAnalytics.record("restore", metadata: [
+                "source": "storekit",
+                "status": "failure",
+                "error_code": "storekit_error"
+            ])
+            state = .failed(message)
+            entitlementStore?.setError(message)
         }
     }
 
-    func refreshCurrentEntitlements() async {
+    @discardableResult
+    func refreshCurrentEntitlements() async -> Entitlement {
         var foundPro = false
+        var syncFailed = false
         for await result in Transaction.currentEntitlements {
             do {
                 let transaction = try checkVerified(result)
@@ -105,11 +154,25 @@ final class StoreKitManager: ObservableObject {
                 let response = try await sync(transaction: transaction, verificationResult: result)
                 entitlementStore?.apply(response)
             } catch {
-                entitlementStore?.markEntitlementUnavailable(error.localizedDescription)
+                syncFailed = true
+                entitlementStore?.markEntitlementUnavailable(userFacingMessage(for: error))
             }
         }
-        if !foundPro {
+        if foundPro || syncFailed {
+            return entitlementStore?.entitlement ?? .free
+        }
+        do {
+            let response = try await apiClient.fetchEntitlement()
+            entitlementStore?.apply(response)
+            return response.entitlement
+        } catch {
             entitlementStore?.apply(.free)
+            AppAnalytics.record("free_entitlement", metadata: [
+                "entitlement_status": Entitlement.Status.free.rawValue,
+                "entitlement_tier": "free",
+                "source": "storekit"
+            ], options: .init(throttleSeconds: 300))
+            return .free
         }
     }
 
@@ -130,7 +193,7 @@ final class StoreKitManager: ObservableObject {
             entitlementStore?.apply(response)
             await transaction.finish()
         } catch {
-            entitlementStore?.markEntitlementUnavailable(error.localizedDescription)
+            entitlementStore?.markEntitlementUnavailable(userFacingMessage(for: error))
         }
     }
 
@@ -143,7 +206,7 @@ final class StoreKitManager: ObservableObject {
             transactionID: String(transaction.id),
             originalTransactionID: String(transaction.originalID),
             appAccountToken: transaction.appAccountToken ?? appAccountToken,
-            anonymousInstallID: appAccountToken
+            anonymousInstallID: InstallationIdentity.analyticsInstallID
         )
     }
 
@@ -159,18 +222,52 @@ final class StoreKitManager: ObservableObject {
     private func productPriority(_ id: String) -> Int {
         id == "ming.pro.yearly" ? 0 : 1
     }
+
+    private func userFacingMessage(for error: Error) -> String {
+        if let localized = (error as? LocalizedError)?.errorDescription, !localized.isEmpty {
+            return localized
+        }
+        return error.localizedDescription
+    }
+
+    private func statusMessage(for entitlement: Entitlement) -> String {
+        switch entitlement.status {
+        case .expired:
+            return "No active Pro subscription was found. Your previous subscription appears expired."
+        case .revoked:
+            return "No active Pro subscription was found. This subscription is no longer active."
+        case .needsRestore:
+            if !entitlement.storeKitReady {
+                return "App Store validation is temporarily unavailable. Please try again later."
+            }
+            return "No active Pro subscription was found for this Apple ID."
+        case .free:
+            return "No active Pro subscription was found for this Apple ID."
+        case .proActive:
+            return "Subscription entitlement is active."
+        }
+    }
 }
 
-private enum InstallationIdentity {
+enum InstallationIdentity {
     private static let defaultsKey = "ming.appAccountToken.v1"
+    private static let analyticsDefaultsKey = "ming.analytics.installId.v1"
 
     static var appAccountToken: UUID {
-        if let stored = UserDefaults.standard.string(forKey: defaultsKey),
+        storedUUID(forKey: defaultsKey)
+    }
+
+    static var analyticsInstallID: UUID {
+        storedUUID(forKey: analyticsDefaultsKey)
+    }
+
+    private static func storedUUID(forKey key: String) -> UUID {
+        if let stored = UserDefaults.standard.string(forKey: key),
            let uuid = UUID(uuidString: stored) {
             return uuid
         }
         let uuid = UUID()
-        UserDefaults.standard.set(uuid.uuidString, forKey: defaultsKey)
+        UserDefaults.standard.set(uuid.uuidString, forKey: key)
         return uuid
     }
 }

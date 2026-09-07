@@ -114,7 +114,8 @@ Product > Scheme > Edit Scheme > Run > Options > StoreKit Configuration
 For local UI flow only:
 
 ```bash
-BAZI_STOREKIT_STUB=1 python server.py
+BAZI_STOREKIT_STUB=1 BAZI_ALLOW_INSECURE_STOREKIT_STUB=1 APP_STORE_ENVIRONMENT=sandbox \
+python server.py
 ```
 
 This lets the backend return a sandbox-like Pro entitlement from
@@ -131,7 +132,8 @@ Do not use this for TestFlight or production.
    - `ming.pro.yearly`
 4. Host legal/support pages on public HTTPS URLs.
 5. Host backend on public HTTPS API URL.
-6. Implement real App Store Server API validation.
+6. Configure App Store Server API credentials, root certificates, entitlement
+   database path, stable session secret, and secure cookies in production.
 7. Replace placeholder Info.plist URLs.
 8. Build Archive and upload to TestFlight.
 
@@ -146,7 +148,8 @@ ios/AppStoreConnect/review-notes.md
 
 ## Known Non-Negotiable Gap
 
-The iOS StoreKit2 client skeleton exists, but real server-side Apple validation
-is not implemented yet. App Review should not be submitted until
-`POST /api/app-store/transactions` validates Apple signed transactions or App
-Store Server API responses.
+Server-side Apple validation and persistent entitlement storage are implemented,
+but App Review should not be submitted until the production host has real Apple
+credentials and `tools/verify_production_config.py` passes, then StoreKit
+Sandbox purchase, restore, expiry, refund, renewal, and revocation are verified
+against that host.

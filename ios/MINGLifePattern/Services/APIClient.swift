@@ -1,9 +1,29 @@
 import Foundation
 
 struct APIClient {
-    enum APIError: Error {
+    enum APIError: LocalizedError {
         case invalidResponse
         case server(String)
+
+        var errorDescription: String? {
+            switch self {
+            case .invalidResponse:
+                return "The server response could not be read. Please try again."
+            case .server(let code):
+                switch code {
+                case "app_store_validation_not_configured":
+                    return "App Store validation is not configured for this build."
+                case "app_store_validation_unavailable":
+                    return "App Store validation is temporarily unavailable. Please try again later."
+                case "unsupported_product":
+                    return "This subscription product is not supported by this version."
+                case "invalid_signed_transaction", "missing_signed_transaction", "invalid_transaction":
+                    return "The App Store transaction could not be verified."
+                default:
+                    return "The purchase could not be verified. Please try again."
+                }
+            }
+        }
     }
 
     let baseURL: URL

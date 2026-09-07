@@ -6,8 +6,8 @@
     <title>MING · Life Pattern</title>
     <link rel="stylesheet" href="/styles/tokens-v20260826.css" />
     <link rel="stylesheet" href="/styles/base-v20260826.css" />
-    <link rel="stylesheet" href="/styles/components-v20260826.css" />
-    <link rel="stylesheet" href="/styles/responsive-v20260826.css" />
+    <link rel="stylesheet" href="/styles/components-v20260826.css?v=125" />
+    <link rel="stylesheet" href="/styles/responsive-v20260826.css?v=125" />
 
   </head>
   <body>
@@ -59,7 +59,7 @@
     </header>
 
     <main>
-      <section class="input-panel" data-mobile-pane="me">
+      <section id="mobile-pane-me" class="input-panel" data-mobile-pane="me">
         <div class="panel-title">
           <h2 data-i18n="inputTitle">输入</h2>
           <span class="schema-pill" data-i18n="coreVersion">内核 v1.0</span>
@@ -179,7 +179,7 @@
       </section>
 
       <div class="results">
-        <section class="summary theme-overview" data-mobile-pane="today">
+        <section id="mobile-pane-today" class="summary theme-overview" data-mobile-pane="today">
           <div class="panel-title">
             <h2 data-i18n="insightTitle">解读总览</h2>
             <span class="schema-pill" data-i18n="simpleVersion">简单版</span>
@@ -192,7 +192,7 @@
           <div id="insight-view" class="insight-grid"></div>
         </section>
 
-        <section class="data-panel theme-oracle" data-mobile-pane="oracle">
+        <section id="mobile-pane-oracle" class="data-panel theme-oracle" data-mobile-pane="oracle">
           <div class="panel-title" style="padding: 18px 18px 0;">
             <div>
               <span class="brand-eyebrow" data-i18n="oracleEyebrow">易经当下之卦</span>
@@ -288,7 +288,7 @@
           <div id="pro-report-view" class="pro-report"></div>
         </section>
 
-        <section class="summary theme-pillars" data-mobile-pane="blueprint">
+        <section id="mobile-pane-blueprint" class="summary theme-pillars" data-mobile-pane="blueprint">
           <div class="panel-title">
             <h2 id="chart-title">四柱</h2>
             <span id="warning-count" class="schema-pill">待生成</span>
@@ -345,15 +345,15 @@
     </main>
 
     <nav class="mobile-section-nav" aria-label="Mobile sections">
-      <button type="button" class="mobile-section-button active" data-mobile-target="today" data-mobile-icon="今"><span data-i18n="mobileNavToday">Today</span></button>
-      <button type="button" class="mobile-section-button" data-mobile-target="blueprint" data-mobile-icon="盘"><span data-i18n="mobileNavBlueprint">Blueprint</span></button>
-      <button type="button" class="mobile-section-button" data-mobile-target="oracle" data-mobile-icon="卦"><span data-i18n="mobileNavOracle">Oracle</span></button>
-      <button type="button" class="mobile-section-button" data-mobile-target="me" data-mobile-icon="我"><span data-i18n="mobileNavMe">Me</span></button>
+      <button type="button" class="mobile-section-button active" data-mobile-target="today" data-mobile-icon="今" aria-controls="mobile-pane-today"><span data-i18n="mobileNavToday">Today</span></button>
+      <button type="button" class="mobile-section-button" data-mobile-target="blueprint" data-mobile-icon="盘" aria-controls="mobile-pane-blueprint"><span data-i18n="mobileNavBlueprint">Blueprint</span></button>
+      <button type="button" class="mobile-section-button" data-mobile-target="oracle" data-mobile-icon="卦" aria-controls="mobile-pane-oracle"><span data-i18n="mobileNavOracle">Oracle</span></button>
+      <button type="button" class="mobile-section-button" data-mobile-target="me" data-mobile-icon="我" aria-controls="mobile-pane-me"><span data-i18n="mobileNavMe">Me</span></button>
     </nav>
 
     <script src="/js/state-v20260826.js" defer></script>
     <script src="/js/storage-v20260826.js" defer></script>
     <script src="/js/api-v20260826.js" defer></script>
     <script src="/js/analytics-v20260826.js" defer></script>
-    <script src="/js/locales-v20260826.js" defer></script>
-    <script src="/js/app-v20260826.js" defer></script>
+    <script src="/js/locales-v20260826.js?v=125" defer></script>
+    <script src="/js/app-v20260826.js?v=125" defer></script>

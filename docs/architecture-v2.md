@@ -26,7 +26,8 @@ Entitlement:
 
 - `GET /api/entitlement`
 - Output: `{ ok, entitlement }`.
-- The entitlement source of truth is server state, not a browser cookie.
+- The entitlement source of truth is the server-side SQLite entitlement store,
+  not a browser cookie.
 
 StoreKit:
 
@@ -60,7 +61,8 @@ Analytics:
 
 - The server must reject forged `bazi_native_pro=1` or any other client-declared Pro flag.
 - The iOS app may cache StoreKit purchase state for UI messaging, but server-gated Pro endpoints require backend entitlement.
-- Session tokens are short-lived and signed by the server.
+- Session tokens are short-lived, signed by the server, and only point to a
+  persisted entitlement subject.
 - Refund, revocation, expiry, renewal, and restore flows must converge on the same entitlement store.
 - If the entitlement service is unavailable, the app must show an unavailable/degraded state and must not unlock Pro by default.
 

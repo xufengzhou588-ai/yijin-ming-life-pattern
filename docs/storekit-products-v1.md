@@ -97,19 +97,22 @@ The backend and app should normalize Apple purchase state into this response:
 - Pro content is informational and reflective, not professional advice.
 - Do not sell luck, merit, random rewards, auto-tapping, or leaderboards.
 
-## Web Prototype Status
+## Backend Status
 
-The current web build exposes a production-shaped entitlement response, but uses
-`source: local_demo` and `storekit_ready: false`. This is intentional until the
-iOS StoreKit integration is implemented.
+The web build consumes the production-shaped entitlement response from the
+backend. It does not grant Pro from local storage or client-declared cookies.
 
-The backend now includes `POST /api/app-store/transactions` as an integration
-point. By default it returns `app_store_validation_not_configured` because Apple
-validation is not implemented yet. For local sandbox UI testing only, set:
+The backend includes `POST /api/app-store/transactions`, validates StoreKit2
+signed transactions with Apple's App Store Server Library when production
+credentials are configured, and persists normalized entitlement records in
+SQLite. By default, a missing Apple credential set returns
+`app_store_validation_not_configured` and does not unlock Pro.
 
-```powershell
-$env:BAZI_STOREKIT_STUB="1"
+For local sandbox UI testing only, set:
+
+```bash
+BAZI_STOREKIT_STUB=1 BAZI_ALLOW_INSECURE_STOREKIT_STUB=1 APP_STORE_ENVIRONMENT=sandbox \
 python server.py
 ```
 
-Do not use this stub in production.
+Do not use this stub in TestFlight or production.

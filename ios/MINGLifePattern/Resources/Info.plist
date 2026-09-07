@@ -33,7 +33,7 @@
   <key>MING_METHODOLOGY_URL</key>
   <string>https://mingpattern.app/legal/methodology</string>
   <key>MING_PRO_MODE</key>
-  <string>storekit</string>
+  <string>free_first</string>
   <key>ITSAppUsesNonExemptEncryption</key>
   <false/>
   <key>NSAppTransportSecurity</key>

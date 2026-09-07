@@ -1210,8 +1210,8 @@
       }
 
       .history-controls button {
-        min-width: 34px;
-        min-height: 34px;
+        min-width: 44px;
+        min-height: 44px;
         padding: 0 9px;
         background: transparent;
         color: var(--text);
@@ -3617,6 +3617,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
         gap: 10px;
         margin-top: 12px;
         color: var(--muted);
@@ -3666,7 +3667,7 @@
 
       .premium-button {
         width: 100%;
-        min-height: 38px;
+        min-height: 44px;
         margin-top: 4px;
         color: var(--gold);
         background: transparent;
@@ -3697,6 +3698,15 @@
         color: var(--muted);
         font-size: 13px;
         line-height: 1.75;
+      }
+
+      .pro-section-title {
+        margin: 18px 0 0;
+        font-size: 14px;
+      }
+
+      .pro-store-note {
+        margin-top: 14px;
       }
 
       .pro-plan-grid {
@@ -3775,7 +3785,8 @@
       }
 
       .pro-access-actions button {
-        min-height: 38px;
+        min-height: 44px;
+        white-space: normal;
       }
 
       .pro-legal-row {

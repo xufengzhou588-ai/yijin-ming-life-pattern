@@ -1,6 +1,7 @@
 # TestFlight QA Checklist — 2026-08-25
 
-Goal: validate the P3 US paid-release candidate with 50-100 US testers.
+Goal: validate the 1.0 United States free-first App Store candidate before App
+Review. This checklist intentionally excludes active In-App Purchase testing.
 
 ## Build Sanity
 
@@ -9,7 +10,8 @@ Goal: validate the P3 US paid-release candidate with 50-100 US testers.
 - Version/build number matches App Store Connect.
 - App icon appears correctly.
 - App name appears as `MING`.
-- Release build is not launched with `MING_PRO_MODE=free_first`.
+- Release build uses `MING_PRO_MODE=free_first`.
+- Public `/app` defaults to the free-first experience.
 
 ## First-Run and Reading
 
@@ -44,38 +46,47 @@ Goal: validate the P3 US paid-release candidate with 50-100 US testers.
 - Completion copy is `Intention set` / "You made space before acting."
 - No merit score, luck currency, auto-tapping, or leaderboard appears.
 
-## Pro / StoreKit Flow
+## Pro Preview / No Purchase Flow
 
-- Monthly product loads as `ming.pro.monthly`.
-- Yearly product loads as `ming.pro.yearly`.
-- Price and billing period come from StoreKit.
-- Paywall does not say Coming Soon in the release build.
+- MING Pro opens as a planned-feature preview.
+- Pro cards show planned future value without active purchase claims.
+- No monthly product loads.
+- No yearly product loads.
+- No price or billing period appears.
+- No purchase button appears.
+- No Restore Purchase button appears.
+- No demo unlock button appears.
 - Terms, Privacy, Support, and methodology links are visible.
-- Purchase sandbox monthly subscription.
-- Purchase sandbox yearly subscription if practical.
-- App sends StoreKit signed transaction to backend.
-- Entitlement changes to Pro only after backend response.
-- WebView receives server session cookie, not a self-declared Pro flag.
-- Kill and relaunch app; entitlement remains correct.
-- Restore Purchase works.
-- Expired/no-purchase sandbox account shows a clear non-Pro state.
-- Refund, revocation, expiry, renewal, and restore are verified through backend entitlement state before public release.
+- Direct Pro endpoint calls still return 403 without a server-verified
+  entitlement.
+
+StoreKit purchase, restore, cancellation, pending, refund, revocation, expiry,
+and renewal testing is deferred to the v1.1 paid update. Record that later
+evidence in `docs/p5-02-storekit-sandbox-app-store-submission-2026-08-25.md`.
 
 ## Anonymous Analytics
 
-- Events follow `docs/analytics-events-v1.md`.
+- Events follow `docs/analytics-events-v1.md` with current schema `analytics-events-v2`.
+- `first_open`, `experiment_exposure`, and `free_entitlement` appear for a fresh install.
+- `anonymous_install_id` remains stable across relaunch; `anonymous_session_id` changes only by session/app process.
+- `experiment.key` is `us_testflight_paywall_copy` and variant is stable for the install.
+- US readout filters use `release_channel=testflight` and `region_scope=us_testflight`.
 - `onboarding_started` and `onboarding_completed` do not include birth details.
 - `reading_generated` does not include birth date, birth time, country, region, city, timezone, longitude, or latitude.
 - Oracle raw questions and journal text are not sent to analytics.
-- StoreKit records only purchase/restore event names and product/entitlement status.
+- Locked Pro attempts produce `pro_gate_denied` and `paywall_view`.
+- StoreKit purchase and restore events do not appear in the free-first flow.
+- Offline, disabled, or failed analytics upload does not block onboarding,
+  reading, planned-Pro preview, or locked Pro gate checks.
+- Server JSONL rows contain no IP address, user agent, birth fields, precise location, Oracle question, report text, or journal text.
 
 ## Accessibility and Device Matrix
 
 - VoiceOver can complete onboarding.
 - VoiceOver can generate a reading.
 - VoiceOver can complete daily seal selection, Muyu Reset, small action, and evening mark.
-- VoiceOver can restore purchase.
-- Dynamic Type does not clip paywall, Today, or legal text.
+- VoiceOver can dismiss the MING Pro preview.
+- Dynamic Type does not clip Pro preview, Today, or legal text.
 - Reduced Motion removes nonessential animation.
 - Landscape layout remains usable.
 - 320, 390, 768, 1024, and 1440 px widths have no obvious overflow.
@@ -89,9 +100,9 @@ Ask each tester:
 - Did you trust the result? Why or why not?
 - Did uncertainty around birth time make sense?
 - Would you return tomorrow? Why or why not?
-- Would you pay for Monthly Compass, Oracle Journal, review history, or ritual soundscapes?
-- Which price felt acceptable: USD 7.99, 8.99, or 9.99 monthly?
-- Which yearly price felt acceptable: USD 39.99, 49.99, or 59.99?
+- Which planned Pro feature sounded most useful: Monthly Compass, Oracle
+  Journal, review history, or ritual soundscapes?
+- Would you consider a paid Pro update later? Why or why not?
 
 ## Legal / Trust Flow
 
@@ -106,10 +117,13 @@ Ask each tester:
 ## App Store Connect Readiness
 
 - App Privacy details match the production implementation.
-- Subscription group and products are approved or ready for review.
+- App price is Free.
+- First availability is United States.
+- No In-App Purchase products are submitted with 1.0.
 - Public HTTPS URLs are live.
 - Screenshots match the current UI.
-- Review notes explain the non-fatalistic boundary and StoreKit flow.
+- Review notes explain the non-fatalistic boundary and no-purchase free-first
+  release.
 
 ## Pass / Fail Notes
 

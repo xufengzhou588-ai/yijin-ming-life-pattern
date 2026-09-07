@@ -9,6 +9,7 @@ import os
 import re
 import secrets
 import socket
+import sqlite3
 import sys
 import threading
 import time
@@ -34,12 +35,95 @@ WEB_ROOT = ROOT / "web"
 API_VERSION = "0.2.0"
 MAX_JSON_BODY_BYTES = 64 * 1024
 MAX_NOTIFICATION_BODY_BYTES = 256 * 1024
+MAX_ANALYTICS_BODY_BYTES = 32 * 1024
 PRO_SESSION_SECONDS = 30 * 60
 ALLOWED_PRODUCT_IDS = {"ming.pro.monthly", "ming.pro.yearly"}
 ALLOWED_ORACLE_CATEGORIES = {"general", "career", "wealth", "relationship", "decision", "growth"}
 ALLOWED_ORACLE_HORIZONS = {"seven_days", "one_month", "three_months"}
+ANALYTICS_SCHEMA_VERSION = "analytics-events-v2"
+ANALYTICS_ALLOWED_EVENTS = {
+    "first_open",
+    "onboarding_started",
+    "onboarding_completed",
+    "free_entitlement",
+    "reading_generated",
+    "today_viewed",
+    "seal_selected",
+    "muyu_started",
+    "muyu_completed",
+    "quest_action_completed",
+    "weekly_review_viewed",
+    "oracle_started",
+    "oracle_saved",
+    "paywall_view",
+    "paywall_viewed",
+    "purchase_start",
+    "purchase_started",
+    "purchase_success",
+    "purchase_completed",
+    "purchase_failure",
+    "purchase_cancel",
+    "restore",
+    "subscription_restored",
+    "pro_gate_denied",
+    "experiment_exposure",
+}
+ANALYTICS_ALLOWED_METADATA_KEYS = {
+    "action_key",
+    "app_build",
+    "cancel_reason",
+    "duration_seconds",
+    "entitlement_status",
+    "entitlement_tier",
+    "error_code",
+    "experiment_key",
+    "failure_stage",
+    "language",
+    "module",
+    "plan_id",
+    "placement",
+    "product_id",
+    "quest_id",
+    "reason",
+    "review_period",
+    "seal_key",
+    "source",
+    "status",
+    "storekit_environment",
+    "surface",
+    "time_accuracy",
+    "true_solar_time",
+    "variant",
+    "week_index",
+}
+ANALYTICS_FORBIDDEN_METADATA_KEYS = {
+    "birth_date",
+    "birth_datetime",
+    "birth_time",
+    "body",
+    "city",
+    "content",
+    "country",
+    "display_name",
+    "email",
+    "journal",
+    "latitude",
+    "longitude",
+    "name",
+    "payload",
+    "question",
+    "region",
+    "report",
+    "result",
+    "text",
+    "timezone",
+}
+ANALYTICS_ALLOWED_RELEASE_CHANNELS = {"testflight", "app_store", "web", "local", "unknown"}
+ANALYTICS_ALLOWED_REGION_SCOPES = {"us_testflight", "non_us_testflight", "not_testflight", "unknown"}
+ANALYTICS_ALLOWED_EXPERIMENTS = {"us_testflight_paywall_copy"}
 SESSION_COOKIE = "bazi_session"
 SESSION_SECRET = os.environ.get("BAZI_SESSION_SECRET", secrets.token_urlsafe(48)).encode("utf-8")
+DEFAULT_ENTITLEMENT_DB = ROOT / "runtime" / "entitlements.sqlite3"
 RATE_LIMIT_WINDOW_SECONDS = 60
 RATE_LIMITS = {
     "/api/generate": 40,
@@ -49,6 +133,7 @@ RATE_LIMITS = {
     "/api/oracle/interpret": 30,
     "/api/app-store/transactions": 20,
     "/api/app-store/notifications": 120,
+    "/api/analytics/events": 120,
     "/api/entitlement/demo-unlock": 12,
     "/api/entitlement/demo-lock": 12,
 }
@@ -56,6 +141,8 @@ _RATE_BUCKETS: dict[tuple[str, str], list[float]] = {}
 _RATE_LOCK = threading.Lock()
 _ENTITLEMENT_LOCK = threading.Lock()
 _ENTITLEMENTS: dict[str, "EntitlementRecord"] = {}
+_ANALYTICS_LOCK = threading.Lock()
+_ANALYTICS_EVENT_IDS: set[str] = set()
 
 
 class ClientInputError(Exception):
@@ -133,6 +220,325 @@ def _millis_to_datetime(value: int | None) -> datetime | None:
     if value in (None, 0):
         return None
     return datetime.fromtimestamp(int(value) / 1000, tz=timezone.utc)
+
+
+def _parse_dt(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def _entitlement_db_path() -> Path:
+    raw_path = os.environ.get("BAZI_ENTITLEMENT_DB_PATH", "").strip()
+    if not raw_path:
+        return DEFAULT_ENTITLEMENT_DB
+    path = Path(raw_path).expanduser()
+    return path if path.is_absolute() else ROOT / path
+
+
+def _connect_entitlement_db() -> sqlite3.Connection:
+    db_path = _entitlement_db_path()
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    connection = sqlite3.connect(db_path, timeout=10)
+    connection.row_factory = sqlite3.Row
+    _ensure_entitlement_db(connection)
+    return connection
+
+
+def _ensure_entitlement_db(connection: sqlite3.Connection) -> None:
+    connection.execute(
+        """
+        CREATE TABLE IF NOT EXISTS entitlement_records (
+            subject TEXT PRIMARY KEY,
+            status TEXT NOT NULL,
+            is_pro INTEGER NOT NULL,
+            source TEXT NOT NULL,
+            environment TEXT NOT NULL,
+            product_id TEXT,
+            expires_at TEXT,
+            transaction_id TEXT,
+            original_transaction_id TEXT,
+            app_account_token TEXT,
+            anonymous_install_id TEXT,
+            revocation_date TEXT,
+            last_event TEXT,
+            updated_at TEXT NOT NULL
+        )
+        """
+    )
+    connection.execute(
+        """
+        CREATE TABLE IF NOT EXISTS entitlement_aliases (
+            alias TEXT PRIMARY KEY,
+            subject TEXT NOT NULL,
+            FOREIGN KEY(subject) REFERENCES entitlement_records(subject)
+        )
+        """
+    )
+
+
+def _entitlement_aliases(record: "EntitlementRecord") -> set[str]:
+    aliases = {
+        record.subject,
+        f"tx:{record.original_transaction_id}" if record.original_transaction_id else "",
+        f"txn:{record.transaction_id}" if record.transaction_id else "",
+        f"app:{record.app_account_token}" if record.app_account_token else "",
+        f"install:{record.anonymous_install_id}" if record.anonymous_install_id else "",
+    }
+    return {alias for alias in aliases if alias}
+
+
+def _fetch_entitlement_subject(alias: str) -> str | None:
+    try:
+        with _connect_entitlement_db() as connection:
+            row = connection.execute(
+                "SELECT subject FROM entitlement_aliases WHERE alias = ?",
+                (alias,),
+            ).fetchone()
+            if row:
+                return str(row["subject"])
+            row = connection.execute(
+                "SELECT subject FROM entitlement_records WHERE subject = ?",
+                (alias,),
+            ).fetchone()
+            return str(row["subject"]) if row else None
+    except (OSError, sqlite3.Error):
+        return None
+
+
+def _canonical_entitlement_subject(aliases: set[str]) -> str | None:
+    for alias in sorted(aliases):
+        existing = _ENTITLEMENTS.get(alias)
+        if existing:
+            return existing.subject
+    for alias in sorted(aliases):
+        subject = _fetch_entitlement_subject(alias)
+        if subject:
+            return subject
+    return None
+
+
+def _persist_entitlement(record: "EntitlementRecord", aliases: set[str]) -> None:
+    try:
+        with _connect_entitlement_db() as connection:
+            connection.execute(
+                """
+                INSERT INTO entitlement_records (
+                    subject, status, is_pro, source, environment, product_id,
+                    expires_at, transaction_id, original_transaction_id,
+                    app_account_token, anonymous_install_id, revocation_date,
+                    last_event, updated_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(subject) DO UPDATE SET
+                    status = excluded.status,
+                    is_pro = excluded.is_pro,
+                    source = excluded.source,
+                    environment = excluded.environment,
+                    product_id = excluded.product_id,
+                    expires_at = excluded.expires_at,
+                    transaction_id = excluded.transaction_id,
+                    original_transaction_id = excluded.original_transaction_id,
+                    app_account_token = excluded.app_account_token,
+                    anonymous_install_id = excluded.anonymous_install_id,
+                    revocation_date = excluded.revocation_date,
+                    last_event = excluded.last_event,
+                    updated_at = excluded.updated_at
+                """,
+                (
+                    record.subject,
+                    record.status,
+                    int(record.is_pro),
+                    record.source,
+                    record.environment,
+                    record.product_id,
+                    _format_dt(record.expires_at),
+                    record.transaction_id,
+                    record.original_transaction_id,
+                    record.app_account_token,
+                    record.anonymous_install_id,
+                    _format_dt(record.revocation_date),
+                    record.last_event,
+                    _format_dt(record.updated_at),
+                ),
+            )
+            connection.execute("DELETE FROM entitlement_aliases WHERE subject = ?", (record.subject,))
+            connection.executemany(
+                "INSERT OR REPLACE INTO entitlement_aliases(alias, subject) VALUES (?, ?)",
+                [(alias, record.subject) for alias in sorted(aliases)],
+            )
+    except (OSError, sqlite3.Error) as exc:
+        raise EntitlementUnavailable("entitlement_store_unavailable") from exc
+
+
+def _row_to_entitlement(row: sqlite3.Row) -> "EntitlementRecord":
+    return EntitlementRecord(
+        subject=str(row["subject"]),
+        status=str(row["status"]),
+        is_pro=bool(row["is_pro"]),
+        source=str(row["source"]),
+        environment=str(row["environment"]),
+        product_id=row["product_id"],
+        expires_at=_parse_dt(row["expires_at"]),
+        transaction_id=row["transaction_id"],
+        original_transaction_id=row["original_transaction_id"],
+        app_account_token=row["app_account_token"],
+        anonymous_install_id=row["anonymous_install_id"],
+        revocation_date=_parse_dt(row["revocation_date"]),
+        last_event=row["last_event"],
+        updated_at=_parse_dt(row["updated_at"]),
+    )
+
+
+def _load_entitlement(alias: str) -> "EntitlementRecord | None":
+    if not alias:
+        return None
+    try:
+        with _connect_entitlement_db() as connection:
+            subject_row = connection.execute(
+                "SELECT subject FROM entitlement_aliases WHERE alias = ?",
+                (alias,),
+            ).fetchone()
+            subject = str(subject_row["subject"]) if subject_row else alias
+            record_row = connection.execute(
+                "SELECT * FROM entitlement_records WHERE subject = ?",
+                (subject,),
+            ).fetchone()
+            if not record_row:
+                return None
+            record = _row_to_entitlement(record_row)
+            alias_rows = connection.execute(
+                "SELECT alias FROM entitlement_aliases WHERE subject = ?",
+                (record.subject,),
+            ).fetchall()
+    except (OSError, sqlite3.Error):
+        return None
+    aliases = {str(row["alias"]) for row in alias_rows} | _entitlement_aliases(record)
+    for key in aliases:
+        _ENTITLEMENTS[key] = record
+    return record
+
+
+def _app_store_config_missing() -> list[str]:
+    missing: list[str] = []
+    if not os.environ.get("APP_STORE_ISSUER_ID", "").strip():
+        missing.append("APP_STORE_ISSUER_ID")
+    if not os.environ.get("APP_STORE_KEY_ID", "").strip():
+        missing.append("APP_STORE_KEY_ID")
+    if not os.environ.get("APP_STORE_BUNDLE_ID", "app.mingpattern.life").strip():
+        missing.append("APP_STORE_BUNDLE_ID")
+    environment = os.environ.get("APP_STORE_ENVIRONMENT", "sandbox").strip().lower()
+    if environment not in {"sandbox", "production"}:
+        missing.append("APP_STORE_ENVIRONMENT")
+
+    inline_key = os.environ.get("APP_STORE_PRIVATE_KEY", "").strip()
+    key_path = os.environ.get("APP_STORE_PRIVATE_KEY_PATH", "").strip()
+    if not inline_key:
+        if not key_path:
+            missing.append("APP_STORE_PRIVATE_KEY or APP_STORE_PRIVATE_KEY_PATH")
+        else:
+            try:
+                Path(key_path).expanduser().read_bytes()
+            except OSError:
+                missing.append("APP_STORE_PRIVATE_KEY_PATH readable")
+
+    root_paths = os.environ.get("APP_STORE_ROOT_CERT_PATHS", "").strip()
+    if not root_paths:
+        missing.append("APP_STORE_ROOT_CERT_PATHS")
+    else:
+        paths = [root_paths]
+        for separator in [os.pathsep, ","]:
+            paths = [item for value in paths for item in value.split(separator)]
+        readable = 0
+        for raw_path in paths:
+            path = raw_path.strip()
+            if not path:
+                continue
+            try:
+                Path(path).expanduser().read_bytes()
+                readable += 1
+            except OSError:
+                missing.append(f"APP_STORE_ROOT_CERT_PATHS readable:{path}")
+        if readable == 0:
+            missing.append("APP_STORE_ROOT_CERT_PATHS readable")
+
+    app_apple_id = os.environ.get("APP_STORE_APP_APPLE_ID", "").strip()
+    if environment == "production":
+        try:
+            int(app_apple_id)
+        except ValueError:
+            missing.append("APP_STORE_APP_APPLE_ID")
+    return sorted(set(missing))
+
+
+def _pro_mode() -> str:
+    return os.environ.get("MING_PRO_MODE", "free_first").strip().lower() or "free_first"
+
+
+def _is_free_first_release() -> bool:
+    return _pro_mode() == "free_first"
+
+
+def _entitlement_store_diagnostics() -> dict[str, Any]:
+    db_path = _entitlement_db_path()
+    try:
+        with _connect_entitlement_db():
+            available = True
+            error = None
+    except (OSError, sqlite3.Error) as exc:
+        available = False
+        error = exc.__class__.__name__
+    return {
+        "available": available,
+        "explicit_path": bool(os.environ.get("BAZI_ENTITLEMENT_DB_PATH", "").strip()),
+        "path": str(db_path),
+        "error": error,
+    }
+
+
+def build_deployment_status() -> dict[str, Any]:
+    environment = os.environ.get("APP_STORE_ENVIRONMENT", "sandbox").strip().lower()
+    pro_mode = _pro_mode()
+    storekit_required = pro_mode == "storekit"
+    app_store_missing = _app_store_config_missing() if storekit_required else []
+    entitlement_store = _entitlement_store_diagnostics()
+    missing: list[str] = list(app_store_missing)
+    if pro_mode not in {"free_first", "storekit"}:
+        missing.append("MING_PRO_MODE=free_first or storekit")
+    if environment != "production":
+        missing.append("APP_STORE_ENVIRONMENT=production")
+    if not os.environ.get("BAZI_SESSION_SECRET", "").strip() or len(os.environ.get("BAZI_SESSION_SECRET", "")) < 32:
+        missing.append("BAZI_SESSION_SECRET>=32")
+    if not entitlement_store["available"]:
+        missing.append("BAZI_ENTITLEMENT_DB_PATH writable")
+    if storekit_required and not entitlement_store["explicit_path"]:
+        missing.append("BAZI_ENTITLEMENT_DB_PATH")
+    if os.environ.get("BAZI_COOKIE_SECURE") != "1":
+        missing.append("BAZI_COOKIE_SECURE=1")
+    if os.environ.get("BAZI_DEMO_UNLOCK") == "1":
+        missing.append("BAZI_DEMO_UNLOCK disabled")
+    if _is_storekit_stub_allowed():
+        missing.append("BAZI_STOREKIT_STUB disabled")
+
+    missing = sorted(set(missing))
+    return {
+        "environment": environment,
+        "pro_mode": pro_mode,
+        "storekit_required": storekit_required,
+        "production_ready": environment == "production" and not missing,
+        "missing": missing,
+        "storekit_configured": storekit_required and not app_store_missing,
+        "storekit_stub_allowed": _is_storekit_stub_allowed(),
+        "demo_unlock_enabled": os.environ.get("BAZI_DEMO_UNLOCK") == "1",
+        "entitlement_store": entitlement_store,
+        "expected_domains": {
+            "web_app": "https://mingpattern.app/app",
+            "api": "https://api.mingpattern.app",
+            "privacy": "https://mingpattern.app/legal/privacy",
+            "terms": "https://mingpattern.app/legal/terms",
+            "support": "https://mingpattern.app/support",
+        },
+    }
 
 
 class ExclusiveThreadingHTTPServer(ThreadingHTTPServer):
@@ -255,16 +661,14 @@ def _is_storekit_stub_allowed() -> bool:
 def _store_entitlement(record: EntitlementRecord) -> EntitlementRecord:
     with _ENTITLEMENT_LOCK:
         record.updated_at = datetime.now(timezone.utc)
-        keys = {
-            record.subject,
-            f"tx:{record.original_transaction_id}" if record.original_transaction_id else "",
-            f"txn:{record.transaction_id}" if record.transaction_id else "",
-            f"app:{record.app_account_token}" if record.app_account_token else "",
-            f"install:{record.anonymous_install_id}" if record.anonymous_install_id else "",
-        }
-        for key in keys:
-            if key:
-                _ENTITLEMENTS[key] = record
+        aliases = _entitlement_aliases(record)
+        canonical_subject = _canonical_entitlement_subject(aliases)
+        if canonical_subject:
+            record.subject = canonical_subject
+            aliases = _entitlement_aliases(record)
+        _persist_entitlement(record, aliases)
+        for key in aliases:
+            _ENTITLEMENTS[key] = record
     return record
 
 
@@ -602,6 +1006,205 @@ def _optional_uuid_string(value: Any) -> str | None:
     return text
 
 
+def _analytics_storage_dir() -> Path:
+    configured = os.environ.get("BAZI_ANALYTICS_DIR", "").strip()
+    return Path(configured).expanduser() if configured else ROOT / ".analytics-events"
+
+
+def _analytics_retention_days() -> int:
+    try:
+        days = int(os.environ.get("BAZI_ANALYTICS_RETENTION_DAYS", "30"))
+    except ValueError:
+        return 30
+    return min(max(days, 1), 90)
+
+
+def _analytics_token(value: Any, *, max_length: int = 80) -> str | None:
+    if value in (None, ""):
+        return None
+    text = str(value).strip()
+    if re.fullmatch(r"[A-Za-z0-9_.:-]{1,%d}" % max_length, text):
+        return text
+    return None
+
+
+def _analytics_uuid(value: Any) -> str | None:
+    try:
+        return _optional_uuid_string(value)
+    except ClientInputError:
+        return None
+
+
+def _analytics_timestamp(value: Any, fallback: datetime) -> str:
+    if not isinstance(value, str) or len(value) > 40:
+        return _format_dt(fallback) or fallback.isoformat()
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return _format_dt(fallback) or fallback.isoformat()
+    return _format_dt(parsed) or parsed.isoformat()
+
+
+def _analytics_category(value: Any, allowed: set[str], *, default: str = "unknown") -> str:
+    text = _analytics_token(value, max_length=40)
+    return text if text in allowed else default
+
+
+def _safe_analytics_metadata_value(value: Any) -> Any:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int) and not isinstance(value, bool):
+        return value if abs(value) <= 1_000_000 else None
+    if isinstance(value, float):
+        return value if value == value and abs(value) <= 1_000_000 else None
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return None
+        if "@" in text or re.search(r"\b\d{4}-\d{2}-\d{2}\b", text):
+            return None
+        return text[:96]
+    return None
+
+
+def _sanitize_analytics_metadata(metadata: Any) -> dict[str, Any]:
+    if not isinstance(metadata, dict):
+        return {}
+    sanitized: dict[str, Any] = {}
+    for key, value in metadata.items():
+        key_text = str(key)
+        if key_text in ANALYTICS_FORBIDDEN_METADATA_KEYS or key_text not in ANALYTICS_ALLOWED_METADATA_KEYS:
+            continue
+        safe_value = _safe_analytics_metadata_value(value)
+        if safe_value not in (None, ""):
+            sanitized[key_text] = safe_value
+    return sanitized
+
+
+def _sanitize_analytics_experiment(experiment: Any) -> dict[str, Any] | None:
+    if not isinstance(experiment, dict):
+        return None
+    key = _analytics_token(experiment.get("key"), max_length=64)
+    if key not in ANALYTICS_ALLOWED_EXPERIMENTS:
+        return None
+    variant = _analytics_token(experiment.get("variant"), max_length=40) or "unknown"
+    try:
+        bucket = int(experiment.get("bucket"))
+    except (TypeError, ValueError):
+        bucket = -1
+    return {
+        "key": key,
+        "variant": variant,
+        "bucket": bucket if 0 <= bucket <= 99 else -1,
+    }
+
+
+def _validate_analytics_event(raw_event: Any, *, envelope_schema: str | None, received_at: datetime) -> dict[str, Any] | None:
+    if not isinstance(raw_event, dict):
+        return None
+    name = str(raw_event.get("name", ""))
+    if name not in ANALYTICS_ALLOWED_EVENTS:
+        return None
+    schema_version = str(raw_event.get("schema_version") or envelope_schema or "")
+    if schema_version not in {ANALYTICS_SCHEMA_VERSION, "analytics-events-v1"}:
+        return None
+    event_id = _analytics_token(raw_event.get("event_id"), max_length=80)
+    install_id = _analytics_uuid(raw_event.get("anonymous_install_id"))
+    session_id = _analytics_uuid(raw_event.get("anonymous_session_id"))
+    if not event_id or not install_id or not session_id:
+        return None
+    try:
+        sequence = int(raw_event.get("sequence", 0))
+    except (TypeError, ValueError):
+        sequence = 0
+    release_channel = _analytics_category(
+        raw_event.get("release_channel"),
+        ANALYTICS_ALLOWED_RELEASE_CHANNELS,
+    )
+    region_scope = _analytics_category(
+        raw_event.get("region_scope"),
+        ANALYTICS_ALLOWED_REGION_SCOPES,
+    )
+    return {
+        "schema_version": ANALYTICS_SCHEMA_VERSION,
+        "event_id": event_id,
+        "name": name,
+        "created_at": _analytics_timestamp(raw_event.get("created_at"), received_at),
+        "received_at": _format_dt(received_at),
+        "anonymous_install_id": install_id,
+        "anonymous_session_id": session_id,
+        "sequence": max(0, min(sequence, 1_000_000)),
+        "release_channel": release_channel,
+        "region_scope": region_scope,
+        "experiment": _sanitize_analytics_experiment(raw_event.get("experiment")),
+        "metadata": _sanitize_analytics_metadata(raw_event.get("metadata")),
+    }
+
+
+def _analytics_events_from_payload(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    events = payload.get("events")
+    if not isinstance(events, list):
+        raise ClientInputError("invalid_analytics_payload", "Analytics payload must include an events array.")
+    if len(events) > 50:
+        raise ClientInputError("invalid_analytics_payload", "Analytics batch is too large.")
+    received_at = datetime.now(timezone.utc)
+    envelope_schema = str(payload.get("schema_version") or "")
+    validated = [
+        event
+        for event in (
+            _validate_analytics_event(raw_event, envelope_schema=envelope_schema, received_at=received_at)
+            for raw_event in events
+        )
+        if event is not None
+    ]
+    unique: list[dict[str, Any]] = []
+    with _ANALYTICS_LOCK:
+        for event in validated:
+            if event["event_id"] in _ANALYTICS_EVENT_IDS:
+                continue
+            _ANALYTICS_EVENT_IDS.add(event["event_id"])
+            unique.append(event)
+    return unique
+
+
+def _purge_old_analytics_files(storage_dir: Path) -> None:
+    cutoff = datetime.now(timezone.utc).date() - timedelta(days=_analytics_retention_days())
+    for path in storage_dir.glob("analytics-*.jsonl"):
+        match = re.fullmatch(r"analytics-(\d{4}-\d{2}-\d{2})\.jsonl", path.name)
+        if not match:
+            continue
+        try:
+            file_date = datetime.fromisoformat(match.group(1)).date()
+        except ValueError:
+            continue
+        if file_date < cutoff:
+            path.unlink(missing_ok=True)
+
+
+def _store_analytics_events(payload: dict[str, Any]) -> int:
+    if os.environ.get("BAZI_ANALYTICS_DISABLED") == "1":
+        return 0
+    events = _analytics_events_from_payload(payload)
+    if not events:
+        return 0
+    storage_dir = _analytics_storage_dir()
+    path = storage_dir / f"analytics-{datetime.now(timezone.utc).date().isoformat()}.jsonl"
+    try:
+        storage_dir.mkdir(parents=True, exist_ok=True)
+        _purge_old_analytics_files(storage_dir)
+        with path.open("a", encoding="utf-8") as handle:
+            for event in events:
+                handle.write(json.dumps(event, ensure_ascii=False, separators=(",", ":")) + "\n")
+    except OSError:
+        with _ANALYTICS_LOCK:
+            for event in events:
+                _ANALYTICS_EVENT_IDS.discard(event["event_id"])
+        return 0
+    return len(events)
+
+
 class BaziHandler(BaseHTTPRequestHandler):
     server_version = "BaziCoreHTTP/0.2"
 
@@ -623,6 +1226,7 @@ class BaziHandler(BaseHTTPRequestHandler):
                 {
                     "ok": True,
                     "system": build_system_status(),
+                    "deployment": build_deployment_status(),
                 }
             )
             return
@@ -667,6 +1271,9 @@ class BaziHandler(BaseHTTPRequestHandler):
                 return
             if path == "/api/app-store/notifications":
                 self._handle_app_store_notification()
+                return
+            if path == "/api/analytics/events":
+                self._handle_analytics_events()
                 return
             if path == "/api/pro/report":
                 self._handle_pro_report()
@@ -713,6 +1320,9 @@ class BaziHandler(BaseHTTPRequestHandler):
             )
 
     def log_message(self, format: str, *args: object) -> None:
+        if self.path.split("?", 1)[0] == "/api/analytics/events":
+            print(f"analytics - {format % args}")
+            return
         print(f"{self.address_string()} - {format % args}")
 
     def _send_file(self, file_path: Path) -> None:
@@ -729,6 +1339,7 @@ class BaziHandler(BaseHTTPRequestHandler):
             else "no-store, no-cache, must-revalidate, max-age=0"
         )
         self.send_response(200)
+        self._send_security_headers()
         self.send_header("Content-Type", content_type)
         self.send_header("Cache-Control", cache_control)
         if cache_control.startswith("no-store"):
@@ -806,6 +1417,11 @@ class BaziHandler(BaseHTTPRequestHandler):
         payload = self._read_json_body(max_bytes=MAX_NOTIFICATION_BODY_BYTES)
         result = _validate_app_store_notification(payload)
         self._send_json({"ok": True, **result})
+
+    def _handle_analytics_events(self) -> None:
+        payload = self._read_json_body(max_bytes=MAX_ANALYTICS_BODY_BYTES)
+        accepted = _store_analytics_events(payload)
+        self._send_json({"ok": True, "accepted": accepted, "schema_version": ANALYTICS_SCHEMA_VERSION})
 
     def _handle_pro_report(self) -> None:
         self._require_pro_entitlement()
@@ -891,7 +1507,7 @@ class BaziHandler(BaseHTTPRequestHandler):
             return _free_entitlement(can_demo_unlock=self._demo_unlock_enabled(), storekit_ready=storekit_ready)
         subject = str(claims.get("sub", ""))
         with _ENTITLEMENT_LOCK:
-            record = _ENTITLEMENTS.get(subject)
+            record = _ENTITLEMENTS.get(subject) or _load_entitlement(subject)
         if record is None:
             return _free_entitlement(can_demo_unlock=self._demo_unlock_enabled(), storekit_ready=storekit_ready, status="needs_restore")
         if record.source == "local_demo" and not self._demo_unlock_enabled():
@@ -936,6 +1552,7 @@ class BaziHandler(BaseHTTPRequestHandler):
     def _send_json(self, payload: dict, status: int = 200, extra_headers: dict[str, str] | None = None) -> None:
         data = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
         self.send_response(status)
+        self._send_security_headers()
         self.send_header("Content-Type", "application/json; charset=utf-8")
         for name, value in (extra_headers or {}).items():
             self.send_header(name, value)
@@ -943,6 +1560,14 @@ class BaziHandler(BaseHTTPRequestHandler):
         self.end_headers()
         if self.command != "HEAD":
             self.wfile.write(data)
+
+    def _send_security_headers(self) -> None:
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+        if os.environ.get("BAZI_HSTS") == "1" or os.environ.get("APP_STORE_ENVIRONMENT", "").lower() == "production":
+            self.send_header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 
 
 def _int_range(value: object, field: str, minimum: int, maximum: int) -> int:

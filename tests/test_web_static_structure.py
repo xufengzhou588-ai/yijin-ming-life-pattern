@@ -128,6 +128,43 @@ class WebStaticStructureTests(unittest.TestCase):
         self.assertTrue(Path("ios/AppStoreConnect/testflight-qa-checklist-20260825.md").exists())
         self.assertTrue(Path("ios/MINGLifePattern/Services/AppAnalytics.swift").exists())
 
+    def test_p5_anonymous_funnel_and_testflight_experiment_contract(self):
+        app = (WEB_ROOT / "js" / f"app-{ASSET_VERSION}.js").read_text(encoding="utf-8")
+        analytics = (WEB_ROOT / "js" / f"analytics-{ASSET_VERSION}.js").read_text(encoding="utf-8")
+        swift = Path("ios/MINGLifePattern/Services/AppAnalytics.swift").read_text(encoding="utf-8")
+        storekit = Path("ios/MINGLifePattern/Services/StoreKitManager.swift").read_text(encoding="utf-8")
+        server_text = Path("server.py").read_text(encoding="utf-8")
+        required_events = [
+            "first_open",
+            "free_entitlement",
+            "paywall_view",
+            "purchase_start",
+            "purchase_success",
+            "purchase_failure",
+            "purchase_cancel",
+            "restore",
+            "pro_gate_denied",
+            "experiment_exposure",
+        ]
+
+        for event in required_events:
+            self.assertIn(event, analytics)
+            self.assertIn(event, swift + storekit)
+
+        self.assertIn("analytics-events-v2", analytics)
+        self.assertIn("anonymous_install_id", analytics)
+        self.assertIn("anonymous_session_id", analytics)
+        self.assertIn("oncePerInstall", analytics)
+        self.assertIn("throttleSeconds", analytics)
+        self.assertIn("us_testflight_paywall_copy", analytics)
+        self.assertIn("/api/analytics/events", analytics)
+        self.assertIn("BAZI_ANALYTICS_DISABLED", server_text)
+        self.assertIn("ANALYTICS_FORBIDDEN_METADATA_KEYS", server_text)
+        self.assertIn("analytics-*.jsonl", server_text)
+        self.assertIn('trackProductEvent("first_open"', app)
+        self.assertIn('trackProductEvent("pro_gate_denied"', app)
+        self.assertTrue(Path("docs/p5-anonymous-funnel-testflight-2026-08-25.md").exists())
+
     def test_versioned_static_assets_get_long_cache(self):
         httpd = server.ExclusiveThreadingHTTPServer(("127.0.0.1", 0), server.BaziHandler)
         thread = threading.Thread(target=httpd.serve_forever, daemon=True)

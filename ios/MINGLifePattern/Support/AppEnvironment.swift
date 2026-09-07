@@ -7,9 +7,11 @@ enum AppEnvironment {
     }
 
     static var webAppURL: URL {
-        urlFromInfoDictionary(
-            key: "MING_WEB_APP_URL",
-            fallback: "https://mingpattern.app/app"
+        urlWithReleaseMode(
+            urlFromInfoDictionary(
+                key: "MING_WEB_APP_URL",
+                fallback: "https://mingpattern.app/app"
+            )
         )
     }
 
@@ -57,7 +59,7 @@ enum AppEnvironment {
            let mode = ProMode(rawValue: rawValue) {
             return mode
         }
-        return .storeKit
+        return .freeFirst
     }
 
     static var isFreeFirstRelease: Bool {
@@ -71,5 +73,18 @@ enum AppEnvironment {
         }
         let rawValue = Bundle.main.object(forInfoDictionaryKey: key) as? String
         return URL(string: rawValue ?? fallback) ?? URL(string: fallback)!
+    }
+
+    private static func urlWithReleaseMode(_ url: URL) -> URL {
+        guard isFreeFirstRelease,
+              var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return url
+        }
+        var queryItems = components.queryItems ?? []
+        if !queryItems.contains(where: { $0.name == "release" }) {
+            queryItems.append(URLQueryItem(name: "release", value: ProMode.freeFirst.rawValue))
+            components.queryItems = queryItems
+        }
+        return components.url ?? url
     }
 }

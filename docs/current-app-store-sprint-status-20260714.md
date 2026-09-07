@@ -93,7 +93,12 @@
 
 ## Important Risk
 
-The current native purchase flow preserves locally verified StoreKit entitlement in the app. Backend App Store Server API validation is still not fully wired because Apple issuer/key/team credentials are not present in this workspace. For a fast TestFlight submission this can be acceptable for app-side entitlement testing, but production should validate signed transactions server-side before relying on backend-gated Pro content.
+This historical sprint note was superseded by P5 on 2026-08-25: backend App
+Store signed transaction validation and persistent entitlement storage are now
+implemented. Production still requires Apple issuer/key/team credentials,
+root certificates, a persistent SQLite volume, a stable session secret, public
+HTTPS hosting, and StoreKit Sandbox verification before TestFlight/App Review
+submission.
 
 ## Local Verification
 

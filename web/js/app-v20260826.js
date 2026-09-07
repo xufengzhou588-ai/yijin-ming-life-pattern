@@ -15,7 +15,7 @@
       const dailyCheckInStorageKey = appState.storageKeys.dailyCheckins;
       const dailyPreferencesStorageKey = appState.storageKeys.dailyPreferences;
       const fetchJson = window.MINGApi.fetchJson;
-      const releaseMode = new URLSearchParams(window.location.search).get("release") || "storekit";
+      const releaseMode = new URLSearchParams(window.location.search).get("release") || "free_first";
       const isFreeFirstRelease = releaseMode === "free_first";
       const ritualState = appState.ritualState;
       const dailyRitualState = appState.dailyRitualState;
@@ -23,6 +23,7 @@
       const resultState = appState.resultState;
       let currentLang = navigator.language && navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
       let ritualReturnFocus = null;
+      let proPaywallReturnFocus = null;
       const sessionTrackedEvents = new Set();
       const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const copy = window.MING_COPY || { zh: {}, en: {} };
@@ -620,6 +621,33 @@
         return copy[currentLang][key] || copy.zh[key] || key;
       }
 
+      function mobileNavAriaKey(target) {
+        return {
+          today: "mobileNavTodayAria",
+          blueprint: "mobileNavBlueprintAria",
+          oracle: "mobileNavOracleAria",
+          me: "mobileNavMeAria"
+        }[target] || "mobileNavTodayAria";
+      }
+
+      function focusRegion(node) {
+        if (!node) return;
+        node.setAttribute("tabindex", "-1");
+        node.focus({ preventScroll: true });
+      }
+
+      function scrollBlockIntoView(node) {
+        if (!node) return;
+        node.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+      }
+
+      function postNativeStoreKit(action, metadata = {}) {
+        const handler = window.webkit?.messageHandlers?.mingStoreKit;
+        if (!handler || typeof handler.postMessage !== "function") return false;
+        handler.postMessage({ action, ...metadata });
+        return true;
+      }
+
       function activeElementLabels() {
         return elementLabels[currentLang] || elementLabels.zh;
       }
@@ -680,6 +708,9 @@
         document.querySelectorAll("[data-lang]").forEach((button) => {
           button.classList.toggle("active", button.dataset.lang === lang);
         });
+        document.querySelectorAll("[data-mobile-target]").forEach((button) => {
+          button.setAttribute("aria-label", t(mobileNavAriaKey(button.dataset.mobileTarget)));
+        });
         refreshTimeOptionLabels();
         updateAccuracyNote();
         if (!generateButton.disabled) generateButton.textContent = t("generate");
@@ -696,7 +727,7 @@
         updateProAccessState();
       }
 
-      function setMobilePane(pane, { scroll = true } = {}) {
+      function setMobilePane(pane, { scroll = true, focus = false } = {}) {
         document.body.dataset.activeMobilePane = pane;
         if (pane === "oracle") document.body.dataset.oracleAssets = "ready";
         document.querySelectorAll("[data-mobile-pane]").forEach((section) => {
@@ -707,12 +738,14 @@
           button.classList.toggle("active", active);
           button.setAttribute("aria-current", active ? "page" : "false");
         });
-        if (!scroll || !window.matchMedia("(max-width: 640px)").matches) return;
+        if (!scroll && !focus) return;
         window.requestAnimationFrame(() => {
+          const focusTarget = document.querySelector(`#mobile-pane-${pane}`);
           const target = pane === "me"
             ? document.querySelector(".hero")
             : document.querySelector(`[data-mobile-pane="${pane}"]`);
-          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (scroll && window.matchMedia("(max-width: 640px)").matches) scrollBlockIntoView(target);
+          if (focus) focusRegion(focusTarget || target);
         });
       }
 
@@ -731,7 +764,7 @@
       });
 
       document.querySelectorAll("[data-mobile-target]").forEach((button) => {
-        button.addEventListener("click", () => setMobilePane(button.dataset.mobileTarget));
+        button.addEventListener("click", () => setMobilePane(button.dataset.mobileTarget, { focus: true }));
       });
 
       form.country.addEventListener("change", () => populateRegions(form.country.value));
@@ -743,7 +776,7 @@
       document.querySelector("#oracle-pro-unlock").addEventListener("click", async () => {
         try {
           await updateDemoEntitlement(true);
-          setMobilePane("oracle");
+          setMobilePane("oracle", { focus: true });
         } catch (error) {
           const message = document.querySelector("#oracle-message");
           message.textContent = error.message;
@@ -779,16 +812,29 @@
       });
 
       async function loadEntitlement() {
+        let entitlementStatus = "free";
+        let entitlementSource = "server";
         try {
           const { payload } = await fetchJson("/api/entitlement", { credentials: "same-origin" });
           if (!payload.ok) throw new Error("entitlement_unavailable");
+          entitlementStatus = payload.entitlement.status || "free";
+          entitlementSource = payload.entitlement.source || "server";
           resultState.isPro = !isFreeFirstRelease && Boolean(payload.entitlement.is_pro);
           resultState.canDemoUnlock = !isFreeFirstRelease && Boolean(payload.entitlement.can_demo_unlock);
         } catch {
           resultState.isPro = false;
           resultState.canDemoUnlock = false;
+          entitlementStatus = "fallback_free";
+          entitlementSource = "client";
         } finally {
           resultState.entitlementReady = true;
+          if (!resultState.isPro) {
+            trackProductEvent("free_entitlement", {
+              entitlement_status: entitlementStatus,
+              entitlement_tier: "free",
+              source: entitlementSource
+            }, { oncePerSession: true });
+          }
           updateProAccessState();
         }
       }
@@ -819,7 +865,13 @@
         const endpoint = unlock ? "/api/entitlement/demo-unlock" : "/api/entitlement/demo-lock";
         const { payload } = await fetchJson(endpoint, { method: "POST", credentials: "same-origin" });
         if (!payload.ok) throw new Error(payload.error || "entitlement_update_failed");
-        trackProductEvent(unlock ? "test_report_unlocked" : "test_report_locked");
+        if (!unlock) {
+          trackProductEvent("free_entitlement", {
+            entitlement_status: payload.entitlement.status || "free",
+            entitlement_tier: "free",
+            source: payload.entitlement.source || "server"
+          });
+        }
         resultState.isPro = Boolean(payload.entitlement.is_pro);
         resultState.canDemoUnlock = Boolean(payload.entitlement.can_demo_unlock);
         updateProAccessState();
@@ -1234,9 +1286,20 @@
       function trackProductEvent(name, metadata = {}, options = {}) {
         const eventKey = `${name}:${JSON.stringify(metadata)}`;
         if (options.oncePerSession && sessionTrackedEvents.has(eventKey)) return false;
-        const recorded = window.MINGAnalytics.record(name, metadata, productEventStorageKey);
+        const recorded = window.MINGAnalytics.record(name, metadata, productEventStorageKey, options);
         if (recorded && options.oncePerSession) sessionTrackedEvents.add(eventKey);
         return recorded;
+      }
+
+      function trackExperimentExposure(experimentKey, surface) {
+        const experiment = window.MINGAnalytics.experiment(experimentKey);
+        return trackProductEvent("experiment_exposure", {
+          language: currentLang,
+          experiment_key: experiment.key,
+          variant: experiment.variant,
+          surface,
+          app_build: appBuildVersion
+        }, { oncePerSession: true });
       }
 
       function saveRecentChart(data) {
@@ -2686,36 +2749,42 @@
           }
         ];
         document.querySelector("#premium-view").innerHTML = modules
-          .map((item) => `<article class="premium-card ${resultState.activePro === item.key && resultState.isPro ? "active" : ""} ${resultState.isPro ? "" : "locked"}">
+          .map((item) => `<article class="premium-card ${resultState.activePro === item.key && resultState.isPro ? "active" : ""} ${resultState.isPro ? "" : "locked"}" aria-labelledby="premium-title-${item.key}">
             <span class="insight-tag">${t("premiumLayer")}</span>
-            <h3>${item.title}</h3>
+            <h3 id="premium-title-${item.key}">${item.title}</h3>
             <div class="premium-preview"><strong>${t("premiumPreviewLabel")}</strong><br>${item.body}</div>
             <ul class="premium-points">
               ${item.points.map((point) => `<li>${point}</li>`).join("")}
             </ul>
-            ${resultState.isPro ? "" : `<div class="premium-lock-note">
+            ${resultState.isPro ? "" : `<div id="premium-lock-${item.key}" class="premium-lock-note">
               <span>${t("premiumLockedIncludes")}</span>
               <strong class="premium-price">${isFreeFirstRelease ? t("proComingSoonBadge") : t("premiumOneTimePrice")}</strong>
             </div>`}
-            <button class="premium-button" type="button" data-premium="${item.key}">${resultState.isPro ? t("premiumCta") : (isFreeFirstRelease ? t("proComingSoonCta") : t("premiumLockedCta"))}</button>
+            <button class="premium-button" type="button" data-premium="${item.key}" ${resultState.isPro ? "" : `aria-describedby="premium-lock-${item.key}"`}>${resultState.isPro ? t("premiumCta") : (isFreeFirstRelease ? t("proComingSoonCta") : t("premiumLockedCta"))}</button>
           </article>`)
           .join("");
         document.querySelectorAll("[data-premium]").forEach((button) => {
           button.addEventListener("click", () => {
+            proPaywallReturnFocus = button;
             resultState.requestedPro = button.dataset.premium;
-            trackProductEvent("paid_module_opened", {
-              language: currentLang,
-              module: resultState.requestedPro
-            });
             if (!resultState.isPro) {
               resultState.activePro = "";
-              renderProPaywall();
-              trackProductEvent("paywall_viewed", {
+              trackProductEvent("pro_gate_denied", {
                 language: currentLang,
-                module: resultState.requestedPro
-              });
+                module: resultState.requestedPro,
+                reason: "missing_entitlement",
+                surface: "premium_card"
+              }, { throttleSeconds: 30 });
+              renderProPaywall();
+              trackProductEvent("paywall_view", {
+                language: currentLang,
+                module: resultState.requestedPro,
+                surface: "pro_report",
+                variant: window.MINGAnalytics.experiment("us_testflight_paywall_copy").variant
+              }, { throttleSeconds: 30 });
+              trackExperimentExposure("us_testflight_paywall_copy", "pro_report");
               statusEl.textContent = t("proLockedStatus");
-              document.querySelector("#pro-report-view").scrollIntoView({ behavior: "smooth", block: "start" });
+              scrollBlockIntoView(document.querySelector("#pro-report-view"));
               return;
             }
             resultState.activePro = resultState.requestedPro;
@@ -2728,7 +2797,7 @@
               requestProReport(resultState.activePro);
               statusEl.textContent = t("premiumPending");
             }
-            document.querySelector("#pro-report-view").scrollIntoView({ behavior: "smooth", block: "start" });
+            scrollBlockIntoView(document.querySelector("#pro-report-view"));
           });
         });
       }
@@ -2749,6 +2818,12 @@
             resultState.activePro = "";
             updateProAccessState();
             renderProPaywall();
+            trackProductEvent("pro_gate_denied", {
+              language: currentLang,
+              module: moduleKey,
+              reason: "server_403",
+              surface: "pro_report"
+            }, { throttleSeconds: 30 });
             throw new Error(t("proLockedStatus"));
           }
           if (!payload.ok) throw new Error(payload.error || "pro_report_failed");
@@ -2825,6 +2900,12 @@
             resultState.activePro = "";
             updateProAccessState();
             renderProPaywall();
+            trackProductEvent("pro_gate_denied", {
+              language: currentLang,
+              module: "monthly",
+              reason: "server_403",
+              surface: "pro_report"
+            }, { throttleSeconds: 30 });
             throw new Error(t("proLockedStatus"));
           }
           if (!payload.ok) throw new Error(payload.error || "monthly_compass_failed");
@@ -2943,6 +3024,12 @@
             resultState.activePro = "";
             updateProAccessState();
             renderProPaywall();
+            trackProductEvent("pro_gate_denied", {
+              language: currentLang,
+              module: "annual",
+              reason: "server_403",
+              surface: "pro_report"
+            }, { throttleSeconds: 30 });
             throw new Error(t("proLockedStatus"));
           }
           if (!payload.ok) throw new Error(payload.error || "annual_report_failed");
@@ -3008,6 +3095,11 @@
 
       function renderProPaywall() {
         const includes = t("proIncludes");
+        const experiment = window.MINGAnalytics.experiment("us_testflight_paywall_copy");
+        const includesBlock = `<h4 class="pro-section-title">${t("proIncludesTitle")}</h4>
+          <div class="pro-includes-grid">
+            ${includes.map(([title, body]) => `<div class="pro-include-item"><strong>${title}</strong>${body}</div>`).join("")}
+          </div>`;
         const planHtml = isFreeFirstRelease
           ? `<div class="pro-plan-grid">
               <section class="pro-plan-card recommended">
@@ -3031,21 +3123,22 @@
             </div>`;
         const actionHtml = isFreeFirstRelease
           ? ""
-          : `<div class="pro-access-actions">
-              ${resultState.canDemoUnlock ? `<button type="button" id="demo-pro-unlock">${t("proDemoUnlock")}</button>` : ""}
+          : `${resultState.canDemoUnlock ? `<button type="button" id="demo-pro-unlock">${t("proDemoUnlock")}</button>` : ""}
+              <button type="button" id="open-native-paywall">${t("proOpenNativePaywall")}</button>
               <button type="button" id="restore-pro-purchase" class="pro-reset-button">${t("proRestorePurchase")}</button>
-            </div>`;
-        document.querySelector("#pro-report-view").innerHTML = `<article class="pro-paywall">
+            `;
+        document.querySelector("#pro-report-view").innerHTML = `<article class="pro-paywall" tabindex="-1" aria-labelledby="pro-paywall-title" aria-describedby="pro-paywall-body">
           <span class="insight-tag">${isFreeFirstRelease ? t("proComingSoonBadge") : t("proLockedState")}</span>
-          <h3>${isFreeFirstRelease ? t("proComingSoonTitle") : t("proPaywallTitle")}</h3>
-          <p>${isFreeFirstRelease ? t("proComingSoonBody") : t("proPaywallBody")}</p>
+          <h3 id="pro-paywall-title">${isFreeFirstRelease ? t("proComingSoonTitle") : t("proPaywallTitle")}</h3>
+          <p id="pro-paywall-body">${isFreeFirstRelease ? t("proComingSoonBody") : t("proPaywallBody")}</p>
+          ${experiment.variant === "value_stack" ? includesBlock : ""}
           ${planHtml}
-          <h4 style="margin: 18px 0 0; font-size: 14px;">${t("proIncludesTitle")}</h4>
-          <div class="pro-includes-grid">
-            ${includes.map(([title, body]) => `<div class="pro-include-item"><strong>${title}</strong>${body}</div>`).join("")}
+          ${experiment.variant === "value_stack" ? "" : includesBlock}
+          <p class="pro-store-note">${isFreeFirstRelease ? t("proFreeFirstNote") : t("proStoreNote")}</p>
+          <div class="pro-access-actions">
+            ${actionHtml}
+            <button type="button" id="pro-paywall-back" class="pro-reset-button paywall-return-button">${t("proPaywallBack")}</button>
           </div>
-          <p style="margin-top: 14px;">${isFreeFirstRelease ? t("proFreeFirstNote") : t("proStoreNote")}</p>
-          ${actionHtml}
           <div class="pro-legal-row">
             <a href="/legal/terms.html" target="_blank" rel="noopener">${t("proTerms")}</a>
             <a href="/legal/privacy.html" target="_blank" rel="noopener">${t("proPrivacy")}</a>
@@ -3054,7 +3147,33 @@
             <span>${t("proNoPredictionBadge")}</span>
           </div>
         </article>`;
+        const paywall = document.querySelector("#pro-report-view .pro-paywall");
+        focusRegion(paywall);
+        window.requestAnimationFrame(() => focusRegion(paywall));
+        const backButton = document.querySelector("#pro-paywall-back");
+        if (backButton) {
+          backButton.addEventListener("click", () => {
+            document.querySelector("#pro-report-view").innerHTML = "";
+            resultState.requestedPro = "";
+            statusEl.textContent = "";
+            if (proPaywallReturnFocus && document.contains(proPaywallReturnFocus)) {
+              proPaywallReturnFocus.focus({ preventScroll: false });
+            } else {
+              focusRegion(document.querySelector("#premium-view"));
+            }
+          });
+        }
         if (isFreeFirstRelease) return;
+        const nativePaywallButton = document.querySelector("#open-native-paywall");
+        if (nativePaywallButton) {
+          nativePaywallButton.addEventListener("click", () => {
+            statusEl.classList.remove("error");
+            const handled = postNativeStoreKit("open_paywall", {
+              module: resultState.requestedPro || "unknown"
+            });
+            statusEl.textContent = handled ? t("proNativePaywallOpened") : t("proNativePaywallUnavailable");
+          });
+        }
         const unlockButton = document.querySelector("#demo-pro-unlock");
         if (unlockButton) {
           unlockButton.addEventListener("click", async () => {
@@ -3070,11 +3189,17 @@
         const restoreButton = document.querySelector("#restore-pro-purchase");
         if (restoreButton) {
           restoreButton.addEventListener("click", () => {
-            statusEl.textContent = t("proRestorePlaceholder");
-            trackProductEvent("restore_purchase_tapped", {
-              language: currentLang,
+            statusEl.classList.remove("error");
+            const handled = postNativeStoreKit("restore_purchase", {
               module: resultState.requestedPro || "unknown"
             });
+            statusEl.textContent = handled ? t("proRestoreStarted") : t("proRestorePlaceholder");
+            trackProductEvent("restore", {
+              language: currentLang,
+              module: resultState.requestedPro || "unknown",
+              source: "web",
+              status: handled ? "native_bridge" : "browser_placeholder"
+            }, { throttleSeconds: 30 });
           });
         }
       }
@@ -3320,6 +3445,12 @@
           const message = document.querySelector("#oracle-message");
           message.textContent = t("oracleProRequired");
           message.classList.add("error");
+          trackProductEvent("pro_gate_denied", {
+            language: currentLang,
+            module: "oracle",
+            reason: "missing_entitlement",
+            surface: "oracle_cast"
+          }, { throttleSeconds: 30 });
           updateOracleAccessState();
           return;
         }
@@ -3896,6 +4027,12 @@
         await loadWorldLocations();
         initLocationSelectors();
         applyLanguage(currentLang);
+        trackProductEvent("first_open", {
+          language: currentLang,
+          surface: "web",
+          app_build: appBuildVersion
+        }, { oncePerInstall: true });
+        trackExperimentExposure("us_testflight_paywall_copy", "initialize");
         await loadEntitlement();
         const profile = readActiveProfile();
         if (profile) {

@@ -10,7 +10,8 @@ The v1 app:
 - does not use data for tracking across apps or websites;
 - does not sell or share birth data;
 - does not require account signup;
-- uses Apple In-App Purchase for Pro access;
+- does not include active In-App Purchase, external payment, or active
+  subscriptions in the 1.0 free-first submission;
 - sends reading inputs to the first-party backend only to calculate the requested reading;
 - does not intentionally retain birth details or oracle questions server-side by default.
 
@@ -22,9 +23,11 @@ Reason: no third-party ad tracking, no cross-app tracking, and no data broker sh
 
 ## Data Linked to the User
 
-Expected answer for v1: limited to purchase/entitlement information handled through Apple and the app's Pro access flow.
+Expected answer for the 1.0 free-first submission: no data linked to the user,
+because there is no account signup and no active In-App Purchase.
 
-Use only if the production backend stores or links the entitlement to a user or device record:
+Use the following only in the later paid update if the production backend stores
+or links the entitlement to a user or device record:
 
 - Purchases: app functionality
 - Identifiers: app functionality
@@ -58,25 +61,30 @@ Birth date, birth time, birthplace, and optional gender/name are highly personal
 - avoid saving them unless the user chooses;
 - provide a privacy policy statement that server processing is for generating the requested reading.
 
-## If Analytics Are Added
+## Analytics
 
-P3 adds a first-party anonymous event dictionary in `docs/analytics-events-v1.md`.
-The current implementation stores a capped local queue only. Before upload,
-update the labels if any analytics SDK/server logging collects or uploads:
+P5 updates the first-party anonymous event dictionary in
+`docs/analytics-events-v1.md` to `analytics-events-v2`. The current
+implementation stores a capped local queue and may upload sanitized events to
+MING's first-party `/api/analytics/events` endpoint. Before upload, update the
+labels if analytics remains enabled for production:
 
-- device identifiers;
-- coarse or precise location;
+- anonymous install/session identifiers;
 - product interaction events;
 - crash logs;
 - performance diagnostics;
 - birth-input completion funnels.
 
-Analytics must not include raw birth details, oracle questions, or generated reading text.
+Analytics must not include raw birth details, precise birthplace, country,
+region, city, timezone, oracle questions, journal text, or generated reading
+text. The current P5 implementation does not use a third-party analytics SDK.
 
-Allowed P3 events are categorical only: onboarding, reading generation, Today
-view, seal selection, Muyu start/complete, seven-day task completion, weekly
-review view, Oracle start/save, paywall view, purchase start/complete, and
-subscription restore.
+Allowed P5 events are categorical only. For the 1.0 free-first submission this
+means first open, experiment exposure, onboarding, free entitlement, reading
+generation, Today view, seal selection, Muyu start/complete, seven-day task
+completion, weekly review view, Oracle start/save, planned-Pro view, and Pro
+gate denial. Purchase and restore events are reserved for the later StoreKit
+update.
 
 Do not include:
 
@@ -93,6 +101,7 @@ The privacy policy should say:
 - what birth details are used for;
 - whether readings are stored locally or server-side;
 - how Pro entitlement is verified;
+- that the 1.0 build has no active purchase or subscription;
 - how users can contact support;
 - that MING does not sell personal data;
 - that MING does not use personal data for third-party advertising tracking.

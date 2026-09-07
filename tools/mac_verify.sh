@@ -18,6 +18,8 @@ echo "== Python tests =="
 PYTHONPATH="$ROOT" python -m pytest -q
 
 echo "== HTTP smoke test =="
+export BAZI_ENTITLEMENT_DB_PATH="${BAZI_ENTITLEMENT_DB_PATH:-/tmp/yijin-entitlements-verify.sqlite3}"
+rm -f "$BAZI_ENTITLEMENT_DB_PATH"
 BAZI_PORT=8787 python server.py >/tmp/yijin-server.out 2>/tmp/yijin-server.err &
 server_pid=$!
 trap 'kill "$server_pid" 2>/dev/null || true' EXIT
@@ -44,8 +46,8 @@ if ! grep -q '"system_version": "2026.08.21"' /tmp/yijin-system-status.json; the
   exit 1
 fi
 
-if ! grep -q '"is_pro": true' /tmp/yijin-native-entitlement.json; then
-  echo "native entitlement cookie did not unlock Pro"
+if grep -q '"is_pro": true' /tmp/yijin-native-entitlement.json; then
+  echo "forged native entitlement cookie unexpectedly unlocked Pro"
   cat /tmp/yijin-native-entitlement.json
   exit 1
 fi
@@ -58,6 +60,36 @@ demo_status="$(
 if [[ "$demo_status" != "403" ]]; then
   echo "demo unlock should be disabled by default, got HTTP $demo_status"
   cat /tmp/yijin-demo-unlock.json
+  exit 1
+fi
+
+echo "== Free-first production config diagnostic =="
+if ! MING_PRO_MODE=free_first APP_STORE_ENVIRONMENT=production \
+  BAZI_SESSION_SECRET=free-first-release-session-secret-2026 BAZI_COOKIE_SECURE=1 \
+  BAZI_DEMO_UNLOCK= BAZI_STOREKIT_STUB= BAZI_ALLOW_INSECURE_STOREKIT_STUB= \
+  python tools/verify_production_config.py >/tmp/yijin-free-first-production-config.json; then
+  echo "free-first production config should pass without StoreKit credentials"
+  cat /tmp/yijin-free-first-production-config.json
+  exit 1
+fi
+
+if grep -q 'APP_STORE_ISSUER_ID' /tmp/yijin-free-first-production-config.json; then
+  echo "free-first production config should not require App Store Server API credentials"
+  cat /tmp/yijin-free-first-production-config.json
+  exit 1
+fi
+
+echo "== StoreKit production config diagnostic =="
+if MING_PRO_MODE=storekit APP_STORE_ENVIRONMENT=production BAZI_SESSION_SECRET=short BAZI_COOKIE_SECURE=0 BAZI_DEMO_UNLOCK=1 \
+  python tools/verify_production_config.py >/tmp/yijin-production-config.json; then
+  echo "StoreKit production config check should fail when required env is missing"
+  cat /tmp/yijin-production-config.json
+  exit 1
+fi
+
+if ! grep -q 'APP_STORE_ISSUER_ID' /tmp/yijin-production-config.json; then
+  echo "StoreKit production config diagnostic did not report missing App Store credentials"
+  cat /tmp/yijin-production-config.json
   exit 1
 fi
 

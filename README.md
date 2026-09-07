@@ -21,16 +21,21 @@ Current MVP boundaries:
   positive factors, negative factors, and core evidence references.
 - The web overview and Pro reports read TraitOutput from the backend; they do
   not calculate wealth retention or relationship pressure in the browser.
-- Pro reports are gated by a server-verified entitlement response. The current
-  web build still uses a local demo cookie, but the API shape now includes
+- The 1.0 App Store target is a free-first release. Pro reports remain gated and
+  preview planned value only; no purchase or Restore Purchase path is active in
+  the default build.
+- The later StoreKit update keeps server-verified entitlement support. App
+  Store signed transactions are validated by the backend, normalized into
   `status`, `tier`, `product_id`, `expires_at`, `needs_restore`, and
-  `storekit_ready` so it can be replaced by StoreKit receipt validation before
-  release.
+  `storekit_ready`, and stored in the server-side entitlement database. Browser
+  cookies are only short-lived signed session pointers and cannot declare Pro by
+  themselves.
 - Draft legal/support pages exist under `web/legal/`; production App Store
   Connect will require public HTTPS Privacy Policy, Terms, and Support URLs.
 - `ios/` contains the SwiftUI shell source skeleton for the App Store build:
-  native tabs, WKWebView reading surface, StoreKit2 subscription manager,
-  entitlement store, and Trust links.
+  native navigation, WKWebView reading surface, free-first Pro preview,
+  StoreKit2 subscription manager for the later paid update, entitlement store,
+  and Trust links.
 - Pro report copy is still bundled in the frontend. Production paid content
   must be returned by an authenticated backend report endpoint.
 - AnnualOutlook v1 is generated through the protected Pro endpoint and keeps

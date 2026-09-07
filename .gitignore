@@ -23,6 +23,8 @@ DerivedData/
 
 # Logs
 *.log
+runtime/
+.analytics-events/
 
 # Generated packages and local backups
 dist/

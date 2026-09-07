@@ -29,7 +29,8 @@ Goal: verify the first uploadable build as soon as Xcode 26+ signing/upload is a
 - Terms and Privacy links are visible.
 - Purchase sandbox monthly subscription.
 - Entitlement changes to Pro.
-- Web reading unlocks Pro content through the native entitlement cookie.
+- Web reading unlocks Pro content through the backend-issued `bazi_session`
+  cookie after server validation.
 - Kill and relaunch app; entitlement remains active.
 - Restore Purchase works.
 - Expired/no-purchase sandbox account shows a clear non-Pro state.
@@ -65,4 +66,3 @@ Goal: verify the first uploadable build as soon as Xcode 26+ signing/upload is a
 - Build:
 - Result:
 - Issues:
-
