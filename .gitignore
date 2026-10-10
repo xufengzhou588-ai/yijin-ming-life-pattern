@@ -17,6 +17,7 @@ ENV/
 # Xcode
 build/
 DerivedData/
+xcuserdata/
 *.xcarchive
 *.xcresult
 *.ipa
