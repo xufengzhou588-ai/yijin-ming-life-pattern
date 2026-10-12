@@ -100,6 +100,8 @@ jobs:
             -archivePath "$RUNNER_TEMP/MINGLifePattern.xcarchive" \
             DEVELOPMENT_TEAM="$APP_STORE_TEAM_ID" \
             CODE_SIGN_STYLE=Automatic \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             PRODUCT_BUNDLE_IDENTIFIER="$APP_STORE_BUNDLE_ID" \
             -allowProvisioningUpdates \
             -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_${APP_STORE_CONNECT_API_KEY_ID}.p8" \
