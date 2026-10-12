@@ -105,7 +105,15 @@ jobs:
             -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_${APP_STORE_CONNECT_API_KEY_ID}.p8" \
             -authenticationKeyID "$APP_STORE_CONNECT_API_KEY_ID" \
             -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
-            archive
+            archive 2>&1 | tee "$RUNNER_TEMP/xcodebuild-archive.log"
+
+      - name: Upload archive log
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: MINGLifePattern-Xcodebuild-Archive-Log
+          path: ${{ runner.temp }}/xcodebuild-archive.log
+          if-no-files-found: ignore
 
       - name: Upload XCArchive artifact
         uses: actions/upload-artifact@v4
