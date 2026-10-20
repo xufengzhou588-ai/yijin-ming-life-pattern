@@ -21,17 +21,17 @@
   <key>CFBundleVersion</key>
   <string>$(CURRENT_PROJECT_VERSION)</string>
   <key>MING_WEB_APP_URL</key>
-  <string>https://mingpattern.app/app</string>
+  <string>https://ming-life-pattern.netlify.app/app</string>
   <key>MING_API_BASE_URL</key>
   <string>https://api.mingpattern.app</string>
   <key>MING_PRIVACY_URL</key>
-  <string>https://mingpattern.app/legal/privacy</string>
+  <string>https://ming-life-pattern.netlify.app/privacy</string>
   <key>MING_TERMS_URL</key>
-  <string>https://mingpattern.app/legal/terms</string>
+  <string>https://ming-life-pattern.netlify.app/terms</string>
   <key>MING_SUPPORT_URL</key>
-  <string>https://mingpattern.app/support</string>
+  <string>https://ming-life-pattern.netlify.app/support</string>
   <key>MING_METHODOLOGY_URL</key>
-  <string>https://mingpattern.app/legal/methodology</string>
+  <string>https://ming-life-pattern.netlify.app/methodology</string>
   <key>MING_PRO_MODE</key>
   <string>free_first</string>
   <key>ITSAppUsesNonExemptEncryption</key>

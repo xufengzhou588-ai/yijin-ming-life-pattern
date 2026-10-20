@@ -16,10 +16,10 @@ This project currently compiles locally with Xcode 16.1 for simulator developmen
 - `MING_PRO_MODE` is `free_first` in
   `ios/MINGLifePattern/Resources/Info.plist`.
 - Public HTTPS URLs live:
-  - `https://mingpattern.app/app`
-  - `https://mingpattern.app/legal/privacy`
-  - `https://mingpattern.app/legal/terms`
-  - `https://mingpattern.app/support`
+  - `https://ming-life-pattern.netlify.app/app`
+  - `https://ming-life-pattern.netlify.app/privacy`
+  - `https://ming-life-pattern.netlify.app/terms`
+  - `https://ming-life-pattern.netlify.app/support`
 
 ## Xcode UI Upload Path
 

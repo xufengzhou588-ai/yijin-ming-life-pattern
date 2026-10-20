@@ -17,6 +17,16 @@
   status = 200
 
 [[redirects]]
+  from = "/terms"
+  to = "/legal/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/methodology"
+  to = "/legal/methodology.html"
+  status = 200
+
+[[redirects]]
   from = "/app"
   to = "/index.html"
   status = 200

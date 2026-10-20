@@ -10,7 +10,7 @@ enum AppEnvironment {
         urlWithReleaseMode(
             urlFromInfoDictionary(
                 key: "MING_WEB_APP_URL",
-                fallback: "https://mingpattern.app/app"
+                fallback: "https://ming-life-pattern.netlify.app/app"
             )
         )
     }
@@ -25,28 +25,28 @@ enum AppEnvironment {
     static var privacyURL: URL {
         urlFromInfoDictionary(
             key: "MING_PRIVACY_URL",
-            fallback: "https://mingpattern.app/legal/privacy"
+            fallback: "https://ming-life-pattern.netlify.app/privacy"
         )
     }
 
     static var termsURL: URL {
         urlFromInfoDictionary(
             key: "MING_TERMS_URL",
-            fallback: "https://mingpattern.app/legal/terms"
+            fallback: "https://ming-life-pattern.netlify.app/terms"
         )
     }
 
     static var supportURL: URL {
         urlFromInfoDictionary(
             key: "MING_SUPPORT_URL",
-            fallback: "https://mingpattern.app/support"
+            fallback: "https://ming-life-pattern.netlify.app/support"
         )
     }
 
     static var methodologyURL: URL {
         urlFromInfoDictionary(
             key: "MING_METHODOLOGY_URL",
-            fallback: "https://mingpattern.app/legal/methodology"
+            fallback: "https://ming-life-pattern.netlify.app/methodology"
         )
     }
 

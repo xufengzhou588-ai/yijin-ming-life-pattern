@@ -175,6 +175,8 @@ class WebStaticStructureTests(unittest.TestCase):
             ("/privacy", "/legal/privacy.html"),
             ("/support", "/legal/support.html"),
             ("/support-thanks", "/legal/support-thanks.html"),
+            ("/terms", "/legal/terms.html"),
+            ("/methodology", "/legal/methodology.html"),
         ]:
             self.assertIn(f'from = "{route}"', config)
             self.assertIn(f'to = "{target}"', config)

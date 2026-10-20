@@ -36,11 +36,11 @@ For TestFlight and App Review these must become public HTTPS endpoints:
 
 The current defaults are placeholders:
 
-- `https://mingpattern.app/app`
+- `https://ming-life-pattern.netlify.app/app`
 - `https://api.mingpattern.app`
-- `https://mingpattern.app/legal/privacy`
-- `https://mingpattern.app/legal/terms`
-- `https://mingpattern.app/support`
+- `https://ming-life-pattern.netlify.app/privacy`
+- `https://ming-life-pattern.netlify.app/terms`
+- `https://ming-life-pattern.netlify.app/support`
 
 ## Later StoreKit Product IDs
 

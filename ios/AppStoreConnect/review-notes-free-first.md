@@ -16,7 +16,7 @@ Reviewer instructions:
 
 Required production URLs before submission:
 
-- Privacy Policy: `https://mingpattern.app/legal/privacy`
-- Terms of Use: `https://mingpattern.app/legal/terms`
-- Support: `https://mingpattern.app/support`
+- Privacy Policy: `https://ming-life-pattern.netlify.app/privacy`
+- Terms of Use: `https://ming-life-pattern.netlify.app/terms`
+- Support: `https://ming-life-pattern.netlify.app/support`
 

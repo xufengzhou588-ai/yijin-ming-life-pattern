@@ -42,9 +42,9 @@ Use as many as fit within App Store Connect's 100-character limit:
 
 ## Required URLs
 
-- Marketing URL: `https://mingpattern.app/app`
-- Privacy Policy URL: `https://mingpattern.app/legal/privacy`
-- Support URL: `https://mingpattern.app/support`
+- Marketing URL: `https://ming-life-pattern.netlify.app/app`
+- Privacy Policy URL: `https://ming-life-pattern.netlify.app/privacy`
+- Support URL: `https://ming-life-pattern.netlify.app/support`
 
 ## Review Notes for Free First Release
 
