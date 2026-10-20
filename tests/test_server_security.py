@@ -254,6 +254,14 @@ class ServerSecurityTests(unittest.TestCase):
         self.assertEqual(payload["error"], "invalid_request")
         self.assertNotIn("Traceback", body.decode("utf-8"))
 
+    def test_server_address_uses_platform_port_for_hosted_deployments(self):
+        with patch.dict(os.environ, {"PORT": "10000"}, clear=True):
+            self.assertEqual(server._server_address(), ("0.0.0.0", 10000))
+
+    def test_server_address_keeps_localhost_default_for_local_development(self):
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(server._server_address(), ("127.0.0.1", 8787))
+
     def test_internal_exception_is_sanitized(self):
         with patch.object(server, "build_core_output", side_effect=RuntimeError("secret stack detail")):
             status, _, body = self.post("/api/generate", VALID_CHART)

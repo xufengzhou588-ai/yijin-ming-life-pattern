@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: ming-life-pattern-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /api/system/status
+    envVars:
+      - key: MING_PRO_MODE
+        value: free_first
+      - key: APP_STORE_ENVIRONMENT
+        value: production
+      - key: APP_STORE_BUNDLE_ID
+        value: app.mingpattern.life
+      - key: BAZI_SESSION_SECRET
+        generateValue: true
+      - key: BAZI_COOKIE_SECURE
+        value: "1"
+      - key: BAZI_HSTS
+        value: "1"

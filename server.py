@@ -532,11 +532,11 @@ def build_deployment_status() -> dict[str, Any]:
         "demo_unlock_enabled": os.environ.get("BAZI_DEMO_UNLOCK") == "1",
         "entitlement_store": entitlement_store,
         "expected_domains": {
-            "web_app": "https://mingpattern.app/app",
-            "api": "https://api.mingpattern.app",
-            "privacy": "https://mingpattern.app/legal/privacy",
-            "terms": "https://mingpattern.app/legal/terms",
-            "support": "https://mingpattern.app/support",
+            "web_app": "https://ming-life-pattern.netlify.app/app",
+            "api": "https://ming-life-pattern.netlify.app/api",
+            "privacy": "https://ming-life-pattern.netlify.app/privacy",
+            "terms": "https://ming-life-pattern.netlify.app/terms",
+            "support": "https://ming-life-pattern.netlify.app/support",
         },
     }
 
@@ -1833,9 +1833,17 @@ def _build_and_validate(payload: dict) -> tuple[dict, dict]:
     return result, traits
 
 
+def _server_address() -> tuple[str, int]:
+    platform_port = os.environ.get("PORT", "").strip()
+    host = os.environ.get("BAZI_HOST", "").strip()
+    if not host:
+        host = "0.0.0.0" if platform_port else "127.0.0.1"
+    port = int(platform_port or os.environ.get("BAZI_PORT", "8787"))
+    return host, port
+
+
 def main() -> None:
-    host = "127.0.0.1"
-    port = int(os.environ.get("BAZI_PORT", "8787"))
+    host, port = _server_address()
     server = ExclusiveThreadingHTTPServer((host, port), BaziHandler)
     if sys.stdout is not None:
         print(f"BaziCore test system running at http://{host}:{port}")
