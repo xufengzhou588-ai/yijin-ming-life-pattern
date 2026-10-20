@@ -14,25 +14,60 @@
       p, li { color:var(--muted); }
       .card { border:1px solid var(--line); border-radius:10px; background:rgba(18,23,24,.84); padding:18px; }
       .eyebrow { color:var(--gold); font-size:12px; text-transform:uppercase; }
+      form { display:grid; gap:14px; margin-top:24px; }
+      label { display:grid; gap:6px; color:var(--muted); }
+      input, select, textarea, button { box-sizing:border-box; width:100%; min-height:44px; border:1px solid var(--line); border-radius:8px; background:#0d1213; color:var(--text); font:inherit; padding:11px 12px; }
+      textarea { min-height:140px; resize:vertical; }
+      button { cursor:pointer; border:0; background:var(--gold); color:#111; font-weight:700; }
+      .hidden { display:none; }
     </style>
   </head>
   <body>
     <main>
       <span class="eyebrow">MING · Life Pattern</span>
       <h1>Support</h1>
-      <p>We are here to help with app access, subscriptions, saved readings, and product questions.</p>
+      <p>We are here to help with app access, saved readings, privacy, and product questions.</p>
 
       <section class="card">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:support@mingpattern.app">support@mingpattern.app</a></p>
+        <p>Send a support request using the form below.</p>
         <p>Please include your device model, iOS version, app version, and a short description of the issue.</p>
       </section>
 
-      <h2>Subscription Help</h2>
-      <p>
-        If Pro access does not appear after purchase, use Restore Purchase in the app. Subscriptions are managed in
-        your Apple account settings. Refund requests are handled by Apple.
-      </p>
+      <form name="ming-life-pattern-support" method="POST" action="/support-thanks" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="ming-life-pattern-support" />
+        <p class="hidden">
+          <label>Do not fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <label>
+          Your email
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+
+        <label>
+          Topic
+          <select name="topic" required>
+            <option value="reading">Reading or chart</option>
+            <option value="saved-data">Saved data</option>
+            <option value="access">App access</option>
+            <option value="privacy">Privacy question</option>
+            <option value="bug">Bug report</option>
+          </select>
+        </label>
+
+        <label>
+          Device and iOS version
+          <input name="device" placeholder="Example: iPhone 16, iOS 18" />
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" required></textarea>
+        </label>
+
+        <button type="submit">Send Support Request</button>
+      </form>
 
       <h2>Data and Saved Readings</h2>
       <p>

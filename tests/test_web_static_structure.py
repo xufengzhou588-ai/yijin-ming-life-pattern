@@ -165,6 +165,27 @@ class WebStaticStructureTests(unittest.TestCase):
         self.assertIn('trackProductEvent("pro_gate_denied"', app)
         self.assertTrue(Path("docs/p5-anonymous-funnel-testflight-2026-08-25.md").exists())
 
+    def test_netlify_legal_and_support_routes_are_release_ready(self):
+        config = Path("netlify.toml").read_text(encoding="utf-8")
+        privacy = (WEB_ROOT / "legal" / "privacy.html").read_text(encoding="utf-8")
+        support = (WEB_ROOT / "legal" / "support.html").read_text(encoding="utf-8")
+
+        self.assertIn('publish = "web"', config)
+        for route, target in [
+            ("/privacy", "/legal/privacy.html"),
+            ("/support", "/legal/support.html"),
+            ("/support-thanks", "/legal/support-thanks.html"),
+        ]:
+            self.assertIn(f'from = "{route}"', config)
+            self.assertIn(f'to = "{target}"', config)
+
+        self.assertIn('name="ming-life-pattern-support"', support)
+        self.assertIn('data-netlify="true"', support)
+        self.assertIn('netlify-honeypot="bot-field"', support)
+        self.assertIn('action="/support-thanks"', support)
+        self.assertIn('href="/support"', privacy)
+        self.assertTrue((WEB_ROOT / "legal" / "support-thanks.html").exists())
+
     def test_versioned_static_assets_get_long_cache(self):
         httpd = server.ExclusiveThreadingHTTPServer(("127.0.0.1", 0), server.BaziHandler)
         thread = threading.Thread(target=httpd.serve_forever, daemon=True)

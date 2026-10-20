@@ -27,6 +27,9 @@ xcuserdata/
 runtime/
 .analytics-events/
 
+# Netlify local site linkage
+.netlify/
+
 # Generated packages and local backups
 dist/
 backups/
