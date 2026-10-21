@@ -290,7 +290,9 @@ def print_preflight(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--action", choices=("status", "preflight", "attach"), default="status"
+        "--action",
+        choices=("status", "preflight", "attach", "submit"),
+        default="status",
     )
     parser.add_argument("--bundle-id", default="app.mingpattern.life")
     parser.add_argument("--version", default="1.0")
@@ -333,8 +335,57 @@ def main() -> int:
     print(f"Attached build: {current_build_number or 'NONE'}")
     print(f"Target build attached: {current_build_id == build['id']}")
 
-    if args.action == "preflight":
+    if args.action in ("preflight", "submit"):
         print_preflight(client, app, version)
+        if args.action == "preflight":
+            return 0
+
+    if args.action == "submit":
+        if build_attributes.get("processingState") != "VALID":
+            raise AppStoreConnectError(
+                "Build cannot be submitted until processingState is VALID"
+            )
+        if current_build_id != build["id"]:
+            raise AppStoreConnectError(
+                f"Build {args.build} must be attached before submission"
+            )
+        if version_attributes.get("appStoreState") != "PREPARE_FOR_SUBMISSION":
+            raise AppStoreConnectError(
+                "Version is not in PREPARE_FOR_SUBMISSION; current state is "
+                f"{version_attributes.get('appStoreState', 'UNKNOWN')}"
+            )
+        client.request(
+            "POST",
+            "/appStoreVersionSubmissions",
+            body={
+                "data": {
+                    "type": "appStoreVersionSubmissions",
+                    "relationships": {
+                        "appStoreVersion": {
+                            "data": {
+                                "type": "appStoreVersions",
+                                "id": version["id"],
+                            }
+                        }
+                    },
+                }
+            },
+        )
+        time.sleep(3)
+        submitted_version = client.request(
+            "GET",
+            f"/appStoreVersions/{version['id']}",
+            params={"fields[appStoreVersions]": "appStoreState,versionString"},
+        )
+        submitted_attributes = (
+            submitted_version.get("data", {}).get("attributes", {})
+            if submitted_version
+            else {}
+        )
+        print(
+            "Submission accepted by App Store Connect. Version state: "
+            f"{submitted_attributes.get('appStoreState', 'UNKNOWN')}"
+        )
         return 0
 
     if args.action == "status":

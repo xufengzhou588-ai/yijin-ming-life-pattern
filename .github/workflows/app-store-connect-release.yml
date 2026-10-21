@@ -12,10 +12,11 @@ on:
           - status
           - preflight
           - attach
+          - submit
 
 jobs:
   release:
-    name: ${{ inputs.action == 'attach' && 'Attach build 2' || inputs.action == 'preflight' && 'Preflight iOS 1.0' || 'Check build 2' }}
+    name: ${{ inputs.action == 'submit' && 'Submit iOS 1.0' || inputs.action == 'attach' && 'Attach build 2' || inputs.action == 'preflight' && 'Preflight iOS 1.0' || 'Check build 2' }}
     runs-on: macos-26
     timeout-minutes: 10
     permissions:
