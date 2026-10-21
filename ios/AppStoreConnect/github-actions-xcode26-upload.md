@@ -92,8 +92,8 @@ The workflow runs:
 
 ## Known Remaining External Requirements
 
-- `mingpattern.app` and `api.mingpattern.app` must resolve and serve HTTPS
-  before App Review submission.
+- `ming-life-pattern.netlify.app` must resolve and proxy `/api/*` to the
+  production API over HTTPS before App Review submission.
 - App Store Connect app record for `MING · Life Pattern` must exist.
 - App Privacy labels must match final production logging/analytics behavior.
 - Upload a short real-device review video or be ready to provide it in

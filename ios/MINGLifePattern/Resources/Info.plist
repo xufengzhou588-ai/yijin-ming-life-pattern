@@ -23,7 +23,7 @@
   <key>MING_WEB_APP_URL</key>
   <string>https://ming-life-pattern.netlify.app/app</string>
   <key>MING_API_BASE_URL</key>
-  <string>https://api.mingpattern.app</string>
+  <string>https://ming-life-pattern.netlify.app</string>
   <key>MING_PRIVACY_URL</key>
   <string>https://ming-life-pattern.netlify.app/privacy</string>
   <key>MING_TERMS_URL</key>

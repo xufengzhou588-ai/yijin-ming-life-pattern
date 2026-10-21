@@ -34,10 +34,10 @@ For TestFlight and App Review these must become public HTTPS endpoints:
 - `MING_TERMS_URL`
 - `MING_SUPPORT_URL`
 
-The current defaults are placeholders:
+The current production defaults are:
 
 - `https://ming-life-pattern.netlify.app/app`
-- `https://api.mingpattern.app`
+- `https://ming-life-pattern.netlify.app`
 - `https://ming-life-pattern.netlify.app/privacy`
 - `https://ming-life-pattern.netlify.app/terms`
 - `https://ming-life-pattern.netlify.app/support`

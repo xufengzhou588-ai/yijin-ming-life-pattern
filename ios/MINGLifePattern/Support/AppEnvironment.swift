@@ -18,7 +18,7 @@ enum AppEnvironment {
     static var apiBaseURL: URL {
         urlFromInfoDictionary(
             key: "MING_API_BASE_URL",
-            fallback: "https://api.mingpattern.app"
+            fallback: "https://ming-life-pattern.netlify.app"
         )
     }
 
