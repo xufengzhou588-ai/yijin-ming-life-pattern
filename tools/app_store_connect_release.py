@@ -188,6 +188,79 @@ def resources(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
     return payload["data"]
 
 
+def relationship_id(resource: dict[str, Any], name: str) -> str | None:
+    relationship = resource.get("relationships", {}).get(name, {}).get("data")
+    return relationship.get("id") if isinstance(relationship, dict) else None
+
+
+def review_submission_items(
+    client: AppStoreConnectClient, submission_id: str
+) -> list[dict[str, Any]]:
+    payload = client.request(
+        "GET",
+        f"/reviewSubmissions/{submission_id}/items",
+        params={
+            "include": "appStoreVersion",
+            "fields[reviewSubmissionItems]": "state,appStoreVersion",
+            "limit": "200",
+        },
+    )
+    return resources(payload)
+
+
+def find_or_create_review_submission(
+    client: AppStoreConnectClient,
+    app_id: str,
+    version_id: str,
+) -> tuple[dict[str, Any], bool]:
+    payload = client.request(
+        "GET",
+        f"/apps/{app_id}/reviewSubmissions",
+        params={
+            "filter[platform]": "IOS",
+            "fields[reviewSubmissions]": "platform,state,submittedDate",
+            "limit": "200",
+        },
+    )
+    ready_submission: dict[str, Any] | None = None
+    for submission in resources(payload):
+        state = submission.get("attributes", {}).get("state")
+        if state not in (
+            "READY_FOR_REVIEW",
+            "WAITING_FOR_REVIEW",
+            "IN_REVIEW",
+            "UNRESOLVED_ISSUES",
+        ):
+            continue
+        items = review_submission_items(client, submission["id"])
+        if any(
+            relationship_id(item, "appStoreVersion") == version_id for item in items
+        ):
+            return submission, True
+        if state == "READY_FOR_REVIEW" and ready_submission is None:
+            ready_submission = submission
+
+    if ready_submission is not None:
+        return ready_submission, False
+
+    created = client.request(
+        "POST",
+        "/reviewSubmissions",
+        body={
+            "data": {
+                "type": "reviewSubmissions",
+                "attributes": {"platform": "IOS"},
+                "relationships": {
+                    "app": {"data": {"type": "apps", "id": app_id}}
+                },
+            }
+        },
+    )
+    if not created or not isinstance(created.get("data"), dict):
+        raise AppStoreConnectError("Review submission was not created")
+    return created["data"], False
+
+
 def print_preflight(
     client: AppStoreConnectClient,
     app: dict[str, Any],
@@ -349,29 +422,73 @@ def main() -> int:
             raise AppStoreConnectError(
                 f"Build {args.build} must be attached before submission"
             )
-        if version_attributes.get("appStoreState") != "PREPARE_FOR_SUBMISSION":
+        if version_attributes.get("appStoreState") not in (
+            "PREPARE_FOR_SUBMISSION",
+            "READY_FOR_REVIEW",
+        ):
             raise AppStoreConnectError(
-                "Version is not in PREPARE_FOR_SUBMISSION; current state is "
+                "Version cannot be added to a draft review submission; current state is "
                 f"{version_attributes.get('appStoreState', 'UNKNOWN')}"
             )
+
+        submission, version_already_added = find_or_create_review_submission(
+            client, app["id"], version["id"]
+        )
+        submission_state = submission.get("attributes", {}).get("state")
+        if version_already_added and submission_state != "READY_FOR_REVIEW":
+            print(
+                "Version is already in a submitted review. Submission state: "
+                f"{submission_state or 'UNKNOWN'}"
+            )
+            return 0
+
+        if not version_already_added:
+            client.request(
+                "POST",
+                "/reviewSubmissionItems",
+                body={
+                    "data": {
+                        "type": "reviewSubmissionItems",
+                        "relationships": {
+                            "reviewSubmission": {
+                                "data": {
+                                    "type": "reviewSubmissions",
+                                    "id": submission["id"],
+                                }
+                            },
+                            "appStoreVersion": {
+                                "data": {
+                                    "type": "appStoreVersions",
+                                    "id": version["id"],
+                                }
+                            },
+                        },
+                    }
+                },
+            )
+            print("Added iOS version 1.0 to the draft review submission.")
+
         client.request(
-            "POST",
-            "/appStoreVersionSubmissions",
+            "PATCH",
+            f"/reviewSubmissions/{submission['id']}",
             body={
                 "data": {
-                    "type": "appStoreVersionSubmissions",
-                    "relationships": {
-                        "appStoreVersion": {
-                            "data": {
-                                "type": "appStoreVersions",
-                                "id": version["id"],
-                            }
-                        }
-                    },
+                    "type": "reviewSubmissions",
+                    "id": submission["id"],
+                    "attributes": {"submitted": True},
                 }
             },
         )
         time.sleep(3)
+        submitted = client.request(
+            "GET",
+            f"/reviewSubmissions/{submission['id']}",
+        )
+        submitted_state = (
+            submitted.get("data", {}).get("attributes", {}).get("state", "UNKNOWN")
+            if submitted
+            else "UNKNOWN"
+        )
         submitted_version = client.request(
             "GET",
             f"/appStoreVersions/{version['id']}",
@@ -383,7 +500,8 @@ def main() -> int:
             else {}
         )
         print(
-            "Submission accepted by App Store Connect. Version state: "
+            "Submission accepted by App Store Connect. Submission state: "
+            f"{submitted_state}; version state: "
             f"{submitted_attributes.get('appStoreState', 'UNKNOWN')}"
         )
         return 0
