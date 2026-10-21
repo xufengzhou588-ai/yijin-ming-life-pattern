@@ -169,6 +169,19 @@ def attached_build_id(
     return relationship.get("id") if isinstance(relationship, dict) else None
 
 
+def build_number(client: AppStoreConnectClient, build_id: str | None) -> str | None:
+    if not build_id:
+        return None
+    payload = client.request(
+        "GET",
+        f"/builds/{build_id}",
+        params={"fields[builds]": "version"},
+    )
+    if not payload or not isinstance(payload.get("data"), dict):
+        return None
+    return payload["data"].get("attributes", {}).get("version")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--action", choices=("status", "attach"), default="status")
@@ -192,6 +205,7 @@ def main() -> int:
     build_attributes = build.get("attributes", {})
     version_attributes = version.get("attributes", {})
     current_build_id = attached_build_id(client, version["id"])
+    current_build_number = build_number(client, current_build_id)
 
     print(f"App: {app.get('attributes', {}).get('name', args.bundle_id)}")
     print(
@@ -209,7 +223,8 @@ def main() -> int:
         "Export compliance answered: "
         f"{build_attributes.get('usesNonExemptEncryption') is not None}"
     )
-    print(f"Already attached: {current_build_id == build['id']}")
+    print(f"Attached build: {current_build_number or 'NONE'}")
+    print(f"Target build attached: {current_build_id == build['id']}")
 
     if args.action == "status":
         return 0
@@ -221,10 +236,6 @@ def main() -> int:
     if current_build_id == build["id"]:
         print("No change needed; build is already attached.")
         return 0
-    if current_build_id:
-        raise AppStoreConnectError(
-            "The App Store version already has a different build attached"
-        )
 
     client.request(
         "PATCH",
@@ -233,7 +244,13 @@ def main() -> int:
     )
     if attached_build_id(client, version["id"]) != build["id"]:
         raise AppStoreConnectError("Build attachment could not be verified")
-    print(f"Attached build {args.build} to iOS version {args.version}.")
+    if current_build_number:
+        print(
+            f"Replaced build {current_build_number} with build {args.build} "
+            f"for iOS version {args.version}."
+        )
+    else:
+        print(f"Attached build {args.build} to iOS version {args.version}.")
     return 0
 
 
