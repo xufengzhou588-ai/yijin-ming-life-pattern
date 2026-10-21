@@ -4,17 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Inspect the release or attach build 2 to iOS 1.0"
+        description: "Inspect metadata or attach build 2 to iOS 1.0"
         required: true
         default: status
         type: choice
         options:
           - status
+          - preflight
           - attach
 
 jobs:
   release:
-    name: ${{ inputs.action == 'attach' && 'Attach build 2' || 'Check build 2' }}
+    name: ${{ inputs.action == 'attach' && 'Attach build 2' || inputs.action == 'preflight' && 'Preflight iOS 1.0' || 'Check build 2' }}
     runs-on: macos-26
     timeout-minutes: 10
     permissions:

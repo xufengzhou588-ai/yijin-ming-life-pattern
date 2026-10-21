@@ -182,9 +182,116 @@ def build_number(client: AppStoreConnectClient, build_id: str | None) -> str | N
     return payload["data"].get("attributes", {}).get("version")
 
 
+def resources(payload: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not payload or not isinstance(payload.get("data"), list):
+        return []
+    return payload["data"]
+
+
+def print_preflight(
+    client: AppStoreConnectClient,
+    app: dict[str, Any],
+    version: dict[str, Any],
+) -> None:
+    app_attributes = app.get("attributes", {})
+    version_attributes = version.get("attributes", {})
+    print("\nPreflight metadata")
+    print(f"Primary locale: {app_attributes.get('primaryLocale', 'UNKNOWN')}")
+    print(
+        "Content rights answered: "
+        f"{bool(app_attributes.get('contentRightsDeclaration'))}"
+    )
+    print(f"Copyright present: {bool(version_attributes.get('copyright'))}")
+    print(f"Release type: {version_attributes.get('releaseType', 'UNKNOWN')}")
+    print(f"Uses IDFA: {version_attributes.get('usesIdfa', 'UNKNOWN')}")
+
+    review_payload = client.request(
+        "GET",
+        f"/appStoreVersions/{version['id']}/appStoreReviewDetail",
+        allow_not_found=True,
+    )
+    review = review_payload.get("data") if review_payload else None
+    review_attributes = review.get("attributes", {}) if isinstance(review, dict) else {}
+    contact_complete = all(
+        review_attributes.get(field)
+        for field in (
+            "contactFirstName",
+            "contactLastName",
+            "contactPhone",
+            "contactEmail",
+        )
+    )
+    print(f"Review contact complete: {contact_complete}")
+    print(
+        "Demo account required: "
+        f"{review_attributes.get('demoAccountRequired', 'UNKNOWN')}"
+    )
+    print(f"Review notes present: {bool(review_attributes.get('notes'))}")
+
+    localization_payload = client.request(
+        "GET",
+        f"/appStoreVersions/{version['id']}/appStoreVersionLocalizations",
+        params={"limit": "50"},
+    )
+    localizations = resources(localization_payload)
+    print(f"Version localizations: {len(localizations)}")
+    for localization in localizations:
+        attributes = localization.get("attributes", {})
+        locale = attributes.get("locale", "UNKNOWN")
+        print(
+            f"Localization {locale}: "
+            f"description={bool(attributes.get('description'))}, "
+            f"keywords={bool(attributes.get('keywords'))}, "
+            f"support_url={bool(attributes.get('supportUrl'))}"
+        )
+        sets_payload = client.request(
+            "GET",
+            f"/appStoreVersionLocalizations/{localization['id']}/appScreenshotSets",
+            params={"limit": "50"},
+        )
+        screenshot_sets = resources(sets_payload)
+        if not screenshot_sets:
+            print(f"Screenshots {locale}: NONE")
+        for screenshot_set in screenshot_sets:
+            screenshot_payload = client.request(
+                "GET",
+                f"/appScreenshotSets/{screenshot_set['id']}/appScreenshots",
+                params={"limit": "50"},
+            )
+            display_type = screenshot_set.get("attributes", {}).get(
+                "screenshotDisplayType", "UNKNOWN"
+            )
+            print(
+                f"Screenshots {locale}/{display_type}: "
+                f"{len(resources(screenshot_payload))}"
+            )
+
+    infos_payload = client.request(
+        "GET", f"/apps/{app['id']}/appInfos", params={"limit": "50"}
+    )
+    infos = resources(infos_payload)
+    print(f"App info records: {len(infos)}")
+    for info in infos:
+        info_localizations_payload = client.request(
+            "GET",
+            f"/appInfos/{info['id']}/appInfoLocalizations",
+            params={"limit": "50"},
+        )
+        for localization in resources(info_localizations_payload):
+            attributes = localization.get("attributes", {})
+            print(
+                f"App info {attributes.get('locale', 'UNKNOWN')}: "
+                f"name={bool(attributes.get('name'))}, "
+                f"subtitle={bool(attributes.get('subtitle'))}, "
+                f"privacy_url={bool(attributes.get('privacyPolicyUrl'))}"
+            )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--action", choices=("status", "attach"), default="status")
+    parser.add_argument(
+        "--action", choices=("status", "preflight", "attach"), default="status"
+    )
     parser.add_argument("--bundle-id", default="app.mingpattern.life")
     parser.add_argument("--version", default="1.0")
     parser.add_argument("--build", default="2")
@@ -225,6 +332,10 @@ def main() -> int:
     )
     print(f"Attached build: {current_build_number or 'NONE'}")
     print(f"Target build attached: {current_build_id == build['id']}")
+
+    if args.action == "preflight":
+        print_preflight(client, app, version)
+        return 0
 
     if args.action == "status":
         return 0
